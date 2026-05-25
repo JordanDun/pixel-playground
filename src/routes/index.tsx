@@ -86,8 +86,14 @@ function Home() {
   // Foreground: starts as a thin horizontal strip the height of the middle
   // headline word, then expands to fully cover the viewport.
   const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
-  const isDesktop =
-    typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches;
+  const [isDesktop, setIsDesktop] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
   // Headline is 18vw on mobile, 12vw on desktop with line-height 0.95.
   const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
   const startWvw = isDesktop ? 78 : 92; // strip width
