@@ -132,21 +132,7 @@ function RootComponent() {
         <span className="text-primary">COLUMBUS</span>
         <span className="text-white/40">|</span>
         <span>OHIO</span>
-        <span className="hidden text-white/60 sm:inline">ROY © All Rights Reserved</span>
-      </div>
-
-      {/* Bottom-center down arrow */}
-      <div className="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 text-white mix-blend-difference">
-        <svg
-          width="22"
-          height="14"
-          viewBox="0 0 22 14"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="animate-[bounce_2s_ease-in-out_infinite] opacity-80"
-        >
-          <path d="M1 1l10 11L21 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
+        <span className="text-white/60">ROY © All Rights Reserved</span>
       </div>
 
       {/* Bottom-right Get in touch */}

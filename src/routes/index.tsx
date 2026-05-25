@@ -143,7 +143,24 @@ function Home() {
               </span>
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
+          {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
+          <div
+            className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-white mix-blend-difference"
+            style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}
+          >
+            <svg
+              width="14"
+              height="9"
+              viewBox="0 0 22 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="animate-[bounce_1.4s_ease-in-out_infinite] opacity-90"
+            >
+              <path d="M1 1l10 11L21 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
           </div>
+
+        </div>
 
 
           {/* Foreground video — 16:9 rectangle that grows to cover viewport.
