@@ -26,7 +26,7 @@ const CLIENTS = [
   "PORSCHE", "VICE", "MONCLER", "DAZED", "SSENSE", "ARC'TERYX",
 ];
 
-const CYCLING_WORDS = ["move", "convert", "inspire", "sell", "linger"];
+const CYCLING_WORDS = ["SOCIAL", "VIDEO", "CONTENT", "BRAND", "CREATIVE"];
 
 const BG_VIDEO = "https://player.vimeo.com/video/832437367?background=1&autoplay=1&loop=1&muted=1&autopause=0";
 const FG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0";
@@ -138,59 +138,25 @@ function Home() {
             <div className="grain absolute inset-0" />
           </div>
 
-          {/* Hero text — sits ON TOP of the foreground video */}
+          {/* Hero text — three stacked words; middle one cycles and sits over the FG video strip */}
           <div
-            className="relative z-20 flex h-full flex-col justify-between px-6 pt-32 pb-10 md:px-10 pointer-events-none"
+            className="relative z-20 flex h-full flex-col items-center justify-center px-6 md:px-10 pointer-events-none"
             style={{ opacity: Math.max(0, 1 - scaleProgress * 1.6) }}
           >
-
-            <div className="flex flex-1 flex-col justify-center">
-              <p className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-white/70">
-                <span className="inline-block size-1.5 rounded-full bg-primary blink" />
-                Now rolling — 2026 reel
-              </p>
-
-              <h1 className="font-display text-balance text-[15vw] leading-[0.85] uppercase text-white md:text-[11vw]">
-                Stories<br />
-                that{" "}
-                <span className="relative inline-block align-baseline italic text-primary">
-                  <span
-                    key={wordIndex}
-                    className="inline-block animate-[wordIn_0.45s_ease-out]"
-                  >
-                    {CYCLING_WORDS[wordIndex]}
-                  </span>
+            <h1 className="font-display uppercase text-center leading-[0.95] text-[18vw] md:text-[12vw]">
+              <span className="block text-white font-light tracking-tight">YOUR</span>
+              <span className="block">
+                <span
+                  key={wordIndex}
+                  className="inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
+                >
+                  {CYCLING_WORDS[wordIndex]}
                 </span>
-                <br />
-                people.
-              </h1>
-
-              <p className="mt-8 max-w-xl text-base text-white/70 md:text-lg">
-                ROY is a video production &amp; marketing agency.
-                We make brand films, campaigns, and the kind of content
-                you finish watching.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-6 text-xs uppercase tracking-[0.2em] text-white/60 md:grid-cols-4">
-              <div>
-                <p className="text-white">Los Angeles</p>
-                <p>{time} PT</p>
-              </div>
-              <div>
-                <p className="text-white">Est. 2021</p>
-                <p>Independent studio</p>
-              </div>
-              <div className="hidden md:block">
-                <p className="text-white">12 films</p>
-                <p>In production</p>
-              </div>
-              <div className="hidden md:block">
-                <p className="text-white">Scroll</p>
-                <p>↓ to play</p>
-              </div>
-            </div>
+              </span>
+              <span className="block text-white font-light tracking-tight">AGENCY</span>
+            </h1>
           </div>
+
 
           {/* Foreground video — 16:9 rectangle that grows to cover viewport.
               Sits BEHIND the hero text (z-15 vs text z-20). */}
