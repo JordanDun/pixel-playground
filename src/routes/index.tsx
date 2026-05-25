@@ -83,13 +83,21 @@ function Home() {
     };
   }, []);
 
-  // Foreground: starts at ~38% width centered, grows to fill viewport
-  const startScale = 0.42;
-  const scale = startScale + (1 - startScale) * scaleProgress;
-  const radius = 12 - 12 * scaleProgress;
+  // Foreground: starts as a 16:9 rectangle (~70vw on mobile, 46vw on desktop),
+  // grows to fully cover the viewport.
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+  const isDesktop =
+    typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches;
+  const startW = isDesktop ? 46 : 78; // vw
+  const startH = startW * (9 / 16); // vh-ish, sized off vw to stay 16:9
+  const fgWidth = lerp(startW, 100, scaleProgress); // vw
+  const fgHeightVw = lerp(startH, 0, scaleProgress); // we'll switch to vh for final
+  const fgHeightVh = lerp(0, 100, scaleProgress);
+  const radius = 14 - 14 * scaleProgress;
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main className="relative min-h-screen bg-background text-foreground">
+
       {/* Top nav */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10 mix-blend-difference">
         <a href="#top" className="flex items-center gap-2 font-display text-2xl tracking-tight text-white">
@@ -130,11 +138,12 @@ function Home() {
             <div className="grain absolute inset-0" />
           </div>
 
-          {/* Hero text */}
+          {/* Hero text — sits ON TOP of the foreground video */}
           <div
-            className="relative z-10 flex h-full flex-col justify-between px-6 pt-32 pb-10 md:px-10"
-            style={{ opacity: 1 - scaleProgress * 1.4 }}
+            className="relative z-20 flex h-full flex-col justify-between px-6 pt-32 pb-10 md:px-10 pointer-events-none"
+            style={{ opacity: Math.max(0, 1 - scaleProgress * 1.6) }}
           >
+
             <div className="flex flex-1 flex-col justify-center">
               <p className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-white/70">
                 <span className="inline-block size-1.5 rounded-full bg-primary blink" />
@@ -183,20 +192,19 @@ function Home() {
             </div>
           </div>
 
-          {/* Foreground video — scales with scroll */}
+          {/* Foreground video — 16:9 rectangle that grows to cover viewport.
+              Sits BEHIND the hero text (z-15 vs text z-20). */}
           <div
-            className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+            className="absolute inset-0 z-[15] flex items-center justify-center pointer-events-none"
             aria-hidden={scaleProgress < 0.95}
           >
             <div
               className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
               style={{
-                width: "100vw",
-                height: "100vh",
-                transform: `scale(${scale})`,
-                transformOrigin: "center center",
+                width: `${fgWidth}vw`,
+                // Interpolate from 16:9 (sized in vw) to full 100vh
+                height: `calc(${fgHeightVw}vw + ${fgHeightVh}vh)`,
                 borderRadius: `${radius}px`,
-                transition: "border-radius 0.1s linear",
               }}
             >
               <iframe
@@ -208,6 +216,7 @@ function Home() {
               />
             </div>
           </div>
+
         </div>
       </section>
 
