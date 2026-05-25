@@ -111,6 +111,25 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Shared header */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10 mix-blend-difference">
+        <Link to="/" className="flex items-center gap-2 font-display text-2xl tracking-tight text-white">
+          <span className="inline-block size-2 rounded-full bg-primary" />
+          ROY
+        </Link>
+        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-white/80 md:flex">
+          <Link to="/work" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Work</Link>
+          <Link to="/services" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Services</Link>
+          <Link to="/about" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">About</Link>
+          <Link to="/contact" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Contact</Link>
+        </nav>
+        <Link
+          to="/contact"
+          className="rounded-full border border-white/40 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
+        >
+          Get in touch
+        </Link>
+      </header>
       <Outlet />
     </QueryClientProvider>
   );
