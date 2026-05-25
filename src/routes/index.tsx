@@ -1,6 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import reelCover from "@/assets/reel-cover.jpg";
+import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -14,8 +13,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "ROY Agency — Video Production & Marketing" },
       {
         property: "og:description",
-        content:
-          "Cinematic brand films, campaigns, and content. Made by ROY.",
+        content: "Cinematic brand films, campaigns, and content. Made by ROY.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -28,9 +26,16 @@ const CLIENTS = [
   "PORSCHE", "VICE", "MONCLER", "DAZED", "SSENSE", "ARC'TERYX",
 ];
 
+const CYCLING_WORDS = ["move", "convert", "inspire", "sell", "linger"];
+
+const BG_VIDEO = "https://player.vimeo.com/video/832437367?background=1&autoplay=1&loop=1&muted=1&autopause=0";
+const FG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0";
+
 function Home() {
   const [time, setTime] = useState("");
+  const [wordIndex, setWordIndex] = useState(0);
 
+  // LA clock
   useEffect(() => {
     const update = () => {
       const d = new Date();
@@ -43,119 +48,183 @@ function Home() {
       setTime(la);
     };
     update();
-    const id = setInterval(update, 1000 * 30);
+    const id = setInterval(update, 30000);
     return () => clearInterval(id);
   }, []);
 
+  // Cycling hero word
+  useEffect(() => {
+    const id = setInterval(
+      () => setWordIndex((i) => (i + 1) % CYCLING_WORDS.length),
+      2200
+    );
+    return () => clearInterval(id);
+  }, []);
+
+  // Sticky scroll-scale section
+  const stickySectionRef = useRef<HTMLDivElement | null>(null);
+  const [scaleProgress, setScaleProgress] = useState(0); // 0 -> 1
+
+  useEffect(() => {
+    const handler = () => {
+      const el = stickySectionRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const total = el.offsetHeight - window.innerHeight;
+      const scrolled = Math.min(Math.max(-rect.top, 0), total);
+      setScaleProgress(total > 0 ? scrolled / total : 0);
+    };
+    handler();
+    window.addEventListener("scroll", handler, { passive: true });
+    window.addEventListener("resize", handler);
+    return () => {
+      window.removeEventListener("scroll", handler);
+      window.removeEventListener("resize", handler);
+    };
+  }, []);
+
+  // Foreground: starts at ~38% width centered, grows to fill viewport
+  const startScale = 0.42;
+  const scale = startScale + (1 - startScale) * scaleProgress;
+  const radius = 12 - 12 * scaleProgress;
+
   return (
-    <main className="relative min-h-screen overflow-hidden bg-background text-foreground">
+    <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* Top nav */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10">
-        <a href="#top" className="flex items-center gap-2 font-display text-2xl tracking-tight">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10 mix-blend-difference">
+        <a href="#top" className="flex items-center gap-2 font-display text-2xl tracking-tight text-white">
           <span className="inline-block size-2 rounded-full bg-primary" />
           ROY
         </a>
-        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-muted-foreground md:flex">
-          <a href="#work" className="transition-colors hover:text-foreground">Work</a>
-          <a href="#about" className="transition-colors hover:text-foreground">Studio</a>
-          <a href="#contact" className="transition-colors hover:text-foreground">Contact</a>
+        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-white/80 md:flex">
+          <a href="#reel" className="transition-colors hover:text-white">Work</a>
+          <a href="#contact" className="transition-colors hover:text-white">Contact</a>
         </nav>
         <a
           href="#contact"
-          className="rounded-full border border-border px-4 py-2 text-xs uppercase tracking-[0.18em] transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
+          className="rounded-full border border-white/40 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
         >
           Get in touch
         </a>
       </header>
 
-      {/* Hero */}
-      <section id="top" className="relative flex min-h-screen flex-col justify-between px-6 pt-32 pb-10 md:px-10">
-        <div className="relative grain pointer-events-none absolute inset-0" />
+      {/* HERO + sticky scaling reel.
+          Total tall section: sticky 100vh inner + extra scroll distance. */}
+      <section
+        id="top"
+        ref={stickySectionRef}
+        className="relative"
+        style={{ height: "220vh" }}
+      >
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+          {/* Background video */}
+          <div className="absolute inset-0">
+            <iframe
+              src={BG_VIDEO}
+              title="ROY background reel"
+              allow="autoplay; fullscreen; picture-in-picture"
+              className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 md:w-[120vw]"
+              style={{ border: 0, pointerEvents: "none" }}
+            />
+            <div className="absolute inset-0 bg-background/55" />
+            <div className="grain absolute inset-0" />
+          </div>
 
-        <div className="relative z-10 flex flex-1 flex-col justify-center">
-          <p className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            <span className="inline-block size-1.5 rounded-full bg-primary blink" />
-            Now rolling — 2026 reel
-          </p>
+          {/* Hero text */}
+          <div
+            className="relative z-10 flex h-full flex-col justify-between px-6 pt-32 pb-10 md:px-10"
+            style={{ opacity: 1 - scaleProgress * 1.4 }}
+          >
+            <div className="flex flex-1 flex-col justify-center">
+              <p className="mb-6 flex items-center gap-3 text-xs uppercase tracking-[0.24em] text-white/70">
+                <span className="inline-block size-1.5 rounded-full bg-primary blink" />
+                Now rolling — 2026 reel
+              </p>
 
-          <h1 className="font-display text-balance text-[15vw] leading-[0.85] uppercase md:text-[11vw]">
-            Stories<br />
-            that <span className="italic text-primary">move</span><br />
-            people.
-          </h1>
+              <h1 className="font-display text-balance text-[15vw] leading-[0.85] uppercase text-white md:text-[11vw]">
+                Stories<br />
+                that{" "}
+                <span className="relative inline-block align-baseline italic text-primary">
+                  <span
+                    key={wordIndex}
+                    className="inline-block animate-[wordIn_0.45s_ease-out]"
+                  >
+                    {CYCLING_WORDS[wordIndex]}
+                  </span>
+                </span>
+                <br />
+                people.
+              </h1>
 
-          <p className="mt-8 max-w-xl text-base text-muted-foreground md:text-lg">
-            ROY is a video production &amp; marketing agency.
-            We make brand films, campaigns, and the kind of content
-            you finish watching.
-          </p>
-        </div>
+              <p className="mt-8 max-w-xl text-base text-white/70 md:text-lg">
+                ROY is a video production &amp; marketing agency.
+                We make brand films, campaigns, and the kind of content
+                you finish watching.
+              </p>
+            </div>
 
-        {/* Showreel card */}
-        <a
-          href="#reel"
-          className="relative z-10 mt-10 grid grid-cols-1 items-end gap-6 border-t border-border pt-6 md:grid-cols-[1fr_auto_auto]"
-        >
-          <div className="flex items-center gap-4">
-            <span className="inline-flex size-12 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:scale-110">
-              <PlayIcon />
-            </span>
-            <div>
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Watch</p>
-              <p className="font-display text-2xl uppercase leading-none">Showreel ’26</p>
+            <div className="grid grid-cols-2 gap-6 text-xs uppercase tracking-[0.2em] text-white/60 md:grid-cols-4">
+              <div>
+                <p className="text-white">Los Angeles</p>
+                <p>{time} PT</p>
+              </div>
+              <div>
+                <p className="text-white">Est. 2021</p>
+                <p>Independent studio</p>
+              </div>
+              <div className="hidden md:block">
+                <p className="text-white">12 films</p>
+                <p>In production</p>
+              </div>
+              <div className="hidden md:block">
+                <p className="text-white">Scroll</p>
+                <p>↓ to play</p>
+              </div>
             </div>
           </div>
-          <div className="hidden h-20 w-px bg-border md:block" />
-          <div className="text-right text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            <p>02:14</p>
-            <p>4K · Dolby</p>
-          </div>
-        </a>
 
-        {/* Bottom info row */}
-        <div className="relative z-10 mt-10 grid grid-cols-2 gap-6 text-xs uppercase tracking-[0.2em] text-muted-foreground md:grid-cols-4">
-          <div>
-            <p className="text-foreground">Los Angeles</p>
-            <p>{time} PT</p>
-          </div>
-          <div>
-            <p className="text-foreground">Est. 2021</p>
-            <p>Independent studio</p>
-          </div>
-          <div className="hidden md:block">
-            <p className="text-foreground">12 films</p>
-            <p>In production</p>
-          </div>
-          <div className="hidden md:block">
-            <p className="text-foreground">Scroll</p>
-            <p>↓ to enter</p>
+          {/* Foreground video — scales with scroll */}
+          <div
+            className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none"
+            aria-hidden={scaleProgress < 0.95}
+          >
+            <div
+              className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
+              style={{
+                width: "100vw",
+                height: "100vh",
+                transform: `scale(${scale})`,
+                transformOrigin: "center center",
+                borderRadius: `${radius}px`,
+                transition: "border-radius 0.1s linear",
+              }}
+            >
+              <iframe
+                src={FG_VIDEO}
+                title="ROY foreground reel"
+                allow="autoplay; fullscreen; picture-in-picture"
+                className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 md:w-[110vw]"
+                style={{ border: 0 }}
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Reel image */}
-      <section id="reel" className="relative px-6 pb-24 md:px-10">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-sm">
-          <img
-            src={reelCover}
-            alt="ROY Agency 2026 showreel cover — cinematic coral light on dark set"
-            width={1600}
-            height={1024}
-            className="h-full w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/10 to-transparent" />
-          <div className="absolute inset-0 flex items-end justify-between p-6 md:p-10">
-            <p className="font-display text-3xl uppercase md:text-5xl">
-              Your <span className="text-primary">campaign</span>,<br />
-              shot like cinema.
-            </p>
-            <button
-              type="button"
-              className="inline-flex items-center gap-3 rounded-full bg-foreground px-5 py-3 text-xs uppercase tracking-[0.2em] text-background transition-transform hover:scale-[1.03]"
-            >
-              Play reel <PlayIcon small />
-            </button>
-          </div>
+      {/* Reel section below sticky */}
+      <section id="reel" className="relative px-6 py-24 md:px-10">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            Selected work
+          </p>
+          <h2 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
+            Your <span className="text-primary">campaign</span>,<br />
+            shot like cinema.
+          </h2>
+          <p className="mt-8 max-w-xl text-base text-muted-foreground md:text-lg">
+            From concept to color, ROY produces brand films and performance
+            content end-to-end. Strategy, direction, crew, and edit — under one roof.
+          </p>
         </div>
       </section>
 
@@ -202,14 +271,5 @@ function Home() {
         </div>
       </footer>
     </main>
-  );
-}
-
-function PlayIcon({ small = false }: { small?: boolean }) {
-  const s = small ? 10 : 14;
-  return (
-    <svg width={s} height={s} viewBox="0 0 10 12" fill="currentColor" aria-hidden>
-      <path d="M0 0L10 6L0 12V0Z" />
-    </svg>
   );
 }
