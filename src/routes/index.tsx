@@ -103,23 +103,6 @@ function Home() {
   return (
     <main className="relative min-h-screen bg-background text-foreground">
 
-      {/* Top nav */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10 mix-blend-difference">
-        <a href="#top" className="flex items-center gap-2 font-display text-2xl tracking-tight text-white">
-          <span className="inline-block size-2 rounded-full bg-primary" />
-          ROY
-        </a>
-        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-white/80 md:flex">
-          <a href="#reel" className="transition-colors hover:text-white">Work</a>
-          <a href="#contact" className="transition-colors hover:text-white">Contact</a>
-        </nav>
-        <a
-          href="#contact"
-          className="rounded-full border border-white/40 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary"
-        >
-          Get in touch
-        </a>
-      </header>
 
       {/* HERO + sticky scaling reel.
           Total tall section: sticky 100vh inner + extra scroll distance. */}
