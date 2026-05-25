@@ -83,13 +83,21 @@ function Home() {
     };
   }, []);
 
-  // Foreground: starts at ~38% width centered, grows to fill viewport
-  const startScale = 0.42;
-  const scale = startScale + (1 - startScale) * scaleProgress;
-  const radius = 12 - 12 * scaleProgress;
+  // Foreground: starts as a 16:9 rectangle (~70vw on mobile, 46vw on desktop),
+  // grows to fully cover the viewport.
+  const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
+  const isDesktop =
+    typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches;
+  const startW = isDesktop ? 46 : 78; // vw
+  const startH = startW * (9 / 16); // vh-ish, sized off vw to stay 16:9
+  const fgWidth = lerp(startW, 100, scaleProgress); // vw
+  const fgHeightVw = lerp(startH, 0, scaleProgress); // we'll switch to vh for final
+  const fgHeightVh = lerp(0, 100, scaleProgress);
+  const radius = 14 - 14 * scaleProgress;
 
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-background text-foreground">
+    <main className="relative min-h-screen bg-background text-foreground">
+
       {/* Top nav */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10 mix-blend-difference">
         <a href="#top" className="flex items-center gap-2 font-display text-2xl tracking-tight text-white">
