@@ -124,13 +124,38 @@ function RootComponent() {
           <Link to="/blog" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Journal</Link>
           <Link to="/contact" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Contact</Link>
         </nav>
-        <Link
-          to="/contact"
-          className="rounded-full border border-white/40 px-4 py-2 text-xs uppercase tracking-[0.18em] text-white transition-colors hover:bg-primary hover:text-primary-foreground hover:border-primary mix-blend-difference"
-        >
-          Get in touch
-        </Link>
+        <div className="w-10 md:w-20" aria-hidden />
       </header>
+
+      {/* Bottom-left location / credit */}
+      <div className="pointer-events-none fixed bottom-5 left-6 z-50 flex items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference md:left-10">
+        <span className="text-primary">COLUMBUS</span>
+        <span className="text-white/40">|</span>
+        <span>OHIO</span>
+        <span className="hidden text-white/60 sm:inline">ROY © All Rights Reserved</span>
+      </div>
+
+      {/* Bottom-center down arrow */}
+      <div className="pointer-events-none fixed bottom-5 left-1/2 z-50 -translate-x-1/2 text-white mix-blend-difference">
+        <svg
+          width="22"
+          height="14"
+          viewBox="0 0 22 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="animate-[bounce_2s_ease-in-out_infinite] opacity-80"
+        >
+          <path d="M1 1l10 11L21 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+
+      {/* Bottom-right Get in touch */}
+      <Link
+        to="/contact"
+        className="fixed bottom-4 right-6 z-50 rounded-full bg-white px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-black shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground md:right-10"
+      >
+        Get in touch
+      </Link>
       <Outlet />
     </QueryClientProvider>
   );
