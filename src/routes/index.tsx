@@ -83,17 +83,22 @@ function Home() {
     };
   }, []);
 
-  // Foreground: starts as a 16:9 rectangle (~70vw on mobile, 46vw on desktop),
-  // grows to fully cover the viewport.
+  // Foreground: starts as a thin horizontal strip the height of the middle
+  // headline word, then expands to fully cover the viewport.
   const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
   const isDesktop =
     typeof window !== "undefined" && window.matchMedia("(min-width: 768px)").matches;
-  const startW = isDesktop ? 46 : 78; // vw
-  const startH = startW * (9 / 16); // vh-ish, sized off vw to stay 16:9
-  const fgWidth = lerp(startW, 100, scaleProgress); // vw
-  const fgHeightVw = lerp(startH, 0, scaleProgress); // we'll switch to vh for final
+  // Headline is 18vw on mobile, 12vw on desktop with line-height 0.95.
+  const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
+  const startWvw = isDesktop ? 78 : 92; // strip width
+  // Width grows from startWvw to 100vw
+  const fgWidth = lerp(startWvw, 100, scaleProgress);
+  // Height: start = lineVw (sized in vw), end = 100vh.
+  // Interpolate both contributions independently for a smooth blend.
+  const fgHeightVw = lerp(lineVw, 0, scaleProgress);
   const fgHeightVh = lerp(0, 100, scaleProgress);
-  const radius = 14 - 14 * scaleProgress;
+  const radius = 6 - 6 * scaleProgress;
+
 
   return (
     <main className="relative min-h-screen bg-background text-foreground">
