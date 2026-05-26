@@ -1,3 +1,4 @@
+import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -109,22 +110,65 @@ function RootShell({ children }: { children: React.ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const [menuOpen, setMenuOpen] = React.useState(false);
+
+  const navLinks = [
+    { to: "/work", label: "Work" },
+    { to: "/services", label: "Services" },
+    { to: "/about", label: "About" },
+    { to: "/blog", label: "Journal" },
+    { to: "/contact", label: "Contact" },
+  ] as const;
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Shared header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-5 md:px-10">
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white px-6 py-4 shadow-sm md:px-10">
         <Link to="/" aria-label="ROY home" className="flex items-center">
           <img src={royLogo} alt="ROY" className="h-8 w-auto md:h-10" />
         </Link>
-        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-white/80 md:flex mix-blend-difference">
-          <Link to="/work" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Work</Link>
-          <Link to="/services" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Services</Link>
-          <Link to="/about" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">About</Link>
-          <Link to="/blog" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Journal</Link>
-          <Link to="/contact" activeProps={{ className: "text-white" }} className="transition-colors hover:text-white">Contact</Link>
+        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-black/70 md:flex">
+          {navLinks.map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              activeProps={{ className: "text-black" }}
+              className="transition-colors hover:text-primary"
+            >
+              {l.label}
+            </Link>
+          ))}
         </nav>
-        <div className="w-10 md:w-20" aria-hidden />
+        <button
+          type="button"
+          aria-label="Toggle menu"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+          className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
+        >
+          <span className={`block h-[2px] w-6 bg-black transition-transform ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
+          <span className={`block h-[2px] w-6 bg-black transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block h-[2px] w-6 bg-black transition-transform ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
+        </button>
+        <div className="hidden w-20 md:block" aria-hidden />
+
+        {menuOpen && (
+          <div className="absolute left-0 right-0 top-full border-t border-black/10 bg-white md:hidden">
+            <nav className="flex flex-col py-2">
+              {navLinks.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setMenuOpen(false)}
+                  activeProps={{ className: "text-primary" }}
+                  className="px-6 py-3 text-xs uppercase tracking-[0.18em] text-black/80 transition-colors hover:bg-black/5"
+                >
+                  {l.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Bottom-left location / credit */}
