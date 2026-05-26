@@ -94,6 +94,27 @@ function Home() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // Lazy-mount heavy Vimeo iframes after the page is interactive so the
+  // initial paint (especially on mobile) isn't blocked by two video players.
+  const [videosReady, setVideosReady] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    const mount = () => {
+      if (cancelled) return;
+      const ric = (window as any).requestIdleCallback as
+        | ((cb: () => void, opts?: { timeout: number }) => number)
+        | undefined;
+      if (ric) ric(() => !cancelled && setVideosReady(true), { timeout: 1500 });
+      else setTimeout(() => !cancelled && setVideosReady(true), 300);
+    };
+    if (document.readyState === "complete") mount();
+    else window.addEventListener("load", mount, { once: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", mount);
+    };
+  }, []);
   // Headline is 18vw on mobile, 12vw on desktop with line-height 0.95.
   const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
   const startWvw = isDesktop ? 78 : 92; // strip width
@@ -121,13 +142,16 @@ function Home() {
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Background video */}
           <div className="absolute inset-0">
-            <iframe
-              src={BG_VIDEO}
-              title="ROY background reel"
-              allow="autoplay; fullscreen; picture-in-picture"
-              className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
-              style={{ border: 0, pointerEvents: "none" }}
-            />
+            {videosReady && (
+              <iframe
+                src={BG_VIDEO}
+                title="ROY background reel"
+                allow="autoplay; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
+                style={{ border: 0, pointerEvents: "none" }}
+              />
+            )}
             <div className="absolute inset-0 bg-background/55" />
             <div className="grain absolute inset-0" />
           </div>
@@ -184,13 +208,16 @@ function Home() {
                 borderRadius: `${radius}px`,
               }}
             >
-              <iframe
-                src={FG_VIDEO}
-                title="ROY foreground reel"
-                allow="autoplay; fullscreen; picture-in-picture"
-                className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 md:w-[110vw]"
-                style={{ border: 0 }}
-              />
+              {videosReady && (
+                <iframe
+                  src={FG_VIDEO}
+                  title="ROY foreground reel"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 md:w-[110vw]"
+                  style={{ border: 0 }}
+                />
+              )}
             </div>
           </div>
 
