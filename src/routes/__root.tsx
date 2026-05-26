@@ -112,6 +112,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [pastHero, setPastHero] = React.useState(false);
+
+  // Fade fixed chrome (logo + bottom credit) once we scroll past the hero so
+  // they don't collide with content below.
+  React.useEffect(() => {
+    const onScroll = () => {
+      setPastHero(window.scrollY > window.innerHeight * 0.6);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Lock body scroll while overlay is open
   React.useEffect(() => {
