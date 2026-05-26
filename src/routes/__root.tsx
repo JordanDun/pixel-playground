@@ -111,18 +111,24 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [menuOpen, setMenuOpen] = React.useState(false);
-  const [scrolled, setScrolled] = React.useState(false);
 
+  // Lock body scroll while overlay is open
   React.useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.9);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    if (!menuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      document.body.style.overflow = prev;
     };
-  }, []);
+  }, [menuOpen]);
+
+  // Close on Escape
+  React.useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setMenuOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
 
   const navLinks = [
     { to: "/work", label: "Work" },
@@ -132,64 +138,94 @@ function RootComponent() {
     { to: "/contact", label: "Contact" },
   ] as const;
 
-  const solidHeader = scrolled || menuOpen;
-  const textColor = solidHeader ? "text-black" : "text-white";
-  const barColor = solidHeader ? "bg-black" : "bg-white";
+  const barColor = menuOpen ? "bg-white" : "bg-white";
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Shared header */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-colors duration-300 md:px-10 ${
-          solidHeader ? "bg-white shadow-sm" : "bg-white/0"
-        }`}
-      >
-        <Link to="/" aria-label="ROY home" className="flex items-center">
+      {/* Shared header — always translucent, hamburger only */}
+      <header className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 py-4 md:px-10">
+        <Link
+          to="/"
+          aria-label="ROY home"
+          className="flex items-center"
+          onClick={() => setMenuOpen(false)}
+        >
           <img src={royLogo} alt="ROY" className="h-8 w-auto md:h-10" />
         </Link>
-        <nav className={`hidden flex-1 justify-end gap-8 text-xs font-semibold uppercase tracking-[0.18em] md:flex ${textColor}`}>
-          {navLinks.map((l) => (
+        <button
+          type="button"
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((v) => !v)}
+          className="relative z-[70] flex h-10 w-10 flex-col items-center justify-center gap-[5px]"
+        >
+          <span
+            className={`block h-[2px] w-7 ${barColor} transition-transform duration-300 ${
+              menuOpen ? "translate-y-[7px] rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-7 ${barColor} transition-opacity duration-300 ${
+              menuOpen ? "opacity-0" : ""
+            }`}
+          />
+          <span
+            className={`block h-[2px] w-7 ${barColor} transition-transform duration-300 ${
+              menuOpen ? "-translate-y-[7px] -rotate-45" : ""
+            }`}
+          />
+        </button>
+      </header>
+
+      {/* Full-screen overlay menu */}
+      <div
+        className={`fixed inset-0 z-[55] bg-black/95 backdrop-blur-md transition-all duration-500 ${
+          menuOpen
+            ? "pointer-events-auto opacity-100"
+            : "pointer-events-none opacity-0"
+        }`}
+        aria-hidden={!menuOpen}
+      >
+        {/* Soft accent glow */}
+        <div className="pointer-events-none absolute -right-32 top-1/3 h-[60vh] w-[60vh] rounded-full bg-primary/20 blur-[120px]" />
+
+        <nav className="flex h-full flex-col items-end justify-center gap-3 px-8 pr-8 sm:gap-4 md:gap-6 md:pr-20">
+          {navLinks.map((l, i) => (
             <Link
               key={l.to}
               to={l.to}
+              onClick={() => setMenuOpen(false)}
               activeProps={{ className: "text-primary" }}
-              className="transition-colors hover:text-primary"
+              style={{
+                transitionDelay: menuOpen ? `${120 + i * 60}ms` : "0ms",
+              }}
+              className={`group relative font-display text-[14vw] font-bold uppercase leading-[0.95] tracking-tight text-white transition-all duration-500 hover:text-primary md:text-[7vw] ${
+                menuOpen
+                  ? "translate-x-0 opacity-100"
+                  : "translate-x-8 opacity-0"
+              }`}
             >
-              {l.label}
+              <span className="italic">{l.label}</span>
             </Link>
           ))}
-        </nav>
-        <button
-          type="button"
-          aria-label="Toggle menu"
-          aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((v) => !v)}
-          className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
-        >
-          <span className={`block h-[2px] w-6 ${barColor} transition-transform ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
-          <span className={`block h-[2px] w-6 ${barColor} transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block h-[2px] w-6 ${barColor} transition-transform ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
-        </button>
 
-
-        {menuOpen && (
-          <div className="absolute left-0 right-0 top-full border-t border-black/10 bg-white md:hidden">
-            <nav className="flex flex-col py-2">
-              {navLinks.map((l) => (
-                <Link
-                  key={l.to}
-                  to={l.to}
-                  onClick={() => setMenuOpen(false)}
-                  activeProps={{ className: "text-primary" }}
-                  className="px-6 py-3 text-xs uppercase tracking-[0.18em] text-black/80 transition-colors hover:bg-black/5"
-                >
-                  {l.label}
-                </Link>
-              ))}
-            </nav>
+          {/* Footer info inside overlay */}
+          <div
+            className={`mt-10 flex flex-col items-end gap-1 text-[10px] uppercase tracking-[0.22em] text-white/50 transition-all duration-500 ${
+              menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+            }`}
+            style={{ transitionDelay: menuOpen ? `${120 + navLinks.length * 60}ms` : "0ms" }}
+          >
+            <span>Columbus · Ohio</span>
+            <a
+              href="mailto:hello@royagency.com"
+              className="text-white/80 transition-colors hover:text-primary"
+            >
+              hello@royagency.com
+            </a>
           </div>
-        )}
-      </header>
+        </nav>
+      </div>
 
       {/* Bottom-left location / credit */}
       <div className="pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference md:bottom-5 md:left-10 md:text-[11px]">
