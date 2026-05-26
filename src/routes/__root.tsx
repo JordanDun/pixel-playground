@@ -160,7 +160,9 @@ function RootComponent() {
         <Link
           to="/"
           aria-label="ROY home"
-          className="flex items-center"
+          className={`flex items-center transition-opacity duration-300 ${
+            pastHero && !menuOpen ? "pointer-events-none opacity-0" : "opacity-100"
+          }`}
           onClick={() => setMenuOpen(false)}
         >
           <img src={royLogo} alt="ROY" className="h-8 w-auto md:h-10" />
