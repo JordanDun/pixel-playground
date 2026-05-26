@@ -28,8 +28,8 @@ const CLIENTS = [
 
 const CYCLING_WORDS = ["SOCIAL", "VIDEO", "CONTENT", "BRAND", "CREATIVE"];
 
-const BG_VIDEO = "https://player.vimeo.com/video/832437367?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=3s";
-const FG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=0,52s";
+const BG_VIDEO = "https://player.vimeo.com/video/832437367?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=4s";
+const FG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=0,50s";
 
 function Home() {
   const [time, setTime] = useState("");
