@@ -192,11 +192,11 @@ function RootComponent() {
       </header>
 
       {/* Bottom-left location / credit */}
-      <div className="pointer-events-none fixed bottom-5 left-6 z-50 flex items-center gap-3 text-[11px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference md:left-10">
+      <div className="pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference md:bottom-5 md:left-10 md:text-[11px]">
         <span className="text-primary">COLUMBUS</span>
         <span className="text-white/40">|</span>
         <span>OHIO</span>
-        <span className="text-white/60">ROY © All Rights Reserved</span>
+        <span className="hidden text-white/60 sm:inline">ROY © All Rights Reserved</span>
       </div>
 
       {/* Bottom-right Get in touch */}
