@@ -252,7 +252,7 @@ function RootComponent() {
       </div>
 
       {/* Bottom-left location / credit */}
-      <div className="pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference md:bottom-5 md:left-10 md:text-[11px]">
+      <div className={`pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference transition-opacity duration-300 md:bottom-5 md:left-10 md:text-[11px] ${pastHero && !menuOpen ? "opacity-0" : "opacity-100"}`}>
         <span className="text-primary">COLUMBUS</span>
         <span className="text-white/40">|</span>
         <span>OHIO</span>
