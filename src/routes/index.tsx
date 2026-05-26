@@ -94,6 +94,27 @@ function Home() {
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
   }, []);
+
+  // Lazy-mount heavy Vimeo iframes after the page is interactive so the
+  // initial paint (especially on mobile) isn't blocked by two video players.
+  const [videosReady, setVideosReady] = useState(false);
+  useEffect(() => {
+    let cancelled = false;
+    const mount = () => {
+      if (cancelled) return;
+      const ric = (window as any).requestIdleCallback as
+        | ((cb: () => void, opts?: { timeout: number }) => number)
+        | undefined;
+      if (ric) ric(() => !cancelled && setVideosReady(true), { timeout: 1500 });
+      else setTimeout(() => !cancelled && setVideosReady(true), 300);
+    };
+    if (document.readyState === "complete") mount();
+    else window.addEventListener("load", mount, { once: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", mount);
+    };
+  }, []);
   // Headline is 18vw on mobile, 12vw on desktop with line-height 0.95.
   const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
   const startWvw = isDesktop ? 78 : 92; // strip width
