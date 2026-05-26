@@ -112,6 +112,18 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [pastHero, setPastHero] = React.useState(false);
+
+  // Fade fixed chrome (logo + bottom credit) once we scroll past the hero so
+  // they don't collide with content below.
+  React.useEffect(() => {
+    const onScroll = () => {
+      setPastHero(window.scrollY > window.innerHeight * 0.6);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   // Lock body scroll while overlay is open
   React.useEffect(() => {
@@ -148,7 +160,9 @@ function RootComponent() {
         <Link
           to="/"
           aria-label="ROY home"
-          className="flex items-center"
+          className={`flex items-center transition-opacity duration-300 ${
+            pastHero && !menuOpen ? "pointer-events-none opacity-0" : "opacity-100"
+          }`}
           onClick={() => setMenuOpen(false)}
         >
           <img src={royLogo} alt="ROY" className="h-8 w-auto md:h-10" />
@@ -238,7 +252,7 @@ function RootComponent() {
       </div>
 
       {/* Bottom-left location / credit */}
-      <div className="pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference md:bottom-5 md:left-10 md:text-[11px]">
+      <div className={`pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference transition-opacity duration-300 md:bottom-5 md:left-10 md:text-[11px] ${pastHero && !menuOpen ? "opacity-0" : "opacity-100"}`}>
         <span className="text-primary">COLUMBUS</span>
         <span className="text-white/40">|</span>
         <span>OHIO</span>
