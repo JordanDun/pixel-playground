@@ -209,21 +209,29 @@ function RootComponent() {
             </Link>
           ))}
 
-          {/* Footer info inside overlay */}
-          <div
-            className={`mt-10 flex flex-col items-end gap-1 text-[10px] uppercase tracking-[0.22em] text-white/50 transition-all duration-500 ${
-              menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-            }`}
-            style={{ transitionDelay: menuOpen ? `${120 + navLinks.length * 60}ms` : "0ms" }}
+        {/* Footer info inside overlay */}
+        <div
+          className={`mt-10 flex flex-col items-end gap-2 text-[10px] uppercase tracking-[0.22em] text-white/50 transition-all duration-500 ${
+            menuOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+          }`}
+          style={{ transitionDelay: menuOpen ? `${120 + navLinks.length * 60}ms` : "0ms" }}
+        >
+          <span>Columbus · Ohio</span>
+          <a
+            href="mailto:hello@royagency.com"
+            className="text-white/80 transition-colors hover:text-primary"
           >
-            <span>Columbus · Ohio</span>
-            <a
-              href="mailto:hello@royagency.com"
-              className="text-white/80 transition-colors hover:text-primary"
-            >
-              hello@royagency.com
-            </a>
-          </div>
+            hello@royagency.com
+          </a>
+          <a
+            href="https://instagram.com/royagency"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 transition-colors hover:text-primary"
+          >
+            Instagram
+          </a>
+        </div>
         </nav>
       </div>
 
