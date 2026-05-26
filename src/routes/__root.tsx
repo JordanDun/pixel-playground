@@ -111,28 +111,44 @@ function RootShell({ children }: { children: React.ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navLinks = [
     { to: "/work", label: "Work" },
     { to: "/services", label: "Services" },
     { to: "/about", label: "About" },
-    { to: "/blog", label: "Journal" },
+    { to: "/blog", label: "Blog" },
     { to: "/contact", label: "Contact" },
   ] as const;
+
+  const solidHeader = scrolled || menuOpen;
+  const textColor = solidHeader ? "text-black" : "text-white";
+  const barColor = solidHeader ? "bg-black" : "bg-white";
 
   return (
     <QueryClientProvider client={queryClient}>
       {/* Shared header */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white px-6 py-4 shadow-sm md:px-10">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4 transition-colors duration-300 md:px-10 ${
+          solidHeader ? "bg-white shadow-sm" : "bg-white/0"
+        }`}
+      >
         <Link to="/" aria-label="ROY home" className="flex items-center">
           <img src={royLogo} alt="ROY" className="h-8 w-auto md:h-10" />
         </Link>
-        <nav className="hidden gap-8 text-xs uppercase tracking-[0.18em] text-black/70 md:flex">
+        <nav className={`hidden flex-1 justify-end gap-8 text-xs font-semibold uppercase tracking-[0.18em] md:flex ${textColor}`}>
           {navLinks.map((l) => (
             <Link
               key={l.to}
               to={l.to}
-              activeProps={{ className: "text-black" }}
+              activeProps={{ className: "text-primary" }}
               className="transition-colors hover:text-primary"
             >
               {l.label}
@@ -146,11 +162,11 @@ function RootComponent() {
           onClick={() => setMenuOpen((v) => !v)}
           className="flex h-9 w-9 flex-col items-center justify-center gap-[5px] md:hidden"
         >
-          <span className={`block h-[2px] w-6 bg-black transition-transform ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
-          <span className={`block h-[2px] w-6 bg-black transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block h-[2px] w-6 bg-black transition-transform ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
+          <span className={`block h-[2px] w-6 ${barColor} transition-transform ${menuOpen ? "translate-y-[7px] rotate-45" : ""}`} />
+          <span className={`block h-[2px] w-6 ${barColor} transition-opacity ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block h-[2px] w-6 ${barColor} transition-transform ${menuOpen ? "-translate-y-[7px] -rotate-45" : ""}`} />
         </button>
-        <div className="hidden w-20 md:block" aria-hidden />
+
 
         {menuOpen && (
           <div className="absolute left-0 right-0 top-full border-t border-black/10 bg-white md:hidden">
