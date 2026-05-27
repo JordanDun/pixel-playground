@@ -31,28 +31,8 @@ type Section = {
 const SECTIONS: Section[] = [
   {
     name: "Video Production",
-    tagline: "Cinematic craft, from pitch to final color.",
+    tagline: "Cinematic craft for every screen and story.",
     pills: [
-      {
-        title: "Pre-Production",
-        description:
-          "Treatments, storyboards, casting, locations, and scheduling — locked before a camera rolls.",
-      },
-      {
-        title: "Production",
-        description:
-          "Full-service crews and equipment for single-day shoots through multi-city campaigns.",
-      },
-      {
-        title: "Post-Production",
-        description:
-          "Edit, sound design, and VFX handled in-house with directors who stay close to the cut.",
-      },
-      {
-        title: "Color & Finishing",
-        description:
-          "Grade, conform, and deliverables tuned for every screen and spec.",
-      },
       {
         title: "Animation",
         description:
