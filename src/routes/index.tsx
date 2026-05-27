@@ -259,7 +259,7 @@ function Home() {
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get in touch</p>
             <a
-              href="mailto:hello@royagency.com"
+              href="mailto:jordan@royagency.com"
               className="mt-2 block font-display text-3xl uppercase md:text-5xl hover:text-primary transition-colors"
             >
               hello@<br />royagency.com

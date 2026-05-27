@@ -233,7 +233,7 @@ function RootComponent() {
         >
           <span>Columbus · Ohio</span>
           <a
-            href="mailto:hello@royagency.com"
+            href="mailto:jordan@royagency.com"
             className="text-white/80 transition-colors hover:text-primary"
           >
             hello@royagency.com
