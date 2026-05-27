@@ -279,17 +279,33 @@ function RootComponent() {
       </div>
 
       {/* Bottom-left location / credit */}
-      <div className={`pointer-events-none fixed bottom-16 left-6 z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] text-white/80 mix-blend-difference transition-opacity duration-300 md:bottom-5 md:left-10 md:text-[11px] ${pastHero && !menuOpen ? "opacity-0" : "opacity-100"}`}>
-        <span className="text-primary">COLUMBUS</span>
-        <span className="text-white/40">|</span>
+      <div
+        className={`pointer-events-none fixed z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] transition-opacity duration-300 md:text-[11px] ${
+          isHome
+            ? `bottom-16 left-6 md:bottom-5 md:left-10 mix-blend-difference text-white/80 ${
+                pastHero && !menuOpen ? "opacity-0" : "opacity-100"
+              }`
+            : "bottom-0 left-0 right-0 border-t border-border bg-background/90 px-6 py-3 text-foreground/70 opacity-100 backdrop-blur-sm md:px-10"
+        }`}
+      >
+        <span className={isHome ? "text-primary" : "text-primary"}>COLUMBUS</span>
+        <span className={isHome ? "text-white/40" : "text-muted-foreground"}>|</span>
         <span>OHIO</span>
-        <span className="hidden text-white/60 sm:inline">ROY © All Rights Reserved</span>
+        <span className={`hidden sm:inline ${isHome ? "text-white/60" : "text-muted-foreground"}`}>
+          ROY © All Rights Reserved
+        </span>
       </div>
 
       {/* Bottom-right Get in touch */}
       <Link
         to="/contact"
-        className="fixed bottom-4 right-6 z-50 rounded-full bg-white px-5 py-2.5 text-xs uppercase tracking-[0.18em] text-black shadow-lg transition-colors hover:bg-primary hover:text-primary-foreground md:right-10"
+        className={`fixed bottom-4 right-6 z-50 rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.18em] shadow-lg transition-all duration-300 md:right-10 ${
+          isHome
+            ? `bg-white text-black hover:bg-primary hover:text-primary-foreground ${
+                pastHero && !menuOpen ? "opacity-0" : "opacity-100"
+              }`
+            : "border border-border bg-foreground text-background opacity-100 hover:bg-primary hover:text-primary-foreground"
+        }`}
       >
         Get in touch
       </Link>
