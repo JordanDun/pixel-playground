@@ -37,7 +37,13 @@ const PROJECTS: Array<{
     vimeoId: "912330431",
   },
 
-  { client: "A24", title: "Midnight Hour — Teaser", category: "Film", year: "2025" },
+  {
+    client: "BREWDOG",
+    title: "Buzzed on Flavor",
+    category: "Brand Film",
+    year: "2024",
+    vimeoId: "932863528",
+  },
   { client: "SPOTIFY", title: "Wrapped — Behind the Scenes", category: "Documentary", year: "2025" },
   { client: "RIMOWA", title: "Never Still — Director's Cut", category: "Brand Film", year: "2025" },
   { client: "AESOP", title: "Seasonal Rituals — Series", category: "Content Series", year: "2024" },
