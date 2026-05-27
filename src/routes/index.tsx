@@ -26,7 +26,7 @@ const CLIENTS = [
   "PORSCHE", "VICE", "MONCLER", "DAZED", "SSENSE", "ARC'TERYX",
 ];
 
-const CYCLING_WORDS = ["SOCIAL", "VIDEO", "CONTENT", "BRAND", "CREATIVE"];
+const CYCLING_WORDS = ["CREATIVE", "VIDEO", "SOCIAL", "MARKETING", "GRAPHIC", "ANIMATION", "BRAND"];
 
 const BG_VIDEO = "https://player.vimeo.com/video/832437367?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=4s";
 const FG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0#t=0,50s";
