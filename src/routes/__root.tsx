@@ -115,16 +115,24 @@ function RootComponent() {
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [pastHero, setPastHero] = React.useState(false);
 
+  const pathname = useRouterState({ select: (s) => s.location.pathname });
+  const isHome = pathname === "/";
+
   // Fade fixed chrome (logo + bottom credit) once we scroll past the hero so
-  // they don't collide with content below.
+  // they don't collide with content below. Only on the home page — interior
+  // pages always show the logo so users can navigate back.
   React.useEffect(() => {
+    if (!isHome) {
+      setPastHero(false);
+      return;
+    }
     const onScroll = () => {
       setPastHero(window.scrollY > window.innerHeight * 0.6);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [isHome]);
 
   // Lock body scroll while overlay is open
   React.useEffect(() => {
