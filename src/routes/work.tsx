@@ -22,8 +22,21 @@ export const Route = createFileRoute("/work")({
   component: WorkPage,
 });
 
-const PROJECTS = [
-  { client: "NIKE", title: "Air Max Day — Global Campaign", category: "Campaign", year: "2026" },
+const PROJECTS: Array<{
+  client: string;
+  title: string;
+  category: string;
+  year: string;
+  vimeoId?: string;
+}> = [
+  {
+    client: "PICKUPS PLUS",
+    title: "Pickups Plus — Brand Film",
+    category: "Brand Film",
+    year: "2024",
+    vimeoId: "912330431",
+  },
+
   { client: "A24", title: "Midnight Hour — Teaser", category: "Film", year: "2025" },
   { client: "SPOTIFY", title: "Wrapped — Behind the Scenes", category: "Documentary", year: "2025" },
   { client: "RIMOWA", title: "Never Still — Director's Cut", category: "Brand Film", year: "2025" },
