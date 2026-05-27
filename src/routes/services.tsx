@@ -168,6 +168,8 @@ function ServicesPage() {
 function ServiceBox({ section, index }: { section: Section; index: number }) {
   const [openIndex, setOpenIndex] = React.useState<number>(0);
   const active = section.pills[openIndex];
+  const prevIndex = (openIndex - 1 + section.pills.length) % section.pills.length;
+  const nextIndex = (openIndex + 1) % section.pills.length;
 
   return (
     <div className="rounded-3xl border border-border bg-card/40 p-6 md:p-10">
@@ -182,8 +184,8 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
         {section.tagline}
       </p>
 
-      {/* Two-column: pills left, 9:16 example + description right */}
-      <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+      {/* Two-column: pills left, carousel right */}
+      <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
         {/* Pills stacked vertically */}
         <div className="flex flex-col gap-2">
           {section.pills.map((pill, i) => {
@@ -211,45 +213,93 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
           })}
         </div>
 
-        {/* Right side: 9:16 example + description */}
-        <div className="flex flex-col gap-5 md:flex-row md:items-start">
-          <div className="relative w-full max-w-[260px] shrink-0 overflow-hidden rounded-2xl border border-border bg-gradient-to-br from-primary/30 via-background to-background shadow-lg">
-            <div className="aspect-[9/16] w-full">
-              <div
-                key={active.title}
-                className="flex h-full w-full flex-col justify-between p-5"
-                style={{
-                  background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%)`,
-                }}
-              >
-                <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
-                  Example
-                </p>
-                <div>
-                  <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                    {section.name}
-                  </p>
-                  <p className="mt-1 font-display text-xl uppercase leading-tight">
-                    {active.title}
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* Right: 3-up carousel with active in the middle */}
+        <div className="flex flex-col gap-6">
+          <div className="flex items-center justify-center gap-4">
+            <ExampleCard
+              pill={section.pills[prevIndex]}
+              section={section.name}
+              variant="side"
+              onClick={() => setOpenIndex(prevIndex)}
+            />
+            <ExampleCard
+              pill={active}
+              section={section.name}
+              variant="active"
+            />
+            <ExampleCard
+              pill={section.pills[nextIndex]}
+              section={section.name}
+              variant="side"
+              onClick={() => setOpenIndex(nextIndex)}
+            />
           </div>
 
-          <div className="flex-1">
+          <div className="text-center md:text-left">
             <p className="text-xs uppercase tracking-[0.24em] text-primary">
               0{openIndex + 1} — {section.name}
             </p>
-            <h3 className="mt-3 font-display text-2xl uppercase leading-tight md:text-3xl">
+            <h3 className="mt-2 font-display text-2xl uppercase leading-tight md:text-3xl">
               {active.title}
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
               {active.description}
             </p>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function ExampleCard({
+  pill,
+  section,
+  variant,
+  onClick,
+}: {
+  pill: Pill;
+  section: string;
+  variant: "active" | "side";
+  onClick?: () => void;
+}) {
+  const isActive = variant === "active";
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={isActive}
+      aria-label={isActive ? `${pill.title} example` : `Show ${pill.title}`}
+      className={`group relative shrink-0 overflow-hidden rounded-2xl border transition-all duration-500 ${
+        isActive
+          ? "w-[200px] border-primary shadow-2xl md:w-[240px]"
+          : "w-[110px] cursor-pointer border-border opacity-50 hover:opacity-80 md:w-[140px]"
+      }`}
+    >
+      <div className="aspect-[9/16] w-full">
+        <div
+          className="flex h-full w-full flex-col justify-between p-4"
+          style={{
+            background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%), hsl(var(--card))`,
+          }}
+        >
+          <p className="text-[9px] uppercase tracking-[0.24em] text-primary">
+            {isActive ? "Example" : ""}
+          </p>
+          <div>
+            <p className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">
+              {section}
+            </p>
+            <p
+              className={`mt-1 font-display uppercase leading-tight ${
+                isActive ? "text-lg md:text-xl" : "text-xs md:text-sm"
+              }`}
+            >
+              {pill.title}
+            </p>
+          </div>
+        </div>
+      </div>
+    </button>
   );
 }
