@@ -44,7 +44,7 @@ const PROJECTS: Array<{
     year: "2024",
     vimeoId: "932863528",
   },
-  { client: "SPOTIFY", title: "Wrapped — Behind the Scenes", category: "Documentary", year: "2025" },
+  { client: "DEWALT", title: "Built for the Job", category: "Brand Film", year: "2024", vimeoId: "499841967" },
   { client: "RIMOWA", title: "Never Still — Director's Cut", category: "Brand Film", year: "2025" },
   { client: "AESOP", title: "Seasonal Rituals — Series", category: "Content Series", year: "2024" },
   { client: "NETFLIX", title: "Stranger Things S5 — Promo", category: "Promo", year: "2024" },
