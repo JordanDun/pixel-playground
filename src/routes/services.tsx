@@ -170,66 +170,63 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
 
   return (
     <div className="rounded-3xl border border-border bg-card/40 p-6 md:p-10">
-      <div className="grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
-        {/* Left: section title + pills */}
-        <div>
-          <p className="text-xs uppercase tracking-[0.24em] text-primary">
-            0{index + 1} / 0{SECTIONS.length}
-          </p>
-          <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] md:text-5xl">
-            {section.name}
-          </h2>
-          <p className="mt-3 max-w-md text-sm text-muted-foreground">
-            {section.tagline}
-          </p>
+      {/* Header */}
+      <p className="text-xs uppercase tracking-[0.24em] text-primary">
+        0{index + 1} / 0{SECTIONS.length}
+      </p>
+      <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] md:text-5xl">
+        {section.name}
+      </h2>
+      <p className="mt-3 max-w-md text-sm text-muted-foreground">
+        {section.tagline}
+      </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
-            {section.pills.map((pill, i) => {
-              const isOpen = openIndex === i;
-              return (
-                <button
-                  key={pill.title}
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? null : i)}
-                  aria-expanded={isOpen}
-                  className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-xs uppercase tracking-[0.14em] transition-all ${
-                    isOpen
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border bg-background/60 text-foreground hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  <span>{pill.title}</span>
-                  {isOpen ? (
-                    <X className="h-3.5 w-3.5" />
-                  ) : (
-                    <Plus className="h-3.5 w-3.5" />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
+      {/* Pills stacked vertically */}
+      <div className="mt-6 flex flex-col gap-2">
+        {section.pills.map((pill, i) => {
+          const isOpen = openIndex === i;
+          return (
+            <button
+              key={pill.title}
+              type="button"
+              onClick={() => setOpenIndex(isOpen ? null : i)}
+              aria-expanded={isOpen}
+              className={`inline-flex items-center gap-2 self-start rounded-full border px-4 py-2 text-xs uppercase tracking-[0.14em] transition-all ${
+                isOpen
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border bg-background/60 text-foreground hover:border-primary hover:text-primary"
+              }`}
+            >
+              <span>{pill.title}</span>
+              {isOpen ? (
+                <X className="h-3.5 w-3.5" />
+              ) : (
+                <Plus className="h-3.5 w-3.5" />
+              )}
+            </button>
+          );
+        })}
+      </div>
 
-        {/* Right: detail panel */}
-        <div className="relative min-h-[260px] overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-background to-background p-8">
-          {openIndex !== null ? (
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-primary">
-                {section.name} — 0{openIndex + 1}
-              </p>
-              <h3 className="mt-3 font-display text-2xl uppercase leading-tight md:text-3xl">
-                {section.pills[openIndex].title}
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                {section.pills[openIndex].description}
-              </p>
-            </div>
-          ) : (
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              Select a step
+      {/* Detail panel below pills */}
+      <div className="relative mt-6 overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 via-background to-background p-8">
+        {openIndex !== null ? (
+          <div>
+            <p className="text-xs uppercase tracking-[0.24em] text-primary">
+              {section.name} — 0{openIndex + 1}
             </p>
-          )}
-        </div>
+            <h3 className="mt-3 font-display text-2xl uppercase leading-tight md:text-3xl">
+              {section.pills[openIndex].title}
+            </h3>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+              {section.pills[openIndex].description}
+            </p>
+          </div>
+        ) : (
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            Select a step
+          </p>
+        )}
       </div>
     </div>
   );
