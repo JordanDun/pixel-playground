@@ -45,11 +45,9 @@ const PROJECTS: Array<{
     vimeoId: "932863528",
   },
   { client: "DEWALT", title: "Built for the Job", category: "Brand Film", year: "2024", vimeoId: "499841967" },
-  { client: "RIMOWA", title: "Never Still — Director's Cut", category: "Brand Film", year: "2025" },
-  { client: "AESOP", title: "Seasonal Rituals — Series", category: "Content Series", year: "2024" },
-  { client: "NETFLIX", title: "Stranger Things S5 — Promo", category: "Promo", year: "2024" },
-  { client: "PORSCHE", title: "911 S/T — Launch Film", category: "Launch Film", year: "2024" },
-  { client: "VICE", title: "Noisey — Artist Profiles", category: "Documentary", year: "2024" },
+  { client: "THE BIG BUS PROJECT", title: "The Big Bus Project", category: "Brand Film", year: "2023", vimeoId: "832437367" },
+  { client: "OHIO STEEL", title: "Ohio Steel — Web Loop", category: "Web Spot", year: "2025", vimeoId: "1103295539" },
+  { client: "CRAFTSMAN", title: "V20 Sprayer — :60 Web Bumper", category: "Web Spot", year: "2022", vimeoId: "691013951" },
 ];
 
 function WorkPage() {
