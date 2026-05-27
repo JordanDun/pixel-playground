@@ -255,7 +255,7 @@ function Home() {
 
       {/* Footer */}
       <footer id="contact" className="relative px-6 py-16 md:px-10">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get in touch</p>
             <a
