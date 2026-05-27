@@ -10,7 +10,7 @@ export const Route = createFileRoute("/work")({
       {
         name: "description",
         content:
-          "Selected projects by ROY Agency. Cinematic brand films, campaigns, and social content for Nike, A24, Spotify, and more.",
+          "Selected projects by ROY Agency. Cinematic brand films, campaigns, and social content for Pickups Plus, Brewdog, DeWalt, and more.",
       },
       { property: "og:title", content: "Work — ROY Agency" },
       {
