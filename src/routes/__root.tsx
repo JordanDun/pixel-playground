@@ -160,12 +160,21 @@ function RootComponent() {
     { to: "/contact", label: "Contact" },
   ] as const;
 
-  const barColor = menuOpen ? "bg-white" : "bg-white";
+  // On the home page the header sits over the video hero, so bars stay white.
+  // On interior pages the header has a solid background so bars use the
+  // foreground color for contrast.
+  const barColor = menuOpen || isHome ? "bg-white" : "bg-foreground";
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Shared header — always translucent, hamburger only */}
-      <header className="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 py-4 md:px-10">
+      {/* Shared header — translucent over the hero, solid on interior pages */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-[60] flex items-center justify-between px-6 py-4 transition-colors duration-300 md:px-10 ${
+          isHome || menuOpen
+            ? "bg-transparent"
+            : "border-b border-border bg-background/90 backdrop-blur-sm"
+        }`}
+      >
         <Link
           to="/"
           aria-label="ROY home"
