@@ -184,33 +184,48 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
         {section.tagline}
       </p>
 
-      {/* Two-column: pills left, carousel right */}
+      {/* Two-column: pills + description left, carousel right */}
       <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
-        {/* Pills stacked vertically */}
-        <div className="flex flex-col gap-2">
-          {section.pills.map((pill, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <button
-                key={pill.title}
-                type="button"
-                onClick={() => setOpenIndex(i)}
-                aria-pressed={isOpen}
-                className={`inline-flex items-center gap-2 self-start rounded-full border px-4 py-2 text-xs uppercase tracking-[0.14em] transition-all ${
-                  isOpen
-                    ? "border-primary bg-primary text-primary-foreground"
-                    : "border-border bg-background/60 text-foreground hover:border-primary hover:text-primary"
-                }`}
-              >
-                <span>{pill.title}</span>
-                {isOpen ? (
-                  <X className="h-3.5 w-3.5" />
-                ) : (
-                  <Plus className="h-3.5 w-3.5" />
-                )}
-              </button>
-            );
-          })}
+        {/* Left: pills stacked vertically + description below */}
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            {section.pills.map((pill, i) => {
+              const isOpen = openIndex === i;
+              return (
+                <button
+                  key={pill.title}
+                  type="button"
+                  onClick={() => setOpenIndex(i)}
+                  aria-pressed={isOpen}
+                  className={`inline-flex items-center gap-2 self-start rounded-full border px-4 py-2 text-xs uppercase tracking-[0.14em] transition-all ${
+                    isOpen
+                      ? "border-primary bg-primary text-primary-foreground"
+                      : "border-border bg-background/60 text-foreground hover:border-primary hover:text-primary"
+                  }`}
+                >
+                  <span>{pill.title}</span>
+                  {isOpen ? (
+                    <X className="h-3.5 w-3.5" />
+                  ) : (
+                    <Plus className="h-3.5 w-3.5" />
+                  )}
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Description panel under pills */}
+          <div className="rounded-2xl border border-border bg-card p-5">
+            <p className="text-xs uppercase tracking-[0.24em] text-primary">
+              0{openIndex + 1} — {section.name}
+            </p>
+            <h3 className="mt-2 font-display text-xl uppercase leading-tight md:text-2xl">
+              {active.title}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              {active.description}
+            </p>
+          </div>
         </div>
 
         {/* Right: 3-up carousel with active in the middle */}
@@ -233,18 +248,6 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
               variant="side"
               onClick={() => setOpenIndex(nextIndex)}
             />
-          </div>
-
-          <div className="text-center md:text-left">
-            <p className="text-xs uppercase tracking-[0.24em] text-primary">
-              0{openIndex + 1} — {section.name}
-            </p>
-            <h3 className="mt-2 font-display text-2xl uppercase leading-tight md:text-3xl">
-              {active.title}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">
-              {active.description}
-            </p>
           </div>
         </div>
       </div>
