@@ -68,11 +68,6 @@ const SECTIONS: Section[] = [
         description:
           "High-impact :15 to :60 spots built for broadcast, streaming, and digital pre-roll.",
       },
-      {
-        title: "Documentary",
-        description:
-          "Long-form storytelling with journalistic rigor — real people, real narratives, real impact.",
-      },
     ],
   },
   {
