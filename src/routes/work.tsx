@@ -143,7 +143,7 @@ function WorkPage() {
       {/* Fullscreen video overlay */}
       {activeVimeo && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-10"
           onClick={() => setActiveVimeo(null)}
         >
           <button
@@ -155,9 +155,10 @@ function WorkPage() {
             <X size={20} />
           </button>
           <div
-            className="relative h-full w-full"
+            className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-lg bg-black shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
+
             <iframe
               src={`https://player.vimeo.com/video/${activeVimeo}?autoplay=1&title=0&byline=0&portrait=0`}
               className="absolute inset-0 h-full w-full"
