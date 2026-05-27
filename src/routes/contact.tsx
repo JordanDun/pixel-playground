@@ -41,7 +41,7 @@ function ContactPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</p>
               <a
-                href="mailto:hello@royagency.com"
+                href="mailto:jordan@royagency.com"
                 className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl"
               >
                 hello@royagency.com
