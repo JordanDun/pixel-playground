@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Instagram } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
