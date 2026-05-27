@@ -255,7 +255,7 @@ function Home() {
 
       {/* Footer */}
       <footer id="contact" className="relative px-6 py-16 md:px-10">
-        <div className="grid gap-10 md:grid-cols-3">
+        <div className="grid gap-10 md:grid-cols-2">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get in touch</p>
             <a
@@ -266,14 +266,8 @@ function Home() {
             </a>
           </div>
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground space-y-1">
-            <p className="text-foreground">Studio</p>
-            <p>Los Angeles, CA</p>
-            <p>By appointment</p>
-          </div>
-          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground space-y-1">
             <p className="text-foreground">Follow</p>
             <p><a href="https://instagram.com/royagency" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">Instagram</a></p>
-            <p><a href="#" className="hover:text-foreground">Vimeo</a></p>
             <p><a href="https://www.linkedin.com/company/roy-agency/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">LinkedIn</a></p>
           </div>
         </div>

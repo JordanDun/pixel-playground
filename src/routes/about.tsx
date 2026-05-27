@@ -7,12 +7,12 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "ROY Agency is a Los Angeles-based video production and marketing studio built for brands that demand more.",
+          "ROY Agency is a video production and marketing studio built for brands that demand more.",
       },
       { property: "og:title", content: "About — ROY Agency" },
       {
         property: "og:description",
-        content: "Los Angeles-based video production and marketing studio.",
+        content: "Video production and marketing studio.",
       },
     ],
   }),
@@ -43,9 +43,9 @@ function AboutPage() {
             strategists, and editors under one roof to make work that moves people — and moves product.
           </p>
           <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
-            From our studio in Los Angeles, we produce everything from cinematic brand films to 
-            high-volume social campaigns. Our clients are global brands, ambitious startups, and 
-            cultural institutions who trust us to translate their vision into something unmistakable.
+            We produce everything from cinematic brand films to high-volume social 
+            campaigns. Our clients are global brands, ambitious startups, and cultural 
+            institutions who trust us to translate their vision into something unmistakable.
           </p>
         </div>
       </section>
@@ -73,11 +73,11 @@ function AboutPage() {
       <section className="px-6 py-24 md:px-10">
         <div className="mx-auto max-w-3xl">
           <h2 className="font-display text-4xl uppercase md:text-6xl">
-            Los Angeles studio.<br />
+            Built on craft.<br />
             <span className="text-primary">Global reach.</span>
           </h2>
           <p className="mt-8 text-lg leading-relaxed text-muted-foreground md:text-xl">
-            Our core team is based in LA, but our network spans the world. Need a crew in London, 
+            Our core team is tight-knit, but our network spans the world. Need a crew in London, 
             Tokyo, or São Paulo? We've got it covered. We combine the intimacy of a boutique studio 
             with the infrastructure of a global production company.
           </p>
