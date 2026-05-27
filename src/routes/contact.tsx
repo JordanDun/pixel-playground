@@ -57,9 +57,9 @@ function ContactPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Social</p>
               <div className="mt-2 flex gap-6">
-                <a href="#" className="text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary">Instagram</a>
+                <a href="https://instagram.com/royagency" target="_blank" rel="noopener noreferrer" className="text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary">Instagram</a>
                 <a href="#" className="text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary">Vimeo</a>
-                <a href="#" className="text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary">LinkedIn</a>
+                <a href="https://www.linkedin.com/company/roy-agency/" target="_blank" rel="noopener noreferrer" className="text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary">LinkedIn</a>
               </div>
             </div>
           </div>

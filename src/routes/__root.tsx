@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Instagram } from "lucide-react";
+import { Instagram, Linkedin } from "lucide-react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
@@ -246,6 +246,15 @@ function RootComponent() {
             aria-label="Instagram"
           >
             <Instagram size={18} />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/roy-agency/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/80 transition-colors hover:text-primary"
+            aria-label="LinkedIn"
+          >
+            <Linkedin size={18} />
           </a>
         </div>
         </nav>
