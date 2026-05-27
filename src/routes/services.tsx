@@ -30,6 +30,72 @@ type Section = {
 
 const SECTIONS: Section[] = [
   {
+    name: "Video Production",
+    tagline: "Cinematic craft, from pitch to final color.",
+    pills: [
+      {
+        title: "Pre-Production",
+        description:
+          "Treatments, storyboards, casting, locations, and scheduling — locked before a camera rolls.",
+      },
+      {
+        title: "Production",
+        description:
+          "Full-service crews and equipment for single-day shoots through multi-city campaigns.",
+      },
+      {
+        title: "Post-Production",
+        description:
+          "Edit, sound design, and VFX handled in-house with directors who stay close to the cut.",
+      },
+      {
+        title: "Color & Finishing",
+        description:
+          "Grade, conform, and deliverables tuned for every screen and spec.",
+      },
+      {
+        title: "Animation",
+        description:
+          "2D and 3D animation, motion graphics, and visual effects that bring concepts to life frame by frame.",
+      },
+      {
+        title: "Event Capture",
+        description:
+          "Multi-camera coverage of live events, conferences, and activations with same-day turnaround options.",
+      },
+      {
+        title: "Brand Film",
+        description:
+          "Cinematic brand stories that distill identity, values, and vision into memorable long-form content.",
+      },
+      {
+        title: "Interview & Testimonial",
+        description:
+          "Polished talking-head and documentary-style interviews that put your people and customers front and center.",
+      },
+      {
+        title: "Internal Video",
+        description:
+          "Training, town halls, and company culture pieces designed for internal comms and employee engagement.",
+      },
+      {
+        title: "Product Demo",
+        description:
+          "Clean, dynamic product showcases that highlight features, benefits, and use cases for web and sales.",
+      },
+      {
+        title: "Commercial",
+        description:
+          "High-impact :15 to :60 spots built for broadcast, streaming, and digital pre-roll.",
+      },
+      {
+        title: "Documentary",
+        description:
+          "Long-form storytelling with journalistic rigor — real people, real narratives, real impact.",
+      },
+    ],
+  },
+  {
     name: "Social",
     tagline: "Platform-native content that earns attention.",
     pills: [
@@ -78,32 +144,6 @@ const SECTIONS: Section[] = [
         title: "Performance & Insights",
         description:
           "Distribution guidance and post-launch reads so the next round is sharper than the last.",
-      },
-    ],
-  },
-  {
-    name: "Video Production",
-    tagline: "Cinematic craft, from pitch to final color.",
-    pills: [
-      {
-        title: "Pre-Production",
-        description:
-          "Treatments, storyboards, casting, locations, and scheduling — locked before a camera rolls.",
-      },
-      {
-        title: "Production",
-        description:
-          "Full-service crews and equipment for single-day shoots through multi-city campaigns.",
-      },
-      {
-        title: "Post-Production",
-        description:
-          "Edit, sound design, and VFX handled in-house with directors who stay close to the cut.",
-      },
-      {
-        title: "Color & Finishing",
-        description:
-          "Grade, conform, and deliverables tuned for every screen and spec.",
       },
     ],
   },
