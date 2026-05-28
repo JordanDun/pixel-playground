@@ -84,6 +84,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://player.vimeo.com" },
+      { rel: "preconnect", href: "https://i.vimeocdn.com" },
+      { rel: "preconnect", href: "https://f.vimeocdn.com" },
+      { rel: "dns-prefetch", href: "https://vod-progressive.akamaized.net" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap",
