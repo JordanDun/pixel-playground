@@ -167,7 +167,7 @@ function RootComponent() {
   // On the home page the header sits over the video hero, so bars stay white.
   // On interior pages the header has a solid background so bars use the
   // foreground color for contrast.
-  const barColor = menuOpen || isHome ? "bg-white" : "bg-foreground";
+  const barColor = menuOpen || isHome ? "bg-foreground" : "bg-foreground";
 
   return (
     <QueryClientProvider client={queryClient}>
