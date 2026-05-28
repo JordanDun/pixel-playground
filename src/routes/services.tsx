@@ -372,7 +372,7 @@ function VimeoClip({
     <div className="relative h-full w-full overflow-hidden bg-black">
       <div
         ref={containerRef}
-        className="absolute left-1/2 top-1/2 h-[177.78%] w-[177.78%] -translate-x-1/2 -translate-y-1/2 [&>iframe]:h-full [&>iframe]:w-full"
+        className="absolute left-1/2 top-1/2 h-full w-[316%] -translate-x-1/2 -translate-y-1/2 [&>iframe]:h-full [&>iframe]:w-full"
       />
     </div>
   );
