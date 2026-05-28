@@ -21,7 +21,13 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-type Pill = { title: string; description: string };
+type Pill = {
+  title: string;
+  description: string;
+  vimeoId?: string;
+  start?: number;
+  end?: number;
+};
 type Section = {
   name: string;
   tagline: string;
@@ -37,6 +43,9 @@ const SECTIONS: Section[] = [
         title: "Animation",
         description:
           "2D and 3D animation, motion graphics, and visual effects that bring concepts to life frame by frame.",
+        vimeoId: "912389278",
+        start: 18,
+        end: 27,
       },
       {
         title: "Event Capture",
@@ -280,29 +289,91 @@ function ExampleCard({
       }`}
     >
       <div className="aspect-[9/16] w-full">
-        <div
-          className="flex h-full w-full flex-col justify-between p-4"
-          style={{
-            background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%), hsl(var(--card))`,
-          }}
-        >
-          <p className="text-[9px] uppercase tracking-[0.24em] text-primary">
-            {isActive ? "Example" : ""}
-          </p>
-          <div>
-            <p className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">
-              {section}
+        {isActive && pill.vimeoId ? (
+          <VimeoClip
+            vimeoId={pill.vimeoId}
+            start={pill.start ?? 0}
+            end={pill.end}
+          />
+        ) : (
+          <div
+            className="flex h-full w-full flex-col justify-between p-4"
+            style={{
+              background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%), hsl(var(--card))`,
+            }}
+          >
+            <p className="text-[9px] uppercase tracking-[0.24em] text-primary">
+              {isActive ? "Example" : ""}
             </p>
-            <p
-              className={`mt-1 font-display uppercase leading-tight ${
-                isActive ? "text-lg md:text-xl" : "text-xs md:text-sm"
-              }`}
-            >
-              {pill.title}
-            </p>
+            <div>
+              <p className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">
+                {section}
+              </p>
+              <p
+                className={`mt-1 font-display uppercase leading-tight ${
+                  isActive ? "text-lg md:text-xl" : "text-xs md:text-sm"
+                }`}
+              >
+                {pill.title}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </button>
+  );
+}
+
+function VimeoClip({
+  vimeoId,
+  start,
+  end,
+}: {
+  vimeoId: string;
+  start: number;
+  end?: number;
+}) {
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    let player: import("@vimeo/player").default | null = null;
+    let cancelled = false;
+    (async () => {
+      const { default: Player } = await import("@vimeo/player");
+      if (cancelled || !containerRef.current) return;
+      player = new Player(containerRef.current, {
+        id: Number(vimeoId),
+        background: true,
+        autoplay: true,
+        loop: false,
+        muted: true,
+        controls: false,
+        responsive: false,
+        width: 480,
+      });
+      await player.ready();
+      await player.setCurrentTime(start);
+      await player.play().catch(() => {});
+      if (end !== undefined) {
+        player.on("timeupdate", (data: { seconds: number }) => {
+          if (data.seconds >= end) {
+            player?.setCurrentTime(start);
+          }
+        });
+      }
+    })();
+    return () => {
+      cancelled = true;
+      player?.destroy().catch(() => {});
+    };
+  }, [vimeoId, start, end]);
+
+  return (
+    <div className="relative h-full w-full overflow-hidden bg-black">
+      <div
+        ref={containerRef}
+        className="absolute left-1/2 top-1/2 h-[177.78%] w-[177.78%] -translate-x-1/2 -translate-y-1/2 [&>iframe]:h-full [&>iframe]:w-full"
+      />
+    </div>
   );
 }
