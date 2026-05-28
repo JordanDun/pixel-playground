@@ -152,7 +152,7 @@ function Home() {
                 style={{ border: 0, pointerEvents: "none" }}
               />
             )}
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-background/75" />
             <div className="grain absolute inset-0" />
           </div>
 
@@ -162,7 +162,7 @@ function Home() {
             style={{ opacity: Math.max(0, 1 - scaleProgress * 1.6) }}
           >
             <h1 className="font-display uppercase text-center leading-[0.95] text-[18vw] md:text-[12vw]">
-              <span className="block text-foreground font-light tracking-tight">YOUR</span>
+              <span className="block text-white font-light tracking-tight">YOUR</span>
               <span className="block">
                 <span
                   key={wordIndex}
@@ -171,11 +171,11 @@ function Home() {
                   {CYCLING_WORDS[wordIndex]}
                 </span>
               </span>
-              <span className="block text-foreground font-light tracking-tight">AGENCY</span>
+              <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
           {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
           <div
-            className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-foreground"
+            className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-white mix-blend-difference"
             style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}
           >
             <svg
