@@ -162,7 +162,7 @@ function Home() {
             style={{ opacity: Math.max(0, 1 - scaleProgress * 1.6) }}
           >
             <h1 className="font-display uppercase text-center leading-[0.95] text-[18vw] md:text-[12vw]">
-              <span className="block text-white font-light tracking-tight">YOUR</span>
+              <span className="block text-foreground font-light tracking-tight">YOUR</span>
               <span className="block">
                 <span
                   key={wordIndex}
@@ -171,7 +171,7 @@ function Home() {
                   {CYCLING_WORDS[wordIndex]}
                 </span>
               </span>
-              <span className="block text-white font-light tracking-tight">AGENCY</span>
+              <span className="block text-foreground font-light tracking-tight">AGENCY</span>
             </h1>
           {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
           <div
