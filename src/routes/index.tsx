@@ -175,7 +175,7 @@ function Home() {
             </h1>
           {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
           <div
-            className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-white mix-blend-difference"
+            className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-foreground"
             style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}
           >
             <svg
