@@ -208,7 +208,7 @@ function Home() {
                 borderRadius: `${radius}px`,
               }}
             >
-              {videosReady && scaleProgress > 0.02 && (
+              {videosReady && (
                 <iframe
                   src={FG_VIDEO}
                   title="ROY foreground reel"
