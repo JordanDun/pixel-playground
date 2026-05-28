@@ -152,7 +152,7 @@ function Home() {
                 style={{ border: 0, pointerEvents: "none" }}
               />
             )}
-            <div className="absolute inset-0 bg-background/75" />
+            <div className="absolute inset-0 bg-black/50" />
             <div className="grain absolute inset-0" />
           </div>
 
