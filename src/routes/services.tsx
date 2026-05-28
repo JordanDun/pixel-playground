@@ -43,6 +43,9 @@ const SECTIONS: Section[] = [
         title: "Animation",
         description:
           "2D and 3D animation, motion graphics, and visual effects that bring concepts to life frame by frame.",
+        vimeoId: "912389278",
+        start: 18,
+        end: 27,
       },
       {
         title: "Event Capture",
