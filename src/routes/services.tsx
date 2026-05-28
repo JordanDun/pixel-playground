@@ -21,7 +21,13 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-type Pill = { title: string; description: string };
+type Pill = {
+  title: string;
+  description: string;
+  vimeoId?: string;
+  start?: number;
+  end?: number;
+};
 type Section = {
   name: string;
   tagline: string;
