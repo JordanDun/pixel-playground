@@ -167,7 +167,7 @@ function RootComponent() {
   // On the home page the header sits over the video hero, so bars stay white.
   // On interior pages the header has a solid background so bars use the
   // foreground color for contrast.
-  const barColor = menuOpen || isHome ? "bg-foreground" : "bg-foreground";
+  const barColor = menuOpen || isHome ? "bg-white" : "bg-foreground";
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -286,16 +286,16 @@ function RootComponent() {
       <div
         className={`pointer-events-none fixed z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] transition-opacity duration-300 md:text-[11px] ${
           isHome
-            ? `bottom-16 left-6 md:bottom-5 md:left-10 text-foreground/80 ${
+            ? `bottom-16 left-6 md:bottom-5 md:left-10 mix-blend-difference text-white/80 ${
                 pastHero && !menuOpen ? "opacity-0" : "opacity-100"
               }`
             : "bottom-0 left-0 right-0 border-t border-border bg-background/90 px-6 py-3 text-foreground/70 opacity-100 backdrop-blur-sm md:px-10"
         }`}
       >
-        <span className="text-primary">COLUMBUS</span>
-        <span className={isHome ? "text-foreground/40" : "text-muted-foreground"}>|</span>
+        <span className={isHome ? "text-primary" : "text-primary"}>COLUMBUS</span>
+        <span className={isHome ? "text-white/40" : "text-muted-foreground"}>|</span>
         <span>OHIO</span>
-        <span className={`hidden sm:inline ${isHome ? "text-foreground/60" : "text-muted-foreground"}`}>
+        <span className={`hidden sm:inline ${isHome ? "text-white/60" : "text-muted-foreground"}`}>
           ROY © All Rights Reserved
         </span>
       </div>
@@ -305,7 +305,7 @@ function RootComponent() {
         to="/contact"
         className={`fixed bottom-4 right-6 z-50 rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.18em] shadow-lg transition-all duration-300 md:right-10 ${
           isHome
-            ? `bg-foreground text-background hover:bg-primary hover:text-primary-foreground ${
+            ? `bg-white text-black hover:bg-primary hover:text-primary-foreground ${
                 pastHero && !menuOpen ? "opacity-0" : "opacity-100"
               }`
             : "border border-border bg-foreground text-background opacity-100 hover:bg-primary hover:text-primary-foreground"
