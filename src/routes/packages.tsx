@@ -142,7 +142,7 @@ function PackagesPage() {
         </p>
         <h1 className="mt-6 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
           Your business.<br />
-          <span className="italic" style={{ color: HEX.red }}>On camera.</span>
+          <span className="italic" style={{ color: HEX.orange }}>On camera.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-base text-foreground/70 md:text-lg">
           Most businesses have <span className="text-foreground">no video at all</span> —
