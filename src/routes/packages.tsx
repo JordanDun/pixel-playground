@@ -324,17 +324,17 @@ function PackagesPage() {
               <p>
                 <span className="text-foreground">One-time video for your website or ads?</span>
                 <br />
-                That's <span className="text-primary">ORANGE</span>. Starting at $2,500.
+                That's <span className="font-semibold" style={{ color: HEX.orange }}>ORANGE</span>. Starting at $2,500.
               </p>
               <p>
                 <span className="text-foreground">Need something to post every month?</span>
                 <br />
-                That's <span className="text-primary">YELLOW</span>. Starting at $1,200/mo.
+                That's <span className="font-semibold" style={{ color: HEX.yellow }}>YELLOW</span>. Starting at $1,200/mo.
               </p>
               <p>
                 <span className="text-foreground">Running a big campaign or launch?</span>
                 <br />
-                That's <span className="text-primary">RED</span>. Let's talk scope.
+                That's <span className="font-semibold" style={{ color: HEX.red }}>RED</span>. Let's talk scope.
               </p>
             </div>
           </div>
