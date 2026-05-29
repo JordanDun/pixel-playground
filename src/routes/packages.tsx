@@ -46,6 +46,7 @@ const PACKAGES: Pkg[] = [
     id: "orange",
     tag: "Most Popular",
     color: "ORANGE",
+    hex: HEX.orange,
     name: "The Business Video",
     price: "$2,500–$5K",
     cadence: "One time",
