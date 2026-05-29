@@ -241,8 +241,188 @@ function Home() {
         </div>
       </section>
 
+      {/* Positioning — "we're not videographers" */}
+      <section id="who" className="relative border-t border-border px-6 py-28 md:px-10">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12">
+          <div className="md:col-span-4">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              What we actually are
+            </p>
+          </div>
+          <div className="md:col-span-8">
+            <h2 className="font-display text-5xl uppercase leading-[0.95] md:text-7xl">
+              We are <span style={{ color: "#f97316" }}>not</span> a video<br />
+              production company.
+            </h2>
+            <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
+              We're a creative agency that happens to make a lot of video.
+              Brands hire us to figure out what to say, who to say it to,
+              and what it should look and feel like — then we build the
+              campaign, shoot it, edit it, and run it. The camera is just one
+              tool in a much bigger box.
+            </p>
+            <p className="mt-6 max-w-2xl text-base text-muted-foreground">
+              Strategy. Brand. Content. Paid. We sit at the table from the
+              first brief to the last delivery — so the work hits when it
+              ships, not just when it screens.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Services grid */}
+      <section id="services" className="relative border-t border-border px-6 py-28 md:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex items-end justify-between gap-8">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Capabilities
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
+                Everything a brand<br />
+                actually <span style={{ color: "#eab308" }}>needs</span>.
+              </h2>
+            </div>
+          </div>
+
+          <div className="mt-16 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                n: "01",
+                title: "Brand Strategy",
+                body: "Positioning, audience, messaging, naming. The thinking that makes the rest of the work land.",
+                color: "#f97316",
+              },
+              {
+                n: "02",
+                title: "Creative Direction",
+                body: "Campaign concepts, art direction, look and feel. One idea that runs across every channel.",
+                color: "#eab308",
+              },
+              {
+                n: "03",
+                title: "Video & Film",
+                body: "Brand films, commercials, documentary, social cutdowns. Concept through final color.",
+                color: "#ef4444",
+              },
+              {
+                n: "04",
+                title: "Photography",
+                body: "Campaign stills, lifestyle, product, editorial. Shot alongside motion so everything matches.",
+                color: "#f97316",
+              },
+              {
+                n: "05",
+                title: "Design & Identity",
+                body: "Visual systems, logos, packaging, web. Built to live everywhere your brand shows up.",
+                color: "#eab308",
+              },
+              {
+                n: "06",
+                title: "Social & Paid",
+                body: "Always-on content, channel strategy, paid media. We don't just hand you a film — we run it.",
+                color: "#ef4444",
+              },
+            ].map((s) => (
+              <div
+                key={s.n}
+                className="group relative bg-background p-8 transition-colors hover:bg-card md:p-10"
+              >
+                <div className="flex items-baseline justify-between">
+                  <span
+                    className="font-display text-sm uppercase tracking-[0.2em]"
+                    style={{ color: s.color }}
+                  >
+                    {s.n}
+                  </span>
+                  <span
+                    className="h-px w-12 transition-all group-hover:w-20"
+                    style={{ background: s.color }}
+                  />
+                </div>
+                <h3 className="mt-6 font-display text-2xl uppercase md:text-3xl">
+                  {s.title}
+                </h3>
+                <p className="mt-4 text-sm text-muted-foreground md:text-base">
+                  {s.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section id="process" className="relative border-t border-border px-6 py-28 md:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-4">
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                How we work
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-6xl">
+                One team.<br />
+                <span style={{ color: "#ef4444" }}>Start</span> to ship.
+              </h2>
+              <p className="mt-6 text-muted-foreground">
+                No middlemen, no handoffs between three agencies. The people
+                who pitch the idea are the people who make it.
+              </p>
+            </div>
+            <ol className="md:col-span-8 space-y-px bg-border">
+              {[
+                { n: "01", t: "Discover", b: "We learn the brand, the audience, and the goal. Real workshops, not a questionnaire." },
+                { n: "02", t: "Strategize", b: "Positioning and creative platform. The one thing we're going to say, and why it matters." },
+                { n: "03", t: "Create", b: "Concepts, scripts, boards, design. We show fewer, sharper options instead of a deck of mediocrity." },
+                { n: "04", t: "Produce", b: "Shoots, edits, design systems, builds. In-house crew so the vision survives execution." },
+                { n: "05", t: "Launch & Learn", b: "We push it live, run the paid, watch the data, and iterate. Work isn't done at delivery." },
+              ].map((p) => (
+                <li
+                  key={p.n}
+                  className="flex gap-6 bg-background p-6 md:gap-10 md:p-8"
+                >
+                  <span className="font-display text-2xl text-muted-foreground md:text-3xl">
+                    {p.n}
+                  </span>
+                  <div>
+                    <h3 className="font-display text-xl uppercase md:text-2xl">
+                      {p.t}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground md:text-base">
+                      {p.b}
+                    </p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="relative border-t border-border px-6 py-20 md:px-10">
+        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-10 md:grid-cols-4">
+          {[
+            { k: "12+", v: "Years in the game" },
+            { k: "300+", v: "Campaigns shipped" },
+            { k: "40+", v: "Brands served" },
+            { k: "1", v: "Roof we work under" },
+          ].map((s) => (
+            <div key={s.v}>
+              <p className="font-display text-5xl md:text-7xl">{s.k}</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                {s.v}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Client marquee */}
       <section className="relative border-y border-border py-8 overflow-hidden">
+        <p className="mb-6 px-6 text-xs uppercase tracking-[0.24em] text-muted-foreground md:px-10">
+          Trusted by
+        </p>
         <div className="flex w-max marquee gap-16 px-6 font-display text-3xl uppercase text-muted-foreground md:text-5xl">
           {[...CLIENTS, ...CLIENTS].map((c, i) => (
             <span key={i} className="flex items-center gap-16 whitespace-nowrap">
@@ -250,6 +430,43 @@ function Home() {
               <span className="inline-block size-2 rounded-full bg-primary" />
             </span>
           ))}
+        </div>
+      </section>
+
+      {/* Testimonial */}
+      <section className="relative border-b border-border px-6 py-28 md:px-10">
+        <div className="mx-auto max-w-5xl">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            What clients say
+          </p>
+          <blockquote className="mt-8 font-display text-3xl uppercase leading-[1.05] md:text-5xl">
+            "We came in thinking we needed a video. We left with a
+            <span style={{ color: "#f97316" }}> brand</span>, a campaign, and
+            our best quarter on record."
+          </blockquote>
+          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+            — Marketing Director, [Client Name]
+          </p>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative px-6 py-28 md:px-10">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="font-display text-5xl uppercase leading-[0.95] md:text-8xl">
+            Got something<br />
+            to <span style={{ color: "#eab308" }}>launch</span>?
+          </h2>
+          <p className="mx-auto mt-6 max-w-xl text-muted-foreground md:text-lg">
+            Tell us what you're working on. We'll come back within 48 hours
+            with a real point of view — not a sales deck.
+          </p>
+          <a
+            href="mailto:hello@royagency.com"
+            className="mt-10 inline-block border border-foreground px-8 py-4 font-display text-sm uppercase tracking-[0.2em] transition-colors hover:bg-foreground hover:text-background"
+          >
+            Start a project →
+          </a>
         </div>
       </section>
 
