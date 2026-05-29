@@ -66,6 +66,7 @@ const PACKAGES: Pkg[] = [
     id: "yellow",
     tag: "Recurring",
     color: "YELLOW",
+    hex: HEX.yellow,
     name: "Social Media on Autopilot",
     price: "$1,200–$1,500",
     cadence: "Per month",
