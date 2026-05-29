@@ -25,6 +25,7 @@ type Pkg = {
   id: string;
   tag: string;
   color: string;
+  hex: string;
   name: string;
   price: string;
   cadence: string;
@@ -33,6 +34,12 @@ type Pkg = {
   bullets: string[];
   fit: string;
 };
+
+const HEX = {
+  orange: "#f97316",
+  yellow: "#eab308",
+  red: "#ef4444",
+} as const;
 
 const PACKAGES: Pkg[] = [
   {
