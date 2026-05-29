@@ -25,6 +25,7 @@ type Pkg = {
   id: string;
   tag: string;
   color: string;
+  hex: string;
   name: string;
   price: string;
   cadence: string;
@@ -34,11 +35,18 @@ type Pkg = {
   fit: string;
 };
 
+const HEX = {
+  orange: "#f97316",
+  yellow: "#eab308",
+  red: "#ef4444",
+} as const;
+
 const PACKAGES: Pkg[] = [
   {
     id: "orange",
     tag: "Most Popular",
     color: "ORANGE",
+    hex: HEX.orange,
     name: "The Business Video",
     price: "$2,500–$5K",
     cadence: "One time",
@@ -58,6 +66,7 @@ const PACKAGES: Pkg[] = [
     id: "yellow",
     tag: "Recurring",
     color: "YELLOW",
+    hex: HEX.yellow,
     name: "Social Media on Autopilot",
     price: "$1,200–$1,500",
     cadence: "Per month",
@@ -78,6 +87,7 @@ const PACKAGES: Pkg[] = [
     id: "red",
     tag: "Full Production",
     color: "RED",
+    hex: HEX.red,
     name: "The Full Commercial",
     price: "$8K–$20K+",
     cadence: "Per project",
@@ -102,18 +112,21 @@ const INTROS = [
     quote: "\"I need a video for my website or to run as an ad.\"",
     arrow: "ORANGE",
     target: "orange",
+    hex: HEX.orange,
   },
   {
     label: "Need this every month?",
     quote: "\"I need to stay active on social but never have anything to post.\"",
     arrow: "YELLOW",
     target: "yellow",
+    hex: HEX.yellow,
   },
   {
     label: "Running a real campaign?",
     quote: "\"I need broadcast-quality production for ads, launch, or brand.\"",
     arrow: "RED",
     target: "red",
+    hex: HEX.red,
   },
 ];
 
@@ -129,7 +142,7 @@ function PackagesPage() {
         </p>
         <h1 className="mt-6 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
           Your business.<br />
-          <span className="italic text-primary">On camera.</span>
+          <span className="italic" style={{ color: HEX.red }}>On camera.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-base text-foreground/70 md:text-lg">
           Most businesses have <span className="text-foreground">no video at all</span> —
@@ -153,13 +166,14 @@ function PackagesPage() {
       </section>
 
       {/* Intro three-up */}
-      <section className="border-y border-border px-6 py-16 md:px-10 md:py-24">
+      <section className="border-y border-border bg-card/30 px-6 py-16 md:px-10 md:py-24">
         <div className="grid gap-10 md:grid-cols-3">
           {INTROS.map((i) => (
             <a
               key={i.target}
               href={`#${i.target}`}
-              className="group block"
+              className="group block border-l-2 border-border pl-6 transition-colors hover:border-[var(--accent-color)]"
+              style={{ ["--accent-color" as string]: i.hex }}
             >
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 {i.label}
@@ -167,7 +181,10 @@ function PackagesPage() {
               <p className="mt-4 font-display text-2xl leading-tight text-foreground md:text-3xl">
                 {i.quote}
               </p>
-              <p className="mt-6 text-xs uppercase tracking-[0.2em] text-primary transition-transform group-hover:translate-x-1">
+              <p
+                className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] transition-transform group-hover:translate-x-1"
+                style={{ color: i.hex }}
+              >
                 ↓ {i.arrow}
               </p>
             </a>
@@ -182,7 +199,7 @@ function PackagesPage() {
         </p>
         <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
           Three packages.<br />
-          <span className="italic text-primary">Pick one.</span>
+          <span className="italic" style={{ color: HEX.orange }}>Pick one.</span>
         </h2>
 
         <div className="mt-16 space-y-6 md:space-y-8">
@@ -190,12 +207,29 @@ function PackagesPage() {
             <article
               key={p.id}
               id={p.id}
-              className="group relative scroll-mt-24 border border-border bg-card/40 p-8 transition-colors hover:border-primary md:p-12"
+              className="group relative scroll-mt-24 overflow-hidden border border-border bg-card/40 p-8 transition-colors hover:border-[var(--accent-color)] md:p-12"
+              style={{ ["--accent-color" as string]: p.hex }}
             >
-              <div className="flex flex-wrap items-start justify-between gap-6">
+              {/* color bar */}
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-[3px]"
+                style={{ background: p.hex }}
+              />
+              {/* soft glow */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full opacity-20 blur-[100px]"
+                style={{ background: p.hex }}
+              />
+
+              <div className="relative flex flex-wrap items-start justify-between gap-6">
                 <div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                    <span
+                      className="text-xs font-semibold uppercase tracking-[0.22em]"
+                      style={{ color: p.hex }}
+                    >
                       {p.color}
                     </span>
                     <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -207,7 +241,10 @@ function PackagesPage() {
                   </h3>
                 </div>
                 <div className="text-right">
-                  <p className="font-display text-3xl text-foreground md:text-4xl">
+                  <p
+                    className="font-display text-3xl md:text-4xl"
+                    style={{ color: p.hex }}
+                  >
                     {p.price}
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -216,10 +253,10 @@ function PackagesPage() {
                 </div>
               </div>
 
-              <p className="mt-8 max-w-2xl text-lg text-foreground/80">{p.blurb}</p>
-              <p className="mt-4 max-w-2xl text-sm text-foreground/60">{p.long}</p>
+              <p className="relative mt-8 max-w-2xl text-lg text-foreground/80">{p.blurb}</p>
+              <p className="relative mt-4 max-w-2xl text-sm text-foreground/60">{p.long}</p>
 
-              <div className="mt-10 grid gap-10 md:grid-cols-[1fr_auto]">
+              <div className="relative mt-10 grid gap-10 md:grid-cols-[1fr_auto]">
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     What you get
@@ -230,7 +267,7 @@ function PackagesPage() {
                         key={b}
                         className="flex gap-3 text-sm text-foreground/85 md:text-base"
                       >
-                        <span className="text-primary">—</span>
+                        <span style={{ color: p.hex }}>—</span>
                         <span>{b}</span>
                       </li>
                     ))}
@@ -242,7 +279,8 @@ function PackagesPage() {
                 <div className="flex items-end">
                   <a
                     href="#get-started"
-                    className="rounded-full bg-primary px-6 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90"
+                    className="rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-90"
+                    style={{ background: p.hex }}
                   >
                     Get a quote →
                   </a>
@@ -275,7 +313,7 @@ function PackagesPage() {
             </p>
             <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
               Not sure<br />
-              <span className="italic text-primary">which one?</span>
+              <span className="italic" style={{ color: HEX.yellow }}>which one?</span>
             </h2>
             <p className="mt-8 max-w-md text-base text-foreground/70">
               Fill this out and we'll tell you exactly what we'd recommend — no pressure,
@@ -286,17 +324,17 @@ function PackagesPage() {
               <p>
                 <span className="text-foreground">One-time video for your website or ads?</span>
                 <br />
-                That's <span className="text-primary">ORANGE</span>. Starting at $2,500.
+                That's <span className="font-semibold" style={{ color: HEX.orange }}>ORANGE</span>. Starting at $2,500.
               </p>
               <p>
                 <span className="text-foreground">Need something to post every month?</span>
                 <br />
-                That's <span className="text-primary">YELLOW</span>. Starting at $1,200/mo.
+                That's <span className="font-semibold" style={{ color: HEX.yellow }}>YELLOW</span>. Starting at $1,200/mo.
               </p>
               <p>
                 <span className="text-foreground">Running a big campaign or launch?</span>
                 <br />
-                That's <span className="text-primary">RED</span>. Let's talk scope.
+                That's <span className="font-semibold" style={{ color: HEX.red }}>RED</span>. Let's talk scope.
               </p>
             </div>
           </div>
