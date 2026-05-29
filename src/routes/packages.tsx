@@ -199,7 +199,7 @@ function PackagesPage() {
         </p>
         <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
           Three packages.<br />
-          <span className="italic text-primary">Pick one.</span>
+          <span className="italic" style={{ color: HEX.orange }}>Pick one.</span>
         </h2>
 
         <div className="mt-16 space-y-6 md:space-y-8">
