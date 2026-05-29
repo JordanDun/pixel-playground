@@ -166,13 +166,14 @@ function PackagesPage() {
       </section>
 
       {/* Intro three-up */}
-      <section className="border-y border-border px-6 py-16 md:px-10 md:py-24">
+      <section className="border-y border-border bg-card/30 px-6 py-16 md:px-10 md:py-24">
         <div className="grid gap-10 md:grid-cols-3">
           {INTROS.map((i) => (
             <a
               key={i.target}
               href={`#${i.target}`}
-              className="group block"
+              className="group block border-l-2 border-border pl-6 transition-colors hover:border-[var(--accent-color)]"
+              style={{ ["--accent-color" as string]: i.hex }}
             >
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                 {i.label}
@@ -180,7 +181,10 @@ function PackagesPage() {
               <p className="mt-4 font-display text-2xl leading-tight text-foreground md:text-3xl">
                 {i.quote}
               </p>
-              <p className="mt-6 text-xs uppercase tracking-[0.2em] text-primary transition-transform group-hover:translate-x-1">
+              <p
+                className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] transition-transform group-hover:translate-x-1"
+                style={{ color: i.hex }}
+              >
                 ↓ {i.arrow}
               </p>
             </a>
