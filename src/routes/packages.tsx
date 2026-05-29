@@ -87,6 +87,7 @@ const PACKAGES: Pkg[] = [
     id: "red",
     tag: "Full Production",
     color: "RED",
+    hex: HEX.red,
     name: "The Full Commercial",
     price: "$8K–$20K+",
     cadence: "Per project",
