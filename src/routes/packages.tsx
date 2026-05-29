@@ -112,18 +112,21 @@ const INTROS = [
     quote: "\"I need a video for my website or to run as an ad.\"",
     arrow: "ORANGE",
     target: "orange",
+    hex: HEX.orange,
   },
   {
     label: "Need this every month?",
     quote: "\"I need to stay active on social but never have anything to post.\"",
     arrow: "YELLOW",
     target: "yellow",
+    hex: HEX.yellow,
   },
   {
     label: "Running a real campaign?",
     quote: "\"I need broadcast-quality production for ads, launch, or brand.\"",
     arrow: "RED",
     target: "red",
+    hex: HEX.red,
   },
 ];
 
