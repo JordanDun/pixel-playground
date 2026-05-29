@@ -207,12 +207,29 @@ function PackagesPage() {
             <article
               key={p.id}
               id={p.id}
-              className="group relative scroll-mt-24 border border-border bg-card/40 p-8 transition-colors hover:border-primary md:p-12"
+              className="group relative scroll-mt-24 overflow-hidden border border-border bg-card/40 p-8 transition-colors hover:border-[var(--accent-color)] md:p-12"
+              style={{ ["--accent-color" as string]: p.hex }}
             >
-              <div className="flex flex-wrap items-start justify-between gap-6">
+              {/* color bar */}
+              <span
+                aria-hidden
+                className="absolute inset-x-0 top-0 h-[3px]"
+                style={{ background: p.hex }}
+              />
+              {/* soft glow */}
+              <span
+                aria-hidden
+                className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full opacity-20 blur-[100px]"
+                style={{ background: p.hex }}
+              />
+
+              <div className="relative flex flex-wrap items-start justify-between gap-6">
                 <div>
                   <div className="flex items-center gap-3">
-                    <span className="text-xs uppercase tracking-[0.2em] text-primary">
+                    <span
+                      className="text-xs font-semibold uppercase tracking-[0.22em]"
+                      style={{ color: p.hex }}
+                    >
                       {p.color}
                     </span>
                     <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -224,7 +241,10 @@ function PackagesPage() {
                   </h3>
                 </div>
                 <div className="text-right">
-                  <p className="font-display text-3xl text-foreground md:text-4xl">
+                  <p
+                    className="font-display text-3xl md:text-4xl"
+                    style={{ color: p.hex }}
+                  >
                     {p.price}
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -233,10 +253,10 @@ function PackagesPage() {
                 </div>
               </div>
 
-              <p className="mt-8 max-w-2xl text-lg text-foreground/80">{p.blurb}</p>
-              <p className="mt-4 max-w-2xl text-sm text-foreground/60">{p.long}</p>
+              <p className="relative mt-8 max-w-2xl text-lg text-foreground/80">{p.blurb}</p>
+              <p className="relative mt-4 max-w-2xl text-sm text-foreground/60">{p.long}</p>
 
-              <div className="mt-10 grid gap-10 md:grid-cols-[1fr_auto]">
+              <div className="relative mt-10 grid gap-10 md:grid-cols-[1fr_auto]">
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
                     What you get
@@ -247,7 +267,7 @@ function PackagesPage() {
                         key={b}
                         className="flex gap-3 text-sm text-foreground/85 md:text-base"
                       >
-                        <span className="text-primary">—</span>
+                        <span style={{ color: p.hex }}>—</span>
                         <span>{b}</span>
                       </li>
                     ))}
@@ -259,7 +279,8 @@ function PackagesPage() {
                 <div className="flex items-end">
                   <a
                     href="#get-started"
-                    className="rounded-full bg-primary px-6 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90"
+                    className="rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-black transition-opacity hover:opacity-90"
+                    style={{ background: p.hex }}
                   >
                     Get a quote →
                   </a>
