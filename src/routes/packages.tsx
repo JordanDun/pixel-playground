@@ -313,7 +313,7 @@ function PackagesPage() {
             </p>
             <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
               Not sure<br />
-              <span className="italic text-primary">which one?</span>
+              <span className="italic" style={{ color: HEX.yellow }}>which one?</span>
             </h2>
             <p className="mt-8 max-w-md text-base text-foreground/70">
               Fill this out and we'll tell you exactly what we'd recommend — no pressure,
