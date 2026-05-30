@@ -392,13 +392,13 @@ function Home() {
               {
                 n: "01",
                 title: "Brand Strategy",
-                body: "Positioning, audience, messaging, naming. The thinking that makes the rest of the work land.",
+                body: "Positioning, messaging, naming. The thinking that makes the rest of the work land.",
                 color: "#f97316",
               },
               {
                 n: "02",
-                title: "Creative Direction",
-                body: "Campaign concepts, art direction, look and feel. One idea that runs across every channel.",
+                title: "Social & Content",
+                body: "Monthly content calendars, channel management, community, short-form video. We run the feed — not just film for it.",
                 color: "#eab308",
               },
               {
@@ -409,20 +409,20 @@ function Home() {
               },
               {
                 n: "04",
-                title: "Photography",
-                body: "Campaign stills, lifestyle, product, editorial. Shot alongside motion so everything matches.",
+                title: "Design & Identity",
+                body: "Logo systems, packaging, print, web. Built to live everywhere your brand shows up.",
                 color: "#f97316",
               },
               {
                 n: "05",
-                title: "Design & Identity",
-                body: "Visual systems, logos, packaging, web. Built to live everywhere your brand shows up.",
+                title: "Animation & Motion",
+                body: "2D and 3D animation, explainers, motion graphics, title design. The work that makes static feel alive.",
                 color: "#eab308",
               },
               {
                 n: "06",
-                title: "Social & Paid",
-                body: "Always-on content, channel strategy, paid media. We don't just hand you a film — we run it.",
+                title: "Photography & Paid",
+                body: "Campaign stills shot alongside motion, plus the paid media to put it in front of the right people.",
                 color: "#ef4444",
               },
             ].map((s) => (
