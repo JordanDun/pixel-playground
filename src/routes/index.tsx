@@ -204,7 +204,7 @@ function Home() {
               </span>
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
-            <p className="mt-8 max-w-xl text-center text-xs uppercase tracking-[0.24em] text-white/70 md:text-sm">
+            <p className="pointer-events-none absolute left-1/2 bottom-20 z-20 max-w-xl -translate-x-1/2 px-6 text-center text-xs uppercase tracking-[0.24em] text-white/70 md:bottom-24 md:text-sm">
               Full-service creative studio in Columbus, Ohio.<br className="hidden md:block" />
               {" "}Video, social, design — and the strategy behind it.
             </p>
