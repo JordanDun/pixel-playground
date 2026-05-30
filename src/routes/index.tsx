@@ -4,18 +4,49 @@ import { useEffect, useRef, useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ROY Agency — Video Production & Marketing" },
+      { title: "ROY Agency — Video, Social & Creative Studio in Columbus, OH" },
       {
         name: "description",
         content:
-          "ROY Agency is a video production and marketing studio crafting cinematic stories, brand films, and campaigns that move people.",
+          "Columbus, Ohio creative studio. Video, social media, design, and the strategy behind it — for local brands and national campaigns.",
       },
-      { property: "og:title", content: "ROY Agency — Video Production & Marketing" },
+      { property: "og:title", content: "ROY Agency — Creative Studio in Columbus, OH" },
       {
         property: "og:description",
-        content: "Cinematic brand films, campaigns, and content. Made by ROY.",
+        content:
+          "Full-service creative studio in Columbus, Ohio. Video, social, design, and strategy under one roof.",
       },
       { property: "og:type", content: "website" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "ROY Agency",
+          description:
+            "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Columbus",
+            addressRegion: "OH",
+            addressCountry: "US",
+          },
+          areaServed: [
+            { "@type": "City", name: "Columbus" },
+            { "@type": "City", name: "Westerville" },
+            { "@type": "City", name: "Dublin" },
+            { "@type": "State", name: "Ohio" },
+          ],
+          email: "hello@royagency.com",
+          url: "https://royagency.com",
+          sameAs: [
+            "https://instagram.com/royagency",
+            "https://www.linkedin.com/company/roy-agency/",
+          ],
+        }),
+      },
     ],
   }),
   component: Home,
