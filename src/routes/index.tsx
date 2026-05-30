@@ -4,18 +4,49 @@ import { useEffect, useRef, useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ROY Agency — Video Production & Marketing" },
+      { title: "ROY Agency — Video, Social & Creative Studio in Columbus, OH" },
       {
         name: "description",
         content:
-          "ROY Agency is a video production and marketing studio crafting cinematic stories, brand films, and campaigns that move people.",
+          "Columbus, Ohio creative studio. Video, social media, design, and the strategy behind it — for local brands and national campaigns.",
       },
-      { property: "og:title", content: "ROY Agency — Video Production & Marketing" },
+      { property: "og:title", content: "ROY Agency — Creative Studio in Columbus, OH" },
       {
         property: "og:description",
-        content: "Cinematic brand films, campaigns, and content. Made by ROY.",
+        content:
+          "Full-service creative studio in Columbus, Ohio. Video, social, design, and strategy under one roof.",
       },
       { property: "og:type", content: "website" },
+    ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          name: "ROY Agency",
+          description:
+            "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Columbus",
+            addressRegion: "OH",
+            addressCountry: "US",
+          },
+          areaServed: [
+            { "@type": "City", name: "Columbus" },
+            { "@type": "City", name: "Westerville" },
+            { "@type": "City", name: "Dublin" },
+            { "@type": "State", name: "Ohio" },
+          ],
+          email: "hello@royagency.com",
+          url: "https://royagency.com",
+          sameAs: [
+            "https://instagram.com/royagency",
+            "https://www.linkedin.com/company/roy-agency/",
+          ],
+        }),
+      },
     ],
   }),
   component: Home,
@@ -173,6 +204,10 @@ function Home() {
               </span>
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
+            <p className="mt-8 max-w-xl text-center text-xs uppercase tracking-[0.24em] text-white/70 md:text-sm">
+              Full-service creative studio in Columbus, Ohio.<br className="hidden md:block" />
+              {" "}Video, social, design — and the strategy behind it.
+            </p>
           {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
           <div
             className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-white mix-blend-difference"
@@ -241,32 +276,99 @@ function Home() {
         </div>
       </section>
 
-      {/* Positioning — "we're not videographers" */}
+      {/* Positioning — "we do more than video" */}
       <section id="who" className="relative border-t border-border px-6 py-28 md:px-10">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12">
           <div className="md:col-span-4">
             <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              What we actually are
+              What we actually do
             </p>
           </div>
           <div className="md:col-span-8">
             <h2 className="font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-              We are <span style={{ color: "#f97316" }}>not</span> a video<br />
-              production company.
+              People hire us for video.<br />
+              They <span style={{ color: "#f97316" }}>stay</span> for everything else.
             </h2>
             <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              We're a creative agency that happens to make a lot of video.
-              Brands hire us to figure out what to say, who to say it to,
-              and what it should look and feel like — then we build the
-              campaign, shoot it, edit it, and run it. The camera is just one
-              tool in a much bigger box.
+              Yes — we shoot, direct, and edit. But most of our clients also
+              hand us their social calendars, their brand identity, their
+              motion graphics, their photography, and the paid ads that push
+              it all out the door.
             </p>
             <p className="mt-6 max-w-2xl text-base text-muted-foreground">
-              Strategy. Brand. Content. Paid. We sit at the table from the
-              first brief to the last delivery — so the work hits when it
-              ships, not just when it screens.
+              One team, one creative voice, from the first brief to the last
+              post. No agency-of-record price tag — just a studio in Columbus
+              that knows how to make work that actually performs.
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Built for any budget */}
+      <section id="budget" className="relative border-t border-border px-6 py-28 md:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Scope to fit
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
+                Built for <span style={{ color: "#eab308" }}>any</span> budget.
+              </h2>
+            </div>
+            <p className="max-w-md text-base text-muted-foreground">
+              We work with first-time founders, city governments, and national
+              brands — same studio, scoped to the room you're working with.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-px bg-border md:grid-cols-3">
+            {[
+              {
+                tag: "Local & civic",
+                title: "Westerville-sized",
+                body: "Single-day shoots, social spots, event coverage, small-business brand films. Tight scope, real production value.",
+                color: "#f97316",
+              },
+              {
+                tag: "Growing brands",
+                title: "Quarterly partner",
+                body: "Ongoing content + social management, design retainers, mid-size campaigns. We become the in-house creative team you don't have to hire.",
+                color: "#eab308",
+              },
+              {
+                tag: "National work",
+                title: "Full-scale campaign",
+                body: "Multi-day shoots, full crew, brand films, paid rollouts. The work that lives in our reel — and could live in yours.",
+                color: "#ef4444",
+              },
+            ].map((b) => (
+              <div key={b.title} className="bg-background p-8 md:p-10">
+                <span
+                  className="font-display text-xs uppercase tracking-[0.2em]"
+                  style={{ color: b.color }}
+                >
+                  {b.tag}
+                </span>
+                <h3 className="mt-4 font-display text-2xl uppercase md:text-3xl">
+                  {b.title}
+                </h3>
+                <p className="mt-4 text-sm text-muted-foreground md:text-base">
+                  {b.body}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mx-auto mt-12 max-w-2xl text-center text-base text-muted-foreground md:text-lg">
+            If it has a story, we can scope it.{" "}
+            <a
+              href="mailto:hello@royagency.com"
+              className="text-foreground underline underline-offset-4 hover:text-primary"
+            >
+              Tell us what you're working with →
+            </a>
+          </p>
         </div>
       </section>
 
@@ -290,13 +392,13 @@ function Home() {
               {
                 n: "01",
                 title: "Brand Strategy",
-                body: "Positioning, audience, messaging, naming. The thinking that makes the rest of the work land.",
+                body: "Positioning, messaging, naming. The thinking that makes the rest of the work land.",
                 color: "#f97316",
               },
               {
                 n: "02",
-                title: "Creative Direction",
-                body: "Campaign concepts, art direction, look and feel. One idea that runs across every channel.",
+                title: "Social & Content",
+                body: "Monthly content calendars, channel management, community, short-form video. We run the feed — not just film for it.",
                 color: "#eab308",
               },
               {
@@ -307,20 +409,20 @@ function Home() {
               },
               {
                 n: "04",
-                title: "Photography",
-                body: "Campaign stills, lifestyle, product, editorial. Shot alongside motion so everything matches.",
+                title: "Design & Identity",
+                body: "Logo systems, packaging, print, web. Built to live everywhere your brand shows up.",
                 color: "#f97316",
               },
               {
                 n: "05",
-                title: "Design & Identity",
-                body: "Visual systems, logos, packaging, web. Built to live everywhere your brand shows up.",
+                title: "Animation & Motion",
+                body: "2D and 3D animation, explainers, motion graphics, title design. The work that makes static feel alive.",
                 color: "#eab308",
               },
               {
                 n: "06",
-                title: "Social & Paid",
-                body: "Always-on content, channel strategy, paid media. We don't just hand you a film — we run it.",
+                title: "Photography & Paid",
+                body: "Campaign stills shot alongside motion, plus the paid media to put it in front of the right people.",
                 color: "#ef4444",
               },
             ].map((s) => (
@@ -351,6 +453,69 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Recent work, real budgets */}
+      <section id="recent" className="relative border-t border-border px-6 py-28 md:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Recent work · real budgets
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-6xl">
+                Same studio.<br />
+                Different <span style={{ color: "#f97316" }}>rooms</span>.
+              </h2>
+            </div>
+            <p className="max-w-sm text-sm text-muted-foreground">
+              A few snapshots across the spectrum. The reel is the highlight —
+              this is the range.
+            </p>
+          </div>
+
+          <div className="mt-16 grid gap-px bg-border md:grid-cols-3">
+            {[
+              {
+                client: "Westerville City",
+                scope: "Civic social + spot campaign",
+                detail: "Local engagement work — built to fit a city budget without losing the production value.",
+                color: "#f97316",
+              },
+              {
+                client: "Growing local brand",
+                scope: "Quarterly content + brand refresh",
+                detail: "Ongoing partner: monthly content drops, social management, identity tune-ups.",
+                color: "#eab308",
+              },
+              {
+                client: "National campaign",
+                scope: "Multi-day shoot + paid rollout",
+                detail: "Full crew, full scope. The kind of work that built our reel.",
+                color: "#ef4444",
+              },
+            ].map((w) => (
+              <article
+                key={w.client}
+                className="group bg-background p-8 transition-colors hover:bg-card md:p-10"
+              >
+                <span
+                  className="font-display text-xs uppercase tracking-[0.2em]"
+                  style={{ color: w.color }}
+                >
+                  {w.scope}
+                </span>
+                <h3 className="mt-4 font-display text-2xl uppercase md:text-3xl">
+                  {w.client}
+                </h3>
+                <p className="mt-4 text-sm text-muted-foreground md:text-base">
+                  {w.detail}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* Process */}
       <section id="process" className="relative border-t border-border px-6 py-28 md:px-10">
