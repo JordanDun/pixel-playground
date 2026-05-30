@@ -204,6 +204,10 @@ function Home() {
               </span>
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
+            <p className="mt-8 max-w-xl text-center text-xs uppercase tracking-[0.24em] text-white/70 md:text-sm">
+              Full-service creative studio in Columbus, Ohio.<br className="hidden md:block" />
+              {" "}Video, social, design — and the strategy behind it.
+            </p>
           {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
           <div
             className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-white mix-blend-difference"
