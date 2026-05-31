@@ -1,6 +1,8 @@
 import * as React from "react";
 import { X } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
+import statusSolutionsPoster from "@/assets/status-solutions-poster.jpg";
+
 
 
 export const Route = createFileRoute("/work")({
@@ -28,7 +30,17 @@ const PROJECTS: Array<{
   category: string;
   year: string;
   vimeoId?: string;
+  driveFileId?: string;
+  poster?: string;
 }> = [
+  {
+    client: "STATUS SOLUTIONS",
+    title: "Status Solutions — Brand History",
+    category: "Brand Film",
+    year: "2025",
+    driveFileId: "1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa",
+    poster: statusSolutionsPoster,
+  },
   {
     client: "PICKUPS PLUS",
     title: "Pickups Plus — Brand Film",
@@ -51,19 +63,20 @@ const PROJECTS: Array<{
 ];
 
 function WorkPage() {
-  const [activeVimeo, setActiveVimeo] = React.useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string } | null>(null);
 
   React.useEffect(() => {
-    if (!activeVimeo) return;
+    if (!activeVideo) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActiveVimeo(null);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActiveVideo(null);
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
-  }, [activeVimeo]);
+  }, [activeVideo]);
+
 
   return (
     <main className="min-h-screen bg-background text-foreground">
@@ -82,12 +95,17 @@ function WorkPage() {
       <section className="px-6 pb-24 md:px-10">
         <div className="grid gap-px bg-border md:grid-cols-2">
           {PROJECTS.map((project, i) => {
-            const hasVideo = Boolean(project.vimeoId);
+            const hasVideo = Boolean(project.vimeoId || project.driveFileId);
             const Tag = hasVideo ? "button" : "a";
             const tagProps = hasVideo
               ? {
                   type: "button" as const,
-                  onClick: () => setActiveVimeo(project.vimeoId!),
+                  onClick: () =>
+                    setActiveVideo(
+                      project.vimeoId
+                        ? { kind: "vimeo", id: project.vimeoId }
+                        : { kind: "drive", id: project.driveFileId! },
+                    ),
                 }
               : { href: "#" };
             return (
@@ -98,12 +116,21 @@ function WorkPage() {
               >
                 {hasVideo && (
                   <div className="relative mb-6 aspect-video w-full overflow-hidden bg-black">
-                    <iframe
-                      src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
-                      className="pointer-events-none absolute inset-0 h-full w-full"
-                      allow="autoplay; fullscreen"
-                      title={project.title}
-                    />
+                    {project.vimeoId ? (
+                      <iframe
+                        src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
+                        className="pointer-events-none absolute inset-0 h-full w-full"
+                        allow="autoplay; fullscreen"
+                        title={project.title}
+                      />
+                    ) : (
+                      <img
+                        src={project.poster}
+                        alt={project.title}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                     <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
                       <span className="rounded-full bg-white/90 px-5 py-2 text-xs uppercase tracking-[0.2em] text-black opacity-0 transition-opacity group-hover:opacity-100">
                         ▶ Play
@@ -111,6 +138,7 @@ function WorkPage() {
                     </div>
                   </div>
                 )}
+
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
@@ -139,14 +167,14 @@ function WorkPage() {
       </section>
 
       {/* Fullscreen video overlay */}
-      {activeVimeo && (
+      {activeVideo && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-10"
-          onClick={() => setActiveVimeo(null)}
+          onClick={() => setActiveVideo(null)}
         >
           <button
             type="button"
-            onClick={() => setActiveVimeo(null)}
+            onClick={() => setActiveVideo(null)}
             aria-label="Close video"
             className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
           >
@@ -156,14 +184,18 @@ function WorkPage() {
             className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-lg bg-black shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-
             <iframe
-              src={`https://player.vimeo.com/video/${activeVimeo}?autoplay=1&title=0&byline=0&portrait=0`}
+              src={
+                activeVideo.kind === "vimeo"
+                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0`
+                  : `https://drive.google.com/file/d/${activeVideo.id}/preview`
+              }
               className="absolute inset-0 h-full w-full"
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
               title="Project video"
             />
+
           </div>
         </div>
       )}
