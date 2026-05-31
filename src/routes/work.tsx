@@ -95,12 +95,17 @@ function WorkPage() {
       <section className="px-6 pb-24 md:px-10">
         <div className="grid gap-px bg-border md:grid-cols-2">
           {PROJECTS.map((project, i) => {
-            const hasVideo = Boolean(project.vimeoId);
+            const hasVideo = Boolean(project.vimeoId || project.driveFileId);
             const Tag = hasVideo ? "button" : "a";
             const tagProps = hasVideo
               ? {
                   type: "button" as const,
-                  onClick: () => setActiveVimeo(project.vimeoId!),
+                  onClick: () =>
+                    setActiveVideo(
+                      project.vimeoId
+                        ? { kind: "vimeo", id: project.vimeoId }
+                        : { kind: "drive", id: project.driveFileId! },
+                    ),
                 }
               : { href: "#" };
             return (
@@ -111,12 +116,21 @@ function WorkPage() {
               >
                 {hasVideo && (
                   <div className="relative mb-6 aspect-video w-full overflow-hidden bg-black">
-                    <iframe
-                      src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
-                      className="pointer-events-none absolute inset-0 h-full w-full"
-                      allow="autoplay; fullscreen"
-                      title={project.title}
-                    />
+                    {project.vimeoId ? (
+                      <iframe
+                        src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
+                        className="pointer-events-none absolute inset-0 h-full w-full"
+                        allow="autoplay; fullscreen"
+                        title={project.title}
+                      />
+                    ) : (
+                      <img
+                        src={project.poster}
+                        alt={project.title}
+                        loading="lazy"
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+                    )}
                     <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
                       <span className="rounded-full bg-white/90 px-5 py-2 text-xs uppercase tracking-[0.2em] text-black opacity-0 transition-opacity group-hover:opacity-100">
                         ▶ Play
@@ -124,6 +138,7 @@ function WorkPage() {
                     </div>
                   </div>
                 )}
+
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
