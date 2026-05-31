@@ -30,7 +30,17 @@ const PROJECTS: Array<{
   category: string;
   year: string;
   vimeoId?: string;
+  driveFileId?: string;
+  poster?: string;
 }> = [
+  {
+    client: "STATUS SOLUTIONS",
+    title: "Status Solutions — Brand History",
+    category: "Brand Film",
+    year: "2025",
+    driveFileId: "1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa",
+    poster: statusSolutionsPoster,
+  },
   {
     client: "PICKUPS PLUS",
     title: "Pickups Plus — Brand Film",
@@ -53,19 +63,20 @@ const PROJECTS: Array<{
 ];
 
 function WorkPage() {
-  const [activeVimeo, setActiveVimeo] = React.useState<string | null>(null);
+  const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string } | null>(null);
 
   React.useEffect(() => {
-    if (!activeVimeo) return;
+    if (!activeVideo) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActiveVimeo(null);
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActiveVideo(null);
     window.addEventListener("keydown", onKey);
     return () => {
       document.body.style.overflow = prev;
       window.removeEventListener("keydown", onKey);
     };
-  }, [activeVimeo]);
+  }, [activeVideo]);
+
 
   return (
     <main className="min-h-screen bg-background text-foreground">
