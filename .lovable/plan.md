@@ -1,95 +1,54 @@
+## Goal
 
-# Homepage repositioning — fighting the 3 misconceptions
+Add a new project card on `/work` for **Status Solutions — Brand History**, using the video stored in the connected Google Drive folder.
 
-Goal: keep the cinematic look (it's a differentiator), but answer the three things that are losing you work — "they only do video," "they're too expensive," "we never heard of them." All edits live on `src/routes/index.tsx` plus light SEO metadata.
+## Source
 
----
+Drive folder `Status Solutions Brand History` contains two videos:
+- `SS_With_Captions.mp4` (id `1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa`, 292 MB) — use this one (captioned, MP4 plays everywhere)
+- `SS_V2.mov` (360 MB) — ignored
 
-## 1. Reframe the hero subline
+The MP4 is far too large to bundle into the repo, so the card will stream it from Drive via Google's preview iframe (`https://drive.google.com/file/d/<id>/preview`) — the same lightbox UX the existing Vimeo projects use.
 
-Right now the hero just cycles words. Add a one-line subhead under "YOUR / [WORD] / AGENCY" so a first-time visitor instantly knows scope + locality:
+## Changes
 
-> Full-service creative studio in Columbus, Ohio. Video, social, design, and the strategy behind it.
+### 1. `src/routes/work.tsx`
 
-Small, muted, single line. Doesn't fight the cinematic typography.
-
-## 2. Replace "we are not a video production company" with a sharper version
-
-Current copy says it well but buries the punchline. Tighten to a two-beat:
-
-- Big line: **"People hire us for video. They stay for everything else."**
-- Sub: a short paragraph naming the actual deliverables (social calendars, brand identity, motion graphics, paid ads, photography) so it's concrete, not abstract.
-
-This directly hits misconception #1 and #3.
-
-## 3. New section: "Built for any budget"
-
-A dedicated band between "Who we are" and "Capabilities." Pattern:
-
-```
-                BUILT FOR ANY BUDGET.
-
-  Local restaurant launch    Mid-size brand campaign   National-scale film
-  ──────────────────────    ──────────────────────    ──────────────────────
-  Westerville City-sized      Multi-deliverable          Full crew, multi-day
-  social + spot package       quarterly retainer         shoots, paid rollout
+a. Extend the `PROJECTS` type to support a Drive-hosted entry:
+```ts
+{ client, title, category, year, vimeoId?, driveFileId?, poster? }
 ```
 
-Three tiered example "shapes" (no prices — per your pick), with a closing line: *"If it has a story, we can scope it. Tell us what you're working with."* Links to contact.
+b. Add the new project as the first entry in `PROJECTS`:
+```ts
+{
+  client: "STATUS SOLUTIONS",
+  title: "Status Solutions — Brand History",
+  category: "Brand Film",
+  year: "2025",
+  driveFileId: "1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa",
+  poster: statusSolutionsPoster, // imported asset
+}
+```
 
-This kills the "we're out of their budget" assumption without putting a number on it.
+c. Card rendering updates (minimal):
+- Treat `driveFileId` like `vimeoId` for "has video" logic (`const hasVideo = Boolean(project.vimeoId || project.driveFileId)`).
+- For Drive cards, the inline 16:9 thumbnail shows the static `poster` `<img>` (no autoplay loop — Drive doesn't support a background autoplay embed like Vimeo does). Hover state and "▶ Play" pill stay identical.
+- Clicking opens the existing lightbox; state changes from `activeVimeo: string | null` to `activeVideo: { kind: 'vimeo' | 'drive'; id: string } | null`.
+- Lightbox iframe `src`:
+  - vimeo → unchanged
+  - drive → `https://drive.google.com/file/d/<id>/preview`
 
-## 4. Rework the Capabilities grid to lead with non-video
+### 2. Poster image
 
-Reorder the 6 tiles so Video sits in the middle, not first. New order:
+Download a single still from the Drive thumbnail (`thumbnailLink`, upscaled to ~1280w via the `=s1280` param) and save it to `src/assets/status-solutions-poster.jpg`, then import it in `work.tsx`. This keeps the card visually consistent with the Vimeo cards (which show a moving frame) without bundling 300 MB of video.
 
-1. Brand Strategy
-2. Social & Content Management ← rename + expand (this is your underused service)
-3. **Video & Film**
-4. Design & Identity
-5. Animation & Motion ← new tile, replacing or splitting off from Video
-6. Photography & Paid
+### 3. Drive sharing requirement (user action)
 
-Add one concrete line per tile naming a deliverable type ("monthly content calendars + community management," "logo systems + packaging + web," etc.) so it reads as a real service menu, not a vibe.
+The Drive preview iframe only loads if the file is shared "Anyone with the link → Viewer". I'll note this in the response; if it's not shared that way, the lightbox will show a Google sign-in prompt for visitors.
 
-## 5. New "Recent work, real budgets" strip
+## Out of scope
 
-Below capabilities: a horizontal row of 3–4 project cards labeled with **client type + scope**, not just thumbnail. Example labels:
-
-- *Westerville City — civic social campaign*
-- *[Local brand] — quarterly content + brand refresh*
-- *[Bigger client] — national brand film*
-
-Same purpose as section 3 but visual. Pulls from real work.
-
-## 6. Local SEO + AI-discoverability pass
-
-Update `head()` in `src/routes/index.tsx`:
-
-- Title: `ROY Agency — Video, Social & Creative Studio in Columbus, OH`
-- Description: rewrite to name Columbus, Ohio + the four pillars (video, social, design, strategy) in 155 chars.
-- Add JSON-LD `LocalBusiness` schema with Columbus address + service area, so Google Maps / AI overviews can surface you for "Columbus video production," "Columbus social media agency," etc.
-- og:title / og:description matched to the new positioning.
-
-This is the single biggest lever for "people finding us naturally." Follow-up work (separate task, not in this plan): a `/columbus` or service-x-location page, a real blog post or two targeted at local search.
-
-## 7. Keep, with minor edits
-
-- Sticky scaling reel — stays, it's your strongest moment.
-- Process, Stats, Marquee, Testimonial, CTA, Footer — keep structure, light copy nudges only so language matches the new positioning ("creative studio" not "production company").
-
----
-
-## Files touched
-
-- `src/routes/index.tsx` — all section work + head() metadata + JSON-LD script tag.
-
-No new routes, no menu changes, no backend.
-
-## What I still need from you (can fill in after build)
-
-- 3 real client/project names for the "Recent work, real budgets" strip (Westerville City is one).
-- A real testimonial quote + name (current one is a placeholder).
-- Your Columbus street address (or "Columbus, OH" only) for the LocalBusiness schema.
-
-I'll ship the structure with sensible placeholders so you can drop these in without a rebuild.
+- No re-encoding / re-hosting of the MP4 (would need Vimeo or a CDN).
+- No changes to other routes.
+- No new dependencies.
