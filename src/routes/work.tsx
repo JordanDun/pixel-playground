@@ -1,6 +1,8 @@
 import * as React from "react";
 import { X } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
+import statusSolutionsPoster from "@/assets/status-solutions-poster.jpg";
+
 
 
 export const Route = createFileRoute("/work")({
