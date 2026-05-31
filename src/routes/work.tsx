@@ -42,6 +42,13 @@ const PROJECTS: Array<{
     poster: statusSolutionsPoster,
   },
   {
+    client: "STATUS SOLUTIONS NETWORK",
+    title: "Status Solutions Network — Animated Explainer",
+    category: "Animated Explainer",
+    year: "2024",
+    vimeoId: "912389278",
+  },
+  {
     client: "PICKUPS PLUS",
     title: "Pickups Plus — Brand Film",
     category: "Brand Film",
