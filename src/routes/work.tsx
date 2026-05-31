@@ -167,14 +167,14 @@ function WorkPage() {
       </section>
 
       {/* Fullscreen video overlay */}
-      {activeVimeo && (
+      {activeVideo && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-10"
-          onClick={() => setActiveVimeo(null)}
+          onClick={() => setActiveVideo(null)}
         >
           <button
             type="button"
-            onClick={() => setActiveVimeo(null)}
+            onClick={() => setActiveVideo(null)}
             aria-label="Close video"
             className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
           >
@@ -184,14 +184,18 @@ function WorkPage() {
             className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-lg bg-black shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-
             <iframe
-              src={`https://player.vimeo.com/video/${activeVimeo}?autoplay=1&title=0&byline=0&portrait=0`}
+              src={
+                activeVideo.kind === "vimeo"
+                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0`
+                  : `https://drive.google.com/file/d/${activeVideo.id}/preview`
+              }
               className="absolute inset-0 h-full w-full"
               allow="autoplay; fullscreen; picture-in-picture"
               allowFullScreen
               title="Project video"
             />
+
           </div>
         </div>
       )}
