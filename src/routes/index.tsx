@@ -663,6 +663,62 @@ function Home() {
         </div>
       </section>
 
+      {/* Instagram — latest posts */}
+      <section id="instagram" className="relative border-t border-border px-6 py-28 md:px-10">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:items-center">
+          <div className="md:col-span-4">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              Latest from the feed
+            </p>
+            <h2 className="mt-4 font-display text-4xl uppercase leading-[0.95] md:text-6xl">
+              Want to <span style={{ color: "#f97316" }}>follow</span> us?
+            </h2>
+            <p className="mt-6 text-muted-foreground">
+              Behind-the-scenes, new work, and the occasional dog on set.
+            </p>
+            <div className="mt-8 space-y-3 text-sm uppercase tracking-[0.2em]">
+              <a
+                href="https://instagram.com/royagency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:text-primary transition-colors"
+              >
+                @royagency · Instagram →
+              </a>
+              <a
+                href="https://www.linkedin.com/company/roy-agency/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block text-muted-foreground hover:text-primary transition-colors"
+              >
+                ROY Agency · LinkedIn →
+              </a>
+            </div>
+          </div>
+
+          <div className="md:col-span-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {[1, 2].map((i) => (
+              <a
+                key={i}
+                href="https://instagram.com/royagency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block"
+              >
+                <div className="relative aspect-square overflow-hidden bg-muted/30 border border-dashed border-border flex items-center justify-center">
+                  <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+                    Instagram post {i}
+                  </span>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground line-clamp-2 group-hover:text-foreground transition-colors">
+                  Placeholder caption — recent Instagram post copy will appear here once the feed is connected.
+                </p>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer id="contact" className="relative px-6 py-16 md:px-10">
         <div className="flex flex-col gap-10 md:flex-row md:items-end md:justify-between">
