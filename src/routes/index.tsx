@@ -707,3 +707,60 @@ function Home() {
     </main>
   );
 }
+
+function RecentTile({
+  className = "",
+  vimeoId,
+  photoSlot,
+  label,
+  meta,
+  videosReady,
+}: {
+  className?: string;
+  vimeoId?: string;
+  photoSlot?: number;
+  label: string;
+  meta: string;
+  videosReady?: boolean;
+}) {
+  return (
+    <Link
+      to="/work"
+      className={`group relative block aspect-video overflow-hidden bg-black md:aspect-auto md:h-full ${className}`}
+    >
+      {vimeoId ? (
+        videosReady ? (
+          <iframe
+            src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0`}
+            title={label}
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[180%] -translate-x-1/2 -translate-y-1/2 md:w-[110%]"
+            style={{ border: 0 }}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-muted/40" />
+        )
+      ) : (
+        <div
+          data-photo-slot={photoSlot}
+          className="absolute inset-0 flex items-center justify-center border border-dashed border-border bg-muted/30"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            Photo — add image
+          </span>
+        </div>
+      )}
+
+      {/* Hover overlay with label */}
+      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/0 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5">
+        <p className="font-display text-base uppercase leading-tight text-white md:text-lg">
+          {label}
+        </p>
+        <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-white/70">
+          {meta}
+        </p>
+      </div>
+    </Link>
+  );
+}
