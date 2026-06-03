@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -261,17 +261,127 @@ function Home() {
         </div>
       </section>
 
+      {/* Recent work — asymmetric showcase grid */}
+      <section id="recent-work" className="relative px-6 py-16 md:px-10 md:py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-end justify-between gap-6">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              Recent work.
+            </p>
+            <Link
+              to="/work"
+              className="text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+            >
+              See all work →
+            </Link>
+          </div>
+
+          {/*
+            12-column asymmetric masonry. Each tile links to /work.
+            Videos use the same Vimeo background-player pattern as work.tsx.
+            Photo slots are marked with data-photo-slot — swap the inner
+            placeholder div for an <img> when stills are ready.
+          */}
+          <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-12 md:gap-4 md:auto-rows-[12vw]">
+            {/* 1 — Large video: Pickups Plus */}
+            <RecentTile
+              className="md:col-span-7 md:row-span-2"
+              vimeoId="912330431"
+              label="Pickups Plus"
+              meta="Brand Film · 2024"
+              videosReady={videosReady}
+            />
+
+            {/* 2 — Tall photo slot */}
+            <RecentTile
+              className="md:col-span-5 md:row-span-2"
+              photoSlot={1}
+              label="Photo"
+              meta="On-set still"
+            />
+
+            {/* 3 — Small video: Ohio Steel */}
+            <RecentTile
+              className="md:col-span-4"
+              vimeoId="1103295539"
+              label="Ohio Steel"
+              meta="Web Loop · 2025"
+              videosReady={videosReady}
+            />
+
+            {/* 4 — Wide photo slot */}
+            <RecentTile
+              className="md:col-span-8"
+              photoSlot={2}
+              label="Photo"
+              meta="Campaign still"
+            />
+
+            {/* 5 — Square video: BrewDog */}
+            <RecentTile
+              className="md:col-span-6"
+              vimeoId="932863528"
+              label="BrewDog"
+              meta="Buzzed on Flavor · 2024"
+              videosReady={videosReady}
+            />
+
+            {/* 6 — Square photo slot */}
+            <RecentTile
+              className="md:col-span-6"
+              photoSlot={3}
+              label="Photo"
+              meta="Behind the scenes"
+            />
+
+            {/* 7 — Wide video: Status Solutions Network animated */}
+            <RecentTile
+              className="md:col-span-8"
+              vimeoId="912389278"
+              label="Status Solutions Network"
+              meta="Animated Explainer · 2024"
+              videosReady={videosReady}
+            />
+
+            {/* 8 — Small photo slot */}
+            <RecentTile
+              className="md:col-span-4"
+              photoSlot={4}
+              label="Photo"
+              meta="Studio still"
+            />
+          </div>
+
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/work"
+              className="group inline-flex items-center gap-3 border-b border-border pb-1 text-sm uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
+            >
+              View the full reel
+              <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* Reel section below sticky */}
-      <section id="reel" className="relative px-6 py-24 md:px-10">
+      <section id="reel" className="relative px-6 py-16 md:px-10">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
             Selected work
           </p>
-          <h2 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
+          {/*
+            Copy alternatives to consider:
+              "Work that moves the needle."
+              "Brands we've helped build."
+              "Made in Columbus. Built to perform."
+              "The work, lately."
+          */}
+          <h2 className="mt-4 font-display text-3xl uppercase leading-[0.95] md:text-5xl">
             Your <span className="text-primary">campaign</span>,<br />
             shot like cinema.
           </h2>
-          <p className="mt-8 max-w-xl text-base text-muted-foreground md:text-lg">
+          <p className="mt-6 max-w-xl text-base text-muted-foreground">
             From concept to color, ROY produces brand films and performance
             content end-to-end. Strategy, direction, crew, and edit — under one roof.
           </p>
@@ -595,5 +705,62 @@ function Home() {
         </div>
       </footer>
     </main>
+  );
+}
+
+function RecentTile({
+  className = "",
+  vimeoId,
+  photoSlot,
+  label,
+  meta,
+  videosReady,
+}: {
+  className?: string;
+  vimeoId?: string;
+  photoSlot?: number;
+  label: string;
+  meta: string;
+  videosReady?: boolean;
+}) {
+  return (
+    <Link
+      to="/work"
+      className={`group relative block aspect-video overflow-hidden bg-black md:aspect-auto md:h-full ${className}`}
+    >
+      {vimeoId ? (
+        videosReady ? (
+          <iframe
+            src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0`}
+            title={label}
+            allow="autoplay; fullscreen; picture-in-picture"
+            loading="lazy"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[180%] -translate-x-1/2 -translate-y-1/2 md:w-[110%]"
+            style={{ border: 0 }}
+          />
+        ) : (
+          <div className="absolute inset-0 bg-muted/40" />
+        )
+      ) : (
+        <div
+          data-photo-slot={photoSlot}
+          className="absolute inset-0 flex items-center justify-center border border-dashed border-border bg-muted/30"
+        >
+          <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
+            Photo — add image
+          </span>
+        </div>
+      )}
+
+      {/* Hover overlay with label */}
+      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/0 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5">
+        <p className="font-display text-base uppercase leading-tight text-white md:text-lg">
+          {label}
+        </p>
+        <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-white/70">
+          {meta}
+        </p>
+      </div>
+    </Link>
   );
 }
