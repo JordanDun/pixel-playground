@@ -52,10 +52,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const CLIENTS = [
-  "NIKE", "A24", "SPOTIFY", "RIMOWA", "AESOP", "NETFLIX",
-  "PORSCHE", "VICE", "MONCLER", "DAZED", "SSENSE", "ARC'TERYX",
-];
 
 const CYCLING_WORDS = ["CREATIVE", "VIDEO", "SOCIAL", "MARKETING", "GRAPHIC", "ANIMATION", "BRAND"];
 
