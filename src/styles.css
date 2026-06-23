@@ -30,6 +30,8 @@
   --color-ring: var(--ring);
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
+
 }
 
 :root {
