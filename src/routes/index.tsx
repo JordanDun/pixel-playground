@@ -329,33 +329,6 @@ function Home() {
 
 
 
-      {/* Positioning — "we do more than video" */}
-      <section id="who" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              What we actually do
-            </p>
-          </div>
-          <div className="md:col-span-8">
-            <h2 className="font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-              People hire us for video.<br />
-              They <span style={{ color: "#f97316" }}>stay</span> for everything else.
-            </h2>
-            <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              Yes — we shoot, direct, and edit. But most of our clients also
-              hand us their social calendars, their brand identity, their
-              motion graphics, their photography, and the paid ads that push
-              it all out the door.
-            </p>
-            <p className="mt-6 max-w-2xl text-base text-muted-foreground">
-              One team, one creative voice, from the first brief to the last
-              post. No agency-of-record price tag — just a studio in Columbus
-              that knows how to make work that actually performs.
-            </p>
-          </div>
-        </div>
-      </section>
 
 
       {/* Services grid */}
