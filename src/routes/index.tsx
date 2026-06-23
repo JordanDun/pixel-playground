@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 
 export const Route = createFileRoute("/")({
@@ -278,50 +278,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Featured work — three large stacked tiles. Thumbnail by default, plays on hover/tap. */}
-      <section id="recent-work" className="relative px-6 pb-20 md:px-10 md:pb-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-end justify-between gap-6">
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              Featured.
-            </p>
-            <Link
-              to="/work"
-              className="text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
-            >
-              See all work →
-            </Link>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-8 md:gap-10">
-            <FeaturedVideo
-              vimeoId="912330431"
-              client="Pickups Plus"
-              descriptor="Brand film"
-            />
-            <FeaturedVideo
-              vimeoId="932863528"
-              client="BrewDog"
-              descriptor="Campaign spot"
-            />
-            <FeaturedVideo
-              vimeoId="912389278"
-              client="Status Solutions Network"
-              descriptor="Animated explainer"
-            />
-          </div>
-
-          <div className="mt-12 flex justify-center">
-            <Link
-              to="/work"
-              className="group inline-flex items-center gap-3 border-b border-border pb-1 text-sm uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              View all work
-              <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
 
 
 
@@ -583,84 +539,4 @@ function Home() {
   );
 }
 
-function FeaturedVideo({
-  vimeoId,
-  client,
-  descriptor,
-}: {
-  vimeoId: string;
-  client: string;
-  descriptor: string;
-}) {
-  const [active, setActive] = useState(false);
-  const thumb = `https://vumbnail.com/${vimeoId}.jpg`;
-
-  return (
-    <figure>
-      <div
-        className="group relative aspect-video w-full overflow-hidden bg-black"
-        onMouseEnter={() => setActive(true)}
-        onMouseLeave={() => setActive(false)}
-        onClick={() => setActive((a) => !a)}
-        role="button"
-        tabIndex={0}
-        onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            setActive((a) => !a);
-          }
-        }}
-        aria-label={`${client} — ${descriptor}. Play preview.`}
-      >
-        {/* Poster */}
-        <img
-          src={thumb}
-          alt={`${client} — ${descriptor}`}
-          loading="lazy"
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
-            active ? "opacity-0" : "opacity-100"
-          }`}
-        />
-
-        {/* Video — only mounts once activated, stays mounted so re-hover is instant */}
-        {active && (
-          <iframe
-            src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0`}
-            title={client}
-            allow="autoplay; fullscreen; picture-in-picture"
-            loading="lazy"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[110%] w-[180%] -translate-x-1/2 -translate-y-1/2 md:w-[110%]"
-            style={{ border: 0 }}
-          />
-        )}
-
-        {/* Play icon — hidden while playing */}
-        <div
-          className={`pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
-            active ? "opacity-0" : "opacity-100"
-          }`}
-        >
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 md:h-20 md:w-20">
-            <svg
-              viewBox="0 0 24 24"
-              className="ml-1 h-6 w-6 fill-foreground md:h-7 md:w-7"
-              aria-hidden
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-        </div>
-      </div>
-
-      <figcaption className="mt-4 flex items-baseline justify-between gap-6">
-        <h3 className="font-display text-xl uppercase leading-tight md:text-2xl">
-          {client}
-        </h3>
-        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
-          {descriptor}
-        </p>
-      </figcaption>
-    </figure>
-  );
-}
 
