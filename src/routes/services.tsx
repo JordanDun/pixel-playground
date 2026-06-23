@@ -135,15 +135,15 @@ const SECTIONS: Section[] = [
 
 function ServicesPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground [&_.font-display]:font-serif [&_.font-display]:font-normal [&_.font-display]:normal-case [&_.font-display]:tracking-tight">
       {/* Page header */}
       <section className="px-6 pt-32 pb-16 md:px-10">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           What we do
         </p>
-        <h1 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
+        <h1 className="mt-4 font-display text-6xl leading-[0.9] md:text-8xl">
           Services<br />
-          <span className="text-primary">end to end.</span>
+          <span className="text-primary italic">end to end.</span>
         </h1>
       </section>
 
@@ -159,8 +159,8 @@ function ServicesPage() {
       {/* CTA */}
       <section className="border-t border-border px-6 py-16 md:px-10">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
-          <h2 className="font-display text-3xl uppercase md:text-5xl">
-            Ready to <span className="text-primary">roll?</span>
+          <h2 className="font-display text-3xl md:text-5xl">
+            Ready to <span className="text-primary italic">roll?</span>
           </h2>
           <a
             href="/contact"
