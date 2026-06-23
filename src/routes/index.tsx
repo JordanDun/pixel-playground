@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
 
@@ -259,8 +259,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Intro to the work */}
-      {/* Intro / Manifesto — full-screen takeover */}
+      {/* Intro / Manifesto — full-screen takeover, EP+Co style */}
       <section
         id="manifesto"
         className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
@@ -269,35 +268,38 @@ function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.2) 75%, rgba(10,10,10,0) 100%), url('${weldingPhoto}')`,
+            backgroundImage: `linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.78) 45%, rgba(10,10,10,0.35) 80%, rgba(10,10,10,0.1) 100%), url('${weldingPhoto}')`,
             backgroundColor: "#0a0a0a",
           }}
-
           aria-hidden="true"
         />
-        <div className="relative mx-auto w-full max-w-6xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            What we do
-          </p>
-          <h2 className="mt-6 font-display text-5xl uppercase leading-[0.9] md:text-8xl">
-            We <span className="font-serif font-normal normal-case italic text-primary tracking-tight">build</span> the<br />
-            work people<br />
-            actually <span className="font-serif font-normal normal-case italic tracking-tight">feel</span>.
-          </h2>
+        <div className="relative mx-auto grid w-full max-w-6xl gap-12 md:grid-cols-12 md:items-center">
+          <div className="md:col-span-7">
+            {/* Headline: single font family, medium weight, modest size — contrast comes from italic serif accents */}
+            <h2 className="font-sans text-4xl font-medium leading-[1.05] tracking-tight text-foreground md:text-[3.25rem]">
+              We don't just make content.<br />
+              We <span className="font-serif italic font-normal text-primary">build</span> work people actually <span className="font-serif italic font-normal">feel</span>.
+            </h2>
 
-          <p className="mt-10 max-w-xl text-base text-muted-foreground md:text-lg">
-            We're a Columbus-based creative studio. Strategy, direction, production,
-            and post — under one roof — for brands that want work their audience
-            actually remembers.
-          </p>
-          <a
-            href="#services"
-            className="mt-10 inline-block border border-foreground px-8 py-4 font-display text-sm uppercase tracking-[0.2em] transition-colors hover:bg-foreground hover:text-background"
-          >
-            See our approach →
-          </a>
+            <p className="mt-8 max-w-xl font-sans text-base leading-relaxed text-foreground/75 md:text-lg">
+              We're a Columbus-based creative studio. Strategy, direction,
+              production, and post — under one roof — for brands that want
+              work their audience actually remembers.
+            </p>
+
+            <Link
+              to="/services"
+              className="mt-10 inline-flex items-center gap-3 font-sans text-sm font-medium text-foreground transition-colors hover:text-primary"
+            >
+              <span>Our Approach</span>
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:translate-x-1">
+                →
+              </span>
+            </Link>
+          </div>
         </div>
       </section>
+
 
 
 
@@ -457,41 +459,25 @@ function Home() {
         </div>
       </section>
 
-      {/* Our Clients — logo grid (PNGs to be supplied) */}
+      {/* Our Clients — bare logo grid, EP+Co style (PNGs to be supplied) */}
       <section
         id="clients"
-        className="relative border-t border-border px-6 py-28 md:px-10"
+        className="relative border-t border-border px-6 py-24 md:px-10 md:py-32"
       >
         <div className="mx-auto max-w-6xl">
-          <div className="flex items-end justify-between gap-8">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                Trusted by
-              </p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-                Our <span className="font-serif font-normal normal-case italic text-primary tracking-tight">clients</span>
-              </h2>
-            </div>
-            <a
-              href="#"
-              className="hidden text-xs uppercase tracking-[0.24em] text-muted-foreground transition-colors hover:text-foreground md:inline-block"
-            >
-              See our work →
-            </a>
-          </div>
-
           {/*
-            Replace each placeholder div with:
-              <img src="/path/to/logo.svg" alt="Client name" className="max-h-12 w-auto opacity-70 transition-opacity hover:opacity-100" />
+            Replace each placeholder with:
+              <img src="/path/to/logo.svg" alt="Client name"
+                   className="max-h-10 w-auto opacity-80 transition-opacity hover:opacity-100 md:max-h-12" />
             Logos should be white/monochrome PNG or SVG to sit on the dark bg.
           */}
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
-            {Array.from({ length: 15 }).map((_, i) => (
+          <div className="grid grid-cols-2 gap-x-12 gap-y-16 sm:grid-cols-3 md:grid-cols-4">
+            {Array.from({ length: 12 }).map((_, i) => (
               <div
                 key={i}
-                className="flex aspect-[3/2] items-center justify-center bg-background p-8"
+                className="flex items-center justify-center"
               >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
                   Logo {i + 1}
                 </span>
               </div>
@@ -499,6 +485,7 @@ function Home() {
           </div>
         </div>
       </section>
+
 
 
       {/* CTA */}
