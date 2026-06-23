@@ -569,20 +569,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Client marquee */}
-      <section className="relative border-y border-border py-8 overflow-hidden">
-        <p className="mb-6 px-6 text-xs uppercase tracking-[0.24em] text-muted-foreground md:px-10">
-          Trusted by
-        </p>
-        <div className="flex w-max marquee gap-16 px-6 font-display text-3xl uppercase text-muted-foreground md:text-5xl">
-          {[...CLIENTS, ...CLIENTS].map((c, i) => (
-            <span key={i} className="flex items-center gap-16 whitespace-nowrap">
-              {c}
-              <span className="inline-block size-2 rounded-full bg-primary" />
-            </span>
-          ))}
-        </div>
-      </section>
 
 
       {/* CTA */}
