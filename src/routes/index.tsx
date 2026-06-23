@@ -705,59 +705,84 @@ function Home() {
   );
 }
 
-function RecentTile({
-  className = "",
+function FeaturedVideo({
   vimeoId,
-  photoSlot,
-  label,
-  meta,
-  videosReady,
+  client,
+  descriptor,
 }: {
-  className?: string;
-  vimeoId?: string;
-  photoSlot?: number;
-  label: string;
-  meta: string;
-  videosReady?: boolean;
+  vimeoId: string;
+  client: string;
+  descriptor: string;
 }) {
+  const [active, setActive] = useState(false);
+  const thumb = `https://vumbnail.com/${vimeoId}.jpg`;
+
   return (
-    <Link
-      to="/work"
-      className={`group relative block aspect-video overflow-hidden bg-black md:aspect-auto md:h-full ${className}`}
-    >
-      {vimeoId ? (
-        videosReady ? (
+    <figure>
+      <div
+        className="group relative aspect-video w-full overflow-hidden bg-black"
+        onMouseEnter={() => setActive(true)}
+        onMouseLeave={() => setActive(false)}
+        onClick={() => setActive((a) => !a)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            setActive((a) => !a);
+          }
+        }}
+        aria-label={`${client} — ${descriptor}. Play preview.`}
+      >
+        {/* Poster */}
+        <img
+          src={thumb}
+          alt={`${client} — ${descriptor}`}
+          loading="lazy"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            active ? "opacity-0" : "opacity-100"
+          }`}
+        />
+
+        {/* Video — only mounts once activated, stays mounted so re-hover is instant */}
+        {active && (
           <iframe
             src={`https://player.vimeo.com/video/${vimeoId}?background=1&autoplay=1&loop=1&muted=1&autopause=0`}
-            title={label}
+            title={client}
             allow="autoplay; fullscreen; picture-in-picture"
             loading="lazy"
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[120%] w-[180%] -translate-x-1/2 -translate-y-1/2 md:w-[110%]"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[110%] w-[180%] -translate-x-1/2 -translate-y-1/2 md:w-[110%]"
             style={{ border: 0 }}
           />
-        ) : (
-          <div className="absolute inset-0 bg-muted/40" />
-        )
-      ) : (
+        )}
+
+        {/* Play icon — hidden while playing */}
         <div
-          data-photo-slot={photoSlot}
-          className="absolute inset-0 flex items-center justify-center border border-dashed border-border bg-muted/30"
+          className={`pointer-events-none absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
+            active ? "opacity-0" : "opacity-100"
+          }`}
         >
-          <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-            Photo — add image
+          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-background/80 backdrop-blur-sm transition-transform duration-300 group-hover:scale-110 md:h-20 md:w-20">
+            <svg
+              viewBox="0 0 24 24"
+              className="ml-1 h-6 w-6 fill-foreground md:h-7 md:w-7"
+              aria-hidden
+            >
+              <path d="M8 5v14l11-7z" />
+            </svg>
           </span>
         </div>
-      )}
-
-      {/* Hover overlay with label */}
-      <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/70 via-black/0 to-transparent p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:p-5">
-        <p className="font-display text-base uppercase leading-tight text-white md:text-lg">
-          {label}
-        </p>
-        <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-white/70">
-          {meta}
-        </p>
       </div>
-    </Link>
+
+      <figcaption className="mt-4 flex items-baseline justify-between gap-6">
+        <h3 className="font-display text-xl uppercase leading-tight md:text-2xl">
+          {client}
+        </h3>
+        <p className="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+          {descriptor}
+        </p>
+      </figcaption>
+    </figure>
   );
 }
+
