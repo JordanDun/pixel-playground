@@ -267,7 +267,7 @@ function Home() {
       >
         {/* Background photo */}
         <div
-          className="absolute inset-0 -z-10 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage: `linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.2) 75%, rgba(10,10,10,0) 100%), url('${weldingPhoto}')`,
             backgroundColor: "#0a0a0a",
