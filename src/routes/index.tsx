@@ -1,5 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import weldingPhoto from "@/assets/welding.jpg";
+
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -259,33 +261,30 @@ function Home() {
 
       {/* Intro to the work */}
       {/* Intro / Manifesto — full-screen takeover */}
-      {/*
-        Background image: replace BG_IMAGE_URL below with the uploaded photo's
-        URL once the user attaches it (will be /__l5e/assets-v1/... after upload).
-      */}
       <section
         id="manifesto"
         className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
       >
-        {/* Background photo placeholder */}
+        {/* Background photo */}
         <div
-          className="absolute inset-0 -z-10 bg-cover bg-center"
+          className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%), url('BG_IMAGE_URL')",
+            backgroundImage: `linear-gradient(to right, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.7) 40%, rgba(10,10,10,0.2) 75%, rgba(10,10,10,0) 100%), url('${weldingPhoto}')`,
             backgroundColor: "#0a0a0a",
           }}
+
           aria-hidden="true"
         />
         <div className="relative mx-auto w-full max-w-6xl">
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
             What we do
           </p>
-          <h2 className="mt-6 font-display text-5xl uppercase leading-[0.95] md:text-8xl">
-            We <em className="font-normal not-italic text-primary italic">build</em> the<br />
+          <h2 className="mt-6 font-display text-5xl uppercase leading-[0.9] md:text-8xl">
+            We <span className="font-serif font-normal normal-case italic text-primary tracking-tight">build</span> the<br />
             work people<br />
-            actually <em className="font-normal italic">feel</em>.
+            actually <span className="font-serif font-normal normal-case italic tracking-tight">feel</span>.
           </h2>
+
           <p className="mt-10 max-w-xl text-base text-muted-foreground md:text-lg">
             We're a Columbus-based creative studio. Strategy, direction, production,
             and post — under one roof — for brands that want work their audience
@@ -299,6 +298,7 @@ function Home() {
           </a>
         </div>
       </section>
+
 
 
 
@@ -469,7 +469,7 @@ function Home() {
                 Trusted by
               </p>
               <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-                Our <em className="font-normal italic text-primary">clients</em>
+                Our <span className="font-serif font-normal normal-case italic text-primary tracking-tight">clients</span>
               </h2>
             </div>
             <a
