@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
+import { InstagramEmbed } from "@/components/InstagramEmbed";
 
 
 export const Route = createFileRoute("/")({
