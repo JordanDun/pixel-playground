@@ -468,7 +468,7 @@ function Home() {
                 Trusted by
               </p>
               <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-                Our <span className="font-serif lowercase italic text-primary">clients</span>
+                Our <span className="font-serif font-normal normal-case italic text-primary tracking-tight">clients</span>
               </h2>
             </div>
             <a
