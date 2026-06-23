@@ -85,7 +85,9 @@
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-display); letter-spacing: -0.01em; }
+  .font-display { font-family: var(--font-display); font-weight: 900; letter-spacing: -0.02em; }
+  .font-serif { font-family: var(--font-serif); font-weight: 400; letter-spacing: -0.01em; }
+
   .text-balance { text-wrap: balance; }
   .grain::after {
     content: "";
