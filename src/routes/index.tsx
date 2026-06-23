@@ -278,50 +278,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Featured work — three large stacked tiles. Thumbnail by default, plays on hover/tap. */}
-      <section id="recent-work" className="relative px-6 pb-20 md:px-10 md:pb-28">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex items-end justify-between gap-6">
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              Featured.
-            </p>
-            <Link
-              to="/work"
-              className="text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
-            >
-              See all work →
-            </Link>
-          </div>
-
-          <div className="mt-8 flex flex-col gap-8 md:gap-10">
-            <FeaturedVideo
-              vimeoId="912330431"
-              client="Pickups Plus"
-              descriptor="Brand film"
-            />
-            <FeaturedVideo
-              vimeoId="932863528"
-              client="BrewDog"
-              descriptor="Campaign spot"
-            />
-            <FeaturedVideo
-              vimeoId="912389278"
-              client="Status Solutions Network"
-              descriptor="Animated explainer"
-            />
-          </div>
-
-          <div className="mt-12 flex justify-center">
-            <Link
-              to="/work"
-              className="group inline-flex items-center gap-3 border-b border-border pb-1 text-sm uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
-            >
-              View all work
-              <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
-            </Link>
-          </div>
-        </div>
-      </section>
 
 
 
