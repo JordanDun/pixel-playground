@@ -258,25 +258,49 @@ function Home() {
       </section>
 
       {/* Intro to the work */}
-      <section id="reel" className="relative px-6 pt-20 pb-10 md:px-10 md:pt-28 md:pb-12">
-        <div className="mx-auto max-w-5xl">
+      {/* Intro / Manifesto — full-screen takeover */}
+      {/*
+        Background image: replace BG_IMAGE_URL below with the uploaded photo's
+        URL once the user attaches it (will be /__l5e/assets-v1/... after upload).
+      */}
+      <section
+        id="manifesto"
+        className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
+      >
+        {/* Background photo placeholder */}
+        <div
+          className="absolute inset-0 -z-10 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.3) 100%), url('BG_IMAGE_URL')",
+            backgroundColor: "#0a0a0a",
+          }}
+          aria-hidden="true"
+        />
+        <div className="relative mx-auto w-full max-w-6xl">
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            Selected work
+            What we do
           </p>
-          {/*
-            Headline alternates — swap the <h2> below to try one:
-              "Made in Columbus. Built to perform."
-              "A few things we're proud of."
-          */}
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[0.95] md:text-6xl">
-            The <span className="text-primary">work</span>, lately.
+          <h2 className="mt-6 font-display text-5xl uppercase leading-[0.95] md:text-8xl">
+            We <em className="font-normal not-italic text-primary italic">build</em> the<br />
+            work people<br />
+            actually <em className="font-normal italic">feel</em>.
           </h2>
-          <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
-            From concept to color, ROY produces brand films and performance
-            content end-to-end. Strategy, direction, crew, and edit — under one roof.
+          <p className="mt-10 max-w-xl text-base text-muted-foreground md:text-lg">
+            We're a Columbus-based creative studio. Strategy, direction, production,
+            and post — under one roof — for brands that want work their audience
+            actually remembers.
           </p>
+          <a
+            href="#services"
+            className="mt-10 inline-block border border-foreground px-8 py-4 font-display text-sm uppercase tracking-[0.2em] transition-colors hover:bg-foreground hover:text-background"
+          >
+            See our approach →
+          </a>
         </div>
       </section>
+
+
 
 
 
@@ -433,6 +457,48 @@ function Home() {
         </div>
       </section>
 
+      {/* Our Clients — logo grid (PNGs to be supplied) */}
+      <section
+        id="clients"
+        className="relative border-t border-border px-6 py-28 md:px-10"
+      >
+        <div className="mx-auto max-w-6xl">
+          <div className="flex items-end justify-between gap-8">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Trusted by
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
+                Our <em className="font-normal italic text-primary">clients</em>
+              </h2>
+            </div>
+            <a
+              href="#"
+              className="hidden text-xs uppercase tracking-[0.24em] text-muted-foreground transition-colors hover:text-foreground md:inline-block"
+            >
+              See our work →
+            </a>
+          </div>
+
+          {/*
+            Replace each placeholder div with:
+              <img src="/path/to/logo.svg" alt="Client name" className="max-h-12 w-auto opacity-70 transition-opacity hover:opacity-100" />
+            Logos should be white/monochrome PNG or SVG to sit on the dark bg.
+          */}
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex aspect-[3/2] items-center justify-center bg-background p-8"
+              >
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
+                  Logo {i + 1}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       {/* CTA */}
