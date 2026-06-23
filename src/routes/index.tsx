@@ -279,10 +279,11 @@ function Home() {
             What we do
           </p>
           <h2 className="mt-6 font-display text-5xl uppercase leading-[0.9] md:text-8xl">
-            We <span className="font-serif lowercase italic text-primary">build</span> the<br />
+            We <span className="font-serif font-normal normal-case italic text-primary tracking-tight">build</span> the<br />
             work people<br />
-            actually <span className="font-serif lowercase italic">feel</span>.
+            actually <span className="font-serif font-normal normal-case italic tracking-tight">feel</span>.
           </h2>
+
           <p className="mt-10 max-w-xl text-base text-muted-foreground md:text-lg">
             We're a Columbus-based creative studio. Strategy, direction, production,
             and post — under one roof — for brands that want work their audience
