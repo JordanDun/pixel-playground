@@ -584,22 +584,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="relative border-b border-border px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            What clients say
-          </p>
-          <blockquote className="mt-8 font-display text-3xl uppercase leading-[1.05] md:text-5xl">
-            "We came in thinking we needed a video. We left with a
-            <span style={{ color: "#f97316" }}> brand</span>, a campaign, and
-            our best quarter on record."
-          </blockquote>
-          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            — Marketing Director, [Client Name]
-          </p>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="relative px-6 py-28 md:px-10">
