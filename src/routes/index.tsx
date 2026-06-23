@@ -52,10 +52,6 @@ export const Route = createFileRoute("/")({
   component: Home,
 });
 
-const CLIENTS = [
-  "NIKE", "A24", "SPOTIFY", "RIMOWA", "AESOP", "NETFLIX",
-  "PORSCHE", "VICE", "MONCLER", "DAZED", "SSENSE", "ARC'TERYX",
-];
 
 const CYCLING_WORDS = ["CREATIVE", "VIDEO", "SOCIAL", "MARKETING", "GRAPHIC", "ANIMATION", "BRAND"];
 
@@ -329,33 +325,6 @@ function Home() {
 
 
 
-      {/* Positioning — "we do more than video" */}
-      <section id="who" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              What we actually do
-            </p>
-          </div>
-          <div className="md:col-span-8">
-            <h2 className="font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-              People hire us for video.<br />
-              They <span style={{ color: "#f97316" }}>stay</span> for everything else.
-            </h2>
-            <p className="mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl">
-              Yes — we shoot, direct, and edit. But most of our clients also
-              hand us their social calendars, their brand identity, their
-              motion graphics, their photography, and the paid ads that push
-              it all out the door.
-            </p>
-            <p className="mt-6 max-w-2xl text-base text-muted-foreground">
-              One team, one creative voice, from the first brief to the last
-              post. No agency-of-record price tag — just a studio in Columbus
-              that knows how to make work that actually performs.
-            </p>
-          </div>
-        </div>
-      </section>
 
 
       {/* Services grid */}
@@ -440,67 +409,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent work, real budgets */}
-      <section id="recent" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                Recent work · real budgets
-              </p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-6xl">
-                Same studio.<br />
-                Different <span style={{ color: "#f97316" }}>rooms</span>.
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm text-muted-foreground">
-              A few snapshots across the spectrum. The reel is the highlight —
-              this is the range.
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-px bg-border md:grid-cols-3">
-            {[
-              {
-                client: "Westerville City",
-                scope: "Civic social + spot campaign",
-                detail: "Local engagement work — built to fit a city budget without losing the production value.",
-                color: "#f97316",
-              },
-              {
-                client: "Growing local brand",
-                scope: "Quarterly content + brand refresh",
-                detail: "Ongoing partner: monthly content drops, social management, identity tune-ups.",
-                color: "#eab308",
-              },
-              {
-                client: "National campaign",
-                scope: "Multi-day shoot + paid rollout",
-                detail: "Full crew, full scope. The kind of work that built our reel.",
-                color: "#ef4444",
-              },
-            ].map((w) => (
-              <article
-                key={w.client}
-                className="group bg-background p-8 transition-colors hover:bg-card md:p-10"
-              >
-                <span
-                  className="font-display text-xs uppercase tracking-[0.2em]"
-                  style={{ color: w.color }}
-                >
-                  {w.scope}
-                </span>
-                <h3 className="mt-4 font-display text-2xl uppercase md:text-3xl">
-                  {w.client}
-                </h3>
-                <p className="mt-4 text-sm text-muted-foreground md:text-base">
-                  {w.detail}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* Process */}
@@ -569,37 +477,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Client marquee */}
-      <section className="relative border-y border-border py-8 overflow-hidden">
-        <p className="mb-6 px-6 text-xs uppercase tracking-[0.24em] text-muted-foreground md:px-10">
-          Trusted by
-        </p>
-        <div className="flex w-max marquee gap-16 px-6 font-display text-3xl uppercase text-muted-foreground md:text-5xl">
-          {[...CLIENTS, ...CLIENTS].map((c, i) => (
-            <span key={i} className="flex items-center gap-16 whitespace-nowrap">
-              {c}
-              <span className="inline-block size-2 rounded-full bg-primary" />
-            </span>
-          ))}
-        </div>
-      </section>
 
-      {/* Testimonial */}
-      <section className="relative border-b border-border px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-5xl">
-          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            What clients say
-          </p>
-          <blockquote className="mt-8 font-display text-3xl uppercase leading-[1.05] md:text-5xl">
-            "We came in thinking we needed a video. We left with a
-            <span style={{ color: "#f97316" }}> brand</span>, a campaign, and
-            our best quarter on record."
-          </blockquote>
-          <p className="mt-8 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-            — Marketing Director, [Client Name]
-          </p>
-        </div>
-      </section>
 
       {/* CTA */}
       <section className="relative px-6 py-28 md:px-10">
