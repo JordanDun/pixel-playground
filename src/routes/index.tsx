@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
+import { InstagramEmbed } from "@/components/InstagramEmbed";
 
 
 export const Route = createFileRoute("/")({
@@ -542,24 +543,8 @@ function Home() {
           </div>
 
           <div className="md:col-span-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {[1, 2].map((i) => (
-              <a
-                key={i}
-                href="https://instagram.com/royagency"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block"
-              >
-                <div className="relative aspect-square overflow-hidden bg-muted/30 border border-dashed border-border flex items-center justify-center">
-                  <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">
-                    Instagram post {i}
-                  </span>
-                </div>
-                <p className="mt-3 text-sm text-muted-foreground line-clamp-2 group-hover:text-foreground transition-colors">
-                  Placeholder caption — recent Instagram post copy will appear here once the feed is connected.
-                </p>
-              </a>
-            ))}
+            <InstagramEmbed url="https://www.instagram.com/p/DA1L_Z5PA0F/" />
+            <InstagramEmbed url="https://www.instagram.com/p/C5mA0ULvkyF/" />
           </div>
         </div>
       </section>
