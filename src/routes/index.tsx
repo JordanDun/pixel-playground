@@ -440,67 +440,6 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent work, real budgets */}
-      <section id="recent" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                Recent work · real budgets
-              </p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-6xl">
-                Same studio.<br />
-                Different <span style={{ color: "#f97316" }}>rooms</span>.
-              </h2>
-            </div>
-            <p className="max-w-sm text-sm text-muted-foreground">
-              A few snapshots across the spectrum. The reel is the highlight —
-              this is the range.
-            </p>
-          </div>
-
-          <div className="mt-16 grid gap-px bg-border md:grid-cols-3">
-            {[
-              {
-                client: "Westerville City",
-                scope: "Civic social + spot campaign",
-                detail: "Local engagement work — built to fit a city budget without losing the production value.",
-                color: "#f97316",
-              },
-              {
-                client: "Growing local brand",
-                scope: "Quarterly content + brand refresh",
-                detail: "Ongoing partner: monthly content drops, social management, identity tune-ups.",
-                color: "#eab308",
-              },
-              {
-                client: "National campaign",
-                scope: "Multi-day shoot + paid rollout",
-                detail: "Full crew, full scope. The kind of work that built our reel.",
-                color: "#ef4444",
-              },
-            ].map((w) => (
-              <article
-                key={w.client}
-                className="group bg-background p-8 transition-colors hover:bg-card md:p-10"
-              >
-                <span
-                  className="font-display text-xs uppercase tracking-[0.2em]"
-                  style={{ color: w.color }}
-                >
-                  {w.scope}
-                </span>
-                <h3 className="mt-4 font-display text-2xl uppercase md:text-3xl">
-                  {w.client}
-                </h3>
-                <p className="mt-4 text-sm text-muted-foreground md:text-base">
-                  {w.detail}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
       {/* Process */}
