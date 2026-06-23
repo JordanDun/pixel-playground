@@ -269,7 +269,7 @@ function Home() {
         <div
           className="absolute inset-0 -z-10 bg-cover bg-center"
           style={{
-            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.25) 100%), url('${weldingPhoto.url}')`,
+            backgroundImage: `linear-gradient(to right, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.65) 55%, rgba(0,0,0,0.25) 100%), url('${weldingPhoto}')`,
             backgroundColor: "#0a0a0a",
           }}
           aria-hidden="true"
