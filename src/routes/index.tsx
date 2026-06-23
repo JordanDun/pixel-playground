@@ -268,15 +268,12 @@ function Home() {
             Selected work
           </p>
           {/*
-            Copy alternatives to consider:
-              "Work that moves the needle."
-              "Brands we've helped build."
+            Headline alternates — swap the <h2> below to try one:
               "Made in Columbus. Built to perform."
-              "The work, lately."
+              "A few things we're proud of."
           */}
           <h2 className="mt-4 font-display text-4xl uppercase leading-[0.95] md:text-6xl">
-            Your <span className="text-primary">campaign</span>,<br />
-            shot like cinema.
+            The <span className="text-primary">work</span>, lately.
           </h2>
           <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
             From concept to color, ROY produces brand films and performance
@@ -285,12 +282,12 @@ function Home() {
         </div>
       </section>
 
-      {/* Recent work — asymmetric showcase grid */}
+      {/* Featured work — three large stacked tiles. Thumbnail by default, plays on hover/tap. */}
       <section id="recent-work" className="relative px-6 pb-20 md:px-10 md:pb-28">
         <div className="mx-auto max-w-7xl">
           <div className="flex items-end justify-between gap-6">
             <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              Recent work.
+              Featured.
             </p>
             <Link
               to="/work"
@@ -300,75 +297,36 @@ function Home() {
             </Link>
           </div>
 
-          {/*
-            12-column asymmetric masonry. Each tile links to /work.
-            Rows are sized larger (≈22vw) so videos read big and cinematic.
-          */}
-          <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-12 md:gap-4 md:auto-rows-[22vw]">
-            {/* 1 — Hero video: Pickups Plus (huge) */}
-            <RecentTile
-              className="md:col-span-8 md:row-span-2"
+          <div className="mt-8 flex flex-col gap-8 md:gap-10">
+            <FeaturedVideo
               vimeoId="912330431"
-              label="Pickups Plus"
-              meta="Brand Film · 2024"
-              videosReady={videosReady}
+              client="Pickups Plus"
+              descriptor="Brand film"
             />
-
-            {/* 2 — Tall photo slot */}
-            <RecentTile
-              className="md:col-span-4 md:row-span-2"
-              photoSlot={1}
-              label="Photo"
-              meta="On-set still"
-            />
-
-            {/* 3 — Wide video: Status Solutions Network animated */}
-            <RecentTile
-              className="md:col-span-7"
-              vimeoId="912389278"
-              label="Status Solutions Network"
-              meta="Animated Explainer · 2024"
-              videosReady={videosReady}
-            />
-
-            {/* 4 — Photo slot */}
-            <RecentTile
-              className="md:col-span-5"
-              photoSlot={2}
-              label="Photo"
-              meta="Campaign still"
-            />
-
-            {/* 5 — Video: BrewDog */}
-            <RecentTile
-              className="md:col-span-5"
+            <FeaturedVideo
               vimeoId="932863528"
-              label="BrewDog"
-              meta="Buzzed on Flavor · 2024"
-              videosReady={videosReady}
+              client="BrewDog"
+              descriptor="Campaign spot"
             />
-
-            {/* 6 — Video: Ohio Steel */}
-            <RecentTile
-              className="md:col-span-7"
-              vimeoId="1103295539"
-              label="Ohio Steel"
-              meta="Web Loop · 2025"
-              videosReady={videosReady}
+            <FeaturedVideo
+              vimeoId="912389278"
+              client="Status Solutions Network"
+              descriptor="Animated explainer"
             />
           </div>
 
-          <div className="mt-10 flex justify-center">
+          <div className="mt-12 flex justify-center">
             <Link
               to="/work"
               className="group inline-flex items-center gap-3 border-b border-border pb-1 text-sm uppercase tracking-[0.22em] text-foreground transition-colors hover:border-primary hover:text-primary"
             >
-              View the full reel
+              View all work
               <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
             </Link>
           </div>
         </div>
       </section>
+
 
 
       {/* Positioning — "we do more than video" */}
