@@ -457,6 +457,48 @@ function Home() {
         </div>
       </section>
 
+      {/* Our Clients — logo grid (PNGs to be supplied) */}
+      <section
+        id="clients"
+        className="relative border-t border-border px-6 py-28 md:px-10"
+      >
+        <div className="mx-auto max-w-6xl">
+          <div className="flex items-end justify-between gap-8">
+            <div>
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Trusted by
+              </p>
+              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
+                Our <em className="font-normal italic text-primary">clients</em>
+              </h2>
+            </div>
+            <a
+              href="#"
+              className="hidden text-xs uppercase tracking-[0.24em] text-muted-foreground transition-colors hover:text-foreground md:inline-block"
+            >
+              See our work →
+            </a>
+          </div>
+
+          {/*
+            Replace each placeholder div with:
+              <img src="/path/to/logo.svg" alt="Client name" className="max-h-12 w-auto opacity-70 transition-opacity hover:opacity-100" />
+            Logos should be white/monochrome PNG or SVG to sit on the dark bg.
+          */}
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-sm border border-border bg-border sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
+            {Array.from({ length: 15 }).map((_, i) => (
+              <div
+                key={i}
+                className="flex aspect-[3/2] items-center justify-center bg-background p-8"
+              >
+                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/50">
+                  Logo {i + 1}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
 
       {/* CTA */}
