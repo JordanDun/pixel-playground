@@ -303,21 +303,9 @@ function Home() {
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
       {/* Stats */}
       <section className="relative border-t border-border px-6 py-20 md:px-10">
+
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-10 md:grid-cols-4">
           {[
             { k: "12+", v: "Years in the game" },
