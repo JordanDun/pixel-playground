@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
-import { InstagramEmbed } from "@/components/InstagramEmbed";
+import { Instagram, Linkedin } from "lucide-react";
+import { InstagramPostCard } from "@/components/InstagramPostCard";
+
 
 
 export const Route = createFileRoute("/")({
@@ -301,148 +303,9 @@ function Home() {
         </div>
       </section>
 
-
-
-
-
-
-
-
-
-
-      {/* Services grid */}
-      <section id="services" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-6xl">
-          <div className="flex items-end justify-between gap-8">
-            <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                Capabilities
-              </p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
-                Everything a brand<br />
-                actually <span style={{ color: "#eab308" }}>needs</span>.
-              </h2>
-            </div>
-          </div>
-
-          <div className="mt-16 grid gap-px bg-border md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                n: "01",
-                title: "Brand Strategy",
-                body: "Positioning, messaging, naming. The thinking that makes the rest of the work land.",
-                color: "#f97316",
-              },
-              {
-                n: "02",
-                title: "Social & Content",
-                body: "Monthly content calendars, channel management, community, short-form video. We run the feed — not just film for it.",
-                color: "#eab308",
-              },
-              {
-                n: "03",
-                title: "Video & Film",
-                body: "Brand films, commercials, documentary, social cutdowns. Concept through final color.",
-                color: "#ef4444",
-              },
-              {
-                n: "04",
-                title: "Design & Identity",
-                body: "Logo systems, packaging, print, web. Built to live everywhere your brand shows up.",
-                color: "#f97316",
-              },
-              {
-                n: "05",
-                title: "Animation & Motion",
-                body: "2D and 3D animation, explainers, motion graphics, title design. The work that makes static feel alive.",
-                color: "#eab308",
-              },
-              {
-                n: "06",
-                title: "Photography & Paid",
-                body: "Campaign stills shot alongside motion, plus the paid media to put it in front of the right people.",
-                color: "#ef4444",
-              },
-            ].map((s) => (
-              <div
-                key={s.n}
-                className="group relative bg-background p-8 transition-colors hover:bg-card md:p-10"
-              >
-                <div className="flex items-baseline justify-between">
-                  <span
-                    className="font-display text-sm uppercase tracking-[0.2em]"
-                    style={{ color: s.color }}
-                  >
-                    {s.n}
-                  </span>
-                  <span
-                    className="h-px w-12 transition-all group-hover:w-20"
-                    style={{ background: s.color }}
-                  />
-                </div>
-                <h3 className="mt-6 font-display text-2xl uppercase md:text-3xl">
-                  {s.title}
-                </h3>
-                <p className="mt-4 text-sm text-muted-foreground md:text-base">
-                  {s.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-
-
-      {/* Process */}
-      <section id="process" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-                How we work
-              </p>
-              <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-6xl">
-                One team.<br />
-                <span style={{ color: "#ef4444" }}>Start</span> to ship.
-              </h2>
-              <p className="mt-6 text-muted-foreground">
-                No middlemen, no handoffs between three agencies. The people
-                who pitch the idea are the people who make it.
-              </p>
-            </div>
-            <ol className="md:col-span-8 space-y-px bg-border">
-              {[
-                { n: "01", t: "Discover", b: "We learn the brand, the audience, and the goal. Real workshops, not a questionnaire." },
-                { n: "02", t: "Strategize", b: "Positioning and creative platform. The one thing we're going to say, and why it matters." },
-                { n: "03", t: "Create", b: "Concepts, scripts, boards, design. We show fewer, sharper options instead of a deck of mediocrity." },
-                { n: "04", t: "Produce", b: "Shoots, edits, design systems, builds. In-house crew so the vision survives execution." },
-                { n: "05", t: "Launch & Learn", b: "We push it live, run the paid, watch the data, and iterate. Work isn't done at delivery." },
-              ].map((p) => (
-                <li
-                  key={p.n}
-                  className="flex gap-6 bg-background p-6 md:gap-10 md:p-8"
-                >
-                  <span className="font-display text-2xl text-muted-foreground md:text-3xl">
-                    {p.n}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-xl uppercase md:text-2xl">
-                      {p.t}
-                    </h3>
-                    <p className="mt-2 text-sm text-muted-foreground md:text-base">
-                      {p.b}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </div>
-        </div>
-      </section>
-
       {/* Stats */}
       <section className="relative border-t border-border px-6 py-20 md:px-10">
+
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-10 md:grid-cols-4">
           {[
             { k: "12+", v: "Years in the game" },
@@ -510,44 +373,49 @@ function Home() {
       </section>
 
       {/* Instagram — latest posts */}
-      <section id="instagram" className="relative border-t border-border px-6 py-28 md:px-10">
-        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:items-center">
+      <section id="instagram" className="relative border-t border-surface-foreground/10 bg-surface px-6 py-24 md:px-10 md:py-32">
+        <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:items-start">
           <div className="md:col-span-4">
-            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-              Latest from the feed
-            </p>
-            <h2 className="mt-4 font-display text-4xl uppercase leading-[0.95] md:text-6xl">
-              Want to <span style={{ color: "#f97316" }}>follow</span> us?
+            <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-surface-foreground md:text-5xl">
+              Want to follow us?
             </h2>
-            <p className="mt-6 text-muted-foreground">
-              Behind-the-scenes, new work, and the occasional dog on set.
-            </p>
-            <div className="mt-8 space-y-3 text-sm uppercase tracking-[0.2em]">
+            <div className="mt-8 space-y-4">
               <a
                 href="https://instagram.com/royagency"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-sm font-medium uppercase tracking-[0.2em] text-surface-foreground transition-colors hover:text-social"
               >
-                @royagency · Instagram →
+                <Instagram className="h-5 w-5 text-social" />
+                <span>@royagency</span>
               </a>
               <a
                 href="https://www.linkedin.com/company/roy-agency/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block text-muted-foreground hover:text-primary transition-colors"
+                className="flex items-center gap-3 text-sm font-medium uppercase tracking-[0.2em] text-surface-foreground transition-colors hover:text-social"
               >
-                ROY Agency · LinkedIn →
+                <Linkedin className="h-5 w-5 text-social" />
+                <span>ROY Agency</span>
               </a>
             </div>
           </div>
 
-          <div className="md:col-span-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <InstagramEmbed url="https://www.instagram.com/p/DA1L_Z5PA0F/" />
-            <InstagramEmbed url="https://www.instagram.com/p/C5mA0ULvkyF/" />
+          <div className="md:col-span-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
+            <InstagramPostCard
+              imageUrl="https://scontent-ams2-1.cdninstagram.com/v/t51.71878-15/624938559_1611991510143679_6921131479708103921_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=cIJACTWjiucQ7kNvwHt9FaA&_nc_oc=Adoeriwuc_HGQXrzio04VEmnFbpw77j4Pk4d78PmFf-YchrdbVb1MBCyZbxJ0pOR3WF8wwH-ogL_rKCSUV5arNk5&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=Kqt4ZtjrZwgzqwvsGE3XDQ&_nc_ss=7960f&oh=00_Af9sv1l4hc0ynmvzNnSGoNIRFifhlnQtSYLHjK0wZa8Pdw&oe=6A41D64D"
+              caption="Some new work hot off the press for Ohio Steel Industries."
+              postUrl="https://www.instagram.com/p/DA1L_Z5PA0F/"
+            />
+            <InstagramPostCard
+              imageUrl="https://scontent-ams2-1.cdninstagram.com/v/t51.71878-15/503080450_712486227812382_6342598413478077282_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=HzL2VV_z2Z4Q7kNvwFcHIu6&_nc_oc=AdpW1hcLaT5byACRJJIYnOeoQBU1liLCYh66TW_yPiW1ByI4UHg6Q5FTd9ILDezYv28rApEwJc-VyGVGrqV1fM8L&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=pTdKDWp8bq43YLqjzwsHHg&_nc_ss=7960f&oh=00_Af_3TKe2oVGScF4pVsqvgmkzfo0fbFS1S0Ok9ZpCBz7vZw&oe=6A41F750"
+              caption="We're buzzed on flavor. Serving up a crispy :15 second Brewdog spot."
+              postUrl="https://www.instagram.com/p/C5mA0ULvkyF/"
+            />
           </div>
         </div>
       </section>
+
 
       {/* Footer */}
       <footer id="contact" className="relative px-6 py-16 md:px-10">
