@@ -21,13 +21,26 @@ export const Route = createFileRoute("/services")({
   component: ServicesPage,
 });
 
-type Pill = {
-  title: string;
-  description: string;
-  vimeoId?: string;
+type VimeoVideo = {
+  type: "vimeo";
+  id: string;
+  hash?: string;
   start?: number;
   end?: number;
 };
+
+type DirectVideo = {
+  type: "video";
+  url: string;
+};
+
+type Pill = {
+  title: string;
+  description: string;
+  video?: VimeoVideo | DirectVideo;
+  orientation?: "landscape" | "portrait";
+};
+
 type Section = {
   name: string;
   tagline: string;
@@ -43,9 +56,7 @@ const SECTIONS: Section[] = [
         title: "Animation",
         description:
           "2D and 3D animation, motion graphics, and visual effects that bring concepts to life frame by frame.",
-        vimeoId: "912389278",
-        start: 18,
-        end: 27,
+        video: { type: "vimeo", id: "912389278", start: 18, end: 27 },
       },
       {
         title: "Event Capture",
@@ -56,6 +67,7 @@ const SECTIONS: Section[] = [
         title: "Brand Film",
         description:
           "Cinematic brand stories that distill identity, values, and vision into memorable long-form content.",
+        video: { type: "vimeo", id: "797804844", hash: "165e5b0b31" },
       },
       {
         title: "Interview & Testimonial",
@@ -76,6 +88,7 @@ const SECTIONS: Section[] = [
         title: "Commercial",
         description:
           "High-impact :15 to :60 spots built for broadcast, streaming, and digital pre-roll.",
+        video: { type: "vimeo", id: "1037561887" },
       },
     ],
   },
@@ -97,6 +110,10 @@ const SECTIONS: Section[] = [
         title: "Cutdowns & Adaptations",
         description:
           "Reframe and recut hero assets into platform-perfect variants without losing the story.",
+        video: {
+          type: "video",
+          url: "https://www.dropbox.com/scl/fo/12apm3h38qzoycz8fbq18/AIe3bzaI3TjChCLGih1LW24?dl=0&e=1&preview=Passion+for+Coffee_2.mov&rlkey=yqqtd9v2258o1186607god3cc&st=r6lwyjec",
+        },
       },
       {
         title: "Community & Always-On",
@@ -241,17 +258,20 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
         <div className="flex flex-col gap-6">
           <div className="flex items-center justify-center gap-4">
             <ExampleCard
+              key={section.pills[prevIndex].title}
               pill={section.pills[prevIndex]}
               section={section.name}
               variant="side"
               onClick={() => setOpenIndex(prevIndex)}
             />
             <ExampleCard
+              key={active.title}
               pill={active}
               section={section.name}
               variant="active"
             />
             <ExampleCard
+              key={section.pills[nextIndex].title}
               pill={section.pills[nextIndex]}
               section={section.name}
               variant="side"
@@ -276,6 +296,19 @@ function ExampleCard({
   onClick?: () => void;
 }) {
   const isActive = variant === "active";
+  const orientation = pill.orientation ?? "landscape";
+  const isLandscape = orientation === "landscape";
+
+  const widthClasses = isLandscape
+    ? isActive
+      ? "w-[260px] md:w-[320px]"
+      : "w-[145px] md:w-[180px]"
+    : isActive
+      ? "w-[200px] md:w-[240px]"
+      : "w-[110px] md:w-[140px]";
+
+  const aspectClass = isLandscape ? "aspect-[16/9]" : "aspect-[9/16]";
+
   return (
     <button
       type="button"
@@ -284,17 +317,13 @@ function ExampleCard({
       aria-label={isActive ? `${pill.title} example` : `Show ${pill.title}`}
       className={`group relative shrink-0 overflow-hidden rounded-2xl border transition-all duration-500 ${
         isActive
-          ? "w-[200px] border-primary shadow-2xl md:w-[240px]"
-          : "w-[110px] cursor-pointer border-border opacity-50 hover:opacity-80 md:w-[140px]"
+          ? `border-primary shadow-2xl ${widthClasses}`
+          : `cursor-pointer border-border opacity-50 hover:opacity-80 ${widthClasses}`
       }`}
     >
-      <div className="aspect-[9/16] w-full">
-        {isActive && pill.vimeoId ? (
-          <VimeoClip
-            vimeoId={pill.vimeoId}
-            start={pill.start ?? 0}
-            end={pill.end}
-          />
+      <div className={`${aspectClass} w-full`}>
+        {isActive && pill.video ? (
+          <VideoPlayer video={pill.video} />
         ) : (
           <div
             className="flex h-full w-full flex-col justify-between p-4"
@@ -324,12 +353,28 @@ function ExampleCard({
   );
 }
 
+function VideoPlayer({ video }: { video: VimeoVideo | DirectVideo }) {
+  if (video.type === "vimeo") {
+    return (
+      <VimeoClip
+        id={video.id}
+        hash={video.hash}
+        start={video.start ?? 0}
+        end={video.end}
+      />
+    );
+  }
+  return <VideoClip url={video.url} />;
+}
+
 function VimeoClip({
-  vimeoId,
+  id,
+  hash,
   start,
   end,
 }: {
-  vimeoId: string;
+  id: string;
+  hash?: string;
   start: number;
   end?: number;
 }) {
@@ -342,17 +387,20 @@ function VimeoClip({
       const { default: Player } = await import("@vimeo/player");
       if (cancelled || !containerRef.current) return;
       player = new Player(containerRef.current, {
-        id: Number(vimeoId),
+        url: hash
+          ? `https://player.vimeo.com/video/${id}?h=${hash}`
+          : `https://player.vimeo.com/video/${id}`,
         background: true,
         autoplay: true,
-        loop: false,
+        loop: end === undefined,
         muted: true,
         controls: false,
-        responsive: false,
-        width: 480,
+        responsive: true,
       });
       await player.ready();
-      await player.setCurrentTime(start);
+      if (start > 0) {
+        await player.setCurrentTime(start);
+      }
       await player.play().catch(() => {});
       if (end !== undefined) {
         player.on("timeupdate", (data: { seconds: number }) => {
@@ -366,14 +414,44 @@ function VimeoClip({
       cancelled = true;
       player?.destroy().catch(() => {});
     };
-  }, [vimeoId, start, end]);
+  }, [id, hash, start, end]);
 
   return (
     <div className="relative h-full w-full overflow-hidden bg-black">
       <div
         ref={containerRef}
-        className="absolute left-1/2 top-1/2 h-full w-[316%] -translate-x-1/2 -translate-y-1/2 [&>iframe]:h-full [&>iframe]:w-full"
+        className="absolute inset-0 h-full w-full [&>iframe]:h-full [&>iframe]:w-full"
       />
     </div>
+  );
+}
+
+function VideoClip({ url }: { url: string }) {
+  const [errored, setErrored] = React.useState(false);
+
+  if (errored) {
+    return (
+      <a
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+        className="flex h-full w-full items-center justify-center bg-card p-4 text-center text-xs uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-primary/10"
+      >
+        View example
+      </a>
+    );
+  }
+
+  return (
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      onError={() => setErrored(true)}
+      className="h-full w-full object-cover"
+    >
+      <source src={url} />
+    </video>
   );
 }
