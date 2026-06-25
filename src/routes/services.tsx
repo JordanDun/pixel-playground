@@ -435,9 +435,23 @@ function VideoClip({ url }: { url: string }) {
         href={url}
         target="_blank"
         rel="noreferrer"
-        className="flex h-full w-full items-center justify-center bg-card p-4 text-center text-xs uppercase tracking-[0.14em] text-foreground transition-colors hover:bg-primary/10"
+        className="group flex h-full w-full flex-col items-center justify-center gap-3 bg-card p-4 text-center transition-colors hover:bg-primary/10"
       >
-        View example
+        <div className="flex h-10 w-10 items-center justify-center rounded-full border border-foreground/20 transition-colors group-hover:border-foreground/40">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="ml-0.5"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </div>
+        <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">
+          View example
+        </span>
       </a>
     );
   }
