@@ -280,34 +280,6 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
           </div>
         </div>
       </div>
-
-
-        {/* Right: 3-up carousel with active in the middle */}
-        <div className="flex flex-col gap-6">
-          <div className="flex items-center justify-center gap-4">
-            <ExampleCard
-              key={section.pills[prevIndex].title}
-              pill={section.pills[prevIndex]}
-              section={section.name}
-              variant="side"
-              onClick={() => setOpenIndex(prevIndex)}
-            />
-            <ExampleCard
-              key={active.title}
-              pill={active}
-              section={section.name}
-              variant="active"
-            />
-            <ExampleCard
-              key={section.pills[nextIndex].title}
-              pill={section.pills[nextIndex]}
-              section={section.name}
-              variant="side"
-              onClick={() => setOpenIndex(nextIndex)}
-            />
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
