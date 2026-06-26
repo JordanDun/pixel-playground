@@ -194,8 +194,6 @@ function ServicesPage() {
 function ServiceBox({ section, index }: { section: Section; index: number }) {
   const [openIndex, setOpenIndex] = React.useState<number>(0);
   const active = section.pills[openIndex];
-  const prevIndex = (openIndex - 1 + section.pills.length) % section.pills.length;
-  const nextIndex = (openIndex + 1) % section.pills.length;
 
   return (
     <div className="rounded-3xl border border-border bg-card/40 p-6 md:p-10">
@@ -210,74 +208,51 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
         {section.tagline}
       </p>
 
-      {/* Two-column: pills + description left, carousel right */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.6fr)]">
-        {/* Left: pills stacked vertically + description below */}
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-wrap gap-2">
-            {section.pills.map((pill, i) => {
-              const isOpen = openIndex === i;
-              return (
-                <button
-                  key={pill.title}
-                  type="button"
-                  onClick={() => setOpenIndex(i)}
-                  aria-pressed={isOpen}
-                  className={`inline-flex items-center gap-2 self-start rounded-full border px-4 py-2 text-xs uppercase tracking-[0.14em] transition-all ${
-                    isOpen
-                      ? "border-primary bg-primary text-primary-foreground"
-                      : "border-border bg-background/60 text-foreground hover:border-primary hover:text-primary"
-                  }`}
-                >
-                  <span>{pill.title}</span>
+      {/* Two-column: pills (with inline description) left, full media right */}
+      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+        {/* Left: pills stacked vertically; selected expands with description inside */}
+        <div className="flex flex-col gap-3">
+          {section.pills.map((pill, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <button
+                key={pill.title}
+                type="button"
+                onClick={() => setOpenIndex(i)}
+                aria-pressed={isOpen}
+                className={`group w-full self-start overflow-hidden rounded-3xl border text-left transition-all ${
+                  isOpen
+                    ? "border-primary bg-card px-5 py-4"
+                    : "border-border bg-background/60 px-5 py-3 hover:border-primary"
+                }`}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-xs uppercase tracking-[0.16em] text-foreground">
+                    {pill.title}
+                  </span>
                   {isOpen ? (
-                    <X className="h-3.5 w-3.5" />
+                    <X className="h-3.5 w-3.5 shrink-0 text-primary" />
                   ) : (
-                    <Plus className="h-3.5 w-3.5" />
+                    <Plus className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
                   )}
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Description panel under pills */}
-          <div className="rounded-2xl border border-border bg-card p-5">
-            <p className="text-xs uppercase tracking-[0.24em] text-primary">
-              0{openIndex + 1} — {section.name}
-            </p>
-            <h3 className="mt-2 font-display text-xl uppercase leading-tight md:text-2xl">
-              {active.title}
-            </h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              {active.description}
-            </p>
-          </div>
+                </div>
+                {isOpen && (
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                    {pill.description}
+                  </p>
+                )}
+              </button>
+            );
+          })}
         </div>
 
-        {/* Right: 3-up carousel with active in the middle */}
-        <div className="relative -mx-2 overflow-hidden md:mx-0">
-          <div className="flex items-center justify-center gap-3 md:gap-5 px-2">
-            <ExampleCard
-              key={section.pills[prevIndex].title}
-              pill={section.pills[prevIndex]}
-              section={section.name}
-              variant="side"
-              onClick={() => setOpenIndex(prevIndex)}
-            />
-            <ExampleCard
-              key={active.title}
-              pill={active}
-              section={section.name}
-              variant="active"
-            />
-            <ExampleCard
-              key={section.pills[nextIndex].title}
-              pill={section.pills[nextIndex]}
-              section={section.name}
-              variant="side"
-              onClick={() => setOpenIndex(nextIndex)}
-            />
-          </div>
+        {/* Right: full-width active media, no preview neighbors */}
+        <div className="min-w-0">
+          <ExampleCard
+            key={active.title}
+            pill={active}
+            section={section.name}
+          />
         </div>
       </div>
     </div>
@@ -287,72 +262,48 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
 function ExampleCard({
   pill,
   section,
-  variant,
-  onClick,
 }: {
   pill: Pill;
   section: string;
-  variant: "active" | "side";
-  onClick?: () => void;
 }) {
-  const isActive = variant === "active";
   const orientation = pill.orientation ?? "landscape";
-  const isLandscape = orientation === "landscape";
-
-  const widthClasses = isLandscape
-    ? isActive
-      ? "w-[clamp(280px,52vw,560px)]"
-      : "w-[80px] md:w-[110px]"
-    : isActive
-      ? "w-[clamp(220px,32vw,360px)]"
-      : "w-[60px] md:w-[90px]";
-
-
-  const aspectClass = isLandscape ? "aspect-[16/9]" : "aspect-[9/16]";
+  const aspectClass =
+    orientation === "landscape" ? "aspect-[16/9]" : "aspect-[9/16]";
+  const widthClass =
+    orientation === "landscape" ? "w-full" : "mx-auto w-full max-w-[420px]";
 
   return (
-    <button
-      type="button"
-      onClick={onClick}
-      disabled={isActive}
-      aria-label={isActive ? `${pill.title} example` : `Show ${pill.title}`}
-      className={`group relative shrink-0 overflow-hidden rounded-2xl border transition-all duration-500 ${
-        isActive
-          ? `border-primary shadow-2xl ${widthClasses}`
-          : `cursor-pointer border-border opacity-50 hover:opacity-80 ${widthClasses}`
-      }`}
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-primary shadow-2xl ${widthClass}`}
     >
       <div className={`${aspectClass} w-full`}>
-        {isActive && pill.video ? (
+        {pill.video ? (
           <VideoPlayer video={pill.video} />
         ) : (
           <div
-            className="flex h-full w-full flex-col justify-between p-4"
+            className="flex h-full w-full flex-col justify-between p-6"
             style={{
               background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%), hsl(var(--card))`,
             }}
           >
-            <p className="text-[9px] uppercase tracking-[0.24em] text-primary">
-              {isActive ? "Example" : ""}
+            <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
+              Example
             </p>
             <div>
-              <p className="text-[9px] uppercase tracking-[0.24em] text-muted-foreground">
+              <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
                 {section}
               </p>
-              <p
-                className={`mt-1 font-display uppercase leading-tight ${
-                  isActive ? "text-lg md:text-xl" : "text-xs md:text-sm"
-                }`}
-              >
+              <p className="mt-1 font-display text-2xl uppercase leading-tight md:text-3xl">
                 {pill.title}
               </p>
             </div>
           </div>
         )}
       </div>
-    </button>
+    </div>
   );
 }
+
 
 function VideoPlayer({ video }: { video: VimeoVideo | DirectVideo }) {
   if (video.type === "vimeo") {
