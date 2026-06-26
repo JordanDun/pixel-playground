@@ -211,10 +211,10 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
       </p>
 
       {/* Two-column: pills + description left, carousel right */}
-      <div className="mt-8 grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)]">
+      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.6fr)]">
         {/* Left: pills stacked vertically + description below */}
         <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-wrap gap-2">
             {section.pills.map((pill, i) => {
               const isOpen = openIndex === i;
               return (
@@ -253,6 +253,34 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
             </p>
           </div>
         </div>
+
+        {/* Right: 3-up carousel with active in the middle */}
+        <div className="relative -mx-2 overflow-hidden md:mx-0">
+          <div className="flex items-center justify-center gap-3 md:gap-5 px-2">
+            <ExampleCard
+              key={section.pills[prevIndex].title}
+              pill={section.pills[prevIndex]}
+              section={section.name}
+              variant="side"
+              onClick={() => setOpenIndex(prevIndex)}
+            />
+            <ExampleCard
+              key={active.title}
+              pill={active}
+              section={section.name}
+              variant="active"
+            />
+            <ExampleCard
+              key={section.pills[nextIndex].title}
+              pill={section.pills[nextIndex]}
+              section={section.name}
+              variant="side"
+              onClick={() => setOpenIndex(nextIndex)}
+            />
+          </div>
+        </div>
+      </div>
+
 
         {/* Right: 3-up carousel with active in the middle */}
         <div className="flex flex-col gap-6">
@@ -301,11 +329,12 @@ function ExampleCard({
 
   const widthClasses = isLandscape
     ? isActive
-      ? "w-[260px] md:w-[320px]"
-      : "w-[145px] md:w-[180px]"
+      ? "w-[clamp(280px,52vw,560px)]"
+      : "w-[80px] md:w-[110px]"
     : isActive
-      ? "w-[200px] md:w-[240px]"
-      : "w-[110px] md:w-[140px]";
+      ? "w-[clamp(220px,32vw,360px)]"
+      : "w-[60px] md:w-[90px]";
+
 
   const aspectClass = isLandscape ? "aspect-[16/9]" : "aspect-[9/16]";
 
