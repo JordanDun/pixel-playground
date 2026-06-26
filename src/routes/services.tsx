@@ -266,17 +266,9 @@ function ExampleCard({
   pill: Pill;
   section: string;
 }) {
-  const orientation = pill.orientation ?? "landscape";
-  const aspectClass =
-    orientation === "landscape" ? "aspect-[16/9]" : "aspect-[9/16]";
-  const widthClass =
-    orientation === "landscape" ? "w-full" : "mx-auto w-full max-w-[420px]";
-
   return (
-    <div
-      className={`relative overflow-hidden rounded-2xl border border-primary shadow-2xl ${widthClass}`}
-    >
-      <div className={`${aspectClass} w-full`}>
+    <div className="relative h-full w-full overflow-hidden">
+      <div className="aspect-square h-full w-full">
         {pill.video ? (
           <VideoPlayer video={pill.video} />
         ) : (
