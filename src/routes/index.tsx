@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
+import { LogoMarquee } from "@/components/LogoMarquee";
 
 
 
@@ -262,7 +263,11 @@ function Home() {
         </div>
       </section>
 
+      {/* Client logos — scrolling marquee right under the hero */}
+      <LogoMarquee />
+
       {/* Intro / Manifesto — full-screen takeover, EP+Co style */}
+
       <section
         id="manifesto"
         className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
@@ -323,32 +328,8 @@ function Home() {
         </div>
       </section>
 
-      {/* Our Clients — bare logo grid, EP+Co style (PNGs to be supplied) */}
-      <section
-        id="clients"
-        className="relative border-t border-border px-6 py-24 md:px-10 md:py-32"
-      >
-        <div className="mx-auto max-w-6xl">
-          {/*
-            Replace each placeholder with:
-              <img src="/path/to/logo.svg" alt="Client name"
-                   className="max-h-10 w-auto opacity-80 transition-opacity hover:opacity-100 md:max-h-12" />
-            Logos should be white/monochrome PNG or SVG to sit on the dark bg.
-          */}
-          <div className="grid grid-cols-2 gap-x-12 gap-y-16 sm:grid-cols-3 md:grid-cols-4">
-            {Array.from({ length: 12 }).map((_, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-center"
-              >
-                <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground/40">
-                  Logo {i + 1}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
+
 
 
 
