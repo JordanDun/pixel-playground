@@ -263,7 +263,11 @@ function Home() {
         </div>
       </section>
 
+      {/* Client logos — scrolling marquee right under the hero */}
+      <LogoMarquee />
+
       {/* Intro / Manifesto — full-screen takeover, EP+Co style */}
+
       <section
         id="manifesto"
         className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
