@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
+import { LogoMarquee } from "@/components/LogoMarquee";
 
 
 
