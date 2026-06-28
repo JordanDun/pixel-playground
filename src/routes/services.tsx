@@ -267,31 +267,29 @@ function ExampleCard({
   section: string;
 }) {
   return (
-    <div className="relative h-full w-full overflow-hidden">
-      <div className="aspect-square h-full w-full">
-        {pill.video ? (
-          <VideoPlayer video={pill.video} />
-        ) : (
-          <div
-            className="flex h-full w-full flex-col justify-between p-6"
-            style={{
-              background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%), hsl(var(--card))`,
-            }}
-          >
-            <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
-              Example
+    <div className="relative aspect-video w-full overflow-hidden">
+      {pill.video ? (
+        <VideoPlayer video={pill.video} />
+      ) : (
+        <div
+          className="flex h-full w-full flex-col justify-between p-6"
+          style={{
+            background: `linear-gradient(140deg, hsl(var(--primary) / 0.35) 0%, transparent 55%), radial-gradient(circle at 70% 80%, hsl(var(--primary) / 0.25), transparent 60%), hsl(var(--card))`,
+          }}
+        >
+          <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
+            Example
+          </p>
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+              {section}
             </p>
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-                {section}
-              </p>
-              <p className="mt-1 font-display text-2xl uppercase leading-tight md:text-3xl">
-                {pill.title}
-              </p>
-            </div>
+            <p className="mt-1 font-display text-2xl uppercase leading-tight md:text-3xl">
+              {pill.title}
+            </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
