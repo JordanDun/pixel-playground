@@ -123,24 +123,18 @@ function WorkPage() {
               >
                 {hasVideo && (
                   <div className="relative mb-6 aspect-video w-full overflow-hidden bg-black">
-                    {project.vimeoId ? (
-                      <iframe
-                        src={`https://player.vimeo.com/video/${project.vimeoId}?background=1&autoplay=1&loop=1&muted=1`}
-                        className="pointer-events-none absolute inset-0 h-full w-full"
-                        allow="autoplay; fullscreen"
-                        title={project.title}
-                      />
-                    ) : (
-                      <img
-                        src={project.poster}
-                        alt={project.title}
-                        loading="lazy"
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    )}
+                    <img
+                      src={
+                        project.poster ??
+                        (project.vimeoId ? `https://vumbnail.com/${project.vimeoId}.jpg` : undefined)
+                      }
+                      alt={project.title}
+                      loading="lazy"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
-                      <span className="rounded-full bg-white/90 px-5 py-2 text-xs uppercase tracking-[0.2em] text-black opacity-0 transition-opacity group-hover:opacity-100">
-                        ▶ Play
+                      <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-black opacity-100 transition-opacity group-hover:opacity-100 md:opacity-0">
+                        <Play className="h-5 w-5 fill-current" />
                       </span>
                     </div>
                   </div>
