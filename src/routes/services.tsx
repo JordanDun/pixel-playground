@@ -201,6 +201,9 @@ function ServicesPage() {
           Services<br />
           <span className="text-primary italic">end to end.</span>
         </h1>
+        <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          Based in Columbus, Ohio, we serve local businesses and national brands with end-to-end video, social, and creative strategy.
+        </p>
       </section>
 
       {/* Three section boxes */}
