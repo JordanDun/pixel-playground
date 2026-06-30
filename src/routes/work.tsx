@@ -2,25 +2,62 @@ import * as React from "react";
 import { Play, X } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import statusSolutionsPoster from "@/assets/status-solutions-poster.jpg";
-
-
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/work")({
-  head: () => ({
-    meta: [
-      { title: "Work — ROY Agency" },
-      {
-        name: "description",
-        content:
-          "Selected projects by ROY Agency. Cinematic brand films, campaigns, and social content for Pickups Plus, Brewdog, DeWalt, and more.",
-      },
-      { property: "og:title", content: "Work — ROY Agency" },
-      {
-        property: "og:description",
-        content: "Selected projects by ROY Agency.",
-      },
-    ],
-  }),
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "Video Production Portfolio | Columbus, OH | ROY Agency";
+    const description =
+      "Selected commercial video work by ROY Agency. Brand films, animations, product spots, and social campaigns for Columbus and national clients.";
+    const videoSchema = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      itemListElement: PROJECTS.map((project, i) => {
+        const thumbnail = project.vimeoId
+          ? `https://vumbnail.com/${project.vimeoId}.jpg`
+          : project.poster
+          ? `${origin}${project.poster}`
+          : `${origin}/og-roy.jpg`;
+        const embedUrl = project.vimeoId
+          ? `https://player.vimeo.com/video/${project.vimeoId}`
+          : project.driveFileId
+          ? `https://drive.google.com/file/d/${project.driveFileId}/preview`
+          : undefined;
+        return {
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "VideoObject",
+            name: project.title,
+            description: `${project.category} video production by ROY Agency for ${project.client}.`,
+            thumbnailUrl: thumbnail,
+            embedUrl,
+            uploadDate: `${project.year}-01-01`,
+            author: { "@type": "Organization", name: "ROY Agency" },
+          },
+        };
+      }),
+    };
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/work" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/work" }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(videoSchema),
+        },
+      ],
+    };
+  },
   component: WorkPage,
 });
 
@@ -128,7 +165,7 @@ function WorkPage() {
                         project.poster ??
                         (project.vimeoId ? `https://vumbnail.com/${project.vimeoId}.jpg` : undefined)
                       }
-                      alt={project.title}
+                      alt={`${project.client} ${project.category} video production by ROY Agency in Columbus, Ohio — ${project.title}`}
                       loading="lazy"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />

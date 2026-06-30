@@ -1,21 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — ROY Agency" },
-      {
-        name: "description",
-        content:
-          "ROY Agency is a video production and marketing studio built for brands that demand more.",
-      },
-      { property: "og:title", content: "About — ROY Agency" },
-      {
-        property: "og:description",
-        content: "Video production and marketing studio.",
-      },
-    ],
-  }),
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "About ROY Agency — Columbus Video Production Studio";
+    const description =
+      "Learn about ROY Agency, a Columbus, Ohio video production and creative studio built for brands that demand memorable work.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/about" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/about" }],
+    };
+  },
   component: AboutPage,
 });
 
@@ -39,8 +43,8 @@ function AboutPage() {
         <div className="mx-auto max-w-3xl space-y-8">
           <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
             ROY Agency was founded on a simple belief: the best marketing doesn't feel like marketing. 
-            It feels like a story you want to watch again. We bring together directors, cinematographers, 
-            strategists, and editors under one roof to make work that moves people — and moves product.
+            It feels like a story you want to watch again. Based in Columbus, Ohio, we bring together directors, 
+            cinematographers, strategists, and editors under one roof to make work that moves people — and moves product.
           </p>
           <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
             We produce everything from cinematic brand films to high-volume social 

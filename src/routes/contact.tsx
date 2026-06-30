@@ -1,21 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact — ROY Agency" },
-      {
-        name: "description",
-        content:
-          "Get in touch with ROY Agency. Start a project, request a deck, or just say hello.",
-      },
-      { property: "og:title", content: "Contact — ROY Agency" },
-      {
-        property: "og:description",
-        content: "Get in touch with ROY Agency.",
-      },
-    ],
-  }),
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "Contact ROY Agency | Columbus Video Production Studio";
+    const description =
+      "Start a project with ROY Agency. Contact our Columbus, Ohio video production studio for brand films, commercials, and social content.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/contact" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/contact" }],
+    };
+  },
   component: ContactPage,
 });
 

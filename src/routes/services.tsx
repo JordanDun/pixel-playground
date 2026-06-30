@@ -1,23 +1,62 @@
 import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Plus, X } from "lucide-react";
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services — ROY Agency" },
-      {
-        name: "description",
-        content:
-          "Social, Strategy, and Video Production services. End-to-end process built for modern brands.",
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "Video Production & Social Content Services | ROY Agency Columbus";
+    const description =
+      "End-to-end video production, social media content, and creative strategy services for brands in Columbus, Ohio and beyond.";
+    const serviceSchema = {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      name: "ROY Agency",
+      description,
+      url: origin,
+      areaServed: [
+        { "@type": "City", name: "Columbus" },
+        { "@type": "City", name: "Westerville" },
+        { "@type": "City", name: "Dublin" },
+        { "@type": "State", name: "Ohio" },
+      ],
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: "Creative services",
+        itemListElement: SECTIONS.map((section) => ({
+          "@type": "OfferCatalog",
+          name: section.name,
+          itemListElement: section.pills.map((pill) => ({
+            "@type": "Offer",
+            itemOffered: {
+              "@type": "Service",
+              name: pill.title,
+              description: pill.description,
+            },
+          })),
+        })),
       },
-      { property: "og:title", content: "Services — ROY Agency" },
-      {
-        property: "og:description",
-        content: "Social, Strategy, and Video Production services.",
-      },
-    ],
-  }),
+    };
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/services" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/services" }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify(serviceSchema),
+        },
+      ],
+    };
+  },
   component: ServicesPage,
 });
 
@@ -162,6 +201,9 @@ function ServicesPage() {
           Services<br />
           <span className="text-primary italic">end to end.</span>
         </h1>
+        <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+          Based in Columbus, Ohio, we serve local businesses and national brands with end-to-end video, social, and creative strategy.
+        </p>
       </section>
 
       {/* Three section boxes */}
