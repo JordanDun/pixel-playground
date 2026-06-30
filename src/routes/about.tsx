@@ -1,21 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — ROY Agency" },
-      {
-        name: "description",
-        content:
-          "ROY Agency is a video production and marketing studio built for brands that demand more.",
-      },
-      { property: "og:title", content: "About — ROY Agency" },
-      {
-        property: "og:description",
-        content: "Video production and marketing studio.",
-      },
-    ],
-  }),
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "About ROY Agency — Columbus Video Production Studio";
+    const description =
+      "Learn about ROY Agency, a Columbus, Ohio video production and creative studio built for brands that demand memorable work.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/about" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/about" }],
+    };
+  },
   component: AboutPage,
 });
 
