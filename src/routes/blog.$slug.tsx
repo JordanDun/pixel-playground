@@ -10,7 +10,8 @@ export const Route = createFileRoute("/blog/$slug")({
     return { post, origin };
   },
   head: ({ loaderData }) => {
-    const { post, origin } = loaderData;
+    const post = loaderData?.post;
+    const origin = loaderData?.origin;
     const title = post ? `${post.title} | ROY Agency Journal` : "ROY Agency Journal";
     const description = post?.excerpt ?? "Notes from the ROY studio.";
     return {
