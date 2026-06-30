@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { getRequestOrigin } from "@/lib/origin.functions";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
-export const Route = createFileRoute("/_blog/")({
+export const Route = createFileRoute("/_blog/blog")({
   loader: () => getRequestOrigin(),
   head: ({ loaderData: origin }) => {
     const title = "Journal — Video Production & Creative Strategy | ROY Agency";
