@@ -389,6 +389,11 @@ function Home() {
           >
             Start a project →
           </a>
+          <div className="mt-6 flex items-center justify-center gap-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+            <Link to="/work" className="transition-colors hover:text-foreground">View selected work</Link>
+            <span className="text-foreground/30">·</span>
+            <Link to="/blog" className="transition-colors hover:text-foreground">Read the journal</Link>
+          </div>
         </div>
       </section>
 
