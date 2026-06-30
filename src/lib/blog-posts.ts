@@ -10,17 +10,21 @@ export type BlogPost = {
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    slug: "what-makes-a-brand-video-actually-convert",
-    title: "What Makes A Brand Video Actually Convert",
+    slug: "questions-to-ask-video-production-company-columbus",
+    title: "5 Questions to Ask Before Hiring a Video Production Company in Columbus",
     excerpt:
-      "Production value gets the click. Story keeps the viewer. Here's the framework we use on every ROY brand film.",
-    date: "May 10, 2026",
-    readTime: "6 min read",
+      "The right production partner shapes your budget, timeline, and final film. Here are five questions we recommend asking before you sign.",
+    date: "June 30, 2026",
+    readTime: "5 min read",
     category: "Strategy",
     body: [
-      "Most brand videos fail not because of bad production, but because they lead with the brand instead of the viewer. We start every project by asking: what does the viewer want to feel in the first three seconds?",
-      "The answer dictates everything — pacing, color, music, the opening frame. When that hook lands, the rest of the film has permission to sell.",
-      "Below we break down three recent ROY projects and the single creative decision that made each one convert.",
+      "Every video project is a small production. Before you hire a Columbus video production company, you should know how they think about scope, budget, and the final deliverables. The answers will tell you whether you are getting a vendor or a creative partner.",
+      "1. Can I see work in my category? A portfolio full of polished brand films is great, but look for projects that match your industry and format. If you need a restaurant video, ask for restaurant work. If you need a commercial, ask for commercials. Relevant experience means fewer surprises on set.",
+      "2. What does the price actually include? Some quotes cover only filming; others include editing, music licensing, color correction, and revisions. Ask for a clear deliverables list so you know what you are paying for and what might cost extra.",
+      "3. How long is the turnaround? A simple interview can be edited in a week. A full commercial with multiple locations and reviews may need four to six weeks. Match the timeline to your launch date, not the other way around.",
+      "4. Who is on the crew? A one-person shoot is different from a team with a director, cinematographer, and sound. The crew size should match the complexity of your story, and you should know who is showing up and why.",
+      "5. What happens after delivery? Ask about file formats, social cutdowns, and whether you own the raw footage. The best partners set you up to reuse the work across your website, ads, and social channels for months.",
+      "If you are planning a video project in Columbus, these questions will help you compare production companies on the factors that actually matter. And if you want to talk through your project with us, we are happy to answer all five.",
     ],
   },
   {
