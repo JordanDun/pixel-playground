@@ -1,15 +1,17 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { getRequestOrigin } from "@/lib/origin.functions";
 import { getPostBySlug } from "@/lib/blog-posts";
 
 export const Route = createFileRoute("/blog/$slug")({
-  loader: ({ params }) => {
+  loader: async ({ params }) => {
     const post = getPostBySlug(params.slug);
     if (!post) throw notFound();
-    return { post };
+    const origin = await getRequestOrigin();
+    return { post, origin };
   },
   head: ({ loaderData }) => {
-    const post = loaderData?.post;
-    const title = post ? `${post.title} — ROY Journal` : "ROY Journal";
+    const { post, origin } = loaderData;
+    const title = post ? `${post.title} | ROY Agency Journal` : "ROY Agency Journal";
     const description = post?.excerpt ?? "Notes from the ROY studio.";
     return {
       meta: [
@@ -19,6 +21,7 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
         { property: "og:url", content: `/blog/${post?.slug ?? ""}` },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
       ],
       links: post
         ? [{ rel: "canonical", href: `/blog/${post.slug}` }]
@@ -34,6 +37,7 @@ export const Route = createFileRoute("/blog/$slug")({
                 description: post.excerpt,
                 datePublished: post.date,
                 author: { "@type": "Organization", name: "ROY Agency" },
+                image: `${origin}/og-roy.jpg`,
               }),
             },
           ]
