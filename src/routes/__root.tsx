@@ -82,6 +82,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "ROY Agency" },
       { name: "description", content: "Video production & marketing agency." },
+      { property: "og:site_name", content: "ROY Agency" },
+      { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
