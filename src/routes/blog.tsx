@@ -1,25 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { getRequestOrigin } from "@/lib/origin.functions";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 export const Route = createFileRoute("/blog")({
-  head: () => ({
-    meta: [
-      { title: "Journal — ROY Agency" },
-      {
-        name: "description",
-        content:
-          "Notes on video, brand, and creative strategy from the ROY team.",
-      },
-      { property: "og:title", content: "Journal — ROY Agency" },
-      {
-        property: "og:description",
-        content:
-          "Notes on video, brand, and creative strategy from the ROY team.",
-      },
-      { property: "og:url", content: "/blog" },
-    ],
-    links: [{ rel: "canonical", href: "/blog" }],
-  }),
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "Journal — Video Production & Creative Strategy | ROY Agency";
+    const description =
+      "Notes on video production, brand strategy, and creative direction from the ROY Agency team in Columbus, Ohio.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/blog" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/blog" }],
+    };
+  },
   component: BlogIndex,
 });
 
