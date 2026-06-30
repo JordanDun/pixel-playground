@@ -4,57 +4,96 @@ import weldingPhoto from "@/assets/welding.jpg";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
-
-
+import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "ROY Agency — Video, Social & Creative Studio in Columbus, OH" },
-      {
-        name: "description",
-        content:
-          "Columbus, Ohio creative studio. Video, social media, design, and the strategy behind it — for local brands and national campaigns.",
-      },
-      { property: "og:title", content: "ROY Agency — Creative Studio in Columbus, OH" },
-      {
-        property: "og:description",
-        content:
-          "Full-service creative studio in Columbus, Ohio. Video, social, design, and strategy under one roof.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "LocalBusiness",
-          name: "ROY Agency",
-          description:
-            "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "Columbus",
-            addressRegion: "OH",
-            addressCountry: "US",
-          },
-          areaServed: [
-            { "@type": "City", name: "Columbus" },
-            { "@type": "City", name: "Westerville" },
-            { "@type": "City", name: "Dublin" },
-            { "@type": "State", name: "Ohio" },
-          ],
-          email: "hello@royagency.com",
-          url: "https://royagency.com",
-          sameAs: [
-            "https://instagram.com/royagency",
-            "https://www.linkedin.com/company/roy-agency/",
-          ],
-        }),
-      },
-    ],
-  }),
+  loader: () => getRequestOrigin(),
+  head: ({ loaderData: origin }) => {
+    const title = "Commercial Video Production Columbus, Ohio | ROY Agency";
+    const description =
+      "Columbus, Ohio video production studio. Cinematic brand films, commercials, social content, and strategy for brands and local businesses.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { property: "og:url", content: "/" },
+        { property: "og:image", content: `${origin}/og-roy.jpg` },
+      ],
+      links: [{ rel: "canonical", href: "/" }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": ["LocalBusiness", "VideoProductionCompany"],
+            name: "ROY Agency",
+            description:
+              "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
+            url: origin,
+            email: "hello@royagency.com",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Columbus",
+              addressRegion: "OH",
+              addressCountry: "US",
+            },
+            areaServed: [
+              { "@type": "City", name: "Columbus" },
+              { "@type": "City", name: "Westerville" },
+              { "@type": "City", name: "Dublin" },
+              { "@type": "State", name: "Ohio" },
+            ],
+            priceRange: "$$$",
+            makesOffer: [
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Commercial Video Production",
+                  description:
+                    "Cinematic brand films, commercials, and product spots for broadcast, streaming, and digital.",
+                },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Social Media Content",
+                  description:
+                    "Short-form video, cutdowns, and platform strategy for Reels, TikTok, and Shorts.",
+                },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Brand Strategy & Creative Direction",
+                  description:
+                    "Positioning, campaign planning, and visual systems that give every asset a shared point of view.",
+                },
+              },
+              {
+                "@type": "Offer",
+                itemOffered: {
+                  "@type": "Service",
+                  name: "Animation & Motion Graphics",
+                  description:
+                    "2D and 3D animation, motion graphics, and visual effects for explainer and brand films.",
+                },
+              },
+            ],
+            sameAs: [
+              "https://instagram.com/royagency",
+              "https://www.linkedin.com/company/roy-agency/",
+            ],
+          }),
+        },
+      ],
+    };
+  },
   component: Home,
 });
 
