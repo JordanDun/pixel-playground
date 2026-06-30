@@ -43,8 +43,8 @@ function AboutPage() {
         <div className="mx-auto max-w-3xl space-y-8">
           <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
             ROY Agency was founded on a simple belief: the best marketing doesn't feel like marketing. 
-            It feels like a story you want to watch again. We bring together directors, cinematographers, 
-            strategists, and editors under one roof to make work that moves people — and moves product.
+            It feels like a story you want to watch again. Based in Columbus, Ohio, we bring together directors, 
+            cinematographers, strategists, and editors under one roof to make work that moves people — and moves product.
           </p>
           <p className="text-lg leading-relaxed text-muted-foreground md:text-xl">
             We produce everything from cinematic brand films to high-volume social 
