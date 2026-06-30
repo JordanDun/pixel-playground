@@ -34,6 +34,7 @@ export const Route = createFileRoute("/")({
               "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
             url: origin,
             email: "hello@royagency.com",
+            telephone: "+1-614-264-6965",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Columbus",
@@ -452,6 +453,21 @@ function Home() {
               className="mt-2 block font-display text-3xl uppercase md:text-5xl hover:text-primary transition-colors"
             >
               hello@<br />royagency.com
+            </a>
+            <p className="mt-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
+            <a
+              href="tel:+16142646965"
+              className="mt-1 block font-display text-2xl uppercase transition-colors hover:text-primary md:text-3xl"
+            >
+              614-264-6965
+            </a>
+            <a
+              href="https://share.google/MC6y9A8g5LH4WfCAI"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-2 inline-block text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-primary"
+            >
+              Google Business Profile →
             </a>
           </div>
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground space-y-1 md:text-right">

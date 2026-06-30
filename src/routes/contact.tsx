@@ -52,6 +52,26 @@ function ContactPage() {
               </a>
             </div>
             <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
+              <a
+                href="tel:+16142646965"
+                className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl"
+              >
+                614-264-6965
+              </a>
+            </div>
+            <div>
+              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Google Business Profile</p>
+              <a
+                href="https://share.google/MC6y9A8g5LH4WfCAI"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 inline-block text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary"
+              >
+                View on Google →
+              </a>
+            </div>
+            <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Social</p>
               <div className="mt-2 flex gap-6">
                 <a href="https://instagram.com/royagency" target="_blank" rel="noopener noreferrer" className="text-sm uppercase tracking-[0.1em] transition-colors hover:text-primary">Instagram</a>
