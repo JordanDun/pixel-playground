@@ -34,6 +34,7 @@ export const Route = createFileRoute("/")({
               "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
             url: origin,
             email: "hello@royagency.com",
+            telephone: "+1-614-264-6965",
             address: {
               "@type": "PostalAddress",
               addressLocality: "Columbus",
