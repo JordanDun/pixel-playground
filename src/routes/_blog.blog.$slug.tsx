@@ -2,7 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getRequestOrigin } from "@/lib/origin.functions";
 import { getPostBySlug } from "@/lib/blog-posts";
 
-export const Route = createFileRoute("/_blog/$slug")({
+export const Route = createFileRoute("/_blog/blog/$slug")({
   loader: async ({ params }) => {
     const post = getPostBySlug(params.slug);
     if (!post) throw notFound();
