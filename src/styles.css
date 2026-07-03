@@ -122,20 +122,22 @@
     to   { opacity: 1; transform: translateY(0) skewY(0); filter: blur(0); }
   }
 
-  /* Full-page snap scroll — active only on the project-showcase panels.
-     Using `proximity` (not `mandatory`) so the hero, manifesto, stats,
-     and CTA scroll normally; snap only kicks in when the viewer gets
-     close to one of the project panels. */
+  /* Full-page snap scroll — only active while the viewer is inside the
+     project-showcase cluster (toggled from JS on scroll). Elsewhere the
+     page scrolls normally so the hero's 220vh sticky scale still works. */
   html {
-    scroll-snap-type: y proximity;
     scroll-behavior: smooth;
+  }
+  html.snap-mandatory {
+    scroll-snap-type: y mandatory;
   }
   .project-panel {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-snap-type: none; scroll-behavior: auto; }
+    html.snap-mandatory { scroll-snap-type: none; }
+    html { scroll-behavior: auto; }
   }
 }
 

@@ -164,12 +164,19 @@ function Home() {
   // headline word, then expands to fully cover the viewport.
   const lerp = (a: number, b: number, t: number) => a + (b - a) * t;
   const [isDesktop, setIsDesktop] = useState(false);
+  const [viewport, setViewport] = useState({ w: 1280, h: 720 });
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const update = () => setIsDesktop(mq.matches);
     update();
     mq.addEventListener("change", update);
     return () => mq.removeEventListener("change", update);
+  }, []);
+  useEffect(() => {
+    const u = () => setViewport({ w: window.innerWidth, h: window.innerHeight });
+    u();
+    window.addEventListener("resize", u);
+    return () => window.removeEventListener("resize", u);
   }, []);
 
   // Lazy-mount heavy Vimeo iframes after the page is interactive so the
@@ -192,15 +199,37 @@ function Home() {
       window.removeEventListener("load", mount);
     };
   }, []);
-  // Headline is 18vw on mobile, 12vw on desktop with line-height 0.95.
-  const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
-  const startWvw = isDesktop ? 78 : 92; // strip width
-  // Width grows from startWvw to 100vw
-  const fgWidth = lerp(startWvw, 100, scaleProgress);
-  // Height: start = lineVw (sized in vw), end = 100vh.
-  // Interpolate both contributions independently for a smooth blend.
-  const fgHeightVw = lerp(lineVw, 0, scaleProgress);
-  const fgHeightVh = lerp(0, 100, scaleProgress);
+
+  // Enable full-page snap-scrolling only while the viewer is inside the
+  // project-showcase cluster. Elsewhere the page scrolls normally so the
+  // hero's 220vh sticky scale still works.
+  useEffect(() => {
+    const onScroll = () => {
+      const el = document.getElementById("project-showcase");
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const mid = window.innerHeight * 0.5;
+      const active = rect.top < mid && rect.bottom > mid;
+      document.documentElement.classList.toggle("snap-mandatory", active);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Hero headline scales with viewport but is capped so ultrawide monitors
+  // don't blow it out past the FG video strip.
+  const heroFontPx = Math.min(
+    viewport.w * (isDesktop ? 0.12 : 0.18),
+    isDesktop ? 176 : 112
+  );
+  const lineHeightPx = heroFontPx * 0.95;
+  const startStripW = isDesktop ? Math.min(viewport.w * 0.78, 1600) : viewport.w * 0.92;
+  const endStripW = viewport.w;
+  const startStripH = lineHeightPx;
+  const endStripH = viewport.h;
+  const fgWidthPx = lerp(startStripW, endStripW, scaleProgress);
+  const fgHeightPx = lerp(startStripH, endStripH, scaleProgress);
   const radius = 6 - 6 * scaleProgress;
 
 
@@ -239,7 +268,10 @@ function Home() {
             className="relative z-20 flex h-full flex-col items-center justify-center px-6 md:px-10 pointer-events-none"
             style={{ opacity: Math.max(0, 1 - scaleProgress * 1.6) }}
           >
-            <h1 className="font-display uppercase text-center leading-[0.95] text-[18vw] md:text-[12vw]">
+            <h1
+              className="font-display uppercase text-center leading-[0.95]"
+              style={{ fontSize: `${heroFontPx}px` }}
+            >
               <span className="block text-white font-light tracking-tight">YOUR</span>
               <span className="block">
                 <span
@@ -286,9 +318,8 @@ function Home() {
             <div
               className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
               style={{
-                width: `${fgWidth}vw`,
-                // Interpolate from 16:9 (sized in vw) to full 100vh
-                height: `calc(${fgHeightVw}vw + ${fgHeightVh}vh)`,
+                width: `${fgWidthPx}px`,
+                height: `${fgHeightPx}px`,
                 borderRadius: `${radius}px`,
               }}
             >
@@ -356,7 +387,7 @@ function Home() {
       </section>
 
       {/* Selected work — full-screen video showcases */}
-      <ProjectShowcase />
+      <ProjectShowcase id="project-showcase" />
 
 
       {/* Stats */}
