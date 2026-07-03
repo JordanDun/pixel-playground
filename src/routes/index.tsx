@@ -411,7 +411,7 @@ function Home() {
           }}
           aria-hidden="true"
         />
-        <div className="absolute inset-0 bg-background/75" aria-hidden="true" />
+        <div className="absolute inset-0 bg-background/60" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
