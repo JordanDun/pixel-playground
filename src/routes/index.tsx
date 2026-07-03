@@ -313,9 +313,6 @@ function Home() {
       {/* Client logos — scrolling marquee right under the hero */}
       <LogoMarquee />
 
-      {/* Reel — the hero's expanded video lands into a real, playable reel */}
-      <ReelSection />
-
       {/* Intro / Manifesto — full-screen takeover, EP+Co style */}
 
       <section
@@ -357,6 +354,10 @@ function Home() {
           </div>
         </div>
       </section>
+
+      {/* Reel — plays after the manifesto */}
+      <ReelSection />
+
 
       {/* Stats */}
       <section className="relative border-t border-border px-6 py-20 md:px-10">
