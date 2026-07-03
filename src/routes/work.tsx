@@ -142,7 +142,7 @@ function WorkPage() {
 
       {/* Featured video grid — hover to reveal name + description */}
       <section className="px-6 pb-24 md:px-10">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {FEATURED_VIDEOS.map((video, i) => {
             const hasVideo = Boolean(video.vimeoId || video.driveFileId);
             return (
@@ -183,13 +183,6 @@ function WorkPage() {
                   </p>
                 </div>
 
-                {hasVideo && (
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-100 transition-opacity duration-300 group-hover:opacity-0">
-                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-black">
-                      <Play className="h-6 w-6 fill-current" />
-                    </span>
-                  </div>
-                )}
               </button>
             );
           })}
