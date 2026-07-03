@@ -104,8 +104,8 @@ export const Route = createFileRoute("/")({
 
 const CYCLING_WORDS = ["CREATIVE", "VIDEO", "SOCIAL", "MARKETING", "GRAPHIC", "ANIMATION", "BRAND"];
 
-const BG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p#t=0,50s";
-const FG_VIDEO = "https://player.vimeo.com/video/1103295539?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p";
+const REEL_VIDEO = reelAsset.url;
+
 
 function Home() {
   const [time, setTime] = useState("");
