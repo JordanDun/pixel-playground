@@ -1,17 +1,17 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
+import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 
-const VIMEO_ID = "1103295539";
-const BG_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p`;
-const PLAY_SRC = `https://player.vimeo.com/video/${VIMEO_ID}?autoplay=1&muted=0&autopause=0&quality=1080p`;
+const REEL_VIDEO = reelAsset.url;
 
 export function ReelSection() {
   const [mounted, setMounted] = useState(false);
   const [playing, setPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const stageRef = useRef<HTMLDivElement | null>(null);
 
-  // Lazy-mount the iframe after the page is idle so we don't add a third
-  // eager Vimeo player to first paint.
+  // Lazy-mount the video after the page is idle so we don't add a third
+  // eager video player to first paint.
   useEffect(() => {
     let cancelled = false;
     const mount = () => {
@@ -31,8 +31,20 @@ export function ReelSection() {
   }, []);
 
   const handlePlay = async () => {
+    const video = videoRef.current;
+    if (!video) return;
+
     setPlaying(true);
-    // Give the iframe one tick to swap src, then fullscreen the stage.
+    video.muted = false;
+    video.volume = 1;
+
+    try {
+      await video.play();
+    } catch {
+      // Autoplay policies may block unmuted playback; muted loop still plays.
+    }
+
+    // Give the video one tick to swap state, then fullscreen the stage.
     requestAnimationFrame(() => {
       const el = stageRef.current;
       if (el && el.requestFullscreen) {
@@ -46,7 +58,7 @@ export function ReelSection() {
   return (
     <section
       id="reel"
-      aria-label="ROY Agency 2024 reel"
+      aria-label="ROY Agency reel"
       className="relative bg-background"
     >
       {/* Full-bleed 16:9 stage */}
@@ -56,19 +68,15 @@ export function ReelSection() {
         style={{ aspectRatio: "16 / 9" }}
       >
         {mounted && (
-          <iframe
-            key={playing ? "play" : "bg"}
-            src={playing ? PLAY_SRC : BG_SRC}
-            title="ROY Agency 2024 reel"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            loading="lazy"
-            className={
-              playing
-                ? "absolute inset-0 h-full w-full"
-                : "absolute left-1/2 top-1/2 h-[110%] w-[220%] -translate-x-1/2 -translate-y-1/2 md:w-[110%]"
-            }
-            style={{ border: 0, pointerEvents: playing ? "auto" : "none" }}
+          <video
+            ref={videoRef}
+            src={REEL_VIDEO}
+            autoPlay
+            muted
+            loop
+            playsInline
+            title="ROY Agency reel"
+            className="absolute inset-0 h-full w-full object-cover"
           />
         )}
 
@@ -80,19 +88,14 @@ export function ReelSection() {
 
             {/* Top-left label */}
             <div className="pointer-events-none absolute left-4 top-4 z-10 font-display text-[10px] uppercase tracking-[0.28em] text-white/85 md:left-8 md:top-8 md:text-xs">
-              2024 Reel
-            </div>
-
-            {/* Top-right meta */}
-            <div className="absolute right-4 top-4 z-10 flex items-center gap-4 text-[10px] uppercase tracking-[0.24em] text-white/70 md:right-8 md:top-8 md:text-xs">
-              <span>1:32</span>
+              Reel
             </div>
 
             {/* Center play button */}
             <button
               type="button"
               onClick={handlePlay}
-              aria-label="Play 2024 reel with sound"
+              aria-label="Play reel with sound"
               className="group absolute left-1/2 top-1/2 z-10 -translate-x-1/2 -translate-y-1/2"
             >
               <span className="relative flex h-20 w-20 items-center justify-center rounded-full border border-white/80 text-white transition-colors hover:bg-white hover:text-black md:h-32 md:w-32">
