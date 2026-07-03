@@ -63,50 +63,6 @@ export const Route = createFileRoute("/work")({
   component: WorkPage,
 });
 
-const PROJECTS: Array<{
-  client: string;
-  title: string;
-  category: string;
-  year: string;
-  vimeoId?: string;
-  driveFileId?: string;
-  poster?: string;
-}> = [
-  {
-    client: "STATUS SOLUTIONS",
-    title: "Status Solutions — Brand History",
-    category: "Brand Film",
-    year: "2025",
-    driveFileId: "1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa",
-    poster: statusSolutionsPoster,
-  },
-  {
-    client: "STATUS SOLUTIONS NETWORK",
-    title: "Status Solutions Network — Animated Explainer",
-    category: "Animated Explainer",
-    year: "2024",
-    vimeoId: "912389278",
-  },
-  {
-    client: "PICKUPS PLUS",
-    title: "Pickups Plus — Brand Film",
-    category: "Brand Film",
-    year: "2024",
-    vimeoId: "912330431",
-  },
-
-  {
-    client: "BREWDOG",
-    title: "Buzzed on Flavor",
-    category: "Brand Film",
-    year: "2024",
-    vimeoId: "932863528",
-  },
-  { client: "DEWALT", title: "Built for the Job", category: "Brand Film", year: "2024", vimeoId: "499841967" },
-  { client: "THE BIG BUS PROJECT", title: "The Big Bus Project", category: "Brand Film", year: "2023", vimeoId: "832437367" },
-  { client: "OHIO STEEL", title: "Ohio Steel — Web Loop", category: "Web Spot", year: "2025", vimeoId: "1103295539" },
-  { client: "CRAFTSMAN", title: "V20 Sprayer — :60 Web Bumper", category: "Web Spot", year: "2022", vimeoId: "691013951" },
-];
 
 const FEATURED_VIDEOS: Array<{
   client: string;
