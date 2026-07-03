@@ -136,7 +136,6 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
     let animating = false;
     let lockUntil = 0;
     const DURATION = 900;
-    const ENTRY_DURATION = 550; // shorter, snappier snap when entering the cluster
     const COOLDOWN = 250;
 
     const ease = (t: number) =>
@@ -159,13 +158,16 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
       requestAnimationFrame(step);
     };
 
+    // Return the panel index the viewer is currently "parked" on: the panel
+    // must be seated within ±SEAT_TOLERANCE of the viewport top. Otherwise
+    // native scroll is still in charge and we don't hijack.
+    const SEAT_TOLERANCE = 12;
     const currentIndex = () => {
       const list = panels();
-      const mid = window.scrollY + window.innerHeight / 2;
+      const y = window.scrollY;
       for (let i = 0; i < list.length; i++) {
         const top = docTop(list[i]);
-        const bottom = top + list[i].offsetHeight;
-        if (mid >= top && mid < bottom) return i;
+        if (Math.abs(y - top) <= SEAT_TOLERANCE) return i;
       }
       return -1;
     };
@@ -182,28 +184,12 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
       const list = panels();
       if (!list.length) return;
       const idx = currentIndex();
+      // Only hijack when actually seated on a panel. Otherwise let native
+      // scroll flow through hero/manifesto → panels and panels → stats/CTA.
+      if (idx === -1) return;
       const dir = e.deltaY > 0 ? 1 : -1;
-
-      if (idx === -1) {
-        const firstTop = docTop(list[0]);
-        const lastTop = docTop(list[list.length - 1]);
-        const y = window.scrollY;
-        const vh = window.innerHeight;
-        // Grab control earlier (as soon as the first panel is within ~1 vh)
-        // and use a shorter tween so the entry doesn't feel like a big jump
-        // on top of trackpad momentum.
-        if (dir > 0 && y < firstTop && firstTop - y < vh * 1.1) {
-          e.preventDefault();
-          tween(firstTop, ENTRY_DURATION);
-        } else if (dir < 0 && y > lastTop && y - lastTop < vh * 1.1) {
-          e.preventDefault();
-          tween(lastTop, ENTRY_DURATION);
-        }
-        return;
-      }
-
       const next = idx + dir;
-      if (next < 0 || next >= list.length) return;
+      if (next < 0 || next >= list.length) return; // release at edges
       e.preventDefault();
       tween(docTop(list[next]));
     };
