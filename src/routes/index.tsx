@@ -355,6 +355,10 @@ function Home() {
         </div>
       </section>
 
+      {/* Reel — plays after the manifesto */}
+      <ReelSection />
+
+
       {/* Stats */}
       <section className="relative border-t border-border px-6 py-20 md:px-10">
 
