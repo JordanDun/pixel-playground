@@ -2,6 +2,7 @@ import * as React from "react";
 import { Play, X } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import statusSolutionsPoster from "@/assets/status-solutions-poster.jpg";
+import reelCover from "@/assets/reel-cover.jpg";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/work")({
