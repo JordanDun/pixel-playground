@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
 import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
+import teamPhoto from "@/assets/8R5A7734.jpg.asset.json";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
@@ -422,6 +423,18 @@ function Home() {
             <span className="text-foreground/30">·</span>
             <Link to="/blog" className="transition-colors hover:text-foreground">Read the journal</Link>
           </div>
+        </div>
+      </section>
+
+      {/* Behind the scenes */}
+      <section className="relative px-6 pb-16 md:px-10 md:pb-24">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-sm">
+          <img
+            src={teamPhoto.url}
+            alt="The ROY Agency crew on set in a gymnasium filming with cameras, lights, and crew."
+            className="h-auto w-full object-cover"
+            loading="lazy"
+          />
         </div>
       </section>
 
