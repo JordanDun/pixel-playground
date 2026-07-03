@@ -313,9 +313,6 @@ function Home() {
       {/* Client logos — scrolling marquee right under the hero */}
       <LogoMarquee />
 
-      {/* Reel — the hero's expanded video lands into a real, playable reel */}
-      <ReelSection />
-
       {/* Intro / Manifesto — full-screen takeover, EP+Co style */}
 
       <section
