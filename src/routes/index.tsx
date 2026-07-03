@@ -415,10 +415,14 @@ function Home() {
         <div className="grain absolute inset-0" aria-hidden="true" />
 
         <div className="relative z-10 mx-auto max-w-5xl text-center">
-          <h2 className="font-display text-5xl uppercase leading-[0.95] text-foreground md:text-8xl">
+          <h2
+            className="text-5xl leading-[0.95] text-foreground md:text-8xl"
+            style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.02em" }}
+          >
             Got something<br />
             to <span className="text-primary">launch</span>?
           </h2>
+
           <p className="mx-auto mt-6 max-w-xl text-foreground/80 md:text-lg">
             Tell us what you're working on. We'll come back within 48 hours
             with a real point of view — not a sales deck.
