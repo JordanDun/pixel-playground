@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
+import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { ReelSection } from "@/components/ReelSection";
 import { getRequestOrigin } from "@/lib/origin.functions";
+
 
 export const Route = createFileRoute("/")({
   loader: () => getRequestOrigin(),
@@ -102,8 +104,8 @@ export const Route = createFileRoute("/")({
 
 const CYCLING_WORDS = ["CREATIVE", "VIDEO", "SOCIAL", "MARKETING", "GRAPHIC", "ANIMATION", "BRAND"];
 
-const BG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p#t=0,50s";
-const FG_VIDEO = "https://player.vimeo.com/video/1103295539?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p";
+const REEL_VIDEO = reelAsset.url;
+
 
 function Home() {
   const [time, setTime] = useState("");
@@ -217,18 +219,20 @@ function Home() {
           {/* Background video */}
           <div className="absolute inset-0">
             {videosReady && (
-              <iframe
-                src={BG_VIDEO}
+              <video
+                src={REEL_VIDEO}
+                autoPlay
+                muted
+                loop
+                playsInline
                 title="ROY background reel"
-                allow="autoplay; fullscreen; picture-in-picture"
-                loading="lazy"
-                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
-                style={{ border: 0, pointerEvents: "none" }}
+                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 object-cover grayscale md:w-[120vw]"
               />
             )}
             <div className="absolute inset-0 bg-background/75" />
             <div className="grain absolute inset-0" />
           </div>
+
 
           {/* Hero text — three stacked words; middle one cycles and sits over the FG video strip */}
           <div
@@ -289,16 +293,18 @@ function Home() {
               }}
             >
               {videosReady && (
-                <iframe
-                  src={FG_VIDEO}
+                <video
+                  src={REEL_VIDEO}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                   title="ROY foreground reel"
-                  allow="autoplay; fullscreen; picture-in-picture"
-                  loading="lazy"
-                  className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 md:w-[110vw]"
-                  style={{ border: 0 }}
+                  className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 object-cover md:w-[110vw]"
                 />
               )}
             </div>
+
           </div>
 
         </div>
