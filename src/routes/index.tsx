@@ -426,6 +426,18 @@ function Home() {
         </div>
       </section>
 
+      {/* Behind the scenes */}
+      <section className="relative px-6 pb-16 md:px-10 md:pb-24">
+        <div className="mx-auto max-w-6xl overflow-hidden rounded-sm">
+          <img
+            src={teamPhoto.url}
+            alt="The ROY Agency crew on set in a gymnasium filming with cameras, lights, and crew."
+            className="h-auto w-full object-cover"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
       {/* Instagram — latest posts */}
       <section id="instagram" className="relative border-t border-surface-foreground/10 bg-surface px-6 py-24 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:items-start">
