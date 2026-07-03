@@ -219,18 +219,20 @@ function Home() {
           {/* Background video */}
           <div className="absolute inset-0">
             {videosReady && (
-              <iframe
-                src={BG_VIDEO}
+              <video
+                src={REEL_VIDEO}
+                autoPlay
+                muted
+                loop
+                playsInline
                 title="ROY background reel"
-                allow="autoplay; fullscreen; picture-in-picture"
-                loading="lazy"
-                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
-                style={{ border: 0, pointerEvents: "none" }}
+                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 object-cover grayscale md:w-[120vw]"
               />
             )}
             <div className="absolute inset-0 bg-background/75" />
             <div className="grain absolute inset-0" />
           </div>
+
 
           {/* Hero text — three stacked words; middle one cycles and sits over the FG video strip */}
           <div
