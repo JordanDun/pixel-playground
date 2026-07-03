@@ -2,6 +2,7 @@ import * as React from "react";
 import { Play, X } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
 import statusSolutionsPoster from "@/assets/status-solutions-poster.jpg";
+import reelCover from "@/assets/reel-cover.jpg";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/work")({
@@ -106,6 +107,21 @@ const PROJECTS: Array<{
   { client: "CRAFTSMAN", title: "V20 Sprayer — :60 Web Bumper", category: "Web Spot", year: "2022", vimeoId: "691013951" },
 ];
 
+const FEATURED_VIDEOS: Array<{
+  client: string;
+  title: string;
+  category: string;
+  vimeoId?: string;
+  poster?: string;
+}> = [
+  { client: "Client 1", title: "Featured Video 1", category: "Brand Film", poster: reelCover },
+  { client: "Client 2", title: "Featured Video 2", category: "Commercial", poster: reelCover },
+  { client: "Client 3", title: "Featured Video 3", category: "Social Campaign", poster: reelCover },
+  { client: "Client 4", title: "Featured Video 4", category: "Product Spot", poster: reelCover },
+  { client: "Client 5", title: "Featured Video 5", category: "Documentary", poster: reelCover },
+  { client: "Client 6", title: "Featured Video 6", category: "Brand Film", poster: reelCover },
+];
+
 function WorkPage() {
   const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string } | null>(null);
 
@@ -199,6 +215,58 @@ function WorkPage() {
                   </span>
                 </div>
               </Tag>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Featured video grid — six best videos */}
+      <section className="px-6 pb-24 md:px-10">
+        <div className="mb-10 flex items-end justify-between">
+          <div>
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">Best of ROY</p>
+            <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] md:text-6xl">
+              Six films.<br />
+              <span className="text-primary">One point of view.</span>
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {FEATURED_VIDEOS.map((video, i) => {
+            const hasVideo = Boolean(video.vimeoId);
+            return (
+              <button
+                key={i}
+                type="button"
+                disabled={!hasVideo}
+                onClick={() => hasVideo && setActiveVideo({ kind: "vimeo", id: video.vimeoId! })}
+                className="group relative aspect-video w-full overflow-hidden bg-black text-left focus:outline-none focus:ring-2 focus:ring-primary disabled:cursor-default"
+              >
+                <img
+                  src={video.poster ?? `https://vumbnail.com/${video.vimeoId}.jpg`}
+                  alt={`${video.client} — ${video.title}`}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-enabled:group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+                {hasVideo && (
+                  <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors group-hover:bg-black/30">
+                    <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-black opacity-100 transition-opacity group-hover:opacity-100 md:opacity-0">
+                      <Play className="h-6 w-6 fill-current" />
+                    </span>
+                  </div>
+                )}
+
+                <div className="absolute bottom-0 left-0 p-5">
+                  <p className="text-xs uppercase tracking-[0.2em] text-white/70">{video.client}</p>
+                  <h3 className="mt-1 font-display text-2xl uppercase leading-tight text-white md:text-3xl">
+                    {video.title}
+                  </h3>
+                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/60">{video.category}</p>
+                </div>
+              </button>
             );
           })}
         </div>
