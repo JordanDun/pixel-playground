@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
-import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
