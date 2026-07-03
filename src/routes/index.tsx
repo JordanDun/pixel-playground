@@ -220,14 +220,13 @@ function Home() {
           {/* Background video */}
           <div className="absolute inset-0">
             {videosReady && (
-              <video
-                src={REEL_VIDEO}
-                autoPlay
-                muted
-                loop
-                playsInline
+              <iframe
+                src={BG_VIDEO}
                 title="ROY background reel"
+                allow="autoplay; fullscreen; picture-in-picture"
+                loading="lazy"
                 className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 object-cover grayscale md:w-[120vw]"
+                style={{ border: 0, pointerEvents: "none" }}
               />
             )}
             <div className="absolute inset-0 bg-background/75" />
