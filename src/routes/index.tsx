@@ -402,39 +402,38 @@ function Home() {
 
 
       {/* CTA */}
-      <section className="relative px-6 py-28 md:px-10">
-        <div className="mx-auto max-w-5xl text-center">
-          <h2 className="font-display text-5xl uppercase leading-[0.95] md:text-8xl">
+      <section className="relative overflow-hidden px-6 py-32 md:px-10 md:py-40">
+        {/* Background photo */}
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{
+            backgroundImage: `url('${teamPhoto.url}')`,
+          }}
+          aria-hidden="true"
+        />
+        <div className="absolute inset-0 bg-background/85" aria-hidden="true" />
+        <div className="grain absolute inset-0" aria-hidden="true" />
+
+        <div className="relative z-10 mx-auto max-w-5xl text-center">
+          <h2 className="font-display text-5xl uppercase leading-[0.95] text-foreground md:text-8xl">
             Got something<br />
-            to <span style={{ color: "#eab308" }}>launch</span>?
+            to <span className="text-primary">launch</span>?
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-muted-foreground md:text-lg">
+          <p className="mx-auto mt-6 max-w-xl text-foreground/80 md:text-lg">
             Tell us what you're working on. We'll come back within 48 hours
             with a real point of view — not a sales deck.
           </p>
           <a
             href="mailto:hello@royagency.com"
-            className="mt-10 inline-block border border-foreground px-8 py-4 font-display text-sm uppercase tracking-[0.2em] transition-colors hover:bg-foreground hover:text-background"
+            className="mt-10 inline-block border border-foreground px-8 py-4 font-display text-sm uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-foreground hover:text-background"
           >
             Start a project →
           </a>
-          <div className="mt-6 flex items-center justify-center gap-6 text-xs uppercase tracking-[0.18em] text-muted-foreground">
+          <div className="mt-6 flex items-center justify-center gap-6 text-xs uppercase tracking-[0.18em] text-foreground/70">
             <Link to="/work" className="transition-colors hover:text-foreground">View selected work</Link>
             <span className="text-foreground/30">·</span>
             <Link to="/blog" className="transition-colors hover:text-foreground">Read the journal</Link>
           </div>
-        </div>
-      </section>
-
-      {/* Behind the scenes */}
-      <section className="relative px-6 pb-16 md:px-10 md:pb-24">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-sm">
-          <img
-            src={teamPhoto.url}
-            alt="The ROY Agency crew on set in a gymnasium filming with cameras, lights, and crew."
-            className="h-auto w-full object-cover"
-            loading="lazy"
-          />
         </div>
       </section>
 
