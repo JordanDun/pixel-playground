@@ -4,6 +4,7 @@ import weldingPhoto from "@/assets/welding.jpg";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
+import { ReelSection } from "@/components/ReelSection";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/")({
@@ -305,6 +306,9 @@ function Home() {
 
       {/* Client logos — scrolling marquee right under the hero */}
       <LogoMarquee />
+
+      {/* Reel — the hero's expanded video lands into a real, playable reel */}
+      <ReelSection />
 
       {/* Intro / Manifesto — full-screen takeover, EP+Co style */}
 
