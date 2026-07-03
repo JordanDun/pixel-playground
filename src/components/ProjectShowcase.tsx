@@ -136,7 +136,6 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
     let animating = false;
     let lockUntil = 0;
     const DURATION = 900;
-    const ENTRY_DURATION = 550; // shorter, snappier snap when entering the cluster
     const COOLDOWN = 250;
 
     const ease = (t: number) =>
