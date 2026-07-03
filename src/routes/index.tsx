@@ -208,13 +208,12 @@ function Home() {
     viewport.w * (isDesktop ? 0.12 : 0.18),
     isDesktop ? 176 : 112
   );
-  const lineHeightPx = heroFontPx * 0.95;
-  const startStripW = isDesktop ? Math.min(viewport.w * 0.78, 1600) : viewport.w * 0.92;
-  const endStripW = viewport.w;
-  const startStripH = lineHeightPx;
-  const endStripH = viewport.h;
-  const fgWidthPx = lerp(startStripW, endStripW, scaleProgress);
-  const fgHeightPx = lerp(startStripH, endStripH, scaleProgress);
+  // Original vw-based sticky scale (kept intact — user liked this feel).
+  const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
+  const startWvw = isDesktop ? 78 : 92;
+  const fgWidth = lerp(startWvw, 100, scaleProgress);
+  const fgHeightVw = lerp(lineVw, 0, scaleProgress);
+  const fgHeightVh = lerp(0, 100, scaleProgress);
   const radius = 6 - 6 * scaleProgress;
 
 
