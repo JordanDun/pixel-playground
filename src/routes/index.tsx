@@ -200,22 +200,7 @@ function Home() {
     };
   }, []);
 
-  // Enable full-page snap-scrolling only while the viewer is inside the
-  // project-showcase cluster. Elsewhere the page scrolls normally so the
-  // hero's 220vh sticky scale still works.
-  useEffect(() => {
-    const onScroll = () => {
-      const el = document.getElementById("project-showcase");
-      if (!el) return;
-      const rect = el.getBoundingClientRect();
-      const mid = window.innerHeight * 0.5;
-      const active = rect.top < mid && rect.bottom > mid;
-      document.documentElement.classList.toggle("snap-mandatory", active);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  // (fullPage-style snap is handled inside ProjectShowcase via wheel hijack.)
 
   // Hero headline scales with viewport but is capped so ultrawide monitors
   // don't blow it out past the FG video strip.
