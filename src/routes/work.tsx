@@ -107,6 +107,21 @@ const PROJECTS: Array<{
   { client: "CRAFTSMAN", title: "V20 Sprayer — :60 Web Bumper", category: "Web Spot", year: "2022", vimeoId: "691013951" },
 ];
 
+const FEATURED_VIDEOS: Array<{
+  client: string;
+  title: string;
+  category: string;
+  vimeoId?: string;
+  poster?: string;
+}> = [
+  { client: "Client 1", title: "Featured Video 1", category: "Brand Film", poster: reelCover },
+  { client: "Client 2", title: "Featured Video 2", category: "Commercial", poster: reelCover },
+  { client: "Client 3", title: "Featured Video 3", category: "Social Campaign", poster: reelCover },
+  { client: "Client 4", title: "Featured Video 4", category: "Product Spot", poster: reelCover },
+  { client: "Client 5", title: "Featured Video 5", category: "Documentary", poster: reelCover },
+  { client: "Client 6", title: "Featured Video 6", category: "Brand Film", poster: reelCover },
+];
+
 function WorkPage() {
   const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string } | null>(null);
 
