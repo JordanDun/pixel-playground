@@ -96,9 +96,13 @@ function ProjectPanel({ project }: { project: Project }) {
           <p className="font-sans text-[10px] uppercase tracking-[0.32em] text-white/70">
             {project.eyebrow}
           </p>
-          <h2 className="mt-3 font-display uppercase leading-[0.95] text-white text-3xl md:text-4xl lg:text-5xl">
+          <h2
+            className="mt-3 leading-[0.95] text-white text-3xl md:text-4xl lg:text-5xl"
+            style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
+          >
             {project.title}
           </h2>
+
           <p className="mt-4 font-serif italic text-base leading-snug text-white/85 md:text-lg">
             {project.tagline}
           </p>
