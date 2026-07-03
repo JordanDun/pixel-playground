@@ -112,8 +112,103 @@ function ProjectPanel({ project }: { project: Project }) {
 }
 
 export function ProjectShowcase({ id }: { id?: string } = {}) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+
+  // fullPage.js-style scroll hijack: while the viewer is inside the project
+  // cluster, one wheel tick / swipe advances one panel via an eased tween.
+  // Above and below the cluster the page scrolls normally.
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    // Only run on devices with a fine pointer (desktop). Mobile keeps native
+    // touch scroll — hijacking touch feels awful.
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!finePointer) return;
+
+    const panels = () =>
+      Array.from(container.querySelectorAll<HTMLElement>(".project-panel"));
+
+    let animating = false;
+    let lockUntil = 0;
+    const DURATION = 900;
+    const COOLDOWN = 250; // ms after animation before next wheel tick counts
+
+    const ease = (t: number) =>
+      t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+    const tween = (to: number) => {
+      animating = true;
+      const from = window.scrollY;
+      const dist = to - from;
+      const start = performance.now();
+      const step = (now: number) => {
+        const p = Math.min(1, (now - start) / DURATION);
+        window.scrollTo(0, from + dist * ease(p));
+        if (p < 1) requestAnimationFrame(step);
+        else {
+          animating = false;
+          lockUntil = performance.now() + COOLDOWN;
+        }
+      };
+      requestAnimationFrame(step);
+    };
+
+    const currentIndex = () => {
+      const list = panels();
+      const mid = window.scrollY + window.innerHeight / 2;
+      for (let i = 0; i < list.length; i++) {
+        const top = list[i].offsetTop;
+        const bottom = top + list[i].offsetHeight;
+        if (mid >= top && mid < bottom) return i;
+      }
+      return -1;
+    };
+
+    const onWheel = (e: WheelEvent) => {
+      if (animating) {
+        e.preventDefault();
+        return;
+      }
+      if (performance.now() < lockUntil) {
+        e.preventDefault();
+        return;
+      }
+      const list = panels();
+      if (!list.length) return;
+      const idx = currentIndex();
+      const dir = e.deltaY > 0 ? 1 : -1;
+
+      // Approaching the cluster from above/below: pull user into it.
+      if (idx === -1) {
+        const firstTop = list[0].offsetTop;
+        const lastTop = list[list.length - 1].offsetTop;
+        const y = window.scrollY;
+        const vh = window.innerHeight;
+        if (dir > 0 && y < firstTop && firstTop - y < vh * 0.6) {
+          e.preventDefault();
+          tween(firstTop);
+        } else if (dir < 0 && y > lastTop && y - lastTop < vh * 0.6) {
+          e.preventDefault();
+          tween(lastTop);
+        }
+        return;
+      }
+
+      const next = idx + dir;
+      if (next < 0 || next >= list.length) {
+        // Release control at the edges so the page keeps scrolling.
+        return;
+      }
+      e.preventDefault();
+      tween(list[next].offsetTop);
+    };
+
+    window.addEventListener("wheel", onWheel, { passive: false });
+    return () => window.removeEventListener("wheel", onWheel);
+  }, []);
+
   return (
-    <div id={id} className="relative">
+    <div id={id} ref={containerRef} className="relative">
       {PROJECTS.map((p) => (
         <ProjectPanel key={p.title} project={p} />
       ))}
