@@ -293,14 +293,13 @@ function Home() {
               }}
             >
               {videosReady && (
-                <video
-                  src={REEL_VIDEO}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
+                <iframe
+                  src={FG_VIDEO}
                   title="ROY foreground reel"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  loading="lazy"
                   className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 object-cover md:w-[110vw]"
+                  style={{ border: 0 }}
                 />
               )}
             </div>
