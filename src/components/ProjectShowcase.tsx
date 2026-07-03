@@ -111,9 +111,9 @@ function ProjectPanel({ project }: { project: Project }) {
   );
 }
 
-export function ProjectShowcase() {
+export function ProjectShowcase({ id }: { id?: string } = {}) {
   return (
-    <div className="relative">
+    <div id={id} className="relative">
       {PROJECTS.map((p) => (
         <ProjectPanel key={p.title} project={p} />
       ))}
