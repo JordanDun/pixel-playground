@@ -318,9 +318,8 @@ function Home() {
             <div
               className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
               style={{
-                width: `${fgWidth}vw`,
-                // Interpolate from 16:9 (sized in vw) to full 100vh
-                height: `calc(${fgHeightVw}vw + ${fgHeightVh}vh)`,
+                width: `${fgWidthPx}px`,
+                height: `${fgHeightPx}px`,
                 borderRadius: `${radius}px`,
               }}
             >
@@ -388,7 +387,7 @@ function Home() {
       </section>
 
       {/* Selected work — full-screen video showcases */}
-      <ProjectShowcase />
+      <ProjectShowcase id="project-showcase" />
 
 
       {/* Stats */}
