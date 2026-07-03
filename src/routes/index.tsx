@@ -427,12 +427,12 @@ function Home() {
             Tell us what you're working on. We'll come back within 48 hours
             with a real point of view — not a sales deck.
           </p>
-          <a
-            href="mailto:hello@royagency.com"
+          <Link
+            to="/contact"
             className="mt-10 inline-block border border-foreground px-8 py-4 font-display text-sm uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-foreground hover:text-background"
           >
             Start a project →
-          </a>
+          </Link>
           <div className="mt-6 flex items-center justify-center gap-6 text-xs uppercase tracking-[0.18em] text-foreground/70">
             <Link to="/work" className="transition-colors hover:text-foreground">View selected work</Link>
             <span className="text-foreground/30">·</span>
