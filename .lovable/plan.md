@@ -1,47 +1,33 @@
-## Plan: Land the scroll-scale into a real reel section
+## Goal
 
-Right now the FG video expands to fullscreen during the sticky scroll, then the page just… moves on to the logo marquee. The reel never gets a moment. This plan turns that expansion into a *transition into* a proper reel section, placed right after the logo marquee.
+Remove the "pulled in too early" feeling by making the scroll hand off cleanly. Native scroll everywhere, then wheel-snap kicks in only once you're actually parked on the first project panel.
 
-### 1. Hero stays as-is (`src/routes/index.tsx`)
+## Behavior
 
-- Keep the sticky scroll-scale mechanic exactly as it is — "YOUR ___ AGENCY" typography and the FG video expanding to fullscreen.
-- No changes to hero height, timing, or feel.
+```text
+[ hero sticky scale ]      native scroll (with sticky scrub)
+[ logos / manifesto  ]     native scroll
+[ Pickups Plus       ]  ←  handoff: once panel top ≈ viewport top
+[ Big Bus            ]     wheel-snap between panels (900ms eased)
+[ Craftsman          ]     wheel-snap between panels
+                        ←  handoff back: last panel bottom leaves top
+[ stats / CTA        ]     native scroll
+```
 
-### 2. New section: `<ReelSection />` — directly after `<LogoMarquee />`
+No more pull-in from above or below. If you're scrolling down through the manifesto, nothing hijacks your wheel until Pickups Plus is fully seated at the top. Same going the other way — Craftsman has to be fully at the top before scrolling up hijacks.
 
-A dedicated, full-bleed reel moment that visually continues from where the hero's fullscreen video left off.
+## Implementation notes (technical)
 
-- **Full-viewport-width 16:9 stage**, dark background, edge-to-edge (no side padding on desktop; small inset on mobile).
-- **Overlay UI on top of the video:**
-  - Top-left: `2024 REEL` label in the display font, small caps, tracked out.
-  - Top-right: runtime (e.g. `1:32`) + `SOUND ON` / `SOUND OFF` toggle.
-  - Center: large circular outlined play button (~120px), subtle pulse. Clicking it swaps the muted background embed for the full-sound, controls-on version and enters fullscreen.
-- **Below the video** (same section, generous padding):
-  - Left: short line — "A look at what came out of the studio this year."
-  - Right: text link → "See all work" routing to `/work`.
+In `src/components/ProjectShowcase.tsx`:
 
-### 3. Visual continuity with the hero
+- Delete the "approaching from above/below" branch (the `idx === -1` block that tweens toward `firstTop` / `lastTop`).
+- The wheel handler only intercepts when `currentIndex()` returns a real index (0, 1, or 2) — i.e. the viewport midline is inside one of the three panels.
+- Tighten the "am I on this panel" check with a small tolerance (e.g. ±8px of the panel top) so the handoff fires exactly when the panel is seated, not while it's still sliding in from native scroll.
+- Keep the existing 900ms eased tween between adjacent panels.
+- Keep the edge release (scrolling down on Craftsman or up on Pickups Plus does nothing — native scroll continues).
 
-- Reel stage opens at the same visual weight the hero ended on (full width, 16:9).
-- Rounded-corner treatment matches (0px mobile, subtle 6px inset desktop).
-- Logo marquee sits between them as a "breath" — thin band of client proof before the reel plays.
+No changes to hero, manifesto, or CTA. No CSS scroll-snap (already removed).
 
-### 4. Interaction
+## Tradeoff to be aware of
 
-- Default: muted, autoplaying, looping background embed (same treatment as hero FG).
-- On play-button click: replace the iframe `src` with the un-backgrounded Vimeo URL (`autoplay=1`, controls visible, sound on), and request fullscreen on the iframe container. No modal, no video-player library.
-
-### 5. Not changing
-
-- Hero typography, cycling word, scroll-scale.
-- Manifesto, stats, CTA, Instagram, footer.
-- Logo marquee.
-- No new dependencies.
-
-### Technical notes
-
-- New component: `src/components/ReelSection.tsx`. Client-side (`useState` for play state, `useRef` for fullscreen API). Same lazy-mount pattern as the hero iframes (`requestIdleCallback`) so we don't add a third eager Vimeo player to first paint.
-
-### Open question before build
-
-Is the current FG video (Vimeo `1103295539`) the actual 2024 reel we want people to play, or is there a different, longer cut we should point at? If different, I'll need the Vimeo ID and runtime. If you're not sure, I'll default to `1103295539` and you can swap the ID later.
+With this change, the transition from manifesto → Pickups Plus is 100% native scroll. That means on a fast trackpad flick, you may briefly land partway into Pickups Plus and then a subsequent wheel tick snaps you to Big Bus. That's the price of not grabbing early. If it still feels off after trying it, the fallback is to add a very light "settle" — after native scroll stops with a panel > 25% visible, gently tween it to seated. I'd try without that first.
