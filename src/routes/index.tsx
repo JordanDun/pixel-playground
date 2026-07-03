@@ -203,14 +203,15 @@ function Home() {
   // (fullPage-style snap is handled inside ProjectShowcase via wheel hijack.)
 
   // Hero headline scales with viewport but is capped so ultrawide monitors
-  // don't blow it out past the FG video strip.
-  const heroFontPx = Math.min(
-    viewport.w * (isDesktop ? 0.12 : 0.18),
-    isDesktop ? 176 : 112
-  );
-  // Original vw-based sticky scale (kept intact — user liked this feel).
-  const lineVw = isDesktop ? 12 * 0.95 : 18 * 0.95;
-  const startWvw = isDesktop ? 78 : 92;
+  // don't blow it out past the FG video strip. The strip's initial size
+  // uses the same cap so text and strip stay in proportion.
+  const rawFontVw = isDesktop ? 12 : 18;
+  const cap = isDesktop ? 176 : 112;
+  const rawFontPx = viewport.w * (rawFontVw / 100);
+  const scale = Math.min(1, cap / Math.max(rawFontPx, 1));
+  const heroFontPx = rawFontPx * scale;
+  const lineVw = (isDesktop ? 12 * 0.95 : 18 * 0.95) * scale;
+  const startWvw = (isDesktop ? 78 : 92) * scale;
   const fgWidth = lerp(startWvw, 100, scaleProgress);
   const fgHeightVw = lerp(lineVw, 0, scaleProgress);
   const fgHeightVh = lerp(0, 100, scaleProgress);
