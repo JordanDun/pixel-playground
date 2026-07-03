@@ -136,18 +136,19 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
     let animating = false;
     let lockUntil = 0;
     const DURATION = 900;
+    const ENTRY_DURATION = 550; // shorter, snappier snap when entering the cluster
     const COOLDOWN = 250;
 
     const ease = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
-    const tween = (to: number) => {
+    const tween = (to: number, duration = DURATION) => {
       animating = true;
       const from = window.scrollY;
       const dist = to - from;
       const start = performance.now();
       const step = (now: number) => {
-        const p = Math.min(1, (now - start) / DURATION);
+        const p = Math.min(1, (now - start) / duration);
         window.scrollTo(0, from + dist * ease(p));
         if (p < 1) requestAnimationFrame(step);
         else {
@@ -188,12 +189,15 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
         const lastTop = docTop(list[list.length - 1]);
         const y = window.scrollY;
         const vh = window.innerHeight;
-        if (dir > 0 && y < firstTop && firstTop - y < vh * 0.6) {
+        // Grab control earlier (as soon as the first panel is within ~1 vh)
+        // and use a shorter tween so the entry doesn't feel like a big jump
+        // on top of trackpad momentum.
+        if (dir > 0 && y < firstTop && firstTop - y < vh * 1.1) {
           e.preventDefault();
-          tween(firstTop);
-        } else if (dir < 0 && y > lastTop && y - lastTop < vh * 0.6) {
+          tween(firstTop, ENTRY_DURATION);
+        } else if (dir < 0 && y > lastTop && y - lastTop < vh * 1.1) {
           e.preventDefault();
-          tween(lastTop);
+          tween(lastTop, ENTRY_DURATION);
         }
         return;
       }
