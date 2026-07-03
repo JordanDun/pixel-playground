@@ -122,22 +122,7 @@
     to   { opacity: 1; transform: translateY(0) skewY(0); filter: blur(0); }
   }
 
-  /* Full-page snap scroll — only active while the viewer is inside the
-     project-showcase cluster (toggled from JS on scroll). Elsewhere the
-     page scrolls normally so the hero's 220vh sticky scale still works. */
-  html {
-    scroll-behavior: smooth;
-  }
-  html.snap-mandatory {
-    scroll-snap-type: y mandatory;
-  }
-  .project-panel {
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-  @media (prefers-reduced-motion: reduce) {
-    html.snap-mandatory { scroll-snap-type: none; }
-    html { scroll-behavior: auto; }
-  }
+  /* Project showcase uses a JS-driven fullPage-style scroll (see
+     ProjectShowcase.tsx). No CSS scroll-snap here — it fights the JS tween. */
 }
 
