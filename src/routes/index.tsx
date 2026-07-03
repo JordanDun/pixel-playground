@@ -302,8 +302,8 @@ function Home() {
             <div
               className="relative overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)]"
               style={{
-                width: `${fgWidthPx}px`,
-                height: `${fgHeightPx}px`,
+                width: `${fgWidth}vw`,
+                height: `calc(${fgHeightVw}vw + ${fgHeightVh}vh)`,
                 borderRadius: `${radius}px`,
               }}
             >
