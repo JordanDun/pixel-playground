@@ -14,32 +14,33 @@ export const Route = createFileRoute("/work")({
     const videoSchema = {
       "@context": "https://schema.org",
       "@type": "ItemList",
-      itemListElement: PROJECTS.map((project, i) => {
-        const thumbnail = project.vimeoId
-          ? `https://vumbnail.com/${project.vimeoId}.jpg`
-          : project.poster
-          ? `${origin}${project.poster}`
+      itemListElement: FEATURED_VIDEOS.map((video, i) => {
+        const thumbnail = video.vimeoId
+          ? `https://vumbnail.com/${video.vimeoId}.jpg`
+          : video.poster
+          ? `${origin}${video.poster}`
           : `${origin}/og-roy.jpg`;
-        const embedUrl = project.vimeoId
-          ? `https://player.vimeo.com/video/${project.vimeoId}`
-          : project.driveFileId
-          ? `https://drive.google.com/file/d/${project.driveFileId}/preview`
+        const embedUrl = video.vimeoId
+          ? `https://player.vimeo.com/video/${video.vimeoId}`
+          : video.driveFileId
+          ? `https://drive.google.com/file/d/${video.driveFileId}/preview`
           : undefined;
         return {
           "@type": "ListItem",
           position: i + 1,
           item: {
             "@type": "VideoObject",
-            name: project.title,
-            description: `${project.category} video production by ROY Agency for ${project.client}.`,
+            name: `${video.client} — ${video.title}`,
+            description: video.description,
             thumbnailUrl: thumbnail,
             embedUrl,
-            uploadDate: `${project.year}-01-01`,
+            uploadDate: "2024-01-01",
             author: { "@type": "Organization", name: "ROY Agency" },
           },
         };
       }),
     };
+
     return {
       meta: [
         { title },
