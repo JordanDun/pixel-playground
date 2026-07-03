@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
-import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
@@ -104,7 +103,8 @@ export const Route = createFileRoute("/")({
 
 const CYCLING_WORDS = ["CREATIVE", "VIDEO", "SOCIAL", "MARKETING", "GRAPHIC", "ANIMATION", "BRAND"];
 
-const REEL_VIDEO = reelAsset.url;
+const BG_VIDEO = "https://player.vimeo.com/video/912330431?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p#t=0,50s";
+const FG_VIDEO = "https://player.vimeo.com/video/1103295539?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=720p";
 
 
 function Home() {
@@ -219,14 +219,13 @@ function Home() {
           {/* Background video */}
           <div className="absolute inset-0">
             {videosReady && (
-              <video
-                src={REEL_VIDEO}
-                autoPlay
-                muted
-                loop
-                playsInline
+              <iframe
+                src={BG_VIDEO}
                 title="ROY background reel"
-                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 object-cover grayscale md:w-[120vw]"
+                allow="autoplay; fullscreen; picture-in-picture"
+                loading="lazy"
+                className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
+                style={{ border: 0, pointerEvents: "none" }}
               />
             )}
             <div className="absolute inset-0 bg-background/75" />
@@ -293,14 +292,13 @@ function Home() {
               }}
             >
               {videosReady && (
-                <video
-                  src={REEL_VIDEO}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
+                <iframe
+                  src={FG_VIDEO}
                   title="ROY foreground reel"
-                  className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 object-cover md:w-[110vw]"
+                  allow="autoplay; fullscreen; picture-in-picture"
+                  loading="lazy"
+                  className="absolute left-1/2 top-1/2 h-[110vh] w-[200vw] -translate-x-1/2 -translate-y-1/2 md:w-[110vw]"
+                  style={{ border: 0 }}
                 />
               )}
             </div>
