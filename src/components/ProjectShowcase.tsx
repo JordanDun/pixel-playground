@@ -125,13 +125,18 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
     const finePointer = window.matchMedia("(pointer: fine)").matches;
     if (!finePointer) return;
 
+    // Document-relative top of a panel (offsetTop is relative to the nearest
+    // positioned ancestor, so it's wrong for window.scrollTo).
+    const docTop = (el: HTMLElement) =>
+      el.getBoundingClientRect().top + window.scrollY;
+
     const panels = () =>
       Array.from(container.querySelectorAll<HTMLElement>(".project-panel"));
 
     let animating = false;
     let lockUntil = 0;
     const DURATION = 900;
-    const COOLDOWN = 250; // ms after animation before next wheel tick counts
+    const COOLDOWN = 250;
 
     const ease = (t: number) =>
       t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
@@ -157,7 +162,7 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
       const list = panels();
       const mid = window.scrollY + window.innerHeight / 2;
       for (let i = 0; i < list.length; i++) {
-        const top = list[i].offsetTop;
+        const top = docTop(list[i]);
         const bottom = top + list[i].offsetHeight;
         if (mid >= top && mid < bottom) return i;
       }
@@ -178,10 +183,9 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
       const idx = currentIndex();
       const dir = e.deltaY > 0 ? 1 : -1;
 
-      // Approaching the cluster from above/below: pull user into it.
       if (idx === -1) {
-        const firstTop = list[0].offsetTop;
-        const lastTop = list[list.length - 1].offsetTop;
+        const firstTop = docTop(list[0]);
+        const lastTop = docTop(list[list.length - 1]);
         const y = window.scrollY;
         const vh = window.innerHeight;
         if (dir > 0 && y < firstTop && firstTop - y < vh * 0.6) {
@@ -195,12 +199,9 @@ export function ProjectShowcase({ id }: { id?: string } = {}) {
       }
 
       const next = idx + dir;
-      if (next < 0 || next >= list.length) {
-        // Release control at the edges so the page keeps scrolling.
-        return;
-      }
+      if (next < 0 || next >= list.length) return;
       e.preventDefault();
-      tween(list[next].offsetTop);
+      tween(docTop(list[next]));
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
