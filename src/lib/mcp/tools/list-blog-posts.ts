@@ -1,5 +1,4 @@
 import { defineTool } from "@lovable.dev/mcp-js";
-import { z } from "zod";
 import { BLOG_POSTS } from "@/lib/blog-posts";
 
 export default defineTool({
@@ -29,5 +28,3 @@ export default defineTool({
     },
   }),
 });
-
-export const _z = z;
