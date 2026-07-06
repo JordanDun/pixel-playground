@@ -152,18 +152,15 @@ function WorkPage() {
 
 
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground [&_.font-display]:font-serif [&_.font-display]:font-normal [&_.font-display]:normal-case [&_.font-display]:tracking-tight">
       {/* Page header */}
       <section className="px-6 pt-24 pb-8 md:px-10">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           Selected work
         </p>
-        <h1
-          className="mt-4 text-6xl uppercase leading-[0.9] md:text-8xl"
-          style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
-        >
+        <h1 className="font-display mt-4 text-6xl leading-[0.9] md:text-8xl">
           Video Production<br />
-          <span className="text-primary">that performs.</span>
+          <span className="text-primary italic">that performs.</span>
         </h1>
         <p className="mt-6 max-w-4xl text-base leading-relaxed text-muted-foreground md:text-lg">
           Based in Columbus, Ohio, ROY Agency produces commercial video, brand films, and product spots for companies across the Midwest and nationwide. Our work blends cinematic storytelling with performance-driven creative, built to stop the scroll, communicate value, and convert on every platform.
