@@ -174,7 +174,7 @@ function WorkPage() {
                   hasVideo &&
                   setActiveVideo(
                     video.vimeoId
-                      ? { kind: "vimeo", id: video.vimeoId }
+                      ? { kind: "vimeo", id: video.vimeoId, hash: video.vimeoHash }
                       : { kind: "drive", id: video.driveFileId! },
                   )
                 }
