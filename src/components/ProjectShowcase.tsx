@@ -98,8 +98,12 @@ function ProjectPanel({ project }: { project: Project }) {
           title={project.title}
           allow="autoplay; fullscreen; picture-in-picture"
           loading="lazy"
-          className="absolute inset-0 h-full w-full border-0 object-cover"
-          style={{ pointerEvents: "none" }}
+          className="absolute left-1/2 top-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2 border-0"
+          style={{
+            pointerEvents: "none",
+            minWidth: "177.78vh",
+            minHeight: "56.25vw",
+          }}
         />
       ) : (
         <video
@@ -112,6 +116,7 @@ function ProjectPanel({ project }: { project: Project }) {
           className="absolute inset-0 h-full w-full object-cover"
         />
       )}
+
       {/* Vignette + bottom scrim for legibility, close to royagency.com treatment */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
       <div className="grain absolute inset-0 opacity-40" />
@@ -144,11 +149,14 @@ function ProjectPanel({ project }: { project: Project }) {
           </p>
           <Link
             to="/work"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
+            className="group mt-6 inline-flex items-center gap-3 font-sans text-sm font-medium text-white transition-colors hover:text-primary"
           >
-            <span>Watch with audio</span>
-            <span>→</span>
+            <span>Watch</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </Link>
+
         </div>
       </div>
     </section>
