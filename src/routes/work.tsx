@@ -71,11 +71,10 @@ const FEATURED_VIDEOS: Array<{
   poster?: string;
 }> = [
   {
-    client: "Status Solutions",
-    title: "Brand History",
-    description: "A cinematic look at two decades of life-safety innovation.",
-    driveFileId: "1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa",
-    poster: statusSolutionsPoster,
+    client: "Home Chef",
+    title: "The Most Important Meal of the Day",
+    description: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
+    vimeoId: "1037561887",
   },
   {
     client: "Pickups Plus",
@@ -90,10 +89,10 @@ const FEATURED_VIDEOS: Array<{
     vimeoId: "932863528",
   },
   {
-    client: "DeWalt",
-    title: "Built for the Job",
-    description: "Product storytelling that swings as hard as the tools.",
-    vimeoId: "499841967",
+    client: "Status Solutions",
+    title: "Network Animated Explainer",
+    description: "Motion-driven storytelling that makes a complex safety network feel simple.",
+    vimeoId: "912389278",
   },
   {
     client: "The Big Bus Project",
