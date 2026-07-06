@@ -72,6 +72,13 @@ const FEATURED_VIDEOS: Array<{
   poster?: string;
 }> = [
   {
+    client: "Pickups Plus",
+    title: "Built for the Haul",
+    description: "A brand film celebrating the trucks that get the job done.",
+    vimeoId: "912330431",
+    poster: "https://i.vimeocdn.com/video/2176478512-00f246f34c0de054b8853bb13d4aa4588e809fa049221227b722c0ffe63cd5db-d_1280x720?region=us",
+  },
+  {
     client: "Home Chef",
     title: "The Most Important Meal of the Day",
     description: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
@@ -79,12 +86,6 @@ const FEATURED_VIDEOS: Array<{
     poster: "https://i.vimeocdn.com/video/1964600306-9493e3dddce61abe8b56c7440bfe36d725ef78811001b9b5c21bf6aa596d61f8-d_1280x720?region=us",
   },
 
-  {
-    client: "Pickups Plus",
-    title: "Built for the Haul",
-    description: "A brand film celebrating the trucks that get the job done.",
-    vimeoId: "912330431",
-  },
   {
     client: "Film Cube",
     title: "Brand Video",
