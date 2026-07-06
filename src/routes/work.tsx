@@ -129,7 +129,7 @@ const FEATURED_VIDEOS: Array<{
 ];
 
 function WorkPage() {
-  const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string } | null>(null);
+  const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string; hash?: string } | null>(null);
 
   React.useEffect(() => {
     if (!activeVideo) return;
