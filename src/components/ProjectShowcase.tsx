@@ -149,11 +149,14 @@ function ProjectPanel({ project }: { project: Project }) {
           </p>
           <Link
             to="/work"
-            className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
+            className="group mt-6 inline-flex items-center gap-3 font-sans text-sm font-medium text-white transition-colors hover:text-primary"
           >
-            <span>Watch with audio</span>
-            <span>→</span>
+            <span>Watch</span>
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:translate-x-1">
+              →
+            </span>
           </Link>
+
         </div>
       </div>
     </section>
