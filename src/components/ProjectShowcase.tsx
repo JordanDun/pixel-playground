@@ -85,21 +85,33 @@ function ProjectPanel({ project }: { project: Project }) {
   }, []);
 
   const alignRight = project.align === "right";
+  const isVimeo = project.videoType === "vimeo";
 
   return (
     <section
       ref={sectionRef}
       className="project-panel relative h-screen w-full overflow-hidden bg-black"
     >
-      <video
-        ref={videoRef}
-        src={project.video}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {isVimeo ? (
+        <iframe
+          src={project.video}
+          title={project.title}
+          allow="autoplay; fullscreen; picture-in-picture"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full border-0 object-cover"
+          style={{ pointerEvents: "none" }}
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          src={project.video}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
       {/* Vignette + bottom scrim for legibility, close to royagency.com treatment */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
       <div className="grain absolute inset-0 opacity-40" />
@@ -130,11 +142,19 @@ function ProjectPanel({ project }: { project: Project }) {
           <p className="mt-4 max-w-lg font-sans text-sm leading-relaxed text-white/70">
             {project.body}
           </p>
+          <Link
+            to="/work"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
+          >
+            <span>Watch with audio</span>
+            <span>→</span>
+          </Link>
         </div>
       </div>
     </section>
   );
 }
+
 
 export function ProjectShowcase({ id }: { id?: string } = {}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
