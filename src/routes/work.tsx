@@ -76,7 +76,9 @@ const FEATURED_VIDEOS: Array<{
     title: "The Most Important Meal of the Day",
     description: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
     vimeoId: "1037561887",
+    poster: "https://i.vimeocdn.com/video/1964600306-9493e3dddce61abe8b56c7440bfe36d725ef78811001b9b5c21bf6aa596d61f8-d_1280x720?region=us",
   },
+
   {
     client: "Pickups Plus",
     title: "Built for the Haul",
@@ -109,16 +111,16 @@ const FEATURED_VIDEOS: Array<{
     vimeoId: "832437367",
   },
   {
-    client: "Craftsman",
-    title: "V20 Sprayer",
-    description: "A :60 web bumper designed to convert on first watch.",
-    vimeoId: "691013951",
-  },
-  {
     client: "Root Insurance",
     title: "Dr. Maria Johar",
     description: "A character-driven brand story that puts a real human face on modern insurance.",
     vimeoId: "393184619",
+  },
+  {
+    client: "Craftsman",
+    title: "V20 Sprayer",
+    description: "A :60 web bumper designed to convert on first watch.",
+    vimeoId: "691013951",
   },
   {
     client: "Crawford and Hoying",
@@ -128,6 +130,7 @@ const FEATURED_VIDEOS: Array<{
     vimeoHash: "db56628afb",
     poster: "https://i.vimeocdn.com/video/1798268775-34b629394893c9964782db052183d5c8e488d74f9355e57b1117571d78a5aafb-d_1280x720?region=us",
   },
+
 
 ];
 
