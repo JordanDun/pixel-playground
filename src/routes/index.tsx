@@ -472,15 +472,16 @@ function Home() {
 
           <div className="md:col-span-8 grid grid-cols-1 gap-8 sm:grid-cols-2">
             <InstagramPostCard
-              imageUrl="https://scontent-ams2-1.cdninstagram.com/v/t51.71878-15/624938559_1611991510143679_6921131479708103921_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=107&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0FST1VTRUxfSVRFTS5iZXN0X2ltYWdlX3VybGdlbi5DMyJ9&_nc_ohc=cIJACTWjiucQ7kNvwHt9FaA&_nc_oc=Adoeriwuc_HGQXrzio04VEmnFbpw77j4Pk4d78PmFf-YchrdbVb1MBCyZbxJ0pOR3WF8wwH-ogL_rKCSUV5arNk5&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=Kqt4ZtjrZwgzqwvsGE3XDQ&_nc_ss=7960f&oh=00_Af9sv1l4hc0ynmvzNnSGoNIRFifhlnQtSYLHjK0wZa8Pdw&oe=6A41D64D"
+              imageUrl="https://vumbnail.com/1103295539.jpg"
               caption="Some new work hot off the press for Ohio Steel Industries."
               postUrl="https://www.instagram.com/p/DA1L_Z5PA0F/"
             />
             <InstagramPostCard
-              imageUrl="https://scontent-ams2-1.cdninstagram.com/v/t51.71878-15/503080450_712486227812382_6342598413478077282_n.jpg?stp=cmp1_dst-jpg_e35_s640x640_tt6&_nc_cat=110&ccb=7-5&_nc_sid=18de74&efg=eyJlZmdfdGFnIjoiQ0xJUFMuYmVzdF9pbWFnZV91cmxnZW4uQzMifQ%3D%3D&_nc_ohc=HzL2VV_z2Z4Q7kNvwFcHIu6&_nc_oc=AdpW1hcLaT5byACRJJIYnOeoQBU1liLCYh66TW_yPiW1ByI4UHg6Q5FTd9ILDezYv28rApEwJc-VyGVGrqV1fM8L&_nc_zt=23&_nc_ht=scontent-ams2-1.cdninstagram.com&_nc_gid=pTdKDWp8bq43YLqjzwsHHg&_nc_ss=7960f&oh=00_Af_3TKe2oVGScF4pVsqvgmkzfo0fbFS1S0Ok9ZpCBz7vZw&oe=6A41F750"
+              imageUrl="https://vumbnail.com/932863528.jpg"
               caption="We're buzzed on flavor. Serving up a crispy :15 second Brewdog spot."
               postUrl="https://www.instagram.com/p/C5mA0ULvkyF/"
             />
+
           </div>
         </div>
       </section>
