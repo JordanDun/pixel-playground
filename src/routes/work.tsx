@@ -67,6 +67,7 @@ const FEATURED_VIDEOS: Array<{
   title: string;
   description: string;
   vimeoId?: string;
+  vimeoHash?: string;
   driveFileId?: string;
   poster?: string;
 }> = [
@@ -105,6 +106,25 @@ const FEATURED_VIDEOS: Array<{
     title: "V20 Sprayer",
     description: "A :60 web bumper designed to convert on first watch.",
     vimeoId: "691013951",
+  },
+  {
+    client: "Root Insurance",
+    title: "Dr. Maria Johar",
+    description: "A character-driven brand story that puts a real human face on modern insurance.",
+    vimeoId: "393184619",
+  },
+  {
+    client: "Bracket Builders",
+    title: "Andy Middendorf",
+    description: "An intimate profile piece spotlighting the craft and grit behind the build.",
+    vimeoId: "912805705",
+    vimeoHash: "db56628afb",
+  },
+  {
+    client: "Harvest Table",
+    title: "Brand Video",
+    description: "A cinematic brand film capturing the flavor, craft, and community at the table.",
+    vimeoId: "1198590759",
   },
 ];
 
