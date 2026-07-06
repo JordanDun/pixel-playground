@@ -319,6 +319,13 @@ function ExampleCard({
     <div className="relative aspect-video w-full overflow-hidden">
       {pill.video ? (
         <VideoPlayer video={pill.video} />
+      ) : pill.image ? (
+        <img
+          src={pill.image}
+          alt={`${pill.title} — ${section}`}
+          className="h-full w-full object-cover"
+          loading="lazy"
+        />
       ) : (
         <div
           className="flex h-full w-full flex-col justify-between p-6"
