@@ -231,7 +231,7 @@ function WorkPage() {
             <iframe
               src={
                 activeVideo.kind === "vimeo"
-                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0`
+                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0${activeVideo.hash ? `&h=${activeVideo.hash}` : ""}`
                   : `https://drive.google.com/file/d/${activeVideo.id}/preview`
               }
               className="absolute inset-0 h-full w-full"
