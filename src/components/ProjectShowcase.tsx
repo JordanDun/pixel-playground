@@ -98,8 +98,12 @@ function ProjectPanel({ project }: { project: Project }) {
           title={project.title}
           allow="autoplay; fullscreen; picture-in-picture"
           loading="lazy"
-          className="absolute inset-0 h-full w-full border-0 object-cover"
-          style={{ pointerEvents: "none" }}
+          className="absolute left-1/2 top-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2 border-0"
+          style={{
+            pointerEvents: "none",
+            minWidth: "177.78vh",
+            minHeight: "56.25vw",
+          }}
         />
       ) : (
         <video
@@ -112,6 +116,7 @@ function ProjectPanel({ project }: { project: Project }) {
           className="absolute inset-0 h-full w-full object-cover"
         />
       )}
+
       {/* Vignette + bottom scrim for legibility, close to royagency.com treatment */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
       <div className="grain absolute inset-0 opacity-40" />
