@@ -72,6 +72,13 @@ const FEATURED_VIDEOS: Array<{
   poster?: string;
 }> = [
   {
+    client: "Pickups Plus",
+    title: "Built for the Haul",
+    description: "A brand film celebrating the trucks that get the job done.",
+    vimeoId: "912330431",
+    poster: "https://i.vimeocdn.com/video/2176478512-00f246f34c0de054b8853bb13d4aa4588e809fa049221227b722c0ffe63cd5db-d_1280x720?region=us",
+  },
+  {
     client: "Home Chef",
     title: "The Most Important Meal of the Day",
     description: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
@@ -79,12 +86,6 @@ const FEATURED_VIDEOS: Array<{
     poster: "https://i.vimeocdn.com/video/1964600306-9493e3dddce61abe8b56c7440bfe36d725ef78811001b9b5c21bf6aa596d61f8-d_1280x720?region=us",
   },
 
-  {
-    client: "Pickups Plus",
-    title: "Built for the Haul",
-    description: "A brand film celebrating the trucks that get the job done.",
-    vimeoId: "912330431",
-  },
   {
     client: "Film Cube",
     title: "Brand Video",
@@ -153,15 +154,15 @@ function WorkPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Page header */}
-      <section className="px-6 pt-32 pb-8 md:px-10">
+      <section className="px-6 pt-16 pb-2 md:px-10">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           Selected work
         </p>
-        <h1 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
-          Projects<br />
-          <span className="text-primary">that perform.</span>
+        <h1 className="mt-2 font-display text-5xl uppercase leading-[0.9] md:text-7xl">
+          Video Production<br />
+          <span className="text-primary">that performs.</span>
         </h1>
-        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
+        <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground md:text-base">
           Based in Columbus, Ohio, ROY Agency produces commercial video, brand films, and product spots for companies across the Midwest and nationwide. Our work blends cinematic storytelling with performance-driven creative, built to stop the scroll, communicate value, and convert on every platform.
         </p>
       </section>
