@@ -84,6 +84,13 @@ const FEATURED_VIDEOS: Array<{
     vimeoId: "912330431",
   },
   {
+    client: "Film Cube",
+    title: "Brand Video",
+    description: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
+    vimeoId: "1198590759",
+    poster: "https://i.vimeocdn.com/video/2165229376-da9076abb80aa9a153230d858cc6e9a32f35b924ce08c82eb8ac6530f4213fcc-d_1280x720?region=us",
+  },
+  {
     client: "BrewDog",
     title: "Buzzed on Flavor",
     description: "A punchy brand spot pouring personality into every frame.",
@@ -114,18 +121,14 @@ const FEATURED_VIDEOS: Array<{
     vimeoId: "393184619",
   },
   {
-    client: "Bracket Builders",
-    title: "Andy Middendorf",
-    description: "An intimate profile piece spotlighting the craft and grit behind the build.",
+    client: "Crawford and Hoying",
+    title: "Bracket Builders",
+    description: "A people-first profile piece spotlighting the leadership and craft behind Bracket Builders.",
     vimeoId: "912805705",
     vimeoHash: "db56628afb",
+    poster: "https://i.vimeocdn.com/video/1798268775-34b629394893c9964782db052183d5c8e488d74f9355e57b1117571d78a5aafb-d_1280x720?region=us",
   },
-  {
-    client: "Harvest Table",
-    title: "Brand Video",
-    description: "A cinematic brand film capturing the flavor, craft, and community at the table.",
-    vimeoId: "1198590759",
-  },
+
 ];
 
 function WorkPage() {
