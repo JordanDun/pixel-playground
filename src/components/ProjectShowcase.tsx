@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import pickupsAsset from "@/assets/pickups-plus.mp4.asset.json";
 import bigBusAsset from "@/assets/big-bus.mp4.asset.json";
@@ -9,16 +10,35 @@ type Project = {
   tagline: string;
   body: string;
   video: string;
+  videoType?: "video" | "vimeo";
   align?: "left" | "right";
 };
 
 const PROJECTS: Project[] = [
+  {
+    eyebrow: "Home Chef",
+    title: "The Most Important Meal of the Day",
+    tagline: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
+    body: "We built a breakfast spot that feels as inviting as the product itself — performance-driven creative built to convert on every platform.",
+    video: "https://player.vimeo.com/video/1037561887?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
+    videoType: "vimeo",
+    align: "left",
+  },
   {
     eyebrow: "Pickups Plus Cars",
     title: "No Matter What You Drive",
     tagline: "A high-octane :60 web spot for the Pickups Plus brand refresh.",
     body: "A brand refresh built for the shop that treats every truck like it matters — from the daily driver to the weekend build.",
     video: pickupsAsset.url,
+    align: "right",
+  },
+  {
+    eyebrow: "Film Cube",
+    title: "Brand Video",
+    tagline: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
+    body: "We distilled Film Cube's identity into a fast, visual introduction that works as a brand anchor across every channel.",
+    video: "https://player.vimeo.com/video/1198590759?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
+    videoType: "vimeo",
     align: "left",
   },
   {
@@ -38,6 +58,7 @@ const PROJECTS: Project[] = [
     align: "left",
   },
 ];
+
 
 function ProjectPanel({ project }: { project: Project }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
