@@ -2,6 +2,7 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Plus, X } from "lucide-react";
 import { getRequestOrigin } from "@/lib/origin.functions";
+import interviewBtsAsset from "@/assets/interview-bts.jpg.asset.json";
 
 export const Route = createFileRoute("/services")({
   loader: () => getRequestOrigin(),
