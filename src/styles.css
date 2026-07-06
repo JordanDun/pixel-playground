@@ -4,11 +4,12 @@
 
 @font-face {
   font-family: "Tiempos Headline";
-  src: url("/__l5e/assets-v1/34c4a437-e37f-4d3f-b9f2-6a8880bd3d98/tiempos-headline-medium.woff2") format("woff2");
+  src: url("/__l5e/assets-v1/ad01ba89-9441-4f47-ac86-b98567fe5ed6/tiempos-headline-medium-2.woff2") format("woff2");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
+
 
 @custom-variant dark (&:is(.dark *));
 

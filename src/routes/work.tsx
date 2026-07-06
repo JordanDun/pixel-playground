@@ -158,7 +158,10 @@ function WorkPage() {
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           Selected work
         </p>
-        <h1 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
+        <h1
+          className="mt-4 text-6xl uppercase leading-[0.9] md:text-8xl"
+          style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
+        >
           Video Production<br />
           <span className="text-primary">that performs.</span>
         </h1>
