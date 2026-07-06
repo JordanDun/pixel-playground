@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import pickupsAsset from "@/assets/pickups-plus.mp4.asset.json";
 import bigBusAsset from "@/assets/big-bus.mp4.asset.json";
@@ -9,16 +10,35 @@ type Project = {
   tagline: string;
   body: string;
   video: string;
+  videoType?: "video" | "vimeo";
   align?: "left" | "right";
 };
 
 const PROJECTS: Project[] = [
+  {
+    eyebrow: "Home Chef",
+    title: "The Most Important Meal of the Day",
+    tagline: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
+    body: "We built a breakfast spot that feels as inviting as the product itself — performance-driven creative built to convert on every platform.",
+    video: "https://player.vimeo.com/video/1037561887?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
+    videoType: "vimeo",
+    align: "left",
+  },
   {
     eyebrow: "Pickups Plus Cars",
     title: "No Matter What You Drive",
     tagline: "A high-octane :60 web spot for the Pickups Plus brand refresh.",
     body: "A brand refresh built for the shop that treats every truck like it matters — from the daily driver to the weekend build.",
     video: pickupsAsset.url,
+    align: "right",
+  },
+  {
+    eyebrow: "Film Cube",
+    title: "Brand Video",
+    tagline: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
+    body: "We distilled Film Cube's identity into a fast, visual introduction that works as a brand anchor across every channel.",
+    video: "https://player.vimeo.com/video/1198590759?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
+    videoType: "vimeo",
     align: "left",
   },
   {
@@ -38,6 +58,7 @@ const PROJECTS: Project[] = [
     align: "left",
   },
 ];
+
 
 function ProjectPanel({ project }: { project: Project }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -64,21 +85,33 @@ function ProjectPanel({ project }: { project: Project }) {
   }, []);
 
   const alignRight = project.align === "right";
+  const isVimeo = project.videoType === "vimeo";
 
   return (
     <section
       ref={sectionRef}
       className="project-panel relative h-screen w-full overflow-hidden bg-black"
     >
-      <video
-        ref={videoRef}
-        src={project.video}
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+      {isVimeo ? (
+        <iframe
+          src={project.video}
+          title={project.title}
+          allow="autoplay; fullscreen; picture-in-picture"
+          loading="lazy"
+          className="absolute inset-0 h-full w-full border-0 object-cover"
+          style={{ pointerEvents: "none" }}
+        />
+      ) : (
+        <video
+          ref={videoRef}
+          src={project.video}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+      )}
       {/* Vignette + bottom scrim for legibility, close to royagency.com treatment */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
       <div className="grain absolute inset-0 opacity-40" />
@@ -109,11 +142,19 @@ function ProjectPanel({ project }: { project: Project }) {
           <p className="mt-4 max-w-lg font-sans text-sm leading-relaxed text-white/70">
             {project.body}
           </p>
+          <Link
+            to="/work"
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/30 px-5 py-2 text-xs uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black"
+          >
+            <span>Watch with audio</span>
+            <span>→</span>
+          </Link>
         </div>
       </div>
     </section>
   );
 }
+
 
 export function ProjectShowcase({ id }: { id?: string } = {}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
