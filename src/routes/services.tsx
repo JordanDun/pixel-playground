@@ -78,6 +78,7 @@ type Pill = {
   title: string;
   description: string;
   video?: VimeoVideo | DirectVideo;
+  image?: string;
   orientation?: "landscape" | "portrait";
 };
 
@@ -93,31 +94,39 @@ const SECTIONS: Section[] = [
     tagline: "Cinematic craft for every screen and story.",
     pills: [
       {
-        title: "Animation",
-        description:
-          "2D and 3D animation, motion graphics, and visual effects that bring concepts to life frame by frame.",
-        video: { type: "vimeo", id: "912389278", start: 18, end: 27 },
-      },
-      {
-        title: "Event Capture",
-        description:
-          "Multi-camera coverage of live events, conferences, and activations with same-day turnaround options.",
-      },
-      {
         title: "Brand Film",
         description:
           "Cinematic brand stories that distill identity, values, and vision into memorable long-form content.",
         video: { type: "vimeo", id: "797804844", hash: "165e5b0b31" },
       },
       {
-        title: "Interview & Testimonial",
+        title: "Commercial",
         description:
-          "Polished talking-head and documentary-style interviews that put your people and customers front and center.",
+          "High-impact :15 to :60 spots built for broadcast, streaming, and digital pre-roll.",
+        video: { type: "vimeo", id: "1037561887" },
+      },
+      {
+        title: "Animation",
+        description:
+          "2D and 3D animation, motion graphics, and visual effects that bring concepts to life frame by frame.",
+        video: { type: "vimeo", id: "912389278", start: 18, end: 27 },
       },
       {
         title: "Internal Video",
         description:
           "Training, town halls, and company culture pieces designed for internal comms and employee engagement.",
+        video: { type: "vimeo", id: "912803711", hash: "19113b2f8b" },
+      },
+      {
+        title: "Interview & Testimonial",
+        description:
+          "Polished talking-head and documentary-style interviews that put your people and customers front and center.",
+        image: interviewBtsAsset.url,
+      },
+      {
+        title: "Sales & Training Video",
+        description:
+          "Clear, on-brand videos that help your team sell better and ramp new hires faster.",
       },
       {
         title: "Product Demo",
@@ -125,10 +134,14 @@ const SECTIONS: Section[] = [
           "Clean, dynamic product showcases that highlight features, benefits, and use cases for web and sales.",
       },
       {
-        title: "Commercial",
+        title: "Event Capture",
         description:
-          "High-impact :15 to :60 spots built for broadcast, streaming, and digital pre-roll.",
-        video: { type: "vimeo", id: "1037561887" },
+          "Multi-camera coverage of live events, conferences, and activations.",
+      },
+      {
+        title: "Photography",
+        description:
+          "Editorial, lifestyle, and product photography captured alongside — or independent of — our video shoots.",
       },
     ],
   },
@@ -137,28 +150,21 @@ const SECTIONS: Section[] = [
     tagline: "Platform-native content that earns attention.",
     pills: [
       {
-        title: "Content Strategy",
-        description:
-          "Channel-by-channel planning, content pillars, and posting cadence built around how your audience actually scrolls.",
-      },
-      {
         title: "Short-Form Production",
         description:
           "Vertical-first shoots designed for Reels, TikTok, and Shorts — fast, high-volume, on-brand.",
+        video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
       },
       {
         title: "Cutdowns & Adaptations",
         description:
           "Reframe and recut hero assets into platform-perfect variants without losing the story.",
-        video: {
-          type: "video",
-          url: "https://www.dropbox.com/scl/fo/12apm3h38qzoycz8fbq18/AIe3bzaI3TjChCLGih1LW24?dl=0&e=1&preview=Passion+for+Coffee_2.mov&rlkey=yqqtd9v2258o1186607god3cc&st=r6lwyjec",
-        },
+        video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
       },
       {
-        title: "Community & Always-On",
+        title: "Content Strategy",
         description:
-          "Monthly content engines that keep your feed alive between launches.",
+          "Channel-by-channel planning, content pillars, and posting cadence built around how your audience actually scrolls.",
       },
     ],
   },
