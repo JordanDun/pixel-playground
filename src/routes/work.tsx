@@ -1,8 +1,6 @@
 import * as React from "react";
 import { X } from "lucide-react";
 import { createFileRoute } from "@tanstack/react-router";
-import statusSolutionsPoster from "@/assets/status-solutions-poster.jpg";
-import reelCover from "@/assets/reel-cover.jpg";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/work")({
@@ -73,11 +71,10 @@ const FEATURED_VIDEOS: Array<{
   poster?: string;
 }> = [
   {
-    client: "Status Solutions",
-    title: "Brand History",
-    description: "A cinematic look at two decades of life-safety innovation.",
-    driveFileId: "1eI1yBCa5xoEBpYhdcGavnPWg3kIryHBa",
-    poster: statusSolutionsPoster,
+    client: "Home Chef",
+    title: "The Most Important Meal of the Day",
+    description: "A warm, appetizing :30 spot that brings the brand's promise to the breakfast table.",
+    vimeoId: "1037561887",
   },
   {
     client: "Pickups Plus",
@@ -92,10 +89,10 @@ const FEATURED_VIDEOS: Array<{
     vimeoId: "932863528",
   },
   {
-    client: "DeWalt",
-    title: "Built for the Job",
-    description: "Product storytelling that swings as hard as the tools.",
-    vimeoId: "499841967",
+    client: "Status Solutions",
+    title: "Network Animated Explainer",
+    description: "Motion-driven storytelling that makes a complex safety network feel simple.",
+    vimeoId: "912389278",
   },
   {
     client: "The Big Bus Project",
@@ -138,6 +135,9 @@ function WorkPage() {
           Projects<br />
           <span className="text-primary">that perform.</span>
         </h1>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          Based in Columbus, Ohio, ROY Agency produces commercial video, brand films, and product spots for companies across the Midwest and nationwide. Our work blends cinematic storytelling with performance-driven creative — built to stop the scroll, communicate value, and convert on every platform.
+        </p>
       </section>
 
       {/* Featured video grid — hover to reveal name + description */}
