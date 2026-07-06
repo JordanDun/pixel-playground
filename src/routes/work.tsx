@@ -135,6 +135,9 @@ function WorkPage() {
           Projects<br />
           <span className="text-primary">that perform.</span>
         </h1>
+        <p className="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+          Based in Columbus, Ohio, ROY Agency produces commercial video, brand films, and product spots for companies across the Midwest and nationwide. Our work blends cinematic storytelling with performance-driven creative — built to stop the scroll, communicate value, and convert on every platform.
+        </p>
       </section>
 
       {/* Featured video grid — hover to reveal name + description */}
