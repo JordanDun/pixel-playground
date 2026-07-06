@@ -67,6 +67,7 @@ const FEATURED_VIDEOS: Array<{
   title: string;
   description: string;
   vimeoId?: string;
+  vimeoHash?: string;
   driveFileId?: string;
   poster?: string;
 }> = [
@@ -106,10 +107,29 @@ const FEATURED_VIDEOS: Array<{
     description: "A :60 web bumper designed to convert on first watch.",
     vimeoId: "691013951",
   },
+  {
+    client: "Root Insurance",
+    title: "Dr. Maria Johar",
+    description: "A character-driven brand story that puts a real human face on modern insurance.",
+    vimeoId: "393184619",
+  },
+  {
+    client: "Bracket Builders",
+    title: "Andy Middendorf",
+    description: "An intimate profile piece spotlighting the craft and grit behind the build.",
+    vimeoId: "912805705",
+    vimeoHash: "db56628afb",
+  },
+  {
+    client: "Harvest Table",
+    title: "Brand Video",
+    description: "A cinematic brand film capturing the flavor, craft, and community at the table.",
+    vimeoId: "1198590759",
+  },
 ];
 
 function WorkPage() {
-  const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string } | null>(null);
+  const [activeVideo, setActiveVideo] = React.useState<{ kind: "vimeo" | "drive"; id: string; hash?: string } | null>(null);
 
   React.useEffect(() => {
     if (!activeVideo) return;
@@ -154,7 +174,7 @@ function WorkPage() {
                   hasVideo &&
                   setActiveVideo(
                     video.vimeoId
-                      ? { kind: "vimeo", id: video.vimeoId }
+                      ? { kind: "vimeo", id: video.vimeoId, hash: video.vimeoHash }
                       : { kind: "drive", id: video.driveFileId! },
                   )
                 }
@@ -211,7 +231,7 @@ function WorkPage() {
             <iframe
               src={
                 activeVideo.kind === "vimeo"
-                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0`
+                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0${activeVideo.hash ? `&h=${activeVideo.hash}` : ""}`
                   : `https://drive.google.com/file/d/${activeVideo.id}/preview`
               }
               className="absolute inset-0 h-full w-full"
