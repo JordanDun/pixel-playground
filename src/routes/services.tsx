@@ -287,7 +287,7 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
                 aria-pressed={isOpen}
                 className={`group w-full self-start overflow-hidden rounded-3xl border text-left transition-all ${
                   isOpen
-                    ? "border-primary bg-card px-5 py-4"
+                    ? "border-border bg-card px-5 py-4"
                     : "border-border bg-background/60 px-5 py-3 hover:border-primary"
                 }`}
               >
