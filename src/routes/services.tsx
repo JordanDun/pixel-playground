@@ -200,7 +200,7 @@ const SECTIONS: Section[] = [
 function ServicesPage() {
   return (
     <main className="relative min-h-screen bg-background text-foreground [&_.font-display]:font-serif [&_.font-display]:font-normal [&_.font-display]:normal-case [&_.font-display]:tracking-tight">
-      {/* Background video (grayscale, darkened so it doesn't distract) */}
+      {/* Background video (grayscale, subtly present but not distracting) */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black">
         <video
           src={reelAsset.url}
@@ -209,10 +209,10 @@ function ServicesPage() {
           loop
           playsInline
           preload="metadata"
-          className="absolute inset-0 h-full w-full object-cover opacity-20 [filter:grayscale(100%)_contrast(1.05)]"
+          className="absolute inset-0 h-full w-full object-cover opacity-30 [filter:grayscale(100%)_contrast(1.05)]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background/90" />
-        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/70 to-background/85" />
+        <div className="absolute inset-0 bg-black/15" />
       </div>
 
       {/* Page header */}
