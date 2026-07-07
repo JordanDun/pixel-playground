@@ -261,7 +261,7 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
   const active = section.pills[openIndex];
 
   return (
-    <div className="rounded-3xl border border-primary bg-card/50 p-6 backdrop-blur-sm md:p-12 lg:p-14">
+    <div className="rounded-3xl border border-primary bg-card p-6 pr-0 pt-6 pb-6 md:p-12 md:pr-0 md:pt-12 md:pb-12 lg:p-14 lg:pr-0 lg:pt-14 lg:pb-14">
       {/* Header */}
       <p className="text-xs uppercase tracking-[0.24em] text-primary">
         0{index + 1} / 0{SECTIONS.length}
