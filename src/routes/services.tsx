@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Plus, X } from "lucide-react";
 import { getRequestOrigin } from "@/lib/origin.functions";
 import interviewBtsAsset from "@/assets/interview-bts.jpg.asset.json";
+import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 
 export const Route = createFileRoute("/services")({
   loader: () => getRequestOrigin(),
@@ -198,9 +199,23 @@ const SECTIONS: Section[] = [
 
 function ServicesPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground [&_.font-display]:font-serif [&_.font-display]:font-normal [&_.font-display]:normal-case [&_.font-display]:tracking-tight">
+    <main className="relative min-h-screen bg-background text-foreground [&_.font-display]:font-serif [&_.font-display]:font-normal [&_.font-display]:normal-case [&_.font-display]:tracking-tight">
+      {/* Background video (grayscale) */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black">
+        <video
+          src={reelAsset.url}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          className="absolute inset-0 h-full w-full object-cover opacity-40 [filter:grayscale(100%)_contrast(1.05)]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/85" />
+      </div>
+
       {/* Page header */}
-      <section className="px-6 pt-32 pb-16 md:px-10">
+      <section className="relative z-10 px-6 pt-32 pb-16 md:px-16">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           What we do
         </p>
@@ -214,8 +229,8 @@ function ServicesPage() {
       </section>
 
       {/* Three section boxes */}
-      <section className="px-6 pb-24 md:px-10">
-        <div className="mx-auto flex max-w-6xl flex-col gap-8">
+      <section className="relative z-10 px-4 pb-24 md:px-8">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-10">
           {SECTIONS.map((section, idx) => (
             <ServiceBox key={section.name} section={section} index={idx} />
           ))}
@@ -223,7 +238,7 @@ function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-border px-6 py-16 md:px-10">
+      <section className="relative z-10 border-t border-border/60 px-6 py-16 md:px-16">
         <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <h2 className="font-display text-3xl md:text-5xl">
             Ready to <span className="text-primary italic">roll?</span>
@@ -245,20 +260,20 @@ function ServiceBox({ section, index }: { section: Section; index: number }) {
   const active = section.pills[openIndex];
 
   return (
-    <div className="rounded-3xl border border-border bg-card/40 p-6 md:p-10">
+    <div className="rounded-3xl border border-border/70 bg-card/50 p-6 backdrop-blur-sm md:p-12 lg:p-14">
       {/* Header */}
       <p className="text-xs uppercase tracking-[0.24em] text-primary">
         0{index + 1} / 0{SECTIONS.length}
       </p>
-      <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] md:text-5xl">
+      <h2 className="mt-3 font-display text-4xl uppercase leading-[0.95] md:text-6xl">
         {section.name}
       </h2>
-      <p className="mt-3 max-w-md text-sm text-muted-foreground">
+      <p className="mt-4 max-w-md text-sm text-muted-foreground md:text-base">
         {section.tagline}
       </p>
 
       {/* Two-column: pills (with inline description) left, full media right */}
-      <div className="mt-8 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)]">
+      <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,340px)_minmax(0,1fr)] lg:gap-14">
         {/* Left: pills stacked vertically; selected expands with description inside */}
         <div className="flex flex-col gap-3">
           {section.pills.map((pill, i) => {
