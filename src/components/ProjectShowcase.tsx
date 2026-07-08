@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import pickupsAsset from "@/assets/pickups-plus.mp4.asset.json";
 import bigBusAsset from "@/assets/big-bus.mp4.asset.json";
-import craftsmanAsset from "@/assets/craftsman.mp4.asset.json";
+
 
 type Project = {
   eyebrow: string;
