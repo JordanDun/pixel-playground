@@ -182,21 +182,49 @@ const SECTIONS: Section[] = [
         title: "Brand Positioning",
         description:
           "Sharpen who you are, who you're for, and why anyone should care.",
+        deliverables: [
+          "Positioning statement",
+          "Audience & segment map",
+          "Messaging pillars",
+          "Tone-of-voice guide",
+          "Competitive landscape read",
+        ],
       },
       {
         title: "Creative Direction",
         description:
           "Concepts, references, and visual systems that give every asset a shared point of view.",
+        deliverables: [
+          "Creative concept & big idea",
+          "Moodboards & visual references",
+          "Art direction guide",
+          "Shot & style framework",
+          "On-set creative oversight",
+        ],
       },
       {
         title: "Campaign Planning",
         description:
           "Big-idea development plus the rollout plan — channels, beats, and KPIs mapped end to end.",
+        deliverables: [
+          "Campaign brief & big idea",
+          "Channel & asset matrix",
+          "Rollout timeline & phasing",
+          "KPI framework",
+          "Budget & production plan",
+        ],
       },
       {
         title: "Performance & Insights",
         description:
           "Distribution guidance and post-launch reads so the next round is sharper than the last.",
+        deliverables: [
+          "Distribution & paid guidance",
+          "Tracking & UTM setup",
+          "Post-launch performance report",
+          "Creative learnings memo",
+          "Recommendations for next round",
+        ],
       },
     ],
   },
