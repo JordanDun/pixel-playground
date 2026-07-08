@@ -286,10 +286,6 @@ function VideoOverlay({
           allowFullScreen
           title="Project video"
         />
-        {/* Cover the Vimeo logo link in the bottom-right corner */}
-        {activeVideo.kind === "vimeo" && (
-          <div className="absolute bottom-0 right-0 h-12 w-24 bg-black" />
-        )}
       </div>
     </div>
   );
