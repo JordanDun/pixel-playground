@@ -157,12 +157,14 @@ const SECTIONS: Section[] = [
         description:
           "Vertical-first shoots designed for Reels, TikTok, and Shorts — fast, high-volume, on-brand.",
         video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
+        orientation: "portrait",
       },
       {
         title: "Cutdowns & Adaptations",
         description:
           "Reframe and recut hero assets into platform-perfect variants without losing the story.",
         video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
+        orientation: "portrait",
       },
       {
         title: "Content Strategy",
