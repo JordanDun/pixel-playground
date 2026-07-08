@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Plus, X } from "lucide-react";
 import { getRequestOrigin } from "@/lib/origin.functions";
 import interviewBtsAsset from "@/assets/interview-bts.jpg.asset.json";
+import breachAsset from "@/assets/twenty-one-pilots-breach.jpg.asset.json";
 import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 
 export const Route = createFileRoute("/services")({
@@ -143,6 +144,7 @@ const SECTIONS: Section[] = [
         title: "Photography",
         description:
           "Editorial, lifestyle, and product photography captured alongside — or independent of — our video shoots.",
+        image: breachAsset.url,
       },
     ],
   },
@@ -155,12 +157,14 @@ const SECTIONS: Section[] = [
         description:
           "Vertical-first shoots designed for Reels, TikTok, and Shorts — fast, high-volume, on-brand.",
         video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
+        orientation: "portrait",
       },
       {
         title: "Cutdowns & Adaptations",
         description:
           "Reframe and recut hero assets into platform-perfect variants without losing the story.",
         video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
+        orientation: "portrait",
       },
       {
         title: "Content Strategy",
@@ -331,10 +335,19 @@ function ExampleCard({
   pill: Pill;
   section: string;
 }) {
+  const isPortrait = pill.orientation === "portrait";
   return (
-    <div className="relative aspect-video w-full overflow-hidden">
+    <div className="relative aspect-video w-full overflow-hidden bg-card">
       {pill.video ? (
-        <VideoPlayer video={pill.video} />
+        isPortrait ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="relative h-full aspect-[9/16] overflow-hidden">
+              <VideoPlayer video={pill.video} />
+            </div>
+          </div>
+        ) : (
+          <VideoPlayer video={pill.video} />
+        )
       ) : pill.image ? (
         <img
           src={pill.image}
