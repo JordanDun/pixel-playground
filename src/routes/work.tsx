@@ -219,38 +219,91 @@ function WorkPage() {
 
       {/* Fullscreen video overlay */}
       {activeVideo && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-10"
-          onClick={() => setActiveVideo(null)}
-        >
-          <button
-            type="button"
-            onClick={() => setActiveVideo(null)}
-            aria-label="Close video"
-            className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
-          >
-            <X size={20} />
-          </button>
-          <div
-            className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-lg bg-black shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <iframe
-              src={
-                activeVideo.kind === "vimeo"
-                  ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0${activeVideo.hash ? `&h=${activeVideo.hash}` : ""}`
-                  : `https://drive.google.com/file/d/${activeVideo.id}/preview`
-              }
-              className="absolute inset-0 h-full w-full"
-              allow="autoplay; fullscreen; picture-in-picture"
-              allowFullScreen
-              title="Project video"
-            />
-
-          </div>
-        </div>
+        <VideoOverlay activeVideo={activeVideo} onClose={() => setActiveVideo(null)} />
       )}
     </main>
+  );
+}
+
+function VideoOverlay({
+  activeVideo,
+  onClose,
+}: {
+  activeVideo: { kind: "vimeo" | "drive"; id: string; hash?: string };
+  onClose: () => void;
+}) {
+  const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
+
+  // Listen for Vimeo player events via postMessage and close on 'ended' so
+  // the "More from <uploader>" end screen never gets a chance to appear.
+  React.useEffect(() => {
+    if (activeVideo.kind !== "vimeo") return;
+
+    const post = (method: string, value?: unknown) => {
+      const iframe = iframeRef.current;
+      if (!iframe?.contentWindow) return;
+      iframe.contentWindow.postMessage(
+        JSON.stringify(value === undefined ? { method } : { method, value }),
+        "*",
+      );
+    };
+
+    const onMessage = (e: MessageEvent) => {
+      if (typeof e.origin !== "string" || !e.origin.includes("vimeo.com")) return;
+      let data: unknown = e.data;
+      if (typeof data === "string") {
+        try {
+          data = JSON.parse(data);
+        } catch {
+          return;
+        }
+      }
+      const msg = data as { event?: string; method?: string };
+      if (msg?.event === "ready") {
+        post("addEventListener", "ended");
+      } else if (msg?.event === "ended") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("message", onMessage);
+    // Kick off handshake in case 'ready' already fired.
+    post("ping");
+    return () => window.removeEventListener("message", onMessage);
+  }, [activeVideo, onClose]);
+
+  const src =
+    activeVideo.kind === "vimeo"
+      ? `https://player.vimeo.com/video/${activeVideo.id}?autoplay=1&title=0&byline=0&portrait=0${activeVideo.hash ? `&h=${activeVideo.hash}` : ""}`
+      : `https://drive.google.com/file/d/${activeVideo.id}/preview`;
+
+  return (
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 backdrop-blur-sm md:p-10"
+      onClick={onClose}
+    >
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close video"
+        className="absolute right-6 top-6 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20"
+      >
+        <X size={20} />
+      </button>
+      <div
+        className="relative aspect-video w-full max-w-5xl overflow-hidden rounded-lg bg-black shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <iframe
+          ref={iframeRef}
+          src={src}
+          className="absolute inset-0 h-full w-full"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowFullScreen
+          title="Project video"
+        />
+      </div>
+    </div>
   );
 }
 
