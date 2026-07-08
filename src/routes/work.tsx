@@ -234,43 +234,27 @@ function VideoOverlay({
 }) {
   const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
 
-  // Listen for Vimeo player events via postMessage and close on 'ended' so
-  // the "More from <uploader>" end screen never gets a chance to appear.
+  // Use the official Vimeo Player SDK to detect video end and close the
+  // overlay before Vimeo's "More from <uploader>" end screen appears.
   React.useEffect(() => {
-    if (activeVideo.kind !== "vimeo") return;
+    if (activeVideo.kind !== "vimeo" || !iframeRef.current) return;
+    let cancelled = false;
+    let player: { destroy: () => Promise<void> } | null = null;
 
-    const post = (method: string, value?: unknown) => {
-      const iframe = iframeRef.current;
-      if (!iframe?.contentWindow) return;
-      iframe.contentWindow.postMessage(
-        JSON.stringify(value === undefined ? { method } : { method, value }),
-        "*",
-      );
+    (async () => {
+      const { default: Player } = await import("@vimeo/player");
+      if (cancelled || !iframeRef.current) return;
+      const p = new Player(iframeRef.current);
+      player = p;
+      p.on("ended", () => onClose());
+    })();
+
+    return () => {
+      cancelled = true;
+      player?.destroy().catch(() => {});
     };
-
-    const onMessage = (e: MessageEvent) => {
-      if (typeof e.origin !== "string" || !e.origin.includes("vimeo.com")) return;
-      let data: unknown = e.data;
-      if (typeof data === "string") {
-        try {
-          data = JSON.parse(data);
-        } catch {
-          return;
-        }
-      }
-      const msg = data as { event?: string; method?: string };
-      if (msg?.event === "ready") {
-        post("addEventListener", "ended");
-      } else if (msg?.event === "ended") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("message", onMessage);
-    // Kick off handshake in case 'ready' already fired.
-    post("ping");
-    return () => window.removeEventListener("message", onMessage);
   }, [activeVideo, onClose]);
+
 
   const src =
     activeVideo.kind === "vimeo"
