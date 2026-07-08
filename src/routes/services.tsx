@@ -127,16 +127,6 @@ const SECTIONS: Section[] = [
         image: interviewBtsAsset.url,
       },
       {
-        title: "Sales & Training Video",
-        description:
-          "Clear, on-brand videos that help your team sell better and ramp new hires faster.",
-      },
-      {
-        title: "Product Demo",
-        description:
-          "Clean, dynamic product showcases that highlight features, benefits, and use cases for web and sales.",
-      },
-      {
         title: "Event Capture",
         description:
           "Multi-camera coverage of live events, conferences, and activations.",
@@ -374,6 +364,44 @@ function ExampleCard({
     );
   }
 
+  if (pill.deliverables) {
+    return (
+      <div
+        className="relative flex w-full flex-col gap-6 overflow-hidden rounded-2xl p-6 md:p-10"
+        style={{
+          background: `linear-gradient(140deg, hsl(var(--primary) / 0.18) 0%, transparent 55%), hsl(var(--card))`,
+        }}
+      >
+        <div className="flex items-center justify-between">
+          <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
+            What you get
+          </p>
+          <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+            {section}
+          </p>
+        </div>
+        <ul className="flex flex-col divide-y divide-border/60 border-y border-border/60">
+          {pill.deliverables.map((item, i) => (
+            <li
+              key={item}
+              className="flex items-baseline gap-4 py-3 md:py-4"
+            >
+              <span className="w-8 shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="font-display text-lg leading-tight md:text-2xl">
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="font-display text-xl italic text-muted-foreground md:text-2xl">
+          {pill.title}
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="relative aspect-video w-full overflow-hidden bg-card">
       {pill.video ? (
@@ -385,40 +413,6 @@ function ExampleCard({
           className="h-full w-full object-cover"
           loading="lazy"
         />
-      ) : pill.deliverables ? (
-        <div
-          className="flex h-full w-full flex-col justify-between gap-6 p-6 md:p-10"
-          style={{
-            background: `linear-gradient(140deg, hsl(var(--primary) / 0.18) 0%, transparent 55%), hsl(var(--card))`,
-          }}
-        >
-          <div className="flex items-center justify-between">
-            <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
-              What you get
-            </p>
-            <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
-              {section}
-            </p>
-          </div>
-          <ul className="flex flex-col divide-y divide-border/60 border-y border-border/60">
-            {pill.deliverables.map((item, i) => (
-              <li
-                key={item}
-                className="flex items-baseline gap-4 py-3 md:py-4"
-              >
-                <span className="w-8 shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="font-display text-lg leading-tight md:text-2xl">
-                  {item}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <p className="font-display text-xl italic text-muted-foreground md:text-2xl">
-            {pill.title}
-          </p>
-        </div>
       ) : (
         <div
           className="flex h-full w-full flex-col justify-between p-6"
