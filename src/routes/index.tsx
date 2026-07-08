@@ -376,25 +376,6 @@ function Home() {
       <ProjectShowcase id="project-showcase" />
 
 
-      {/* Stats */}
-      <section className="relative border-t border-border px-6 py-20 md:px-10">
-
-        <div className="mx-auto grid max-w-6xl grid-cols-2 gap-10 md:grid-cols-4">
-          {[
-            { k: "12+", v: "Years in the game" },
-            { k: "300+", v: "Campaigns shipped" },
-            { k: "40+", v: "Brands served" },
-            { k: "1", v: "Roof we work under" },
-          ].map((s) => (
-            <div key={s.v}>
-              <p className="font-display text-5xl md:text-7xl">{s.k}</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                {s.v}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
 
 
 
