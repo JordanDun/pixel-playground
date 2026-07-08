@@ -335,10 +335,19 @@ function ExampleCard({
   pill: Pill;
   section: string;
 }) {
+  const isPortrait = pill.orientation === "portrait";
   return (
-    <div className="relative aspect-video w-full overflow-hidden">
+    <div className="relative aspect-video w-full overflow-hidden bg-card">
       {pill.video ? (
-        <VideoPlayer video={pill.video} />
+        isPortrait ? (
+          <div className="flex h-full w-full items-center justify-center">
+            <div className="relative h-full aspect-[9/16] overflow-hidden">
+              <VideoPlayer video={pill.video} />
+            </div>
+          </div>
+        ) : (
+          <VideoPlayer video={pill.video} />
+        )
       ) : pill.image ? (
         <img
           src={pill.image}
