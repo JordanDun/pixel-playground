@@ -144,6 +144,7 @@ const SECTIONS: Section[] = [
         title: "Photography",
         description:
           "Editorial, lifestyle, and product photography captured alongside — or independent of — our video shoots.",
+        image: breachAsset.url,
       },
     ],
   },
