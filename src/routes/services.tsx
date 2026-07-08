@@ -82,6 +82,7 @@ type Pill = {
   video?: VimeoVideo | DirectVideo;
   image?: string;
   orientation?: "landscape" | "portrait";
+  deliverables?: string[];
 };
 
 type Section = {
