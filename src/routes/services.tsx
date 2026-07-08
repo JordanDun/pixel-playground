@@ -82,6 +82,7 @@ type Pill = {
   video?: VimeoVideo | DirectVideo;
   image?: string;
   orientation?: "landscape" | "portrait";
+  deliverables?: string[];
 };
 
 type Section = {
@@ -181,21 +182,49 @@ const SECTIONS: Section[] = [
         title: "Brand Positioning",
         description:
           "Sharpen who you are, who you're for, and why anyone should care.",
+        deliverables: [
+          "Positioning statement",
+          "Audience & segment map",
+          "Messaging pillars",
+          "Tone-of-voice guide",
+          "Competitive landscape read",
+        ],
       },
       {
         title: "Creative Direction",
         description:
           "Concepts, references, and visual systems that give every asset a shared point of view.",
+        deliverables: [
+          "Creative concept & big idea",
+          "Moodboards & visual references",
+          "Art direction guide",
+          "Shot & style framework",
+          "On-set creative oversight",
+        ],
       },
       {
         title: "Campaign Planning",
         description:
           "Big-idea development plus the rollout plan — channels, beats, and KPIs mapped end to end.",
+        deliverables: [
+          "Campaign brief & big idea",
+          "Channel & asset matrix",
+          "Rollout timeline & phasing",
+          "KPI framework",
+          "Budget & production plan",
+        ],
       },
       {
         title: "Performance & Insights",
         description:
           "Distribution guidance and post-launch reads so the next round is sharper than the last.",
+        deliverables: [
+          "Distribution & paid guidance",
+          "Tracking & UTM setup",
+          "Post-launch performance report",
+          "Creative learnings memo",
+          "Recommendations for next round",
+        ],
       },
     ],
   },
@@ -355,6 +384,40 @@ function ExampleCard({
           className="h-full w-full object-cover"
           loading="lazy"
         />
+      ) : pill.deliverables ? (
+        <div
+          className="flex h-full w-full flex-col justify-between gap-6 p-6 md:p-10"
+          style={{
+            background: `linear-gradient(140deg, hsl(var(--primary) / 0.18) 0%, transparent 55%), hsl(var(--card))`,
+          }}
+        >
+          <div className="flex items-center justify-between">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-primary">
+              What you get
+            </p>
+            <p className="text-[10px] uppercase tracking-[0.24em] text-muted-foreground">
+              {section}
+            </p>
+          </div>
+          <ul className="flex flex-col divide-y divide-border/60 border-y border-border/60">
+            {pill.deliverables.map((item, i) => (
+              <li
+                key={item}
+                className="flex items-baseline gap-4 py-3 md:py-4"
+              >
+                <span className="w-8 shrink-0 font-mono text-[10px] uppercase tracking-[0.18em] text-primary">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="font-display text-lg leading-tight md:text-2xl">
+                  {item}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <p className="font-display text-xl italic text-muted-foreground md:text-2xl">
+            {pill.title}
+          </p>
+        </div>
       ) : (
         <div
           className="flex h-full w-full flex-col justify-between p-6"
