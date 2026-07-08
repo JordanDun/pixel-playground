@@ -127,16 +127,6 @@ const SECTIONS: Section[] = [
         image: interviewBtsAsset.url,
       },
       {
-        title: "Sales & Training Video",
-        description:
-          "Clear, on-brand videos that help your team sell better and ramp new hires faster.",
-      },
-      {
-        title: "Product Demo",
-        description:
-          "Clean, dynamic product showcases that highlight features, benefits, and use cases for web and sales.",
-      },
-      {
         title: "Event Capture",
         description:
           "Multi-camera coverage of live events, conferences, and activations.",
