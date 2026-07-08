@@ -50,11 +50,12 @@ const PROJECTS: Project[] = [
     align: "right",
   },
   {
-    eyebrow: "Craftsman",
-    title: "For the doer.",
-    tagline: "Homeowners don't have time for inferior tools.",
-    body: "Craftsman is known for superior quality and rigorous testing — but what does that actually mean for the person doing the work? That was the question our campaign set out to answer.",
-    video: craftsmanAsset.url,
+    eyebrow: "BrewDog",
+    title: "Buzzed on Flavor",
+    tagline: "A punchy brand spot pouring personality into every frame.",
+    body: "A crispy :15 that leans all the way into BrewDog's attitude — bold, loud, and unmistakably them.",
+    video: "https://player.vimeo.com/video/932863528?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
+    videoType: "vimeo",
     align: "left",
   },
 ];
