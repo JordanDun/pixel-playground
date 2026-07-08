@@ -365,18 +365,19 @@ function ExampleCard({
   section: string;
 }) {
   const isPortrait = pill.orientation === "portrait";
+
+  if (pill.video && isPortrait) {
+    return (
+      <div className="relative mx-auto aspect-[9/16] w-full max-w-[360px] overflow-hidden rounded-2xl bg-black lg:max-w-[420px]">
+        <VideoPlayer video={pill.video} />
+      </div>
+    );
+  }
+
   return (
     <div className="relative aspect-video w-full overflow-hidden bg-card">
       {pill.video ? (
-        isPortrait ? (
-          <div className="flex h-full w-full items-center justify-center">
-            <div className="relative h-full aspect-[9/16] overflow-hidden">
-              <VideoPlayer video={pill.video} />
-            </div>
-          </div>
-        ) : (
-          <VideoPlayer video={pill.video} />
-        )
+        <VideoPlayer video={pill.video} />
       ) : pill.image ? (
         <img
           src={pill.image}
