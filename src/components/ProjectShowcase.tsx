@@ -61,14 +61,35 @@ const PROJECTS: Project[] = [
 ];
 
 
+function getVimeoId(url: string): string | null {
+  const m = url.match(/vimeo\.com\/video\/(\d+)/);
+  return m ? m[1] : null;
+}
+
 function ProjectPanel({ project }: { project: Project }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
+  const [shouldMountIframe, setShouldMountIframe] = useState(false);
 
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
+    // Preload iframe when panel is within ~1 viewport of appearing so it's
+    // warm by the time the user scrolls to it.
+    const preloadIo = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            setShouldMountIframe(true);
+            preloadIo.disconnect();
+          }
+        }
+      },
+      { rootMargin: "100% 0px 100% 0px" }
+    );
+    preloadIo.observe(el);
+
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
@@ -82,11 +103,18 @@ function ProjectPanel({ project }: { project: Project }) {
       { threshold: 0.25 }
     );
     io.observe(el);
-    return () => io.disconnect();
+    return () => {
+      preloadIo.disconnect();
+      io.disconnect();
+    };
   }, []);
 
   const alignRight = project.align === "right";
   const isVimeo = project.videoType === "vimeo";
+  const vimeoId = isVimeo ? getVimeoId(project.video) : null;
+  const poster = vimeoId ? `https://vumbnail.com/${vimeoId}_large.jpg` : null;
+  // Lower background quality — muted, looped, behind a scrim; 360p is plenty.
+  const iframeSrc = isVimeo ? project.video.replace(/quality=\d+p/, "quality=360p") : project.video;
 
   return (
     <section
@@ -94,18 +122,30 @@ function ProjectPanel({ project }: { project: Project }) {
       className="project-panel relative h-screen w-full overflow-hidden bg-black"
     >
       {isVimeo ? (
-        <iframe
-          src={project.video}
-          title={project.title}
-          allow="autoplay; fullscreen; picture-in-picture"
-          loading="lazy"
-          className="absolute left-1/2 top-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2 border-0"
-          style={{
-            pointerEvents: "none",
-            minWidth: "177.78vh",
-            minHeight: "56.25vw",
-          }}
-        />
+        <>
+          {poster && (
+            <img
+              src={poster}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+          )}
+          {shouldMountIframe && (
+            <iframe
+              src={iframeSrc}
+              title={project.title}
+              allow="autoplay; fullscreen; picture-in-picture"
+              loading="lazy"
+              className="absolute left-1/2 top-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2 border-0"
+              style={{
+                pointerEvents: "none",
+                minWidth: "177.78vh",
+                minHeight: "56.25vw",
+              }}
+            />
+          )}
+        </>
       ) : (
         <video
           ref={videoRef}
