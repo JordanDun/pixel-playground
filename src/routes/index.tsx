@@ -270,8 +270,9 @@ function Home() {
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
             <p
-              className="pointer-events-none absolute left-1/2 bottom-16 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-nowrap px-6 text-center text-[2.4vw] uppercase tracking-[0.22em] text-white/75 md:bottom-20 md:text-[0.95vw]"
-              style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2) }}
+              className="pointer-events-none absolute left-1/2 bottom-16 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-nowrap px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20"
+              style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(11px, 0.95vw, 15px)" }}
+
             >
               Full-service creative studio in Columbus, Ohio · Video · Social · Design · Strategy
             </p>
