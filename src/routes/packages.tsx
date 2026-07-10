@@ -136,7 +136,9 @@ function PackagesPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero */}
-      <section className="px-6 pt-32 pb-16 md:px-10 md:pt-40">
+      <section className="page-pad pt-32 pb-16 md:pt-40">
+       <div className="page-wrap">
+
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           Columbus, OH — Video Production
         </p>
@@ -163,11 +165,12 @@ function PackagesPage() {
             See options
           </a>
         </div>
+       </div>
       </section>
 
       {/* Intro three-up */}
-      <section className="border-y border-border bg-card/30 px-6 py-16 md:px-10 md:py-24">
-        <div className="grid gap-10 md:grid-cols-3">
+      <section className="border-y border-border bg-card/30 page-pad py-16 md:py-24">
+        <div className="page-wrap grid gap-10 md:grid-cols-3">
           {INTROS.map((i) => (
             <a
               key={i.target}
@@ -193,7 +196,8 @@ function PackagesPage() {
       </section>
 
       {/* Packages */}
-      <section id="packages" className="px-6 py-24 md:px-10 md:py-32">
+      <section id="packages" className="page-pad py-24 md:py-32">
+       <div className="page-wrap">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           What we offer
         </p>
@@ -204,6 +208,7 @@ function PackagesPage() {
 
         <div className="mt-16 space-y-6 md:space-y-8">
           {PACKAGES.map((p) => (
+
             <article
               key={p.id}
               id={p.id}
@@ -289,25 +294,29 @@ function PackagesPage() {
             </article>
           ))}
         </div>
+       </div>
       </section>
 
       {/* Clients */}
-      <section className="border-y border-border px-6 py-20 md:px-10 md:py-24">
-        <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Clients we've shot for
-        </p>
-        <p className="mt-6 font-display text-3xl leading-snug md:text-5xl">
-          Craftsman. DeWalt. Otterbein University. Pickups Plus.{" "}
-          <span className="text-foreground/50">
-            And local Columbus businesses just like yours.
-          </span>
-        </p>
+      <section className="border-y border-border page-pad py-20 md:py-24">
+        <div className="page-wrap">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            Clients we've shot for
+          </p>
+          <p className="mt-6 font-display text-3xl leading-snug md:text-5xl">
+            Craftsman. DeWalt. Otterbein University. Pickups Plus.{" "}
+            <span className="text-foreground/50">
+              And local Columbus businesses just like yours.
+            </span>
+          </p>
+        </div>
       </section>
 
       {/* Form */}
-      <section id="get-started" className="scroll-mt-24 px-6 py-24 md:px-10 md:py-32">
-        <div className="grid gap-16 md:grid-cols-2">
+      <section id="get-started" className="scroll-mt-24 page-pad py-24 md:py-32">
+        <div className="page-wrap grid gap-16 md:grid-cols-2">
           <div>
+
             <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
               Get started
             </p>

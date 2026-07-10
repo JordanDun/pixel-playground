@@ -26,8 +26,9 @@ export const Route = createFileRoute("/blog/")({
 
 function BlogIndex() {
   return (
-    <main className="min-h-screen bg-background px-6 pt-32 pb-24 md:px-10">
-      <div className="mx-auto max-w-5xl">
+    <main className="min-h-screen bg-background page-pad pt-32 pb-24">
+      <div className="page-wrap mx-auto max-w-5xl">
+
         <p className="text-xs uppercase tracking-[0.24em] text-primary">Journal</p>
         <h1 className="mt-4 font-display text-5xl uppercase leading-[0.95] text-foreground md:text-7xl">
           Notes from the studio.

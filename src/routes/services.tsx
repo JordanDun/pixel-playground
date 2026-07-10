@@ -239,22 +239,24 @@ function ServicesPage() {
       </div>
 
       {/* Page header */}
-      <section className="relative z-10 px-6 pt-32 pb-16 md:px-16">
-        <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          What we do
-        </p>
-        <h1 className="mt-4 font-display text-6xl leading-[0.9] md:text-8xl">
-          Services<br />
-          <span className="text-primary italic">end to end.</span>
-        </h1>
-        <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
-          Based in Columbus, Ohio, we serve local businesses and national brands with end-to-end video, social, and creative strategy.
-        </p>
+      <section className="relative z-10 page-pad pt-32 pb-16">
+        <div className="page-wrap">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            What we do
+          </p>
+          <h1 className="mt-4 font-display text-6xl leading-[0.9] md:text-8xl">
+            Services<br />
+            <span className="text-primary italic">end to end.</span>
+          </h1>
+          <p className="mt-6 max-w-2xl text-base text-muted-foreground md:text-lg">
+            Based in Columbus, Ohio, we serve local businesses and national brands with end-to-end video, social, and creative strategy.
+          </p>
+        </div>
       </section>
 
       {/* Three section boxes */}
-      <section className="relative z-10 px-4 pb-24 md:px-8">
-        <div className="mx-auto flex w-full max-w-[1600px] flex-col gap-10">
+      <section className="relative z-10 page-pad pb-24">
+        <div className="page-wrap flex flex-col gap-10">
           {SECTIONS.map((section, idx) => (
             <ServiceBox key={section.name} section={section} index={idx} />
           ))}
@@ -262,8 +264,8 @@ function ServicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="relative z-10 border-t border-border/60 px-6 py-16 md:px-16">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+      <section className="relative z-10 border-t border-border/60 page-pad py-16">
+        <div className="page-wrap flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
           <h2 className="font-display text-3xl md:text-5xl">
             Ready to <span className="text-primary italic">roll?</span>
           </h2>
@@ -275,6 +277,7 @@ function ServicesPage() {
           </a>
         </div>
       </section>
+
     </main>
   );
 }

@@ -27,19 +27,22 @@ function ContactPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Page header */}
-      <section className="px-6 pt-32 pb-16 md:px-10">
-        <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Get in touch
-        </p>
-        <h1 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
-          Let's make<br />
-          <span className="text-primary">something.</span>
-        </h1>
+      <section className="page-pad pt-32 pb-16">
+        <div className="page-wrap">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            Get in touch
+          </p>
+          <h1 className="mt-4 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
+            Let's make<br />
+            <span className="text-primary">something.</span>
+          </h1>
+        </div>
       </section>
 
       {/* Contact grid */}
-      <section className="px-6 pb-24 md:px-10">
-        <div className="grid gap-16 md:grid-cols-2">
+      <section className="page-pad pb-24">
+        <div className="page-wrap grid gap-16 md:grid-cols-2">
+
           {/* Info */}
           <div className="space-y-10">
             <div>
