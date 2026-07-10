@@ -136,7 +136,9 @@ function PackagesPage() {
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero */}
-      <section className="px-6 pt-32 pb-16 md:px-10 md:pt-40">
+      <section className="page-pad pt-32 pb-16 md:pt-40">
+       <div className="page-wrap">
+
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           Columbus, OH — Video Production
         </p>
