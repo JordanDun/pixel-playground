@@ -165,11 +165,12 @@ function PackagesPage() {
             See options
           </a>
         </div>
+       </div>
       </section>
 
       {/* Intro three-up */}
-      <section className="border-y border-border bg-card/30 px-6 py-16 md:px-10 md:py-24">
-        <div className="grid gap-10 md:grid-cols-3">
+      <section className="border-y border-border bg-card/30 page-pad py-16 md:py-24">
+        <div className="page-wrap grid gap-10 md:grid-cols-3">
           {INTROS.map((i) => (
             <a
               key={i.target}
@@ -195,7 +196,8 @@ function PackagesPage() {
       </section>
 
       {/* Packages */}
-      <section id="packages" className="px-6 py-24 md:px-10 md:py-32">
+      <section id="packages" className="page-pad py-24 md:py-32">
+       <div className="page-wrap">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           What we offer
         </p>
@@ -206,6 +208,7 @@ function PackagesPage() {
 
         <div className="mt-16 space-y-6 md:space-y-8">
           {PACKAGES.map((p) => (
+
             <article
               key={p.id}
               id={p.id}
