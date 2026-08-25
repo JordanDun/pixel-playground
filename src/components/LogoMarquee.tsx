@@ -12,7 +12,6 @@ import otterbein from "@/assets/logos/otterbein.png.asset.json";
 import pickupsPlus from "@/assets/logos/pickups-plus.png.asset.json";
 import rootInsurance from "@/assets/logos/root-insurance.png.asset.json";
 import statusSolutions from "@/assets/logos/status-solutions.png.asset.json";
-import stump from "@/assets/logos/stump.png.asset.json";
 import twentyOnePilots from "@/assets/logos/twenty-one-pilots.png.asset.json";
 import westervilleCitySchools from "@/assets/logos/westerville-city-schools.png.asset.json";
 
@@ -29,7 +28,6 @@ const LOGOS: Array<{ src: string; alt: string; mono?: boolean }> = [
   { src: rootInsurance.url, alt: "Root Insurance", mono: true },
   { src: harvestTable.url, alt: "Harvest Table Culinary Group", mono: true },
   { src: pickupsPlus.url, alt: "Pickups Plus Cars" },
-  { src: stump.url, alt: "Stump", mono: true },
   { src: otterbein.url, alt: "Otterbein University", mono: true },
   { src: ohioSteel.url, alt: "Ohio Steel Industries", mono: true },
   { src: bigFaceCoffee.url, alt: "Bigface Coffee", mono: true },
@@ -55,7 +53,7 @@ export function LogoMarquee() {
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="h-10 w-auto shrink-0 object-contain opacity-80 transition-opacity hover:opacity-100 md:h-14"
+              className="h-10 w-auto max-w-[220px] shrink-0 object-contain opacity-80 transition-opacity hover:opacity-100 md:h-14"
               style={logo.mono ? { filter: "brightness(0) invert(1)" } : undefined}
             />
           ))}
