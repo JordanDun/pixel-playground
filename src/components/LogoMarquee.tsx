@@ -21,6 +21,7 @@ import westervilleCitySchools from "@/assets/logos/westerville-city-schools.png.
 // same optical size as the wordmarks.
 const LOGOS: Array<{ src: string; alt: string; mono?: boolean; icon?: boolean }> = [
   { src: westervilleCitySchools.url, alt: "Westerville City Schools", mono: true, icon: true },
+  { src: cityOfWesterville.url, alt: "City of Westerville", icon: true },
   { src: garageBeer.url, alt: "Garage Beer", mono: true },
   { src: statusSolutions.url, alt: "Status Solutions", mono: true },
   { src: completeHealthcare.url, alt: "Complete Healthcare", mono: true },
