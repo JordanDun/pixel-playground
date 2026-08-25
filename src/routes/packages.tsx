@@ -4,14 +4,14 @@ import { createFileRoute } from "@tanstack/react-router";
 export const Route = createFileRoute("/packages")({
   head: () => ({
     meta: [
-      { title: "Packages — ROY Agency" },
+      { title: "Packages | ROY Agency" },
       {
         name: "description",
         content:
           "Three simple video packages from ROY Agency. One-time business videos, monthly social content, and full commercial production.",
       },
       { name: "robots", content: "noindex, nofollow" },
-      { property: "og:title", content: "Packages — ROY Agency" },
+      { property: "og:title", content: "Packages | ROY Agency" },
       {
         property: "og:description",
         content: "Three simple video packages. Pick one.",
@@ -51,7 +51,7 @@ const PACKAGES: Pkg[] = [
     price: "$2,500–$5K",
     cadence: "One time",
     blurb:
-      "A professional video of your business — done in two weeks, no film crew experience needed on your end.",
+      "A professional video of your business, done in two weeks, no film crew experience needed on your end.",
     long: "We come to you, film for one day, and hand you a polished video you can put on your website, run as an ad, or post anywhere. You don't need to hire actors, write a script, or know anything about video. That's our job.",
     bullets: [
       "One shoot day at your location",
@@ -71,7 +71,7 @@ const PACKAGES: Pkg[] = [
     price: "$1,200–$1,500",
     cadence: "Per month",
     blurb:
-      "Fresh videos for your social media every single month — without you having to think about it.",
+      "Fresh videos for your social media every single month, without you having to think about it.",
     long: "We show up once a month, film at your business for a few hours, edit everything, and send it over. You get 4–6 short videos ready to post. No planning, no equipment, no editing on your end. Just post them.",
     bullets: [
       "A half-day shoot at your location every month",
@@ -79,7 +79,7 @@ const PACKAGES: Pkg[] = [
       "Ready to post on Instagram, TikTok, Facebook",
       "Music and captions included",
       "Delivered within 5 business days of shoot",
-      "Month-to-month — cancel anytime",
+      "Month-to-month, cancel anytime",
     ],
     fit: "Any local business that needs to stay active online",
   },
@@ -92,10 +92,10 @@ const PACKAGES: Pkg[] = [
     price: "$8K–$20K+",
     cadence: "Per project",
     blurb:
-      "A real commercial. The kind you see on TV or in pre-roll ads — fully directed, fully produced.",
+      "A real commercial. The kind you see on TV or in pre-roll ads: fully directed, fully produced.",
     long: "This is for brands that are running serious ad campaigns or need something that looks truly cinematic. We handle everything: concept, script, casting, full crew, and post-production. You show up, give feedback, and approve the final cut.",
     bullets: [
-      "Full creative direction — concept to final cut",
+      "Full creative direction, concept to final cut",
       "Cinema-grade camera and lighting package",
       "Professional crew (director, DP, gaffer, support)",
       "Hero video + social cut-downs",
@@ -140,14 +140,14 @@ function PackagesPage() {
        <div className="page-wrap">
 
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-          Columbus, OH — Video Production
+          Columbus, OH / Video Production
         </p>
         <h1 className="mt-6 font-display text-6xl uppercase leading-[0.9] md:text-8xl">
           Your business.<br />
           <span className="italic" style={{ color: HEX.orange }}>On camera.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-base text-foreground/70 md:text-lg">
-          Most businesses have <span className="text-foreground">no video at all</span> —
+          Most businesses have <span className="text-foreground">no video at all</span>,
           or video that looks like it was shot on a phone. We fix that. Simple packages,
           real results, no film school required to understand them.
         </p>
@@ -272,7 +272,7 @@ function PackagesPage() {
                         key={b}
                         className="flex gap-3 text-sm text-foreground/85 md:text-base"
                       >
-                        <span style={{ color: p.hex }}>—</span>
+                        <span style={{ color: p.hex }}>/</span>
                         <span>{b}</span>
                       </li>
                     ))}
@@ -325,7 +325,7 @@ function PackagesPage() {
               <span className="italic" style={{ color: HEX.yellow }}>which one?</span>
             </h2>
             <p className="mt-8 max-w-md text-base text-foreground/70">
-              Fill this out and we'll tell you exactly what we'd recommend — no pressure,
+              Fill this out and we'll tell you exactly what we'd recommend, no pressure,
               no commitment. We respond within 24 hours.
             </p>
 
@@ -356,7 +356,7 @@ function PackagesPage() {
                 We'll be in touch within 24 hours with a recommendation.
               </p>
               <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                — The ROY Team
+                The ROY Team
               </p>
             </div>
           ) : (
@@ -426,16 +426,16 @@ function PackagesPage() {
                   className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
                 >
                   <option value="" disabled>Pick one</option>
-                  <option className="bg-background">ORANGE — One video for my website or ads ($2,500–$5K)</option>
-                  <option className="bg-background">YELLOW — Monthly social content ($1,200–$1,500/mo)</option>
-                  <option className="bg-background">RED — Full commercial production ($8K+)</option>
-                  <option className="bg-background">I have no idea — just help me</option>
+                  <option className="bg-background">ORANGE: One video for my website or ads ($2,500–$5K)</option>
+                  <option className="bg-background">YELLOW: Monthly social content ($1,200–$1,500/mo)</option>
+                  <option className="bg-background">RED: Full commercial production ($8K+)</option>
+                  <option className="bg-background">I have no idea, just help me</option>
                 </select>
               </div>
 
               <div>
                 <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  In plain English — what do you need? *
+                  In plain English, what do you need? *
                 </label>
                 <textarea
                   rows={4}

@@ -356,7 +356,7 @@ function Home() {
 
             <p className="mt-8 max-w-xl font-sans text-base leading-relaxed text-foreground/75 md:text-lg">
               We're a Columbus-based creative studio. Strategy, direction,
-              production, and post — under one roof — for brands that want
+              production, and post, all under one roof, for brands that want
               work their audience actually remembers.
             </p>
 
@@ -407,7 +407,7 @@ function Home() {
 
           <p className="mx-auto mt-6 max-w-xl text-foreground/80 md:text-lg">
             Tell us what you're working on. We'll come back within 48 hours
-            with a real point of view — not a sales deck.
+            with a real point of view, not a sales deck.
           </p>
           <Link
             to="/contact"

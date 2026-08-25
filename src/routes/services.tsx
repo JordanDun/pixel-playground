@@ -134,7 +134,7 @@ const SECTIONS: Section[] = [
       {
         title: "Photography",
         description:
-          "Editorial, lifestyle, and product photography captured alongside — or independent of — our video shoots.",
+          "Editorial, lifestyle, and product photography captured alongside, or independent of, our video shoots.",
         image: breachAsset.url,
       },
     ],
@@ -146,7 +146,7 @@ const SECTIONS: Section[] = [
       {
         title: "Short-Form Production",
         description:
-          "Vertical-first shoots designed for Reels, TikTok, and Shorts — fast, high-volume, on-brand.",
+          "Vertical-first shoots designed for Reels, TikTok, and Shorts: fast, high-volume, on-brand.",
         video: { type: "vimeo", id: "1207390737", hash: "7732c8f34e" },
         orientation: "portrait",
       },
@@ -195,7 +195,7 @@ const SECTIONS: Section[] = [
       {
         title: "Campaign Planning",
         description:
-          "Big-idea development plus the rollout plan — channels, beats, and KPIs mapped end to end.",
+          "Big-idea development plus the rollout plan: channels, beats, and KPIs mapped end to end.",
         deliverables: [
           "Campaign brief & big idea",
           "Channel & asset matrix",
@@ -412,7 +412,7 @@ function ExampleCard({
       ) : pill.image ? (
         <img
           src={pill.image}
-          alt={`${pill.title} — ${section}`}
+          alt={`${pill.title}, ${section}`}
           className="h-full w-full object-cover"
           loading="lazy"
         />
