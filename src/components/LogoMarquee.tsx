@@ -55,7 +55,9 @@ export function LogoMarquee() {
               src={logo.src}
               alt={logo.alt}
               loading="lazy"
-              className="h-10 w-auto max-w-[220px] shrink-0 object-contain opacity-80 transition-opacity hover:opacity-100 md:h-14"
+              className={`w-auto max-w-[220px] shrink-0 object-contain opacity-80 transition-opacity hover:opacity-100 ${
+                logo.icon ? "h-14 md:h-20" : "h-10 md:h-14"
+              }`}
               style={logo.mono ? { filter: "brightness(0) invert(1)" } : undefined}
             />
           ))}
