@@ -1,4 +1,5 @@
 import bigFaceCoffee from "@/assets/logos/big-face-coffee.png.asset.json";
+import cityOfWesterville from "@/assets/logos/city-of-westerville.png.asset.json";
 import completeHealthcare from "@/assets/logos/complete-healthcare.png.asset.json";
 import craftsman from "@/assets/logos/craftsman.png.asset.json";
 import dewalt from "@/assets/logos/dewalt.png.asset.json";
