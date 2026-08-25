@@ -50,7 +50,7 @@ export const BLOG_POSTS: BlogPost[] = [
     category: "Behind The Scenes",
     body: [
       "A production day is 80% logistics and 20% magic. The magic only happens because the logistics are airtight.",
-      "Here's the hour-by-hour breakdown of our last shoot in downtown LA — including the moment everything almost fell apart at golden hour.",
+      "Here's the hour-by-hour breakdown of our last shoot in downtown LA, including the moment everything almost fell apart at golden hour.",
     ],
   },
 ];

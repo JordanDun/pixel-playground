@@ -5,7 +5,7 @@ import { BLOG_POSTS } from "@/lib/blog-posts";
 export const Route = createFileRoute("/blog/")({
   loader: () => getRequestOrigin(),
   head: ({ loaderData: origin }) => {
-    const title = "Journal — Video Production & Creative Strategy | ROY Agency";
+    const title = "Journal: Video Production & Creative Strategy | ROY Agency";
     const description =
       "Notes on video production, brand strategy, and creative direction from the ROY Agency team in Columbus, Ohio.";
     return {

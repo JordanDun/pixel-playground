@@ -28,7 +28,7 @@ export const Route = createFileRoute("/work")({
           position: i + 1,
           item: {
             "@type": "VideoObject",
-            name: `${video.client} — ${video.title}`,
+            name: `${video.client}: ${video.title}`,
             description: video.description,
             thumbnailUrl: thumbnail,
             embedUrl,
@@ -191,7 +191,7 @@ function WorkPage() {
               >
                 <img
                   src={video.poster ?? (video.vimeoId ? `https://vumbnail.com/${video.vimeoId}.jpg` : undefined)}
-                  alt={`${video.client} — ${video.title}`}
+                  alt={`${video.client}: ${video.title}`}
                   loading="lazy"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
