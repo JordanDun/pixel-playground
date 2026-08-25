@@ -1,5 +1,4 @@
 import bigFaceCoffee from "@/assets/logos/big-face-coffee.png.asset.json";
-import brewdog from "@/assets/logos/brewdog.png.asset.json";
 import completeHealthcare from "@/assets/logos/complete-healthcare.png.asset.json";
 import craftsman from "@/assets/logos/craftsman.png.asset.json";
 import dewalt from "@/assets/logos/dewalt.png.asset.json";
@@ -11,10 +10,7 @@ import mountainDew from "@/assets/logos/mountain-dew.png.asset.json";
 import ohioSteel from "@/assets/logos/ohio-steel.png.asset.json";
 import otterbein from "@/assets/logos/otterbein.png.asset.json";
 import pickupsPlus from "@/assets/logos/pickups-plus.png.asset.json";
-import pokemon from "@/assets/logos/pokemon.png.asset.json";
 import rootInsurance from "@/assets/logos/root-insurance.png.asset.json";
-import scotts from "@/assets/logos/scotts.png.asset.json";
-import speedway from "@/assets/logos/speedway.png.asset.json";
 import statusSolutions from "@/assets/logos/status-solutions.png.asset.json";
 import stump from "@/assets/logos/stump.png.asset.json";
 import twentyOnePilots from "@/assets/logos/twenty-one-pilots.png.asset.json";
@@ -30,19 +26,15 @@ const LOGOS: Array<{ src: string; alt: string; mono?: boolean }> = [
   { src: greenhouse.url, alt: "Greenhouse", mono: true },
   { src: dewalt.url, alt: "DeWalt" },
   { src: craftsman.url, alt: "Craftsman" },
-  { src: scotts.url, alt: "Scotts Miracle-Gro", mono: true },
   { src: rootInsurance.url, alt: "Root Insurance", mono: true },
   { src: harvestTable.url, alt: "Harvest Table Culinary Group", mono: true },
   { src: pickupsPlus.url, alt: "Pickups Plus Cars" },
-  { src: brewdog.url, alt: "BrewDog", mono: true },
   { src: stump.url, alt: "Stump", mono: true },
   { src: otterbein.url, alt: "Otterbein University", mono: true },
   { src: ohioSteel.url, alt: "Ohio Steel Industries", mono: true },
   { src: bigFaceCoffee.url, alt: "Bigface Coffee", mono: true },
   { src: mountainDew.url, alt: "Mountain Dew" },
-  { src: speedway.url, alt: "Speedway" },
-  { src: pokemon.url, alt: "Pokemon" },
-  { src: grantImahara.url, alt: "Grant Imahara STEAM Foundation", mono: true },
+  { src: grantImahara.url, alt: "Grant Imahara STEAM Foundation" },
   { src: twentyOnePilots.url, alt: "Twenty One Pilots", mono: true },
 ];
 
