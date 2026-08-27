@@ -12,6 +12,7 @@ type Project = {
   video: string;
   videoType?: "video" | "vimeo";
   align?: "left" | "right";
+  zoom?: number;
 };
 
 const PROJECTS: Project[] = [
@@ -34,12 +35,13 @@ const PROJECTS: Project[] = [
   },
   {
     eyebrow: "Film Cube",
-    title: "Brand Film",
-    tagline: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
+    title: "Built to Go Anywhere",
+    tagline: "A sleek, cinematic launch film that puts Film Cube's product story in the hands of the people who use it.",
     body: "We distilled Film Cube's identity into a fast, visual introduction that works as a brand anchor across every channel.",
     video: "https://player.vimeo.com/video/1198590759?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
     videoType: "vimeo",
     align: "left",
+    zoom: 1.45,
   },
   {
     eyebrow: "The Big Bus Project",
@@ -129,6 +131,7 @@ function ProjectPanel({ project }: { project: Project }) {
               alt=""
               aria-hidden="true"
               className="absolute inset-0 h-full w-full object-cover"
+              style={{ transform: `scale(${project.zoom ?? 1})` }}
             />
           )}
           {shouldMountIframe && (
@@ -140,7 +143,7 @@ function ProjectPanel({ project }: { project: Project }) {
               className="absolute left-1/2 top-1/2 h-screen w-screen border-0"
               style={{
                 pointerEvents: "none",
-                transform: "translate(-50%, -50%) scale(1.08)",
+                transform: `translate(-50%, -50%) scale(${project.zoom ?? 1.08})`,
                 minWidth: "177.78vh",
                 minHeight: "56.25vw",
               }}

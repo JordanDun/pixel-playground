@@ -88,8 +88,8 @@ const FEATURED_VIDEOS: Array<{
 
   {
     client: "Film Cube",
-    title: "Brand Film",
-    description: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
+    title: "Built to Go Anywhere",
+    description: "A sleek, cinematic launch film that puts Film Cube's product story in the hands of the people who use it.",
     vimeoId: "1198590759",
     poster: "https://i.vimeocdn.com/video/2165229376-da9076abb80aa9a153230d858cc6e9a32f35b924ce08c82eb8ac6530f4213fcc-d_1280x720?region=us",
   },
