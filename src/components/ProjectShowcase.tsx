@@ -131,6 +131,7 @@ function ProjectPanel({ project }: { project: Project }) {
               alt=""
               aria-hidden="true"
               className="absolute inset-0 h-full w-full object-cover"
+              style={{ transform: `scale(${project.zoom ?? 1})` }}
             />
           )}
           {shouldMountIframe && (
@@ -142,7 +143,7 @@ function ProjectPanel({ project }: { project: Project }) {
               className="absolute left-1/2 top-1/2 h-screen w-screen border-0"
               style={{
                 pointerEvents: "none",
-                transform: "translate(-50%, -50%) scale(1.08)",
+                transform: `translate(-50%, -50%) scale(${project.zoom ?? 1.08})`,
                 minWidth: "177.78vh",
                 minHeight: "56.25vw",
               }}
