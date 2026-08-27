@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
   },
   {
     eyebrow: "Film Cube",
-    title: "Brand Video",
+    title: "Brand Film",
     tagline: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
     body: "We distilled Film Cube's identity into a fast, visual introduction that works as a brand anchor across every channel.",
     video: "https://player.vimeo.com/video/1198590759?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
