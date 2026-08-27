@@ -137,9 +137,10 @@ function ProjectPanel({ project }: { project: Project }) {
               title={project.title}
               allow="autoplay; fullscreen; picture-in-picture"
               loading="lazy"
-              className="absolute left-1/2 top-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2 border-0"
+              className="absolute left-1/2 top-1/2 h-screen w-screen border-0"
               style={{
                 pointerEvents: "none",
+                transform: "translate(-50%, -50%) scale(1.08)",
                 minWidth: "177.78vh",
                 minHeight: "56.25vw",
               }}
