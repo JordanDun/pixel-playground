@@ -34,7 +34,7 @@ const PROJECTS: Project[] = [
   },
   {
     eyebrow: "Film Cube",
-    title: "Brand Video",
+    title: "Brand Film",
     tagline: "A sleek, cinematic brand film that introduces Film Cube's product story with crisp visuals and momentum.",
     body: "We distilled Film Cube's identity into a fast, visual introduction that works as a brand anchor across every channel.",
     video: "https://player.vimeo.com/video/1198590759?background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=540p",
@@ -137,9 +137,10 @@ function ProjectPanel({ project }: { project: Project }) {
               title={project.title}
               allow="autoplay; fullscreen; picture-in-picture"
               loading="lazy"
-              className="absolute left-1/2 top-1/2 h-screen w-screen -translate-x-1/2 -translate-y-1/2 border-0"
+              className="absolute left-1/2 top-1/2 h-screen w-screen border-0"
               style={{
                 pointerEvents: "none",
+                transform: "translate(-50%, -50%) scale(1.08)",
                 minWidth: "177.78vh",
                 minHeight: "56.25vw",
               }}
