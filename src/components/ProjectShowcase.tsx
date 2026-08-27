@@ -12,6 +12,7 @@ type Project = {
   video: string;
   videoType?: "video" | "vimeo";
   align?: "left" | "right";
+  zoom?: number;
 };
 
 const PROJECTS: Project[] = [
