@@ -115,8 +115,8 @@ function ProjectPanel({ project }: { project: Project }) {
   const isVimeo = project.videoType === "vimeo";
   const vimeoId = isVimeo ? getVimeoId(project.video) : null;
   const poster = vimeoId ? `https://vumbnail.com/${vimeoId}_large.jpg` : null;
-  // Lower background quality — muted, looped, behind a scrim; 360p is plenty.
-  const iframeSrc = isVimeo ? project.video.replace(/quality=\d+p/, "quality=360p") : project.video;
+  // Ask Vimeo for 1080p; it still adapts down on slow connections.
+  const iframeSrc = isVimeo ? project.video.replace(/quality=\d+p/, "quality=1080p") : project.video;
 
   return (
     <section
