@@ -1,43 +1,43 @@
-import bigFaceCoffee from "@/assets/logos/big-face-coffee.png.asset.json";
-import cityOfWesterville from "@/assets/logos/city-of-westerville.png.asset.json";
-import completeHealthcare from "@/assets/logos/complete-healthcare.png.asset.json";
-import craftsman from "@/assets/logos/craftsman.png.asset.json";
-import dewalt from "@/assets/logos/dewalt.png.asset.json";
-import garageBeer from "@/assets/logos/garage-beer.png.asset.json";
-import grantImahara from "@/assets/logos/grant-imahara.png.asset.json";
-import greenhouse from "@/assets/logos/greenhouse.png.asset.json";
-import harvestTable from "@/assets/logos/harvest-table.png.asset.json";
-import mountainDew from "@/assets/logos/mountain-dew.png.asset.json";
-import ohioSteel from "@/assets/logos/ohio-steel.png.asset.json";
-import otterbein from "@/assets/logos/otterbein.png.asset.json";
-import pickupsPlus from "@/assets/logos/pickups-plus.png.asset.json";
-import rootInsurance from "@/assets/logos/root-insurance.png.asset.json";
-import statusSolutions from "@/assets/logos/status-solutions.png.asset.json";
-import twentyOnePilots from "@/assets/logos/twenty-one-pilots.png.asset.json";
-import westervilleCitySchools from "@/assets/logos/westerville-city-schools.png.asset.json";
+import bigFaceCoffee from "@/assets/logos/big-face-coffee.png";
+import cityOfWesterville from "@/assets/logos/city-of-westerville.png";
+import completeHealthcare from "@/assets/logos/complete-healthcare.png";
+import craftsman from "@/assets/logos/craftsman.png";
+import dewalt from "@/assets/logos/dewalt.png";
+import garageBeer from "@/assets/logos/garage-beer.png";
+import grantImahara from "@/assets/logos/grant-imahara.png";
+import greenhouse from "@/assets/logos/greenhouse.png";
+import harvestTable from "@/assets/logos/harvest-table.png";
+import mountainDew from "@/assets/logos/mountain-dew.png";
+import ohioSteel from "@/assets/logos/ohio-steel.png";
+import otterbein from "@/assets/logos/otterbein.png";
+import pickupsPlus from "@/assets/logos/pickups-plus.png";
+import rootInsurance from "@/assets/logos/root-insurance.png";
+import statusSolutions from "@/assets/logos/status-solutions.png";
+import twentyOnePilots from "@/assets/logos/twenty-one-pilots.png";
+import westervilleCitySchools from "@/assets/logos/westerville-city-schools.png";
 
 // `mono: true` renders the mark as a flat white silhouette (works for one-color
 // or dark logos). Full-color marks keep their own art so they stay legible.
 // `icon: true` bumps the height for square, icon-only marks so they read at the
 // same optical size as the wordmarks.
 const LOGOS: Array<{ src: string; alt: string; mono?: boolean; icon?: boolean }> = [
-  { src: westervilleCitySchools.url, alt: "Westerville City Schools", mono: true, icon: true },
-  { src: cityOfWesterville.url, alt: "City of Westerville", mono: true, icon: true },
-  { src: garageBeer.url, alt: "Garage Beer", mono: true },
-  { src: statusSolutions.url, alt: "Status Solutions", mono: true },
-  { src: completeHealthcare.url, alt: "Complete Healthcare", mono: true },
-  { src: greenhouse.url, alt: "Greenhouse", mono: true },
-  { src: dewalt.url, alt: "DeWalt" },
-  { src: craftsman.url, alt: "Craftsman" },
-  { src: rootInsurance.url, alt: "Root Insurance", mono: true },
-  { src: harvestTable.url, alt: "Harvest Table Culinary Group", mono: true },
-  { src: pickupsPlus.url, alt: "Pickups Plus Cars" },
-  { src: otterbein.url, alt: "Otterbein University", mono: true },
-  { src: ohioSteel.url, alt: "Ohio Steel Industries", mono: true },
-  { src: bigFaceCoffee.url, alt: "Bigface Coffee", mono: true, icon: true },
-  { src: mountainDew.url, alt: "Mountain Dew" },
-  { src: grantImahara.url, alt: "Grant Imahara STEAM Foundation" },
-  { src: twentyOnePilots.url, alt: "Twenty One Pilots", mono: true },
+  { src: westervilleCitySchools, alt: "Westerville City Schools", mono: true, icon: true },
+  { src: cityOfWesterville, alt: "City of Westerville", mono: true, icon: true },
+  { src: garageBeer, alt: "Garage Beer", mono: true },
+  { src: statusSolutions, alt: "Status Solutions", mono: true },
+  { src: completeHealthcare, alt: "Complete Healthcare", mono: true },
+  { src: greenhouse, alt: "Greenhouse", mono: true },
+  { src: dewalt, alt: "DeWalt" },
+  { src: craftsman, alt: "Craftsman" },
+  { src: rootInsurance, alt: "Root Insurance", mono: true },
+  { src: harvestTable, alt: "Harvest Table Culinary Group", mono: true },
+  { src: pickupsPlus, alt: "Pickups Plus Cars" },
+  { src: otterbein, alt: "Otterbein University", mono: true },
+  { src: ohioSteel, alt: "Ohio Steel Industries", mono: true },
+  { src: bigFaceCoffee, alt: "Bigface Coffee", mono: true, icon: true },
+  { src: mountainDew, alt: "Mountain Dew" },
+  { src: grantImahara, alt: "Grant Imahara STEAM Foundation" },
+  { src: twentyOnePilots, alt: "Twenty One Pilots", mono: true },
 ];
 
 export function LogoMarquee() {

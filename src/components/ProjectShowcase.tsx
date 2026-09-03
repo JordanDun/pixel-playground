@@ -1,7 +1,5 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
-import pickupsAsset from "@/assets/pickups-plus.mp4.asset.json";
-import bigBusAsset from "@/assets/big-bus.mp4.asset.json";
 
 
 type Project = {
@@ -30,7 +28,7 @@ const PROJECTS: Project[] = [
     title: "No Matter What You Drive",
     tagline: "A high-octane :60 web spot for the Pickups Plus brand refresh.",
     body: "A brand refresh built for the shop that treats every truck like it matters, from the daily driver to the weekend build.",
-    video: pickupsAsset.url,
+    video: "/videos/pickups-plus.mp4",
     align: "right",
   },
   {
@@ -48,7 +46,7 @@ const PROJECTS: Project[] = [
     title: "Opportunity in Motion",
     tagline: "A cinematic film about meeting students where they are.",
     body: "The Big Bus's mission is to increase access to resources, opportunities, and learning by meeting students and families where they are. We built a film that carries that mission with the weight it deserves.",
-    video: bigBusAsset.url,
+    video: "/videos/big-bus.mp4",
     align: "right",
   },
   {

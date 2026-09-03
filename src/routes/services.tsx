@@ -2,9 +2,8 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Plus, X } from "lucide-react";
 import { getRequestOrigin } from "@/lib/origin.functions";
-import interviewBtsAsset from "@/assets/interview-bts.jpg.asset.json";
-import breachAsset from "@/assets/twenty-one-pilots-breach.jpg.asset.json";
-import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
+import interviewBts from "@/assets/interview-bts.jpg";
+import breachPhoto from "@/assets/twenty-one-pilots-breach.jpg";
 
 export const Route = createFileRoute("/services")({
   loader: () => getRequestOrigin(),
@@ -124,7 +123,7 @@ const SECTIONS: Section[] = [
         title: "Interview & Testimonial",
         description:
           "Polished talking-head and documentary-style interviews that put your people and customers front and center.",
-        image: interviewBtsAsset.url,
+        image: interviewBts,
       },
       {
         title: "Event Capture",
@@ -135,7 +134,7 @@ const SECTIONS: Section[] = [
         title: "Photography",
         description:
           "Editorial, lifestyle, and product photography captured alongside, or independent of, our video shoots.",
-        image: breachAsset.url,
+        image: breachPhoto,
       },
     ],
   },
@@ -226,7 +225,7 @@ function ServicesPage() {
       {/* Background video (grayscale, subtly present but not distracting) */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black">
         <video
-          src={reelAsset.url}
+          src={"/videos/Roy-Website-Loop_2.mp4"}
           autoPlay
           muted
           loop

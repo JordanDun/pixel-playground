@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
 
-const REEL_VIDEO = reelAsset.url;
+const REEL_VIDEO = "/videos/Roy-Website-Loop_2.mp4";
 
 export function ReelSection() {
   const [mounted, setMounted] = useState(false);

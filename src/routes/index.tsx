@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import weldingPhoto from "@/assets/welding.jpg";
-import reelAsset from "@/assets/Roy-Website-Loop_2.mp4.asset.json";
-import teamPhoto from "@/assets/8R5A7734.jpg.asset.json";
+import teamPhoto from "@/assets/8R5A7734.jpg";
 import { Instagram, Linkedin } from "lucide-react";
 import { InstagramPostCard } from "@/components/InstagramPostCard";
 import { LogoMarquee } from "@/components/LogoMarquee";
@@ -312,7 +311,7 @@ function Home() {
             >
               {videosReady && (
                 <video
-                  src={reelAsset.url}
+                  src={"/videos/Roy-Website-Loop_2.mp4"}
                   autoPlay
                   muted
                   loop
@@ -389,7 +388,7 @@ function Home() {
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: `url('${teamPhoto.url}')`,
+            backgroundImage: `url('${teamPhoto}')`,
           }}
           aria-hidden="true"
         />
