@@ -275,22 +275,36 @@ function Home() {
             >
               Full-service creative studio in Columbus, Ohio · Video · Social · Design · Strategy
             </p>
-          {/* Scroll-down arrow — only on hero, fades out as user scrolls */}
-          <div
-            className="pointer-events-none absolute bottom-5 left-1/2 z-30 -translate-x-1/2 text-white mix-blend-difference"
+          {/* Scroll-down cue — clickable, fades out as user scrolls */}
+          <button
+            type="button"
+            aria-label="Scroll to next section"
+            onClick={() => {
+              const el = stickySectionRef.current;
+              const target = el
+                ? el.offsetTop + el.offsetHeight
+                : window.innerHeight;
+              window.scrollTo({ top: target, behavior: "smooth" });
+            }}
+            className={`group absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity ${
+              scaleProgress > 0.4 ? "pointer-events-none" : "pointer-events-auto"
+            }`}
             style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}
           >
+            <span className="text-[10px] uppercase tracking-[0.28em] opacity-70 transition-opacity duration-300 group-hover:opacity-100">
+              Scroll
+            </span>
             <svg
               width="14"
               height="9"
               viewBox="0 0 22 14"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="animate-[bounce_1.4s_ease-in-out_infinite] opacity-90"
+              className="animate-[bounce_1.4s_ease-in-out_infinite] opacity-90 transition-transform duration-300 group-hover:translate-y-0.5"
             >
               <path d="M1 1l10 11L21 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-          </div>
+          </button>
 
         </div>
 

@@ -327,7 +327,8 @@ function RootComponent() {
         </span>
       </div>
 
-      {/* Bottom-right Get in touch */}
+      {/* Bottom-right Get in touch — hidden on the contact page itself */}
+      {pathname !== "/contact" && (
       <Link
         to="/contact"
         className={`fixed bottom-4 right-6 z-50 rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.18em] shadow-lg transition-all duration-300 md:right-10 ${
@@ -340,6 +341,7 @@ function RootComponent() {
       >
         Get in touch
       </Link>
+      )}
       <Outlet />
     </QueryClientProvider>
   );
