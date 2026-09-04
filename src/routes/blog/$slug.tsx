@@ -21,11 +21,11 @@ export const Route = createFileRoute("/blog/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
-        { property: "og:url", content: `/blog/${post?.slug ?? ""}` },
+        { property: "og:url", content: `https://royagency.com/blog/${post?.slug ?? ""}` },
         { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
       links: post
-        ? [{ rel: "canonical", href: `/blog/${post.slug}` }]
+        ? [{ rel: "canonical", href: `https://royagency.com/blog/${post.slug}` }]
         : [],
       scripts: post
         ? [
