@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/contact")({
@@ -131,56 +132,170 @@ function ContactPage() {
           </div>
 
           {/* Form */}
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Name
-              </label>
-              <input
-                type="text"
-                className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                placeholder="Your name"
-              />
-            </div>
-            <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Email
-              </label>
-              <input
-                type="email"
-                className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                placeholder="you@company.com"
-              />
-            </div>
-            <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Project type
-              </label>
-              <input
-                type="text"
-                className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                placeholder="Brand film, social campaign, etc."
-              />
-            </div>
-            <div>
-              <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                Message
-              </label>
-              <textarea
-                rows={4}
-                className="mt-2 w-full resize-none border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                placeholder="Tell us about your project..."
-              />
-            </div>
-            <button
-              type="submit"
-              className="rounded-full bg-primary px-8 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90"
-            >
-              Send message
-            </button>
-          </form>
+          <ContactForm />
         </div>
       </section>
     </main>
+  );
+}
+
+const fieldClass =
+  "mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary";
+const labelClass = "block text-xs uppercase tracking-[0.2em] text-muted-foreground";
+
+function ContactForm() {
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    projectType: "",
+    message: "",
+    company: "",
+  });
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
+    "idle",
+  );
+  const [error, setError] = useState("");
+
+  const set = (key: keyof typeof values) => (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => setValues((v) => ({ ...v, [key]: e.target.value }));
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setStatus("submitting");
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(values),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.success) {
+        setError(data.error ?? "");
+        setStatus("error");
+        return;
+      }
+      setStatus("success");
+    } catch {
+      setError("");
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="space-y-4">
+        <h2 className="font-display text-3xl uppercase md:text-4xl">Got it.</h2>
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          Your message is with us. Someone from the team will be back to you within one
+          business day. If it can't wait, call 614-264-6965.
+        </p>
+      </div>
+    );
+  }
+
+  const submitting = status === "submitting";
+
+  return (
+    <form className="space-y-6" onSubmit={handleSubmit}>
+      {/* Honeypot: hidden from people, tempting to bots */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+          clip: "rect(0 0 0 0)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <label htmlFor="company">Company</label>
+        <input
+          id="company"
+          name="company"
+          type="text"
+          autoComplete="off"
+          tabIndex={-1}
+          value={values.company}
+          onChange={set("company")}
+        />
+      </div>
+
+      <div>
+        <label className={labelClass}>Name</label>
+        <input
+          type="text"
+          name="name"
+          maxLength={100}
+          required
+          value={values.name}
+          onChange={set("name")}
+          className={fieldClass}
+          placeholder="Your name"
+        />
+      </div>
+      <div>
+        <label className={labelClass}>Email</label>
+        <input
+          type="email"
+          name="email"
+          maxLength={255}
+          required
+          value={values.email}
+          onChange={set("email")}
+          className={fieldClass}
+          placeholder="you@company.com"
+        />
+      </div>
+      <div>
+        <label className={labelClass}>Project type</label>
+        <input
+          type="text"
+          name="projectType"
+          maxLength={100}
+          value={values.projectType}
+          onChange={set("projectType")}
+          className={fieldClass}
+          placeholder="Brand film, social campaign, etc."
+        />
+      </div>
+      <div>
+        <label className={labelClass}>Message</label>
+        <textarea
+          rows={4}
+          name="message"
+          maxLength={5000}
+          required
+          value={values.message}
+          onChange={set("message")}
+          className={`${fieldClass} resize-none`}
+          placeholder="Tell us about your project..."
+        />
+      </div>
+
+      {status === "error" && (
+        <p className="text-sm text-primary">
+          {error ? `${error} ` : "That didn't send. "}
+          Email{" "}
+          <a href="mailto:jordan@royagency.com" className="underline">
+            jordan@royagency.com
+          </a>{" "}
+          directly and we'll pick it up there.
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={submitting}
+        className="rounded-full bg-primary px-8 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {submitting ? "Sending..." : "Send message"}
+      </button>
+    </form>
   );
 }
