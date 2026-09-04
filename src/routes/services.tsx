@@ -47,10 +47,10 @@ export const Route = createFileRoute("/services")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "/services" },
-        { property: "og:image", content: `${origin}/og-roy.jpg` },
+        { property: "og:url", content: "https://royagency.com/services" },
+        { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
-      links: [{ rel: "canonical", href: "/services" }],
+      links: [{ rel: "canonical", href: "https://royagency.com/services" }],
       scripts: [
         {
           type: "application/ld+json",

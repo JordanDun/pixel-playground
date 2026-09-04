@@ -14,10 +14,10 @@ export const Route = createFileRoute("/privacy-policy")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "/privacy-policy" },
-        { property: "og:image", content: `${origin}/og-roy.jpg` },
+        { property: "og:url", content: "https://royagency.com/privacy-policy" },
+        { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
-      links: [{ rel: "canonical", href: "/privacy-policy" }],
+      links: [{ rel: "canonical", href: "https://royagency.com/privacy-policy" }],
     };
   },
   component: PrivacyPolicyPage,
