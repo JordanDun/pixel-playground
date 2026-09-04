@@ -267,6 +267,13 @@ function RootComponent() {
           style={{ transitionDelay: menuOpen ? `${120 + navLinks.length * 60}ms` : "0ms" }}
         >
           <span>Columbus · Ohio</span>
+          <Link
+            to="/privacy-policy"
+            onClick={() => setMenuOpen(false)}
+            className="text-white/80 transition-colors hover:text-primary"
+          >
+            Privacy Policy
+          </Link>
           <a
             href="mailto:jordan@royagency.com"
             className="text-white/80 transition-colors hover:text-primary"
