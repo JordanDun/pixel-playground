@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as WorkRouteImport } from './routes/work'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -36,6 +37,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyPolicyRoute = PrivacyPolicyRouteImport.update({
+  id: '/privacy-policy',
+  path: '/privacy-policy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PackagesRoute = PackagesRouteImport.update({
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work': typeof WorkRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/mcp'
     | '/packages'
+    | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/work'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/mcp'
     | '/packages'
+    | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/work'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/mcp'
     | '/packages'
+    | '/privacy-policy'
     | '/services'
     | '/sitemap.xml'
     | '/work'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   ContactRoute: typeof ContactRoute
   McpRoute: typeof McpRoute
   PackagesRoute: typeof PackagesRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WorkRoute: typeof WorkRoute
@@ -219,6 +232,13 @@ declare module '@tanstack/react-router' {
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy-policy': {
+      id: '/privacy-policy'
+      path: '/privacy-policy'
+      fullPath: '/privacy-policy'
+      preLoaderRoute: typeof PrivacyPolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/packages': {
@@ -314,6 +334,7 @@ const rootRouteChildren: RootRouteChildren = {
   ContactRoute: ContactRoute,
   McpRoute: McpRoute,
   PackagesRoute: PackagesRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WorkRoute: WorkRoute,
