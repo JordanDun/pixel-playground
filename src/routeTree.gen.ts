@@ -15,6 +15,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PrivacyPolicyRouteImport } from './routes/privacy-policy'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as McpRouteImport } from './routes/mcp'
+import { Route as DataEthicsRouteImport } from './routes/data-ethics'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BlogRouteRouteImport } from './routes/blog/route'
 import { Route as IndexRouteImport } from './routes/index'
@@ -52,6 +53,11 @@ const PackagesRoute = PackagesRouteImport.update({
 const McpRoute = McpRouteImport.update({
   id: '/mcp',
   path: '/mcp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DataEthicsRoute = DataEthicsRouteImport.update({
+  id: '/data-ethics',
+  path: '/data-ethics',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -102,6 +108,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteRouteWithChildren
   '/contact': typeof ContactRoute
+  '/data-ethics': typeof DataEthicsRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/contact': typeof ContactRoute
+  '/data-ethics': typeof DataEthicsRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -134,6 +142,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteRouteWithChildren
   '/contact': typeof ContactRoute
+  '/data-ethics': typeof DataEthicsRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
   '/privacy-policy': typeof PrivacyPolicyRoute
@@ -152,6 +161,7 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/contact'
+    | '/data-ethics'
     | '/mcp'
     | '/packages'
     | '/privacy-policy'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/contact'
+    | '/data-ethics'
     | '/mcp'
     | '/packages'
     | '/privacy-policy'
@@ -183,6 +194,7 @@ export interface FileRouteTypes {
     | '/'
     | '/blog'
     | '/contact'
+    | '/data-ethics'
     | '/mcp'
     | '/packages'
     | '/privacy-policy'
@@ -200,6 +212,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRouteRoute: typeof BlogRouteRouteWithChildren
   ContactRoute: typeof ContactRoute
+  DataEthicsRoute: typeof DataEthicsRoute
   McpRoute: typeof McpRoute
   PackagesRoute: typeof PackagesRoute
   PrivacyPolicyRoute: typeof PrivacyPolicyRoute
@@ -253,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/mcp'
       fullPath: '/mcp'
       preLoaderRoute: typeof McpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/data-ethics': {
+      id: '/data-ethics'
+      path: '/data-ethics'
+      fullPath: '/data-ethics'
+      preLoaderRoute: typeof DataEthicsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -332,6 +352,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRouteRoute: BlogRouteRouteWithChildren,
   ContactRoute: ContactRoute,
+  DataEthicsRoute: DataEthicsRoute,
   McpRoute: McpRoute,
   PackagesRoute: PackagesRoute,
   PrivacyPolicyRoute: PrivacyPolicyRoute,

@@ -274,6 +274,13 @@ function RootComponent() {
           >
             Privacy Policy
           </Link>
+          <Link
+            to="/data-ethics"
+            onClick={() => setMenuOpen(false)}
+            className="text-white/80 transition-colors hover:text-primary"
+          >
+            Data Ethics
+          </Link>
           <a
             href="mailto:jordan@royagency.com"
             className="text-white/80 transition-colors hover:text-primary"
