@@ -15,7 +15,6 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PackagesRouteImport } from './routes/packages'
 import { Route as McpRouteImport } from './routes/mcp'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as BlogRouteRouteImport } from './routes/blog/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
@@ -52,11 +51,6 @@ const McpRoute = McpRouteImport.update({
 const ContactRoute = ContactRouteImport.update({
   id: '/contact',
   path: '/contact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogRouteRoute = BlogRouteRouteImport.update({
@@ -101,7 +95,6 @@ const Char91DotmcpChar93InvokeToolToolRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteRouteWithChildren
-  '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
@@ -116,7 +109,6 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
@@ -133,7 +125,6 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/blog': typeof BlogRouteRouteWithChildren
-  '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/mcp': typeof McpRoute
   '/packages': typeof PackagesRoute
@@ -151,7 +142,6 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/blog'
-    | '/about'
     | '/contact'
     | '/mcp'
     | '/packages'
@@ -166,7 +156,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/contact'
     | '/mcp'
     | '/packages'
@@ -182,7 +171,6 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/blog'
-    | '/about'
     | '/contact'
     | '/mcp'
     | '/packages'
@@ -199,7 +187,6 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BlogRouteRoute: typeof BlogRouteRouteWithChildren
-  AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   McpRoute: typeof McpRoute
   PackagesRoute: typeof PackagesRoute
@@ -253,13 +240,6 @@ declare module '@tanstack/react-router' {
       path: '/contact'
       fullPath: '/contact'
       preLoaderRoute: typeof ContactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog': {
@@ -331,7 +311,6 @@ const BlogRouteRouteWithChildren = BlogRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BlogRouteRoute: BlogRouteRouteWithChildren,
-  AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   McpRoute: McpRoute,
   PackagesRoute: PackagesRoute,
