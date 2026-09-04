@@ -19,6 +19,31 @@ export const Route = createFileRoute("/blog/")({
         { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
       links: [{ rel: "canonical", href: "https://royagency.com/blog" }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Blog",
+            name: "ROY Agency Journal",
+            description,
+            url: "https://royagency.com/blog",
+            publisher: {
+              "@type": "Organization",
+              name: "ROY Agency",
+              url: "https://royagency.com",
+            },
+            blogPost: BLOG_POSTS.map((post) => ({
+              "@type": "BlogPosting",
+              headline: post.title,
+              description: post.excerpt,
+              datePublished: post.date,
+              url: `https://royagency.com/blog/${post.slug}`,
+              author: { "@type": "Organization", name: "ROY Agency" },
+            })),
+          }),
+        },
+      ],
     };
   },
   component: BlogIndex,
