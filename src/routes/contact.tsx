@@ -14,10 +14,10 @@ export const Route = createFileRoute("/contact")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "/contact" },
-        { property: "og:image", content: `${origin}/og-roy.jpg` },
+        { property: "og:url", content: "https://royagency.com/contact" },
+        { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
-      links: [{ rel: "canonical", href: "/contact" }],
+      links: [{ rel: "canonical", href: "https://royagency.com/contact" }],
     };
   },
   component: ContactPage,

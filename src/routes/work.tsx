@@ -17,7 +17,7 @@ export const Route = createFileRoute("/work")({
           ? `https://vumbnail.com/${video.vimeoId}.jpg`
           : video.poster
           ? `${origin}${video.poster}`
-          : `${origin}/og-roy.jpg`;
+          : `https://royagency.com/og-roy.jpg`;
         const embedUrl = video.vimeoId
           ? `https://player.vimeo.com/video/${video.vimeoId}`
           : video.driveFileId
@@ -46,10 +46,10 @@ export const Route = createFileRoute("/work")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "/work" },
-        { property: "og:image", content: `${origin}/og-roy.jpg` },
+        { property: "og:url", content: "https://royagency.com/work" },
+        { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
-      links: [{ rel: "canonical", href: "/work" }],
+      links: [{ rel: "canonical", href: "https://royagency.com/work" }],
       scripts: [
         {
           type: "application/ld+json",

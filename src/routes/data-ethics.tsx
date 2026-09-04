@@ -14,10 +14,10 @@ export const Route = createFileRoute("/data-ethics")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "website" },
-        { property: "og:url", content: "/data-ethics" },
-        { property: "og:image", content: `${origin}/og-roy.jpg` },
+        { property: "og:url", content: "https://royagency.com/data-ethics" },
+        { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
-      links: [{ rel: "canonical", href: "/data-ethics" }],
+      links: [{ rel: "canonical", href: "https://royagency.com/data-ethics" }],
     };
   },
   component: DataEthicsPage,
