@@ -89,8 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:title", content: "ROY Agency" },
       { property: "og:description", content: "Video production & marketing agency." },
       { name: "twitter:description", content: "Video production & marketing agency." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/693a6b8a-5f38-4972-8485-11c808fc1bcb/id-preview-fd471cec--96fcd15e-eedf-4e89-90b0-92113533f271.lovable.app-1783530747834.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/693a6b8a-5f38-4972-8485-11c808fc1bcb/id-preview-fd471cec--96fcd15e-eedf-4e89-90b0-92113533f271.lovable.app-1783530747834.png" },
+      { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
+      { name: "twitter:image", content: "https://royagency.com/og-roy.jpg" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
