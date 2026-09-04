@@ -18,6 +18,53 @@ export const Route = createFileRoute("/contact")({
         { property: "og:image", content: "https://royagency.com/og-roy.jpg" },
       ],
       links: [{ rel: "canonical", href: "https://royagency.com/contact" }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ContactPage",
+            name: title,
+            description,
+            url: "https://royagency.com/contact",
+            mainEntity: {
+              "@type": ["LocalBusiness", "VideoProductionCompany"],
+              name: "ROY Agency",
+              description:
+                "Full-service creative studio in Columbus, Ohio specializing in video production, social media management, graphic design, animation, and brand strategy.",
+              url: "https://royagency.com",
+              email: "hello@royagency.com",
+              telephone: "+1-614-264-6965",
+              image: "https://royagency.com/og-roy.jpg",
+              priceRange: "$$$",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Columbus",
+                addressRegion: "OH",
+                addressCountry: "US",
+              },
+              areaServed: [
+                { "@type": "City", name: "Columbus" },
+                { "@type": "City", name: "Westerville" },
+                { "@type": "City", name: "Dublin" },
+                { "@type": "State", name: "Ohio" },
+              ],
+              sameAs: [
+                "https://instagram.com/royagency",
+                "https://www.linkedin.com/company/roy-agency/",
+              ],
+              contactPoint: {
+                "@type": "ContactPoint",
+                contactType: "sales",
+                email: "hello@royagency.com",
+                telephone: "+1-614-264-6965",
+                areaServed: "US",
+                availableLanguage: "English",
+              },
+            },
+          }),
+        },
+      ],
     };
   },
   component: ContactPage,
