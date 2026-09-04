@@ -495,10 +495,30 @@ function Home() {
               Google Business Profile →
             </a>
           </div>
-          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground space-y-1 md:text-right">
+          <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground space-y-2 md:text-right">
             <p className="text-foreground">Follow</p>
-            <p><a href="https://instagram.com/royagency" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">Instagram</a></p>
-            <p><a href="https://www.linkedin.com/company/roy-agency/" target="_blank" rel="noopener noreferrer" className="hover:text-foreground">LinkedIn</a></p>
+            <p>
+              <a
+                href="https://instagram.com/royagency"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground md:flex-row-reverse"
+              >
+                <Instagram size={16} strokeWidth={1.5} />
+                Instagram
+              </a>
+            </p>
+            <p>
+              <a
+                href="https://www.linkedin.com/company/roy-agency/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 transition-colors hover:text-foreground md:flex-row-reverse"
+              >
+                <Linkedin size={16} strokeWidth={1.5} />
+                LinkedIn
+              </a>
+            </p>
           </div>
         </div>
 
