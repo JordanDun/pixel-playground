@@ -341,6 +341,7 @@ function RootComponent() {
       >
         Get in touch
       </Link>
+      )}
       <Outlet />
     </QueryClientProvider>
   );
