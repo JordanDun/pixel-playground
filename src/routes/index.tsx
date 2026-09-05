@@ -261,7 +261,10 @@ function Home() {
               style={{ fontSize: `${heroFontPx}px` }}
             >
               <span className="block text-white font-light tracking-tight">YOUR</span>{" "}
-              <span className="block">
+              <span
+                className="hero-word-slot block relative overflow-hidden"
+                style={{ height: "0.95em" }}
+              >
                 <span
                   key={wordIndex}
                   className="hero-word inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
@@ -269,6 +272,7 @@ function Home() {
                   {CYCLING_WORDS[wordIndex]}
                 </span>
               </span>{" "}
+
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </p>
 
