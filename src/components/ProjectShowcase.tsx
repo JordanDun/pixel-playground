@@ -31,6 +31,7 @@ const PROJECTS: Project[] = [
     tagline: "A high-octane :60 web spot for the Pickups Plus brand refresh.",
     body: "A brand refresh built for the shop that treats every truck like it matters, from the daily driver to the weekend build.",
     video: "/videos/pickups-plus.mp4",
+    poster: "/posters/pickups-plus.jpg",
     align: "right",
   },
   {
@@ -49,6 +50,7 @@ const PROJECTS: Project[] = [
     tagline: "A cinematic film about meeting students where they are.",
     body: "The Big Bus's mission is to increase access to resources, opportunities, and learning by meeting students and families where they are. We built a film that carries that mission with the weight it deserves.",
     video: "/videos/big-bus.mp4",
+    poster: "/posters/big-bus.jpg",
     align: "right",
   },
   {
