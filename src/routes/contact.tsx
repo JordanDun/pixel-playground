@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/contact")({
@@ -96,7 +96,7 @@ function ContactPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</p>
               <a
-                href="mailto:jordan@royagency.com"
+                href="mailto:hello@royagency.com"
                 className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl"
               >
                 hello@royagency.com
@@ -104,12 +104,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
-              <a
-                href="tel:+16142646965"
-                className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl"
-              >
-                614-264-6965
-              </a>
+              <PhoneNumber className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl" />
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Google Business Profile</p>
@@ -142,6 +137,40 @@ function ContactPage() {
 const fieldClass =
   "mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary";
 const labelClass = "block text-xs uppercase tracking-[0.2em] text-muted-foreground";
+
+const PHONE_DISPLAY = "614-264-6965";
+
+/** True only on touch devices, where a tel: link actually places a call. */
+function useIsTouchDevice() {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: none) and (pointer: coarse)");
+    const update = () => setIsTouch(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isTouch;
+}
+
+function PhoneNumber({
+  className,
+  as = "span",
+}: {
+  className?: string;
+  as?: "span" | "strong";
+}) {
+  const isTouch = useIsTouchDevice();
+  const Tag = as;
+  if (isTouch) {
+    return (
+      <a href={`tel:+16142646965`} className={className}>
+        {PHONE_DISPLAY}
+      </a>
+    );
+  }
+  return <Tag className={className}>{PHONE_DISPLAY}</Tag>;
+}
 
 function ContactForm() {
   const [values, setValues] = useState({
@@ -192,7 +221,7 @@ function ContactForm() {
         <h2 className="font-display text-3xl uppercase md:text-4xl">Got it.</h2>
         <p className="text-sm leading-relaxed text-muted-foreground">
           Your message is with us. Someone from the team will be back to you within one
-          business day. If it can't wait, call 614-264-6965.
+          business day. If it can&apos;t wait, call <PhoneNumber />.
         </p>
       </div>
     );
