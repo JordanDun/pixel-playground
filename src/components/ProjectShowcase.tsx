@@ -119,8 +119,9 @@ function ProjectPanel({ project }: { project: Project }) {
   return (
     <section
       ref={sectionRef}
-      className="project-panel relative h-screen w-full overflow-hidden bg-black"
+      className="project-panel relative h-[58vh] min-h-[340px] w-full overflow-hidden bg-black md:h-screen md:min-h-0"
     >
+
       {isVimeo ? (
         <>
           {poster && (
@@ -138,7 +139,7 @@ function ProjectPanel({ project }: { project: Project }) {
               title={project.title}
               allow="autoplay; fullscreen; picture-in-picture"
               loading="lazy"
-              className="absolute left-1/2 top-1/2 h-screen w-screen border-0"
+              className="absolute left-1/2 top-1/2 h-full w-full border-0"
               style={{
                 pointerEvents: "none",
                 transform: `translate(-50%, -50%) scale(${project.zoom ?? 1.08})`,
@@ -152,12 +153,14 @@ function ProjectPanel({ project }: { project: Project }) {
         <video
           ref={videoRef}
           src={project.video}
+          poster={project.poster}
           muted
           loop
           playsInline
           preload="metadata"
           className="absolute inset-0 h-full w-full object-cover"
         />
+
       )}
 
       {/* Vignette + bottom scrim for legibility, close to royagency.com treatment */}
