@@ -146,6 +146,23 @@
     to   { opacity: 1; transform: translateY(0) skewY(0); filter: blur(0); }
   }
 
+  /* The cycling hero word can composite to a dark smudge on mobile GPUs when
+     the blur/animation layer sits over the background video. Force a flat,
+     solid orange fill at mobile widths. */
+  @media (max-width: 767px) {
+    .hero-word {
+      animation: none !important;
+      filter: none !important;
+      mix-blend-mode: normal !important;
+      opacity: 1 !important;
+      color: var(--primary) !important;
+      -webkit-text-fill-color: var(--primary);
+      text-shadow: none;
+      transform: none !important;
+    }
+  }
+
+
   /* Project showcase uses a JS-driven fullPage-style scroll (see
      ProjectShowcase.tsx). No CSS scroll-snap here — it fights the JS tween. */
 }
