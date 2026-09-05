@@ -160,11 +160,16 @@
     overflow: hidden;
     contain: paint;
     isolation: isolate;
+    /* Breathing room so the italic slant is never clipped, pulled back with
+       negative margins so the headline position is unchanged. */
+    padding: 0.08em 0.18em;
+    margin: -0.08em -0.18em;
   }
   .hero-word-slot > .hero-word {
     display: block;
     width: 100%;
   }
+
 
   @media (max-width: 767px) {
     .hero-word {
