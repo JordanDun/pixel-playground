@@ -333,7 +333,7 @@ function RootComponent() {
         to="/contact"
         className={`fixed right-6 z-50 rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.18em] shadow-lg transition-all duration-300 md:bottom-4 md:right-10 ${
           isHome
-            ? `bottom-32 bg-white text-black hover:bg-primary hover:text-primary-foreground ${
+            ? `bottom-4 bg-white text-black hover:bg-primary hover:text-primary-foreground ${
                 pastHero && !menuOpen ? "opacity-0" : "opacity-100"
               }`
             : "bottom-16 border border-border bg-foreground text-background opacity-100 hover:bg-primary hover:text-primary-foreground"

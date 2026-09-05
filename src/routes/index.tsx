@@ -270,7 +270,7 @@ function Home() {
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
             <p
-              className="pointer-events-none absolute left-1/2 bottom-32 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-normal px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20 md:whitespace-nowrap"
+              className="pointer-events-none absolute left-1/2 bottom-40 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-normal px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20 md:whitespace-nowrap"
               style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(10px, 0.95vw, 15px)" }}
 
             >
@@ -287,7 +287,7 @@ function Home() {
                 : window.innerHeight;
               window.scrollTo({ top: target, behavior: "smooth" });
             }}
-            className={`group absolute bottom-16 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity md:bottom-4 ${
+            className={`group absolute bottom-24 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity md:bottom-4 ${
               scaleProgress > 0.4 ? "pointer-events-none" : "pointer-events-auto"
             }`}
             style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}

@@ -254,7 +254,7 @@ function ServicesPage() {
       </section>
 
       {/* Three section boxes */}
-      <section className="relative z-10 page-pad pb-24">
+      <section className="relative z-10 page-pad pb-32 md:pb-24">
         <div className="page-wrap flex flex-col gap-10">
           {SECTIONS.map((section, idx) => (
             <ServiceBox key={section.name} section={section} index={idx} />
