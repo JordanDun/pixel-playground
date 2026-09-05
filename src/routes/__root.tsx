@@ -248,17 +248,14 @@ function RootComponent() {
               activeProps={{ className: "text-primary" }}
               style={{
                 transitionDelay: menuOpen ? `${120 + i * 60}ms` : "0ms",
-                fontFamily: '"Tiempos Headline", Georgia, serif',
-                fontWeight: 500,
-                letterSpacing: "-0.02em",
               }}
-              className={`group relative text-[13vw] leading-[1.02] text-white transition-all duration-500 hover:text-primary md:text-[6vw] ${
+              className={`group relative font-display text-[14vw] font-bold uppercase leading-[0.95] tracking-tight text-white transition-all duration-500 hover:text-primary md:text-[7vw] ${
                 menuOpen
                   ? "translate-x-0 opacity-100"
                   : "translate-x-8 opacity-0"
               }`}
             >
-              <span>{l.label}</span>
+              <span className="italic">{l.label}</span>
             </Link>
           ))}
 
