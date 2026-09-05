@@ -228,8 +228,9 @@ function Home() {
         id="top"
         ref={stickySectionRef}
         className="relative"
-        style={{ height: "380vh" }}
+        style={{ height: isDesktop ? "380vh" : "250vh" }}
       >
+
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Background video */}
           <div className="absolute inset-0">
