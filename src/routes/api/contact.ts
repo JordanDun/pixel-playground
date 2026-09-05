@@ -14,6 +14,12 @@ function bad(error: string) {
   return Response.json({ success: false, error }, { status: 400 });
 }
 
+const HEADER = `
+          <div style="margin:0 0 24px">
+            <a href="https://royagency.com"><img src="https://royagency.com/email-logo.png" alt="ROY" height="48" style="height:48px;width:auto;border:0;display:block" /></a>
+          </div>
+        `;
+
 function esc(value: string) {
   return value
     .replace(/&/g, "&amp;")
