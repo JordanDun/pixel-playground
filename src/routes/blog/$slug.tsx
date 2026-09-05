@@ -41,8 +41,36 @@ export const Route = createFileRoute("/blog/$slug")({
                 image: `https://royagency.com/og-roy.jpg`,
               }),
             },
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://royagency.com/",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Journal",
+                    item: "https://royagency.com/blog",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: post.title,
+                    item: `https://royagency.com/blog/${post.slug}`,
+                  },
+                ],
+              }),
+            },
           ]
         : [],
+
     };
   },
   component: BlogPost,
