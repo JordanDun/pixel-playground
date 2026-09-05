@@ -172,7 +172,7 @@ function ProjectPanel({ project }: { project: Project }) {
       <div className="grain absolute inset-0 opacity-40" />
 
       <div
-        className={`relative z-10 flex h-full w-full flex-col justify-end px-6 pb-14 md:px-14 md:pb-16 ${
+        className={`relative z-10 flex h-full w-full flex-col justify-end px-6 pb-8 md:px-14 md:pb-16 ${
           alignRight ? "md:items-end md:text-right" : "md:items-start"
         }`}
       >
@@ -185,27 +185,28 @@ function ProjectPanel({ project }: { project: Project }) {
             {project.eyebrow}
           </p>
           <h2
-            className="mt-3 leading-[0.95] text-white text-3xl md:text-4xl lg:text-5xl"
+            className="mt-2 leading-[0.95] text-white text-2xl sm:text-3xl md:mt-3 md:text-4xl lg:text-5xl"
             style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
           >
             {project.title}
           </h2>
 
-          <p className="mt-4 font-serif italic text-base leading-snug text-white/85 md:text-lg">
+          <p className="mt-2 font-serif italic text-sm leading-snug text-white/85 md:mt-4 md:text-lg">
             {project.tagline}
           </p>
-          <p className="mt-4 max-w-lg font-sans text-sm leading-relaxed text-white/70">
+          <p className="mt-2 max-w-lg font-sans text-[13px] leading-relaxed text-white/70 md:mt-4 md:text-sm">
             {project.body}
           </p>
           <Link
             to="/work"
-            className="group mt-6 inline-flex items-center gap-3 font-sans text-sm font-medium text-white transition-colors hover:text-primary"
+            className="group mt-3 inline-flex items-center gap-3 font-sans text-sm font-medium text-white transition-colors hover:text-primary md:mt-6"
           >
             <span>Watch</span>
             <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-primary-foreground transition-transform group-hover:translate-x-1">
               →
             </span>
           </Link>
+
 
         </div>
       </div>
