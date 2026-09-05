@@ -200,7 +200,7 @@ function RootComponent() {
           }`}
           onClick={() => setMenuOpen(false)}
         >
-          <img src={royLogo} alt="ROY" className="h-8 w-auto md:h-10" />
+          <img src={royLogo} alt="ROY Agency" className="h-8 w-auto md:h-10" />
         </Link>
         <button
           type="button"
