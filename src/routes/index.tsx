@@ -352,8 +352,9 @@ function Home() {
 
       <section
         id="manifesto"
-        className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
+        className="relative flex items-center overflow-hidden border-t border-border px-6 py-20 md:min-h-screen md:px-10 md:py-28"
       >
+
         {/* Background photo */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -401,7 +402,7 @@ function Home() {
 
 
       {/* CTA */}
-      <section className="relative overflow-hidden px-6 py-32 md:px-10 md:py-40">
+      <section className="relative overflow-hidden px-6 py-24 md:px-10 md:py-40">
         {/* Background photo */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -413,7 +414,7 @@ function Home() {
         <div className="absolute inset-0 bg-background/60" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto max-w-5xl text-center">
+        <div className="relative z-10 mx-auto max-w-5xl py-8 text-center md:py-0">
           <h2
             className="text-5xl leading-[0.95] text-foreground md:text-8xl"
             style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.02em" }}
@@ -421,6 +422,7 @@ function Home() {
             Got something<br />
             to <span className="text-primary">launch</span>?
           </h2>
+
 
           <p className="mx-auto mt-6 max-w-xl text-foreground/80 md:text-lg">
             Tell us what you're working on. We'll come back within 48 hours
@@ -441,7 +443,7 @@ function Home() {
       </section>
 
       {/* Instagram — latest posts */}
-      <section id="instagram" className="relative border-t border-surface-foreground/10 bg-surface px-6 py-24 md:px-10 md:py-32">
+      <section id="instagram" className="relative border-t border-surface-foreground/10 bg-surface px-6 py-16 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:items-start">
           <div className="md:col-span-4">
             <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-surface-foreground md:text-5xl">
@@ -492,11 +494,12 @@ function Home() {
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get in touch</p>
             <a
-              href="mailto:jordan@royagency.com"
-              className="mt-2 block font-display text-3xl uppercase md:text-5xl hover:text-primary transition-colors"
+              href="mailto:hello@royagency.com"
+              className="mt-2 block font-display text-2xl uppercase leading-tight sm:text-3xl md:text-5xl hover:text-primary transition-colors"
             >
-              hello@<br />royagency.com
+              hello@royagency.com
             </a>
+
             <p className="mt-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
             <a
               href="tel:+16142646965"
