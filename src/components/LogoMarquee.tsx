@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import bigFaceCoffee from "@/assets/logos/big-face-coffee.png";
 import cityOfWesterville from "@/assets/logos/city-of-westerville.png";
 import completeHealthcare from "@/assets/logos/complete-healthcare.png";
@@ -43,28 +44,69 @@ const LOGOS: Array<{ src: string; alt: string; mono?: boolean; icon?: boolean }>
 export function LogoMarquee() {
   // Duplicate the list so the -50% translate loop is seamless.
   const track = [...LOGOS, ...LOGOS];
+  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const [paused, setPaused] = useState(false);
+  const drag = useRef({ active: false, startX: 0, startLeft: 0, moved: false });
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    drag.current = { active: true, startX: e.clientX, startLeft: el.scrollLeft, moved: false };
+    setPaused(true);
+  };
+  const onPointerMove = (e: React.PointerEvent) => {
+    const el = scrollerRef.current;
+    if (!el || !drag.current.active) return;
+    const dx = e.clientX - drag.current.startX;
+    if (Math.abs(dx) > 3) drag.current.moved = true;
+    el.scrollLeft = drag.current.startLeft - dx;
+  };
+  const endDrag = () => {
+    drag.current.active = false;
+  };
 
   return (
     <section
       aria-label="Selected clients"
       className="relative border-y border-border bg-background py-12 md:py-16"
     >
-      <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-        <div className="marquee flex w-max items-center gap-20 md:gap-28">
-          {track.map((logo, i) => (
-            <img
-              key={`${logo.alt}-${i}`}
-              src={logo.src}
-              alt={logo.alt}
-              loading="lazy"
-              className={`w-auto max-w-[220px] shrink-0 object-contain opacity-80 transition-opacity hover:opacity-100 ${
-                logo.icon ? "h-14 md:h-20" : "h-10 md:h-14"
-              }`}
-              style={logo.mono ? { filter: "brightness(0) invert(1)" } : undefined}
-            />
-          ))}
+      <div className="relative [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+        <div
+          ref={scrollerRef}
+          className="no-scrollbar overflow-x-auto overscroll-x-contain touch-pan-x cursor-grab active:cursor-grabbing select-none"
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
+          onPointerLeave={endDrag}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => {
+            endDrag();
+            setPaused(false);
+          }}
+          onTouchStart={() => setPaused(true)}
+          onTouchEnd={() => setPaused(false)}
+        >
+          <div
+            className={`marquee flex w-max items-center gap-20 md:gap-28 ${paused ? "is-paused" : ""}`}
+          >
+            {track.map((logo, i) => (
+              <img
+                key={`${logo.alt}-${i}`}
+                src={logo.src}
+                alt={logo.alt}
+                loading="lazy"
+                draggable={false}
+                className={`w-auto max-w-[220px] shrink-0 object-contain opacity-80 transition-opacity hover:opacity-100 ${
+                  logo.icon ? "h-14 md:h-20" : "h-10 md:h-14"
+                }`}
+                style={logo.mono ? { filter: "brightness(0) invert(1)" } : undefined}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
