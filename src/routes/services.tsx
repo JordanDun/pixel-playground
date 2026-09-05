@@ -73,6 +73,7 @@ type VimeoVideo = {
 type DirectVideo = {
   type: "video";
   url: string;
+  poster?: string;
 };
 
 type Pill = {
@@ -452,7 +453,7 @@ function VideoPlayer({ video }: { video: VimeoVideo | DirectVideo }) {
       />
     );
   }
-  return <VideoClip url={video.url} />;
+  return <VideoClip url={video.url} poster={video.poster} />;
 }
 
 function VimeoClip({
@@ -514,7 +515,7 @@ function VimeoClip({
   );
 }
 
-function VideoClip({ url }: { url: string }) {
+function VideoClip({ url, poster }: { url: string; poster?: string }) {
   const [errored, setErrored] = React.useState(false);
 
   if (errored) {
@@ -546,6 +547,7 @@ function VideoClip({ url }: { url: string }) {
 
   return (
     <video
+      poster={poster}
       autoPlay
       muted
       loop
