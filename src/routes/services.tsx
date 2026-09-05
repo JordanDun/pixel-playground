@@ -226,6 +226,7 @@ function ServicesPage() {
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black">
         <video
           src={"/videos/Roy-Website-Loop_2.mp4"}
+          poster="/posters/roy-loop.jpg"
           autoPlay
           muted
           loop
