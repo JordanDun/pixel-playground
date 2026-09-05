@@ -169,54 +169,71 @@ function WorkPage() {
         </div>
       </section>
 
-      {/* Featured video grid — hover to reveal name + description */}
-      <section className="page-pad pb-24">
-        <div className="page-wrap grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      {/* Featured video grid — hover to reveal on desktop, labels below on mobile */}
+      <section className="page-pad pb-32 md:pb-24">
+        <div className="page-wrap grid grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-y-0 lg:grid-cols-3">
           {FEATURED_VIDEOS.map((video, i) => {
             const hasVideo = Boolean(video.vimeoId || video.driveFileId);
             return (
-              <button
-                key={i}
-                type="button"
-                disabled={!hasVideo}
-                onClick={() =>
-                  hasVideo &&
-                  setActiveVideo(
-                    video.vimeoId
-                      ? { kind: "vimeo", id: video.vimeoId, hash: video.vimeoHash }
-                      : { kind: "drive", id: video.driveFileId! },
-                  )
-                }
-                className="group relative aspect-video w-full overflow-hidden bg-black text-left focus:outline-none focus:ring-2 focus:ring-primary disabled:cursor-default"
-              >
-                <img
-                  src={video.poster ?? (video.vimeoId ? `https://vumbnail.com/${video.vimeoId}.jpg` : undefined)}
-                  alt={`${video.client}: ${video.title}`}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+              <div key={i} className="w-full">
+                <button
+                  type="button"
+                  disabled={!hasVideo}
+                  onClick={() =>
+                    hasVideo &&
+                    setActiveVideo(
+                      video.vimeoId
+                        ? { kind: "vimeo", id: video.vimeoId, hash: video.vimeoHash }
+                        : { kind: "drive", id: video.driveFileId! },
+                    )
+                  }
+                  className="group relative aspect-video w-full overflow-hidden bg-black text-left focus:outline-none focus:ring-2 focus:ring-primary disabled:cursor-default"
+                >
+                  <img
+                    src={video.poster ?? (video.vimeoId ? `https://vumbnail.com/${video.vimeoId}.jpg` : undefined)}
+                    alt={`${video.client}: ${video.title}`}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
 
-                {/* Hover overlay with name + description */}
-                <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                  <p className="text-[11px] uppercase tracking-[0.24em] text-white/70">
+                  {/* Hover overlay with name + description (desktop only) */}
+                  <div className="absolute inset-0 hidden flex-col justify-end bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:flex">
+                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/70">
+                      {video.client}
+                    </p>
+                    <h3
+                      className="mt-2 text-2xl leading-tight text-white md:text-3xl"
+                      style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
+                    >
+                      {video.title}
+                    </h3>
+                    <p className="mt-2 max-w-sm text-sm leading-snug text-white/80">
+                      {video.description}
+                    </p>
+                  </div>
+                </button>
+
+                {/* Always-visible labels on mobile */}
+                <div className="pt-3 md:hidden">
+                  <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
                     {video.client}
                   </p>
                   <h3
-                    className="mt-2 text-2xl leading-tight text-white md:text-3xl"
+                    className="mt-1.5 text-xl leading-tight text-foreground"
                     style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
                   >
                     {video.title}
                   </h3>
-                  <p className="mt-2 max-w-sm text-sm leading-snug text-white/80">
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">
                     {video.description}
                   </p>
                 </div>
-
-              </button>
+              </div>
             );
           })}
         </div>
       </section>
+
 
 
 
