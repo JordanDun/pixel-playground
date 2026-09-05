@@ -96,7 +96,7 @@ function ContactPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Email</p>
               <a
-                href="mailto:jordan@royagency.com"
+                href="mailto:hello@royagency.com"
                 className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl"
               >
                 hello@royagency.com
@@ -104,12 +104,7 @@ function ContactPage() {
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
-              <a
-                href="tel:+16142646965"
-                className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl"
-              >
-                614-264-6965
-              </a>
+              <PhoneNumber className="mt-2 block font-display text-3xl uppercase transition-colors hover:text-primary md:text-4xl" />
             </div>
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Google Business Profile</p>
