@@ -153,6 +153,19 @@
   /* The cycling hero word can composite to a dark smudge on mobile GPUs when
      the blur/animation layer sits over the background video. Force a flat,
      solid orange fill at mobile widths. */
+  /* Safety net: the cycling word lives in its own painted box so no fragment of
+     an outgoing word can ever paint beside the current one. */
+  .hero-word-slot {
+    position: relative;
+    overflow: hidden;
+    contain: paint;
+    isolation: isolate;
+  }
+  .hero-word-slot > .hero-word {
+    display: block;
+    width: 100%;
+  }
+
   @media (max-width: 767px) {
     .hero-word {
       animation: none !important;
@@ -165,6 +178,7 @@
       transform: none !important;
     }
   }
+
 
 
   /* Project showcase uses a JS-driven fullPage-style scroll (see
