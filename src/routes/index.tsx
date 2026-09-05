@@ -262,7 +262,7 @@ function Home() {
               <span className="block">
                 <span
                   key={wordIndex}
-                  className="inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
+                  className="hero-word inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
                 >
                   {CYCLING_WORDS[wordIndex]}
                 </span>
@@ -270,8 +270,8 @@ function Home() {
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
             <p
-              className="pointer-events-none absolute left-1/2 bottom-16 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-nowrap px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20"
-              style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(11px, 0.95vw, 15px)" }}
+              className="pointer-events-none absolute left-1/2 bottom-32 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-normal px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20 md:whitespace-nowrap"
+              style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(10px, 0.95vw, 15px)" }}
 
             >
               Full-service creative studio in Columbus, Ohio · Video · Social · Design · Strategy
@@ -287,7 +287,7 @@ function Home() {
                 : window.innerHeight;
               window.scrollTo({ top: target, behavior: "smooth" });
             }}
-            className={`group absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity ${
+            className={`group absolute bottom-16 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity md:bottom-4 ${
               scaleProgress > 0.4 ? "pointer-events-none" : "pointer-events-auto"
             }`}
             style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}
@@ -306,6 +306,7 @@ function Home() {
               <path d="M1 1l10 11L21 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
+
 
         </div>
 
@@ -327,6 +328,7 @@ function Home() {
               {videosReady && (
                 <video
                   src={"/videos/Roy-Website-Loop_2.mp4"}
+                  poster="/posters/roy-loop.jpg"
                   autoPlay
                   muted
                   loop
@@ -335,6 +337,7 @@ function Home() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               )}
+
             </div>
 
           </div>
