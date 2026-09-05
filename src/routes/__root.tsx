@@ -258,7 +258,7 @@ function RootComponent() {
                   : "translate-x-8 opacity-0"
               }`}
             >
-              <span className="italic">{l.label}</span>
+              <span>{l.label}</span>
             </Link>
           ))}
 
