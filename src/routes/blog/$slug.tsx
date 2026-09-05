@@ -88,10 +88,20 @@ function BlogPost() {
         </h1>
 
         <div className="mt-12 space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-          {post.body.map((para: string, i: number) => (
-            <p key={i}>{para}</p>
-          ))}
+          {post.body.map((para: string, i: number) =>
+            para.startsWith("## ") ? (
+              <h2
+                key={i}
+                className="pt-4 font-display text-2xl uppercase leading-tight text-foreground md:text-3xl"
+              >
+                {para.slice(3)}
+              </h2>
+            ) : (
+              <p key={i}>{para}</p>
+            ),
+          )}
         </div>
+
       </article>
     </main>
   );
