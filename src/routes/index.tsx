@@ -263,8 +263,9 @@ function Home() {
               <span className="block text-white font-light tracking-tight">YOUR</span>{" "}
               <span
                 className="hero-word-slot block relative overflow-hidden"
-                style={{ height: "0.95em" }}
+                style={{ height: "0.95em", boxSizing: "content-box" }}
               >
+
                 <span
                   key={wordIndex}
                   className="hero-word inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
