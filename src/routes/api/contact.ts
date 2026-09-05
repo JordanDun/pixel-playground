@@ -102,7 +102,7 @@ export const Route = createFileRoute("/api/contact")({
         }).format(new Date());
 
         const notification = `
-          <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">
+          <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">${HEADER}
             <h2 style="margin:0 0 16px">New inquiry from ${esc(name)}</h2>
             <p style="margin:0 0 8px"><strong>Name:</strong> ${esc(name)}</p>
             <p style="margin:0 0 8px"><strong>Email:</strong> ${esc(email)}</p>
@@ -130,7 +130,7 @@ export const Route = createFileRoute("/api/contact")({
         }
 
         const autoReply = `
-          <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">
+          <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">${HEADER}
             <p style="margin:0 0 14px">Hi ${esc(name.split(" ")[0] || name)},</p>
             <p style="margin:0 0 14px">Thanks for reaching out. We have your message and someone from our team will get back to you within one business day.</p>
             <p style="margin:0 0 14px">If it is urgent, call us at 614-264-6965.</p>
