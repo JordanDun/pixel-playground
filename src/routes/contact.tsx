@@ -138,6 +138,40 @@ const fieldClass =
   "mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary";
 const labelClass = "block text-xs uppercase tracking-[0.2em] text-muted-foreground";
 
+const PHONE_DISPLAY = "614-264-6965";
+
+/** True only on touch devices, where a tel: link actually places a call. */
+function useIsTouchDevice() {
+  const [isTouch, setIsTouch] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: none) and (pointer: coarse)");
+    const update = () => setIsTouch(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return isTouch;
+}
+
+function PhoneNumber({
+  className,
+  as = "span",
+}: {
+  className?: string;
+  as?: "span" | "strong";
+}) {
+  const isTouch = useIsTouchDevice();
+  const Tag = as;
+  if (isTouch) {
+    return (
+      <a href={`tel:+16142646965`} className={className}>
+        {PHONE_DISPLAY}
+      </a>
+    );
+  }
+  return <Tag className={className}>{PHONE_DISPLAY}</Tag>;
+}
+
 function ContactForm() {
   const [values, setValues] = useState({
     name: "",
