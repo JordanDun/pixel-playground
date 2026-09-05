@@ -254,11 +254,13 @@ function Home() {
             className="relative z-20 flex h-full flex-col items-center justify-center px-6 md:px-10 pointer-events-none"
             style={{ opacity: Math.max(0, 1 - scaleProgress * 1.6) }}
           >
-            <h1
+            <h1 className="sr-only">Commercial Video Production in Columbus, Ohio</h1>
+            <p
+              aria-hidden="true"
               className="font-display uppercase text-center leading-[0.95]"
               style={{ fontSize: `${heroFontPx}px` }}
             >
-              <span className="block text-white font-light tracking-tight">YOUR</span>
+              <span className="block text-white font-light tracking-tight">YOUR</span>{" "}
               <span className="block">
                 <span
                   key={wordIndex}
@@ -266,9 +268,10 @@ function Home() {
                 >
                   {CYCLING_WORDS[wordIndex]}
                 </span>
-              </span>
+              </span>{" "}
               <span className="block text-white font-light tracking-tight">AGENCY</span>
-            </h1>
+            </p>
+
             <p
               className="pointer-events-none absolute left-1/2 bottom-40 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-normal px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20 md:whitespace-nowrap"
               style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(10px, 0.95vw, 15px)" }}

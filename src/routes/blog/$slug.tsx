@@ -41,8 +41,36 @@ export const Route = createFileRoute("/blog/$slug")({
                 image: `https://royagency.com/og-roy.jpg`,
               }),
             },
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "BreadcrumbList",
+                itemListElement: [
+                  {
+                    "@type": "ListItem",
+                    position: 1,
+                    name: "Home",
+                    item: "https://royagency.com/",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 2,
+                    name: "Journal",
+                    item: "https://royagency.com/blog",
+                  },
+                  {
+                    "@type": "ListItem",
+                    position: 3,
+                    name: post.title,
+                    item: `https://royagency.com/blog/${post.slug}`,
+                  },
+                ],
+              }),
+            },
           ]
         : [],
+
     };
   },
   component: BlogPost,
@@ -88,10 +116,20 @@ function BlogPost() {
         </h1>
 
         <div className="mt-12 space-y-6 text-base leading-relaxed text-muted-foreground md:text-lg">
-          {post.body.map((para: string, i: number) => (
-            <p key={i}>{para}</p>
-          ))}
+          {post.body.map((para: string, i: number) =>
+            para.startsWith("## ") ? (
+              <h2
+                key={i}
+                className="pt-4 font-display text-2xl uppercase leading-tight text-foreground md:text-3xl"
+              >
+                {para.slice(3)}
+              </h2>
+            ) : (
+              <p key={i}>{para}</p>
+            ),
+          )}
         </div>
+
       </article>
     </main>
   );

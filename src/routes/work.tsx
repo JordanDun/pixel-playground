@@ -198,15 +198,15 @@ function WorkPage() {
 
                   {/* Hover overlay with name + description (desktop only) */}
                   <div className="absolute inset-0 hidden flex-col justify-end bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6 opacity-0 transition-opacity duration-300 group-hover:opacity-100 md:flex">
-                    <p className="text-[11px] uppercase tracking-[0.24em] text-white/70">
+                    <h3 className="text-[11px] uppercase tracking-[0.24em] text-white/70">
                       {video.client}
-                    </p>
-                    <h3
+                    </h3>
+                    <h2
                       className="mt-2 text-2xl leading-tight text-white md:text-3xl"
                       style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
                     >
                       {video.title}
-                    </h3>
+                    </h2>
                     <p className="mt-2 max-w-sm text-sm leading-snug text-white/80">
                       {video.description}
                     </p>
@@ -215,15 +215,15 @@ function WorkPage() {
 
                 {/* Always-visible labels on mobile */}
                 <div className="pt-3 md:hidden">
-                  <p className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
+                  <h3 className="text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
                     {video.client}
-                  </p>
-                  <h3
+                  </h3>
+                  <h2
                     className="mt-1.5 text-xl leading-tight text-foreground"
                     style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.01em" }}
                   >
                     {video.title}
-                  </h3>
+                  </h2>
                   <p className="mt-1 text-sm leading-snug text-muted-foreground">
                     {video.description}
                   </p>
