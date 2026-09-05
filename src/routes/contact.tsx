@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
 export const Route = createFileRoute("/contact")({
@@ -221,7 +221,7 @@ function ContactForm() {
         <h2 className="font-display text-3xl uppercase md:text-4xl">Got it.</h2>
         <p className="text-sm leading-relaxed text-muted-foreground">
           Your message is with us. Someone from the team will be back to you within one
-          business day. If it can't wait, call 614-264-6965.
+          business day. If it can&apos;t wait, call <PhoneNumber />.
         </p>
       </div>
     );
