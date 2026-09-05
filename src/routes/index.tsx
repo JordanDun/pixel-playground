@@ -228,8 +228,9 @@ function Home() {
         id="top"
         ref={stickySectionRef}
         className="relative"
-        style={{ height: "380vh" }}
+        style={{ height: isDesktop ? "380vh" : "250vh" }}
       >
+
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Background video */}
           <div className="absolute inset-0">
@@ -261,7 +262,7 @@ function Home() {
               <span className="block">
                 <span
                   key={wordIndex}
-                  className="inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
+                  className="hero-word inline-block italic font-bold text-primary animate-[wordIn_0.45s_ease-out]"
                 >
                   {CYCLING_WORDS[wordIndex]}
                 </span>
@@ -269,8 +270,8 @@ function Home() {
               <span className="block text-white font-light tracking-tight">AGENCY</span>
             </h1>
             <p
-              className="pointer-events-none absolute left-1/2 bottom-16 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-nowrap px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20"
-              style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(11px, 0.95vw, 15px)" }}
+              className="pointer-events-none absolute left-1/2 bottom-40 z-20 w-[92vw] max-w-none -translate-x-1/2 whitespace-normal px-6 text-center uppercase tracking-[0.22em] text-white/75 md:bottom-20 md:whitespace-nowrap"
+              style={{ opacity: Math.max(0, 1 - scaleProgress * 2.2), fontSize: "clamp(10px, 0.95vw, 15px)" }}
 
             >
               Full-service creative studio in Columbus, Ohio · Video · Social · Design · Strategy
@@ -286,7 +287,7 @@ function Home() {
                 : window.innerHeight;
               window.scrollTo({ top: target, behavior: "smooth" });
             }}
-            className={`group absolute bottom-4 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity ${
+            className={`group absolute bottom-24 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity md:bottom-4 ${
               scaleProgress > 0.4 ? "pointer-events-none" : "pointer-events-auto"
             }`}
             style={{ opacity: Math.max(0, 1 - scaleProgress * 2) }}
@@ -305,6 +306,7 @@ function Home() {
               <path d="M1 1l10 11L21 1" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
+
 
         </div>
 
@@ -326,6 +328,7 @@ function Home() {
               {videosReady && (
                 <video
                   src={"/videos/Roy-Website-Loop_2.mp4"}
+                  poster="/posters/roy-loop.jpg"
                   autoPlay
                   muted
                   loop
@@ -334,6 +337,7 @@ function Home() {
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               )}
+
             </div>
 
           </div>
@@ -348,8 +352,9 @@ function Home() {
 
       <section
         id="manifesto"
-        className="relative flex min-h-screen items-center overflow-hidden border-t border-border px-6 py-28 md:px-10"
+        className="relative flex items-center overflow-hidden border-t border-border px-6 py-20 md:min-h-screen md:px-10 md:py-28"
       >
+
         {/* Background photo */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -397,7 +402,7 @@ function Home() {
 
 
       {/* CTA */}
-      <section className="relative overflow-hidden px-6 py-32 md:px-10 md:py-40">
+      <section className="relative overflow-hidden px-6 py-24 md:px-10 md:py-40">
         {/* Background photo */}
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -409,7 +414,7 @@ function Home() {
         <div className="absolute inset-0 bg-background/60" aria-hidden="true" />
         <div className="grain absolute inset-0" aria-hidden="true" />
 
-        <div className="relative z-10 mx-auto max-w-5xl text-center">
+        <div className="relative z-10 mx-auto max-w-5xl py-8 text-center md:py-0">
           <h2
             className="text-5xl leading-[0.95] text-foreground md:text-8xl"
             style={{ fontFamily: '"Tiempos Headline", Georgia, serif', fontWeight: 500, letterSpacing: "-0.02em" }}
@@ -417,6 +422,7 @@ function Home() {
             Got something<br />
             to <span className="text-primary">launch</span>?
           </h2>
+
 
           <p className="mx-auto mt-6 max-w-xl text-foreground/80 md:text-lg">
             Tell us what you're working on. We'll come back within 48 hours
@@ -437,7 +443,7 @@ function Home() {
       </section>
 
       {/* Instagram — latest posts */}
-      <section id="instagram" className="relative border-t border-surface-foreground/10 bg-surface px-6 py-24 md:px-10 md:py-32">
+      <section id="instagram" className="relative border-t border-surface-foreground/10 bg-surface px-6 py-16 md:px-10 md:py-32">
         <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-12 md:items-start">
           <div className="md:col-span-4">
             <h2 className="font-serif text-4xl leading-[1.05] tracking-tight text-surface-foreground md:text-5xl">
@@ -488,11 +494,12 @@ function Home() {
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Get in touch</p>
             <a
-              href="mailto:jordan@royagency.com"
-              className="mt-2 block font-display text-3xl uppercase md:text-5xl hover:text-primary transition-colors"
+              href="mailto:hello@royagency.com"
+              className="mt-2 block font-display text-2xl uppercase leading-tight sm:text-3xl md:text-5xl hover:text-primary transition-colors"
             >
-              hello@<br />royagency.com
+              hello@royagency.com
             </a>
+
             <p className="mt-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">Phone</p>
             <a
               href="tel:+16142646965"

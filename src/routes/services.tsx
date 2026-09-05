@@ -73,6 +73,7 @@ type VimeoVideo = {
 type DirectVideo = {
   type: "video";
   url: string;
+  poster?: string;
 };
 
 type Pill = {
@@ -226,6 +227,7 @@ function ServicesPage() {
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden bg-black">
         <video
           src={"/videos/Roy-Website-Loop_2.mp4"}
+          poster="/posters/roy-loop.jpg"
           autoPlay
           muted
           loop
@@ -254,7 +256,7 @@ function ServicesPage() {
       </section>
 
       {/* Three section boxes */}
-      <section className="relative z-10 page-pad pb-24">
+      <section className="relative z-10 page-pad pb-32 md:pb-24">
         <div className="page-wrap flex flex-col gap-10">
           {SECTIONS.map((section, idx) => (
             <ServiceBox key={section.name} section={section} index={idx} />
@@ -451,7 +453,7 @@ function VideoPlayer({ video }: { video: VimeoVideo | DirectVideo }) {
       />
     );
   }
-  return <VideoClip url={video.url} />;
+  return <VideoClip url={video.url} poster={video.poster} />;
 }
 
 function VimeoClip({
@@ -513,7 +515,7 @@ function VimeoClip({
   );
 }
 
-function VideoClip({ url }: { url: string }) {
+function VideoClip({ url, poster }: { url: string; poster?: string }) {
   const [errored, setErrored] = React.useState(false);
 
   if (errored) {
@@ -545,6 +547,7 @@ function VideoClip({ url }: { url: string }) {
 
   return (
     <video
+      poster={poster}
       autoPlay
       muted
       loop

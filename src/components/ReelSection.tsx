@@ -46,6 +46,7 @@ export function ReelSection() {
           <video
             ref={videoRef}
             src={REEL_VIDEO}
+            poster="/posters/roy-loop.jpg"
             autoPlay
             muted
             loop

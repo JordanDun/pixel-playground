@@ -313,7 +313,7 @@ function RootComponent() {
       <div
         className={`pointer-events-none fixed z-50 flex items-center gap-3 text-[10px] uppercase tracking-[0.18em] transition-opacity duration-300 md:text-[11px] ${
           isHome
-            ? `bottom-16 left-6 md:bottom-5 md:left-10 mix-blend-difference text-white/80 ${
+            ? `bottom-4 left-6 md:bottom-5 md:left-10 mix-blend-difference text-white/80 ${
                 pastHero && !menuOpen ? "opacity-0" : "opacity-100"
               }`
             : "bottom-0 left-0 right-0 border-t border-border bg-background/90 px-6 py-3 text-foreground/70 opacity-100 backdrop-blur-sm md:px-10"
@@ -331,17 +331,18 @@ function RootComponent() {
       {pathname !== "/contact" && (
       <Link
         to="/contact"
-        className={`fixed bottom-4 right-6 z-50 rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.18em] shadow-lg transition-all duration-300 md:right-10 ${
+        className={`fixed right-6 z-50 rounded-full px-5 py-2.5 text-xs uppercase tracking-[0.18em] shadow-lg transition-all duration-300 md:bottom-4 md:right-10 ${
           isHome
-            ? `bg-white text-black hover:bg-primary hover:text-primary-foreground ${
+            ? `bottom-4 bg-white text-black hover:bg-primary hover:text-primary-foreground ${
                 pastHero && !menuOpen ? "opacity-0" : "opacity-100"
               }`
-            : "border border-border bg-foreground text-background opacity-100 hover:bg-primary hover:text-primary-foreground"
+            : "bottom-16 border border-border bg-foreground text-background opacity-100 hover:bg-primary hover:text-primary-foreground"
         }`}
       >
         Get in touch
       </Link>
       )}
+
       <Outlet />
     </QueryClientProvider>
   );
