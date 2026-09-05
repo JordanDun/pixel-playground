@@ -9,9 +9,11 @@ type Project = {
   body: string;
   video: string;
   videoType?: "video" | "vimeo";
+  poster?: string;
   align?: "left" | "right";
   zoom?: number;
 };
+
 
 const PROJECTS: Project[] = [
   {
