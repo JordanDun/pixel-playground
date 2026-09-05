@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import bigFaceCoffee from "@/assets/logos/big-face-coffee.png";
 import cityOfWesterville from "@/assets/logos/city-of-westerville.png";
 import completeHealthcare from "@/assets/logos/complete-healthcare.png";
