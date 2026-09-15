@@ -8,6 +8,37 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { ProjectShowcase } from "@/components/ProjectShowcase";
 import { getRequestOrigin } from "@/lib/origin.functions";
 
+/**
+ * Eased programmatic scroll. The browser's native `behavior: "smooth"` covers
+ * the hero's tall scroll distance almost instantly on iOS, which reads as a
+ * jump. This runs a fixed ~900ms ease so one tap advances exactly one section.
+ */
+function smoothScrollTo(top: number, duration = 900) {
+  if (typeof window === "undefined") return;
+  const prefersReduced = window.matchMedia(
+    "(prefers-reduced-motion: reduce)",
+  ).matches;
+  const start = window.scrollY;
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const end = Math.max(0, Math.min(top, max));
+  const distance = end - start;
+  if (prefersReduced || Math.abs(distance) < 2) {
+    window.scrollTo(0, end);
+    return;
+  }
+  const t0 = performance.now();
+  const ease = (t: number) =>
+    t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  const step = (now: number) => {
+    const t = Math.min(1, (now - t0) / duration);
+    window.scrollTo(0, start + distance * ease(t));
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+
+
 
 export const Route = createFileRoute("/")({
   loader: () => getRequestOrigin(),
