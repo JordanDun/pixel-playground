@@ -293,8 +293,9 @@ function Home() {
               const target = el
                 ? el.offsetTop + el.offsetHeight
                 : window.innerHeight;
-              window.scrollTo({ top: target, behavior: "smooth" });
+              smoothScrollTo(target, 900);
             }}
+
             className={`group absolute bottom-24 left-1/2 z-30 flex -translate-x-1/2 flex-col items-center gap-1.5 text-white mix-blend-difference transition-opacity md:bottom-4 ${
               scaleProgress > 0.4 ? "pointer-events-none" : "pointer-events-auto"
             }`}
