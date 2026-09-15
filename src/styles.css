@@ -122,6 +122,16 @@
     .nav-label { font-size: min(7vw, calc((100vw - var(--nav-gutter)) / 4), 9rem); }
   }
 
+  /* Overlay nav gutters: 24px minimum plus notch safe areas, roomier on desktop. */
+  .nav-pad {
+    padding-left: calc(1.5rem + env(safe-area-inset-left));
+    padding-right: calc(1.5rem + env(safe-area-inset-right));
+  }
+  @media (min-width: 768px) {
+    .nav-pad { padding-right: calc(5rem + env(safe-area-inset-right)); }
+  }
+
+
 
 
   /* Consistent horizontal rhythm across every page section so laptop and
