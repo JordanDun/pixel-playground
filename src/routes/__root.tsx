@@ -239,7 +239,13 @@ function RootComponent() {
         {/* Soft accent glow */}
         <div className="pointer-events-none absolute -right-32 top-1/3 h-[60vh] w-[60vh] rounded-full bg-primary/20 blur-[120px]" />
 
-        <nav className="flex h-full flex-col items-end justify-center gap-3 px-8 pr-8 sm:gap-4 md:gap-6 md:pr-20">
+        <nav
+          className="flex h-full flex-col items-end justify-center gap-3 px-8 sm:gap-4 md:gap-6"
+          style={{
+            paddingRight: "calc(1.5rem + env(safe-area-inset-right))",
+            paddingLeft: "calc(1.5rem + env(safe-area-inset-left))",
+          }}
+        >
           {navLinks.map((l, i) => (
             <Link
               key={l.to}
@@ -249,15 +255,16 @@ function RootComponent() {
               style={{
                 transitionDelay: menuOpen ? `${120 + i * 60}ms` : "0ms",
               }}
-              className={`group relative font-display text-[14vw] font-bold uppercase leading-[0.95] tracking-tight text-white transition-all duration-500 hover:text-primary md:text-[7vw] ${
+              className={`nav-label group relative max-w-full font-display font-bold uppercase leading-[0.95] tracking-tight text-white transition-all duration-500 hover:text-primary ${
                 menuOpen
                   ? "translate-x-0 opacity-100"
                   : "translate-x-8 opacity-0"
               }`}
             >
-              <span className="italic">{l.label}</span>
+              <span className="inline-block italic pr-[0.08em]">{l.label}</span>
             </Link>
           ))}
+
 
         {/* Footer info inside overlay */}
         <div
