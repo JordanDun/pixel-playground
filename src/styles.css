@@ -116,7 +116,7 @@
      also capped by the same fit-the-longest-label ceiling. */
   .nav-label {
     --nav-gutter: calc(3rem + env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px));
-    font-size: min(calc((100% - var(--nav-gutter)) / 4.3), 7rem);
+    font-size: min(calc((100vw - var(--nav-gutter)) / 4.3), 7rem);
     max-width: 100%;
     overflow-wrap: break-word;
   }
