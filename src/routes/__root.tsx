@@ -239,13 +239,8 @@ function RootComponent() {
         {/* Soft accent glow */}
         <div className="pointer-events-none absolute -right-32 top-1/3 h-[60vh] w-[60vh] rounded-full bg-primary/20 blur-[120px]" />
 
-        <nav
-          className="flex h-full flex-col items-end justify-center gap-3 px-8 sm:gap-4 md:gap-6"
-          style={{
-            paddingRight: "calc(1.5rem + env(safe-area-inset-right))",
-            paddingLeft: "calc(1.5rem + env(safe-area-inset-left))",
-          }}
-        >
+        <nav className="nav-pad flex h-full flex-col items-end justify-center gap-3 sm:gap-4 md:gap-6">
+
           {navLinks.map((l, i) => (
             <Link
               key={l.to}
