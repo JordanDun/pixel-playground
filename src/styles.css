@@ -115,17 +115,19 @@
      each side plus the notch safe areas. Desktop keeps its original 7vw size,
      also capped by the same fit-the-longest-label ceiling. */
   .nav-label {
-    --nav-gutter: calc(3rem + env(safe-area-inset-left) + env(safe-area-inset-right));
-    font-size: min(calc((100vw - var(--nav-gutter)) / 4), 7rem);
+    --nav-gutter: calc(3rem + env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px));
+    font-size: min(calc((100% - var(--nav-gutter)) / 4.3), 7rem);
+    max-width: 100%;
+    overflow-wrap: break-word;
   }
   @media (min-width: 768px) {
-    .nav-label { font-size: min(7vw, calc((100vw - var(--nav-gutter)) / 4), 9rem); }
+    .nav-label { font-size: min(7vw, calc((100% - var(--nav-gutter)) / 4.3), 9rem); }
   }
 
   /* Overlay nav gutters: 24px minimum plus notch safe areas, roomier on desktop. */
   .nav-pad {
-    padding-left: calc(1.5rem + env(safe-area-inset-left));
-    padding-right: calc(1.5rem + env(safe-area-inset-right));
+    padding-left: calc(1.5rem + env(safe-area-inset-left, 0px));
+    padding-right: calc(1.5rem + env(safe-area-inset-right, 0px));
   }
   @media (min-width: 768px) {
     .nav-pad { padding-right: calc(5rem + env(safe-area-inset-right)); }
