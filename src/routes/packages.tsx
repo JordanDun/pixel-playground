@@ -43,26 +43,6 @@ const HEX = {
 
 const PACKAGES: Pkg[] = [
   {
-    id: "orange",
-    tag: "Most Popular",
-    color: "ORANGE",
-    hex: HEX.orange,
-    name: "The Business Video",
-    price: "Starting at $4K",
-    cadence: "One time",
-    blurb:
-      "A professional video of your business, done in two weeks, no film crew experience needed on your end.",
-    long: "We come to you, film for one day, and hand you a polished video you can put on your website, run as an ad, or post anywhere. You don't need to hire actors, write a script, or know anything about video. That's our job.",
-    bullets: [
-      "One shoot day at your location",
-      "A 60–90 second brand video, fully edited",
-      "2–3 social media clips cut from the same footage",
-      "Music, color, and your logo added",
-      "Delivered in 7–10 business days",
-    ],
-    fit: "Restaurants · Gyms · Law firms · Med spas · Contractors · Retail",
-  },
-  {
     id: "yellow",
     tag: "Recurring",
     color: "YELLOW",
@@ -82,6 +62,26 @@ const PACKAGES: Pkg[] = [
       "Month-to-month, cancel anytime",
     ],
     fit: "Any local business that needs to stay active online",
+  },
+  {
+    id: "orange",
+    tag: "One-off project",
+    color: "ORANGE",
+    hex: HEX.orange,
+    name: "The Business Video",
+    price: "Starting at $4K",
+    cadence: "One time",
+    blurb:
+      "A professional video of your business, done in two weeks, no film crew experience needed on your end.",
+    long: "We come to you, film for one day, and hand you a polished video you can put on your website, run as an ad, or post anywhere. You don't need to hire actors, write a script, or know anything about video. That's our job.",
+    bullets: [
+      "One shoot day at your location",
+      "A 60–90 second brand video, fully edited",
+      "2–3 social media clips cut from the same footage",
+      "Music, color, and your logo added",
+      "Delivered in 7–10 business days",
+    ],
+    fit: "Restaurants · Gyms · Law firms · Med spas · Contractors · Retail",
   },
   {
     id: "red",
@@ -106,29 +106,6 @@ const PACKAGES: Pkg[] = [
   },
 ];
 
-const INTROS = [
-  {
-    label: "Need this once?",
-    quote: "\"I need a video for my website or to run as an ad.\"",
-    arrow: "ORANGE",
-    target: "orange",
-    hex: HEX.orange,
-  },
-  {
-    label: "Need this every month?",
-    quote: "\"I need to stay active on social but never have anything to post.\"",
-    arrow: "YELLOW",
-    target: "yellow",
-    hex: HEX.yellow,
-  },
-  {
-    label: "Running a real campaign?",
-    quote: "\"I need broadcast-quality production for ads, launch, or brand.\"",
-    arrow: "RED",
-    target: "red",
-    hex: HEX.red,
-  },
-];
 
 function PackagesPage() {
   return (
@@ -149,60 +126,20 @@ function PackagesPage() {
           or video that looks like it was shot on a phone. We fix that. Simple packages,
           real results, no film school required to understand them.
         </p>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a
-            href="#get-started"
-            className="rounded-full bg-primary px-6 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Find my package
-          </a>
-          <a
-            href="#packages"
-            className="rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary"
-          >
-            See options
-          </a>
-        </div>
        </div>
       </section>
 
-      {/* Intro three-up */}
-      <section className="border-y border-border bg-card/30 page-pad py-16 md:py-24">
-        <div className="page-wrap grid gap-10 md:grid-cols-3">
-          {INTROS.map((i) => (
-            <a
-              key={i.target}
-              href={`#${i.target}`}
-              className="group block border-l-2 border-border pl-6 transition-colors hover:border-[var(--accent-color)]"
-              style={{ ["--accent-color" as string]: i.hex }}
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                {i.label}
-              </p>
-              <p className="mt-4 font-display text-2xl leading-tight text-foreground md:text-3xl">
-                {i.quote}
-              </p>
-              <p
-                className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] transition-transform group-hover:translate-x-1"
-                style={{ color: i.hex }}
-              >
-                ↓ {i.arrow}
-              </p>
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* Packages */}
-      <section id="packages" className="page-pad py-24 md:py-32">
+      <section id="packages" className="page-pad pb-24 md:pb-32">
        <div className="page-wrap">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           What we offer
         </p>
         <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
           Three packages.<br />
-          <span className="italic" style={{ color: HEX.orange }}>Pick one.</span>
+          <span className="italic" style={{ color: HEX.orange }}>Built around how often you need us.</span>
         </h2>
+
 
         <div className="mt-16 space-y-6 md:space-y-8">
           {PACKAGES.map((p) => (
@@ -302,11 +239,9 @@ function PackagesPage() {
             Clients we've shot for
           </p>
           <p className="mt-6 font-display text-3xl leading-snug md:text-5xl">
-            Craftsman. DeWalt. Otterbein University. Pickups Plus.{" "}
-            <span className="text-foreground/50">
-              And local Columbus businesses just like yours.
-            </span>
+            Craftsman. DeWalt. Otterbein University. Pickups Plus.
           </p>
+
         </div>
       </section>
 
@@ -591,7 +526,7 @@ function PackagesForm() {
 
       <div>
         <label className={labelClass} htmlFor="pkg-message">
-          In plain English, what do you need? *
+          What do you need? *
         </label>
         <textarea
           id="pkg-message"
