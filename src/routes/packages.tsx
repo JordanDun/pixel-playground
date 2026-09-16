@@ -48,7 +48,7 @@ const PACKAGES: Pkg[] = [
     color: "ORANGE",
     hex: HEX.orange,
     name: "The Business Video",
-    price: "$2,500–$5K",
+    price: "Starting at $4K",
     cadence: "One time",
     blurb:
       "A professional video of your business, done in two weeks, no film crew experience needed on your end.",
@@ -68,7 +68,7 @@ const PACKAGES: Pkg[] = [
     color: "YELLOW",
     hex: HEX.yellow,
     name: "Social Media on Autopilot",
-    price: "$1,200–$1,500",
+    price: "$3K–$5K",
     cadence: "Per month",
     blurb:
       "Fresh videos for your social media every single month, without you having to think about it.",
@@ -333,12 +333,12 @@ function PackagesPage() {
               <p>
                 <span className="text-foreground">One-time video for your website or ads?</span>
                 <br />
-                That's <span className="font-semibold" style={{ color: HEX.orange }}>ORANGE</span>. Starting at $2,500.
+                That's <span className="font-semibold" style={{ color: HEX.orange }}>ORANGE</span>. Starting at $4K.
               </p>
               <p>
                 <span className="text-foreground">Need something to post every month?</span>
                 <br />
-                That's <span className="font-semibold" style={{ color: HEX.yellow }}>YELLOW</span>. Starting at $1,200/mo.
+                That's <span className="font-semibold" style={{ color: HEX.yellow }}>YELLOW</span>. $3K–$5K/mo.
               </p>
               <p>
                 <span className="text-foreground">Running a big campaign or launch?</span>
@@ -426,8 +426,8 @@ function PackagesPage() {
                   className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
                 >
                   <option value="" disabled>Pick one</option>
-                  <option className="bg-background">ORANGE: One video for my website or ads ($2,500–$5K)</option>
-                  <option className="bg-background">YELLOW: Monthly social content ($1,200–$1,500/mo)</option>
+                  <option className="bg-background">ORANGE: One video for my website or ads (starting at $4K)</option>
+                  <option className="bg-background">YELLOW: Monthly social content ($3K–$5K/mo)</option>
                   <option className="bg-background">RED: Full commercial production ($8K+)</option>
                   <option className="bg-background">I have no idea, just help me</option>
                 </select>
