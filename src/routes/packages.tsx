@@ -372,7 +372,7 @@ const INDUSTRIES = [
   "Other",
 ];
 
-const PACKAGES = [
+const PACKAGE_OPTIONS = [
   "ORANGE: One video for my website or ads (starting at $4K)",
   "YELLOW: Monthly social content ($3K–$5K/mo)",
   "RED: Full commercial production ($8K+)",
@@ -581,7 +581,7 @@ function PackagesForm() {
           className={fieldClass}
         >
           <option value="" disabled>Pick one</option>
-          {PACKAGES.map((o) => (
+          {PACKAGE_OPTIONS.map((o) => (
             <option key={o} value={o} className="bg-background">
               {o}
             </option>
