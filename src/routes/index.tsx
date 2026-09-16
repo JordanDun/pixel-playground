@@ -183,22 +183,12 @@ function Home() {
   // initial paint (especially on mobile) isn't blocked by two video players.
   const [videosReady, setVideosReady] = useState(false);
   useEffect(() => {
-    let cancelled = false;
-    const mount = () => {
-      if (cancelled) return;
-      const ric = (window as any).requestIdleCallback as
-        | ((cb: () => void, opts?: { timeout: number }) => number)
-        | undefined;
-      if (ric) ric(() => !cancelled && setVideosReady(true), { timeout: 1500 });
-      else setTimeout(() => !cancelled && setVideosReady(true), 300);
-    };
-    if (document.readyState === "complete") mount();
-    else window.addEventListener("load", mount, { once: true });
-    return () => {
-      cancelled = true;
-      window.removeEventListener("load", mount);
-    };
+    // Mount on the next frame after hydration so the first paint is still
+    // text-only, but the players start fetching almost immediately.
+    const id = requestAnimationFrame(() => setVideosReady(true));
+    return () => cancelAnimationFrame(id);
   }, []);
+
 
   // (fullPage-style snap is handled inside ProjectShowcase via wheel hijack.)
 
