@@ -131,8 +131,6 @@ const INTROS = [
 ];
 
 function PackagesPage() {
-  const [submitted, setSubmitted] = React.useState(false);
-
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero */}
