@@ -526,7 +526,7 @@ function PackagesForm() {
 
       <div>
         <label className={labelClass} htmlFor="pkg-message">
-          In plain English, what do you need? *
+          What do you need? *
         </label>
         <textarea
           id="pkg-message"
