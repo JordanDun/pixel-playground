@@ -43,26 +43,6 @@ const HEX = {
 
 const PACKAGES: Pkg[] = [
   {
-    id: "orange",
-    tag: "Most Popular",
-    color: "ORANGE",
-    hex: HEX.orange,
-    name: "The Business Video",
-    price: "Starting at $4K",
-    cadence: "One time",
-    blurb:
-      "A professional video of your business, done in two weeks, no film crew experience needed on your end.",
-    long: "We come to you, film for one day, and hand you a polished video you can put on your website, run as an ad, or post anywhere. You don't need to hire actors, write a script, or know anything about video. That's our job.",
-    bullets: [
-      "One shoot day at your location",
-      "A 60–90 second brand video, fully edited",
-      "2–3 social media clips cut from the same footage",
-      "Music, color, and your logo added",
-      "Delivered in 7–10 business days",
-    ],
-    fit: "Restaurants · Gyms · Law firms · Med spas · Contractors · Retail",
-  },
-  {
     id: "yellow",
     tag: "Recurring",
     color: "YELLOW",
@@ -82,6 +62,26 @@ const PACKAGES: Pkg[] = [
       "Month-to-month, cancel anytime",
     ],
     fit: "Any local business that needs to stay active online",
+  },
+  {
+    id: "orange",
+    tag: "One-off project",
+    color: "ORANGE",
+    hex: HEX.orange,
+    name: "The Business Video",
+    price: "Starting at $4K",
+    cadence: "One time",
+    blurb:
+      "A professional video of your business, done in two weeks, no film crew experience needed on your end.",
+    long: "We come to you, film for one day, and hand you a polished video you can put on your website, run as an ad, or post anywhere. You don't need to hire actors, write a script, or know anything about video. That's our job.",
+    bullets: [
+      "One shoot day at your location",
+      "A 60–90 second brand video, fully edited",
+      "2–3 social media clips cut from the same footage",
+      "Music, color, and your logo added",
+      "Delivered in 7–10 business days",
+    ],
+    fit: "Restaurants · Gyms · Law firms · Med spas · Contractors · Retail",
   },
   {
     id: "red",
@@ -106,29 +106,6 @@ const PACKAGES: Pkg[] = [
   },
 ];
 
-const INTROS = [
-  {
-    label: "Need this once?",
-    quote: "\"I need a video for my website or to run as an ad.\"",
-    arrow: "ORANGE",
-    target: "orange",
-    hex: HEX.orange,
-  },
-  {
-    label: "Need this every month?",
-    quote: "\"I need to stay active on social but never have anything to post.\"",
-    arrow: "YELLOW",
-    target: "yellow",
-    hex: HEX.yellow,
-  },
-  {
-    label: "Running a real campaign?",
-    quote: "\"I need broadcast-quality production for ads, launch, or brand.\"",
-    arrow: "RED",
-    target: "red",
-    hex: HEX.red,
-  },
-];
 
 function PackagesPage() {
   return (
