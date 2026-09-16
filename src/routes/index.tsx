@@ -229,7 +229,7 @@ function Home() {
                 src={BG_VIDEO}
                 title="ROY background reel"
                 allow="autoplay; fullscreen; picture-in-picture"
-                loading="lazy"
+                loading="eager"
                 className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
                 style={{ border: 0, pointerEvents: "none" }}
               />
