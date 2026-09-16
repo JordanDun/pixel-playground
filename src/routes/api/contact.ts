@@ -6,6 +6,13 @@ type Payload = {
   projectType?: unknown;
   message?: unknown;
   company?: unknown;
+  /** Optional extras sent by the /packages form. */
+  source?: unknown;
+  businessName?: unknown;
+  phone?: unknown;
+  industry?: unknown;
+  packageSelected?: unknown;
+  timeline?: unknown;
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -74,6 +81,29 @@ export const Route = createFileRoute("/api/contact")({
           typeof payload.projectType === "string" ? payload.projectType.trim() : "";
         const message = typeof payload.message === "string" ? payload.message.trim() : "";
 
+        const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+        const isPackages = str(payload.source) === "packages";
+        const businessName = str(payload.businessName);
+        const phone = str(payload.phone);
+        const industry = str(payload.industry);
+        const packageSelected = str(payload.packageSelected);
+        const timeline = str(payload.timeline);
+
+        if (isPackages) {
+          if (!businessName) return bad("Please enter your business name.");
+          if (businessName.length > 120)
+            return bad("Business name must be 120 characters or fewer.");
+          if (phone.length > 40) return bad("Phone must be 40 characters or fewer.");
+          if (!industry) return bad("Please select your type of business.");
+          if (!packageSelected) return bad("Please pick a package.");
+          if (
+            industry.length > 120 ||
+            packageSelected.length > 200 ||
+            timeline.length > 120
+          )
+            return bad("One of your selections is too long.");
+        }
+
         if (!name) return bad("Please enter your name.");
         if (name.length > 100) return bad("Name must be 100 characters or fewer.");
         if (!email || !EMAIL_RE.test(email) || email.length > 255)
@@ -101,12 +131,33 @@ export const Route = createFileRoute("/api/contact")({
           timeStyle: "short",
         }).format(new Date());
 
+        const row = (label: string, value: string) =>
+          `<p style="margin:0 0 8px"><strong>${label}:</strong> ${esc(value)}</p>`;
+
+        const details = isPackages
+          ? [
+              row("Full name", name),
+              row("Company", businessName),
+              row("Email", email),
+              row("Phone", phone || "Not provided"),
+              row("Industry", industry),
+              row("Package selected", packageSelected),
+              row("Timeline", timeline || "Not specified"),
+            ].join("")
+          : [
+              row("Name", name),
+              row("Email", email),
+              row("Project type", projectType || "Not specified"),
+            ].join("");
+
+        const heading = isPackages
+          ? `Package inquiry from ${esc(name)}`
+          : `New inquiry from ${esc(name)}`;
+
         const notification = `
           <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">${HEADER}
-            <h2 style="margin:0 0 16px">New inquiry from ${esc(name)}</h2>
-            <p style="margin:0 0 8px"><strong>Name:</strong> ${esc(name)}</p>
-            <p style="margin:0 0 8px"><strong>Email:</strong> ${esc(email)}</p>
-            <p style="margin:0 0 8px"><strong>Project type:</strong> ${esc(projectType || "Not specified")}</p>
+            <h2 style="margin:0 0 16px">${heading}</h2>
+            ${details}
             <p style="margin:0 0 8px"><strong>Submitted:</strong> ${esc(submittedAt)} (America/New_York)</p>
             <p style="margin:16px 0 8px"><strong>Message:</strong></p>
             <div style="white-space:pre-wrap;padding:12px 16px;background:#f5f5f5;border-radius:6px">${esc(message)}</div>
@@ -118,7 +169,9 @@ export const Route = createFileRoute("/api/contact")({
             from: "ROY Website <hello@royagency.com>",
             to: ["jordan@royagency.com", "josh@royagency.com"],
             reply_to: email,
-            subject: `New inquiry from ${name}`,
+            subject: isPackages
+              ? `Package inquiry from ${name} - ${packageSelected}`
+              : `New inquiry from ${name}`,
             html: notification,
           });
         } catch (err) {

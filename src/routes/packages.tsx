@@ -131,8 +131,6 @@ const INTROS = [
 ];
 
 function PackagesPage() {
-  const [submitted, setSubmitted] = React.useState(false);
-
   return (
     <main className="min-h-screen bg-background text-foreground">
       {/* Hero */}
@@ -348,133 +346,308 @@ function PackagesPage() {
             </div>
           </div>
 
-          {submitted ? (
-            <div className="flex flex-col justify-center border border-border bg-card/40 p-10">
-              <span className="text-3xl text-primary">✓</span>
-              <h3 className="mt-4 font-display text-3xl uppercase">Got it.</h3>
-              <p className="mt-3 text-foreground/70">
-                We'll be in touch within 24 hours with a recommendation.
-              </p>
-              <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                The ROY Team
-              </p>
-            </div>
-          ) : (
-            <form
-              className="space-y-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                setSubmitted(true);
-              }}
-            >
-              {[
-                { label: "Your name *", type: "text", placeholder: "Full name", required: true },
-                { label: "Business name *", type: "text", placeholder: "Company", required: true },
-                { label: "Email *", type: "email", placeholder: "you@company.com", required: true },
-                { label: "Phone", type: "tel", placeholder: "(optional)", required: false },
-              ].map((f) => (
-                <div key={f.label}>
-                  <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                    {f.label}
-                  </label>
-                  <input
-                    type={f.type}
-                    required={f.required}
-                    className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                    placeholder={f.placeholder}
-                  />
-                </div>
-              ))}
+          <PackagesForm />
 
-              <div>
-                <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Type of business *
-                </label>
-                <select
-                  required
-                  defaultValue=""
-                  className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                >
-                  <option value="" disabled>Select your industry</option>
-                  {[
-                    "Restaurant / Food & Beverage",
-                    "Gym / Fitness / Wellness",
-                    "Med Spa / Aesthetics / Salon",
-                    "Law Firm / Professional Services",
-                    "Real Estate",
-                    "Contractor / Home Services",
-                    "Retail / E-Commerce",
-                    "Healthcare / Medical",
-                    "Education / Non-Profit",
-                    "Brand / Consumer Product",
-                    "Other",
-                  ].map((o) => (
-                    <option key={o} value={o} className="bg-background">
-                      {o}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  Which sounds right for you? *
-                </label>
-                <select
-                  required
-                  defaultValue=""
-                  className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                >
-                  <option value="" disabled>Pick one</option>
-                  <option className="bg-background">ORANGE: One video for my website or ads (starting at $4K)</option>
-                  <option className="bg-background">YELLOW: Monthly social content ($3K–$5K/mo)</option>
-                  <option className="bg-background">RED: Full commercial production ($8K+)</option>
-                  <option className="bg-background">I have no idea, just help me</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  In plain English, what do you need? *
-                </label>
-                <textarea
-                  rows={4}
-                  required
-                  className="mt-2 w-full resize-none border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                  placeholder="Tell us what you're trying to do..."
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                  When are you looking to start?
-                </label>
-                <select
-                  defaultValue=""
-                  className="mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary"
-                >
-                  <option value="" disabled>Select a timeline</option>
-                  <option className="bg-background">ASAP</option>
-                  <option className="bg-background">Within 30 days</option>
-                  <option className="bg-background">1–3 months out</option>
-                  <option className="bg-background">Just exploring</option>
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                className="rounded-full bg-primary px-8 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90"
-              >
-                Send it over
-              </button>
-
-              <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
-                We respond within 24 hrs · No commitment required
-              </p>
-            </form>
-          )}
         </div>
       </section>
     </main>
+  );
+}
+
+const fieldClass =
+  "mt-2 w-full border-b border-border bg-transparent py-3 text-foreground outline-none transition-colors focus:border-primary";
+const labelClass = "block text-xs uppercase tracking-[0.2em] text-muted-foreground";
+
+const INDUSTRIES = [
+  "Restaurant / Food & Beverage",
+  "Gym / Fitness / Wellness",
+  "Med Spa / Aesthetics / Salon",
+  "Law Firm / Professional Services",
+  "Real Estate",
+  "Contractor / Home Services",
+  "Retail / E-Commerce",
+  "Healthcare / Medical",
+  "Education / Non-Profit",
+  "Brand / Consumer Product",
+  "Other",
+];
+
+const PACKAGE_OPTIONS = [
+  "ORANGE: One video for my website or ads (starting at $4K)",
+  "YELLOW: Monthly social content ($3K–$5K/mo)",
+  "RED: Full commercial production ($8K+)",
+  "I have no idea, just help me",
+];
+
+const TIMELINES = ["ASAP", "Within 30 days", "1–3 months out", "Just exploring"];
+
+function PackagesForm() {
+  const [values, setValues] = React.useState({
+    name: "",
+    businessName: "",
+    email: "",
+    phone: "",
+    industry: "",
+    packageSelected: "",
+    message: "",
+    timeline: "",
+    company: "",
+  });
+  const [status, setStatus] = React.useState<
+    "idle" | "submitting" | "success" | "error"
+  >("idle");
+  const [error, setError] = React.useState("");
+
+  const set =
+    (key: keyof typeof values) =>
+    (
+      e: React.ChangeEvent<
+        HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+      >,
+    ) =>
+      setValues((v) => ({ ...v, [key]: e.target.value }));
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (
+      !values.name.trim() ||
+      !values.businessName.trim() ||
+      !values.email.trim() ||
+      !values.industry ||
+      !values.packageSelected ||
+      !values.message.trim()
+    ) {
+      setError("Please fill in every required field.");
+      setStatus("error");
+      return;
+    }
+    setStatus("submitting");
+    setError("");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...values,
+          source: "packages",
+          projectType: values.packageSelected.slice(0, 100),
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as {
+        success?: boolean;
+        error?: string;
+      };
+      if (!res.ok || !data.success) {
+        setError(data.error ?? "");
+        setStatus("error");
+        return;
+      }
+      setStatus("success");
+    } catch {
+      setError("");
+      setStatus("error");
+    }
+  }
+
+  if (status === "success") {
+    return (
+      <div className="flex flex-col justify-center border border-border bg-card/40 p-10">
+        <span className="text-3xl text-primary">✓</span>
+        <h3 className="mt-4 font-display text-3xl uppercase">Got it.</h3>
+        <p className="mt-3 text-foreground/70">
+          We'll be in touch within 24 hours with a recommendation. Check your inbox for
+          a confirmation.
+        </p>
+        <p className="mt-6 text-xs uppercase tracking-[0.2em] text-muted-foreground">
+          The ROY Team
+        </p>
+      </div>
+    );
+  }
+
+  const submitting = status === "submitting";
+
+  return (
+    <form className="space-y-6" onSubmit={handleSubmit}>
+      {/* Honeypot */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          width: 1,
+          height: 1,
+          overflow: "hidden",
+          clip: "rect(0 0 0 0)",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <label htmlFor="pkg-company">Company</label>
+        <input
+          id="pkg-company"
+          name="company"
+          type="text"
+          autoComplete="off"
+          tabIndex={-1}
+          value={values.company}
+          onChange={set("company")}
+        />
+      </div>
+
+      <div>
+        <label className={labelClass} htmlFor="pkg-name">Your name *</label>
+        <input
+          id="pkg-name"
+          name="name"
+          type="text"
+          maxLength={100}
+          required
+          value={values.name}
+          onChange={set("name")}
+          className={fieldClass}
+          placeholder="Full name"
+        />
+      </div>
+      <div>
+        <label className={labelClass} htmlFor="pkg-business">Business name *</label>
+        <input
+          id="pkg-business"
+          name="businessName"
+          type="text"
+          maxLength={120}
+          required
+          value={values.businessName}
+          onChange={set("businessName")}
+          className={fieldClass}
+          placeholder="Company"
+        />
+      </div>
+      <div>
+        <label className={labelClass} htmlFor="pkg-email">Email *</label>
+        <input
+          id="pkg-email"
+          name="email"
+          type="email"
+          maxLength={255}
+          required
+          value={values.email}
+          onChange={set("email")}
+          className={fieldClass}
+          placeholder="you@company.com"
+        />
+      </div>
+      <div>
+        <label className={labelClass} htmlFor="pkg-phone">Phone</label>
+        <input
+          id="pkg-phone"
+          name="phone"
+          type="tel"
+          maxLength={40}
+          value={values.phone}
+          onChange={set("phone")}
+          className={fieldClass}
+          placeholder="(optional)"
+        />
+      </div>
+
+      <div>
+        <label className={labelClass} htmlFor="pkg-industry">Type of business *</label>
+        <select
+          id="pkg-industry"
+          name="industry"
+          required
+          value={values.industry}
+          onChange={set("industry")}
+          className={fieldClass}
+        >
+          <option value="" disabled>Select your industry</option>
+          {INDUSTRIES.map((o) => (
+            <option key={o} value={o} className="bg-background">
+              {o}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className={labelClass} htmlFor="pkg-package">
+          Which sounds right for you? *
+        </label>
+        <select
+          id="pkg-package"
+          name="packageSelected"
+          required
+          value={values.packageSelected}
+          onChange={set("packageSelected")}
+          className={fieldClass}
+        >
+          <option value="" disabled>Pick one</option>
+          {PACKAGE_OPTIONS.map((o) => (
+            <option key={o} value={o} className="bg-background">
+              {o}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className={labelClass} htmlFor="pkg-message">
+          In plain English, what do you need? *
+        </label>
+        <textarea
+          id="pkg-message"
+          name="message"
+          rows={4}
+          maxLength={5000}
+          required
+          value={values.message}
+          onChange={set("message")}
+          className={`${fieldClass} resize-none`}
+          placeholder="Tell us what you're trying to do..."
+        />
+      </div>
+
+      <div>
+        <label className={labelClass} htmlFor="pkg-timeline">
+          When are you looking to start?
+        </label>
+        <select
+          id="pkg-timeline"
+          name="timeline"
+          value={values.timeline}
+          onChange={set("timeline")}
+          className={fieldClass}
+        >
+          <option value="" disabled>Select a timeline</option>
+          {TIMELINES.map((o) => (
+            <option key={o} value={o} className="bg-background">
+              {o}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {status === "error" && (
+        <p className="text-sm text-primary">
+          {error ? `${error} ` : "That didn't send. "}
+          Email{" "}
+          <a href="mailto:jordan@royagency.com" className="underline">
+            jordan@royagency.com
+          </a>{" "}
+          directly and we'll pick it up there.
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={submitting}
+        className="rounded-full bg-primary px-8 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {submitting ? "Sending..." : "Send it over"}
+      </button>
+
+      <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+        We respond within 24 hrs · No commitment required
+      </p>
+    </form>
   );
 }
