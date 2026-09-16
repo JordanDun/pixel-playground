@@ -183,22 +183,12 @@ function Home() {
   // initial paint (especially on mobile) isn't blocked by two video players.
   const [videosReady, setVideosReady] = useState(false);
   useEffect(() => {
-    let cancelled = false;
-    const mount = () => {
-      if (cancelled) return;
-      const ric = (window as any).requestIdleCallback as
-        | ((cb: () => void, opts?: { timeout: number }) => number)
-        | undefined;
-      if (ric) ric(() => !cancelled && setVideosReady(true), { timeout: 1500 });
-      else setTimeout(() => !cancelled && setVideosReady(true), 300);
-    };
-    if (document.readyState === "complete") mount();
-    else window.addEventListener("load", mount, { once: true });
-    return () => {
-      cancelled = true;
-      window.removeEventListener("load", mount);
-    };
+    // Mount on the next frame after hydration so the first paint is still
+    // text-only, but the players start fetching almost immediately.
+    const id = requestAnimationFrame(() => setVideosReady(true));
+    return () => cancelAnimationFrame(id);
   }, []);
+
 
   // (fullPage-style snap is handled inside ProjectShowcase via wheel hijack.)
 
@@ -239,7 +229,7 @@ function Home() {
                 src={BG_VIDEO}
                 title="ROY background reel"
                 allow="autoplay; fullscreen; picture-in-picture"
-                loading="lazy"
+                loading="eager"
                 className="absolute left-1/2 top-1/2 h-[120vh] w-[220vw] -translate-x-1/2 -translate-y-1/2 grayscale md:w-[120vw]"
                 style={{ border: 0, pointerEvents: "none" }}
               />
@@ -341,7 +331,7 @@ function Home() {
                   muted
                   loop
                   playsInline
-                  preload="metadata"
+                  preload="auto"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
               )}
