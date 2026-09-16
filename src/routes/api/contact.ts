@@ -6,6 +6,13 @@ type Payload = {
   projectType?: unknown;
   message?: unknown;
   company?: unknown;
+  /** Optional extras sent by the /packages form. */
+  source?: unknown;
+  businessName?: unknown;
+  phone?: unknown;
+  industry?: unknown;
+  packageSelected?: unknown;
+  timeline?: unknown;
 };
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
