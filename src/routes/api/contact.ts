@@ -81,6 +81,29 @@ export const Route = createFileRoute("/api/contact")({
           typeof payload.projectType === "string" ? payload.projectType.trim() : "";
         const message = typeof payload.message === "string" ? payload.message.trim() : "";
 
+        const str = (v: unknown) => (typeof v === "string" ? v.trim() : "");
+        const isPackages = str(payload.source) === "packages";
+        const businessName = str(payload.businessName);
+        const phone = str(payload.phone);
+        const industry = str(payload.industry);
+        const packageSelected = str(payload.packageSelected);
+        const timeline = str(payload.timeline);
+
+        if (isPackages) {
+          if (!businessName) return bad("Please enter your business name.");
+          if (businessName.length > 120)
+            return bad("Business name must be 120 characters or fewer.");
+          if (phone.length > 40) return bad("Phone must be 40 characters or fewer.");
+          if (!industry) return bad("Please select your type of business.");
+          if (!packageSelected) return bad("Please pick a package.");
+          if (
+            industry.length > 120 ||
+            packageSelected.length > 200 ||
+            timeline.length > 120
+          )
+            return bad("One of your selections is too long.");
+        }
+
         if (!name) return bad("Please enter your name.");
         if (name.length > 100) return bad("Name must be 100 characters or fewer.");
         if (!email || !EMAIL_RE.test(email) || email.length > 255)
