@@ -131,12 +131,33 @@ export const Route = createFileRoute("/api/contact")({
           timeStyle: "short",
         }).format(new Date());
 
+        const row = (label: string, value: string) =>
+          `<p style="margin:0 0 8px"><strong>${label}:</strong> ${esc(value)}</p>`;
+
+        const details = isPackages
+          ? [
+              row("Full name", name),
+              row("Company", businessName),
+              row("Email", email),
+              row("Phone", phone || "Not provided"),
+              row("Industry", industry),
+              row("Package selected", packageSelected),
+              row("Timeline", timeline || "Not specified"),
+            ].join("")
+          : [
+              row("Name", name),
+              row("Email", email),
+              row("Project type", projectType || "Not specified"),
+            ].join("");
+
+        const heading = isPackages
+          ? `Package inquiry from ${esc(name)}`
+          : `New inquiry from ${esc(name)}`;
+
         const notification = `
           <div style="font-family:Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#111">${HEADER}
-            <h2 style="margin:0 0 16px">New inquiry from ${esc(name)}</h2>
-            <p style="margin:0 0 8px"><strong>Name:</strong> ${esc(name)}</p>
-            <p style="margin:0 0 8px"><strong>Email:</strong> ${esc(email)}</p>
-            <p style="margin:0 0 8px"><strong>Project type:</strong> ${esc(projectType || "Not specified")}</p>
+            <h2 style="margin:0 0 16px">${heading}</h2>
+            ${details}
             <p style="margin:0 0 8px"><strong>Submitted:</strong> ${esc(submittedAt)} (America/New_York)</p>
             <p style="margin:16px 0 8px"><strong>Message:</strong></p>
             <div style="white-space:pre-wrap;padding:12px 16px;background:#f5f5f5;border-radius:6px">${esc(message)}</div>
@@ -148,7 +169,9 @@ export const Route = createFileRoute("/api/contact")({
             from: "ROY Website <hello@royagency.com>",
             to: ["jordan@royagency.com", "josh@royagency.com"],
             reply_to: email,
-            subject: `New inquiry from ${name}`,
+            subject: isPackages
+              ? `Package inquiry from ${name} - ${packageSelected}`
+              : `New inquiry from ${name}`,
             html: notification,
           });
         } catch (err) {
