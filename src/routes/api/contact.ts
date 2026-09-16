@@ -23,9 +23,10 @@ function bad(error: string) {
 
 const HEADER = `
           <div style="margin:0 0 24px">
-            <a href="https://royagency.com"><img src="https://royagency.com/email-logo.png" alt="ROY" height="48" style="height:48px;width:auto;border:0;display:block" /></a>
+            <a href="https://royagency.com"><img src="https://royagency.com/email/roy-logo.png" alt="ROY Agency" width="160" height="75" style="width:160px;max-width:160px;height:auto;display:block;border:0;outline:none;text-decoration:none" /></a>
           </div>
         `;
+
 
 function esc(value: string) {
   return value
