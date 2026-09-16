@@ -236,11 +236,14 @@ function PackagesPage() {
       <section className="border-y border-border page-pad py-20 md:py-24">
         <div className="page-wrap">
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            Clients we've shot for
+            Who we work with
           </p>
           <p className="mt-6 font-display text-3xl leading-snug md:text-5xl">
-            Craftsman. DeWalt. Otterbein University. Pickups Plus.
+            National brands, universities, healthcare groups and local shops have
+            all put us behind the camera: Craftsman, DeWalt, Otterbein University,
+            Complete Healthcare, Garage Beer and Big Face Coffee.
           </p>
+
 
         </div>
       </section>
