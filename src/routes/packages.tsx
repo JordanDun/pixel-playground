@@ -233,20 +233,31 @@ function PackagesPage() {
       </section>
 
       {/* Clients */}
-      <section className="border-y border-border page-pad py-20 md:py-24">
+      <section className="border-y border-border page-pad py-16 md:py-20">
         <div className="page-wrap">
           <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
-            Who we work with
+            Trusted by
           </p>
-          <p className="mt-6 font-display text-3xl leading-snug md:text-5xl">
-            National brands, universities, healthcare groups and local shops have
-            all put us behind the camera: Craftsman, DeWalt, Otterbein University,
-            Complete Healthcare, Garage Beer and Big Face Coffee.
-          </p>
-
-
+          <ul className="mt-8 grid grid-cols-2 gap-x-8 gap-y-5 sm:grid-cols-3 lg:grid-cols-6">
+            {[
+              "Craftsman",
+              "DeWalt",
+              "Otterbein University",
+              "Complete Healthcare",
+              "Garage Beer",
+              "Big Face Coffee",
+            ].map((client) => (
+              <li
+                key={client}
+                className="text-sm uppercase tracking-[0.14em] text-muted-foreground"
+              >
+                {client}
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
+
 
       {/* Form */}
       <section id="get-started" className="scroll-mt-24 page-pad py-24 md:py-32">
