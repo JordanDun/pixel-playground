@@ -126,60 +126,20 @@ function PackagesPage() {
           or video that looks like it was shot on a phone. We fix that. Simple packages,
           real results, no film school required to understand them.
         </p>
-        <div className="mt-10 flex flex-wrap gap-3">
-          <a
-            href="#get-started"
-            className="rounded-full bg-primary px-6 py-3 text-xs uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-primary/90"
-          >
-            Find my package
-          </a>
-          <a
-            href="#packages"
-            className="rounded-full border border-border px-6 py-3 text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-primary hover:text-primary"
-          >
-            See options
-          </a>
-        </div>
        </div>
       </section>
 
-      {/* Intro three-up */}
-      <section className="border-y border-border bg-card/30 page-pad py-16 md:py-24">
-        <div className="page-wrap grid gap-10 md:grid-cols-3">
-          {INTROS.map((i) => (
-            <a
-              key={i.target}
-              href={`#${i.target}`}
-              className="group block border-l-2 border-border pl-6 transition-colors hover:border-[var(--accent-color)]"
-              style={{ ["--accent-color" as string]: i.hex }}
-            >
-              <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                {i.label}
-              </p>
-              <p className="mt-4 font-display text-2xl leading-tight text-foreground md:text-3xl">
-                {i.quote}
-              </p>
-              <p
-                className="mt-6 text-xs font-semibold uppercase tracking-[0.2em] transition-transform group-hover:translate-x-1"
-                style={{ color: i.hex }}
-              >
-                ↓ {i.arrow}
-              </p>
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* Packages */}
-      <section id="packages" className="page-pad py-24 md:py-32">
+      <section id="packages" className="page-pad pb-24 md:pb-32">
        <div className="page-wrap">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
           What we offer
         </p>
         <h2 className="mt-4 font-display text-5xl uppercase leading-[0.95] md:text-7xl">
           Three packages.<br />
-          <span className="italic" style={{ color: HEX.orange }}>Pick one.</span>
+          <span className="italic" style={{ color: HEX.orange }}>Built around how often you need us.</span>
         </h2>
+
 
         <div className="mt-16 space-y-6 md:space-y-8">
           {PACKAGES.map((p) => (
