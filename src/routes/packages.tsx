@@ -239,11 +239,9 @@ function PackagesPage() {
             Clients we've shot for
           </p>
           <p className="mt-6 font-display text-3xl leading-snug md:text-5xl">
-            Craftsman. DeWalt. Otterbein University. Pickups Plus.{" "}
-            <span className="text-foreground/50">
-              And local Columbus businesses just like yours.
-            </span>
+            Craftsman. DeWalt. Otterbein University. Pickups Plus.
           </p>
+
         </div>
       </section>
 
